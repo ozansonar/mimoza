@@ -1,0 +1,44 @@
+{
+  "name": "ozansonar/mimoza",
+  "description": "Basic PHP website template with admin panel",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ozan Sonar",
+      "email": "ozansonar1@gmail.com"
+    },
+    {
+      "name": "M.Raşit OKUMUŞ",
+      "email": "okumusmr@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Includes\\Models\\": "includes/Models/",
+      "Includes\\System\\": "includes/System/",
+      "Includes\\Project\\": "includes/Project/"
+    }
+  },
+  "require": {
+    "verot/class.upload.php": "^2.1",
+    "phpmailer/phpmailer": "^6.6",
+    "ezyang/htmlpurifier": "^4.14",
+    "shuchkin/simplexlsx": "^0.8.26",
+    "shuchkin/simplexlsxgen": "^1.1",
+    "ext-pdo": "*",
+    "nesbot/carbon": "^2.56",
+    "ext-iconv": "*",
+    "ext-ctype": "*",
+    "ext-curl": "*",
+    "almasaeed2010/adminlte": "~3.2",
+    "ext-fileinfo": "*"
+  },
+  "config": {
+    "platform-check": false
+  },
+  "require-dev": {
+    "filp/whoops": "^2.14",
+    "roave/security-advisories": "dev-latest"
+  }
+}
