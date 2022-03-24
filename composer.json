@@ -24,14 +24,11 @@
     "verot/class.upload.php": "^2.1",
     "phpmailer/phpmailer": "^6.6",
     "ezyang/htmlpurifier": "^4.14",
-    "shuchkin/simplexlsx": "^0.8.26",
-    "shuchkin/simplexlsxgen": "^1.1",
     "ext-pdo": "*",
     "nesbot/carbon": "^2.56",
     "ext-iconv": "*",
     "ext-ctype": "*",
     "ext-curl": "*",
-    "almasaeed2010/adminlte": "~3.2",
     "ext-fileinfo": "*"
   },
   "config": {

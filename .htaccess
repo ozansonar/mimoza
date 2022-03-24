@@ -1,0 +1,5 @@
+RewriteEngine On
+ReWriteRule ^uploads/project-files index.php [L,NC]
+RewriteRule ^([a-zA-Z0-9-_/]+)$ index.php [QSA]
+RewriteRule ^sitemap.xml sitemap.php [L,NC]
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

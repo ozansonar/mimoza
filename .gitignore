@@ -1,0 +1,12 @@
+.idea/
+vendor/
+.phpdoc/
+node_modules/
+mailler/
+uploads/auth/
+**/.DS_Store
+phive.phar
+phive.phar.asc
+bilgiler.php
+composer.lock
+DOC/
