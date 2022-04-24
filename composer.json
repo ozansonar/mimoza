@@ -1,7 +1,7 @@
 {
   "name": "ozansonar/mimoza",
   "description": "Basic PHP website template with admin panel",
-  "type": "package",
+  "type": "project",
   "license": "MIT",
   "authors": [
     {
