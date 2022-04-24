@@ -1,7 +1,7 @@
 {
   "name": "ozansonar/mimoza",
   "description": "Basic PHP website template with admin panel",
-  "type": "project",
+  "type": "package",
   "license": "MIT",
   "authors": [
     {
@@ -30,7 +30,7 @@
     "ext-ctype": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ozansonar/mimoza-panel-file": "*"
+    "ozansonar/mimoza-panel-file": "^1.0.0"
   },
   "config": {
     "platform-check": false
