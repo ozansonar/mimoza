@@ -30,7 +30,7 @@
     "ext-ctype": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ozansonar/mimoza-panel-file": "^1.0.0"
+    "ozansonar/mimoza-panel-file": "^1.0"
   },
   "config": {
     "platform-check": false
