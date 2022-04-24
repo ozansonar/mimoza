@@ -29,7 +29,8 @@
     "ext-iconv": "*",
     "ext-ctype": "*",
     "ext-curl": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ozansonar/mimoza-panel-file": "*"
   },
   "config": {
     "platform-check": false
