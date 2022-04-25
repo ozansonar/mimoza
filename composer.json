@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "php": "^7.4",
+    "php": ">=7.4",
     "verot/class.upload.php": "^2.1",
     "phpmailer/phpmailer": "^6.6",
     "ezyang/htmlpurifier": "^4.14",
