@@ -2,6 +2,8 @@
 
 namespace Includes\System;
 
+use JetBrains\PhpStorm\Pure;
+
 class Session
 {
 	/**
@@ -137,9 +139,9 @@ class Session
 	 * $id gönderirlirse o idye ait verileri verir gönderilmez ise sessionda olan user_id ye ait verileri verir
 	 *
 	 * @param int|null $id
-	 * @return false
+	 * @return false|object
 	 */
-	public function getUserInfo(int $id = null)
+	public function getUserInfo(int $id = null): mixed
 	{
 		$id = (is_null($id)) ? (int)$_SESSION["user_id"] : $id;
 		$selectQuery = $this->database::selectQuery("users", [

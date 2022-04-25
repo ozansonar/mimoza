@@ -59,6 +59,10 @@ if (gethostname() === "hostname") {
 
 	// This is session expire date. Session will store in database and check session from db.
 	define("SESSION_DURATION", 86400);
+	// Cache file
+	define("CACHE_FILE_PATH", ROOT_PATH . '/public/cache/');
+	// Default language
+	define("DEFAULT_LANGUAGE", 'tr');
 
 
 } else {

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DateTime;
 use Exception;
-use JetBrains\PhpStorm\NoReturn;
+use JetBrains\PhpStorm\Pure;
 
 /**
  *
@@ -26,7 +26,7 @@ class Functions
 	 * @throws Exception
 	 */
 	public function date_long($tarih): ?string
-    {
+	{
 		if (empty($tarih)) {
 			return null;
 		}
@@ -44,7 +44,7 @@ class Functions
 	 * @throws Exception
 	 */
 	public function date_short($tarih): ?string
-    {
+	{
 		if (empty($tarih)) {
 			return null;
 		}
@@ -61,7 +61,7 @@ class Functions
 	 * @throws Exception
 	 */
 	public function date_long_and_time($tarih): string
-    {
+	{
 		$tarih = new DateTime($tarih);
 		global $months;
 		$tarih = $tarih->format("d") . " " . $months[$_SESSION["lang"]]["long"][$tarih->format("m")] . ", " . $tarih->format("Y") . " " . $tarih->format("H") . ":" . $tarih->format("i");
@@ -85,29 +85,28 @@ class Functions
 
 	/**
 	 * @param $text
-	 * @return string
+	 * @return string|null
 	 */
-	public function cleaner($text): string
-    {
-		$array = array('insert', 'update', 'union', '<script', 'alert', 'select', '*');
-		$text = str_replace($array, '', $text);
-		$text = strip_tags($text);
-		$text = trim($text);
-		$text = stripslashes($text);
-		$text = htmlspecialchars($text);
-		return $text;
+	public function cleaner($text): ?string
+	{
+		if ($text !== NULL) {
+			// TODO:: str_replace
+//		$array = array('insert', 'update', 'union', '<script', 'alert', 'select', '*');
+//		$text = str_replace($array, '', $text);
+			return htmlspecialchars(stripslashes(strip_tags(trim($text))));
+		}
+		return NULL;
 	}
 
 	/**
 	 * @param $text
-	 * @return string
+	 * @return string|null
 	 */
-	public function cleaner_textarea($text): string
-    {
-		$array = array('insert', 'update', 'union', 'select', '*', '<script');
-		$text = str_replace($array, '', $text);
-		$text = trim($text);
+	public function cleaner_textarea($text): ?string
+	{
 		return $text;
+		// TODO:: str_replace deprecated
+		//return  trim(str_replace(['insert', 'update', 'union', 'select', '*', '<script'], ['', '', '', '', '', ''], $text));
 	}
 
 	/**
@@ -115,7 +114,7 @@ class Functions
 	 * @return bool
 	 */
 	public function is_email($mail): bool
-    {
+	{
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 			return true;
 		} else {
@@ -140,21 +139,30 @@ class Functions
 	 * @return string
 	 */
 	public function csrfToken(): string
-    {
-		$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+	{
+		if (!isset($_SESSION['token'])) {
+			$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+		}
 		$token = '<input type="hidden" name="token" id="token" value="' . $_SESSION['token'] . '">';
 		return $token;
+	}
+
+	public function getCsrfToken(): string
+	{
+		if (!isset($_SESSION['token'])) {
+			$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+		}
+		return $_SESSION['token'];
 	}
 
 
 	/**
 	 * @param $str
 	 * @param int $limit
-	 * @param int $nokta
 	 * @return string
 	 */
-	public function kisalt($str,int $limit = 10): string
-    {
+	public function kisalt($str, int $limit = 10): string
+	{
 		$str = strip_tags(htmlspecialchars_decode(html_entity_decode($str), ENT_QUOTES));
 		$length = strlen($str);
 		if ($length > $limit) {
@@ -173,7 +181,10 @@ class Functions
 	public function permalink(string $str, array $options = array()): string
 	{
 		$str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());
-		$str = str_replace(array("&quot;", "&#39;"), NULL, $str); // tırnaklar için replace
+		// tırnaklar için replace
+		if (!empty($str)) {
+			$str = str_replace(array('"&#39;"', "&quot;"), array(NULL, NULL), $str);
+		}
 		$defaults = array(
 			'delimiter' => '-',
 			'limit' => null,
@@ -257,7 +268,7 @@ class Functions
 	 * @return array|false|string
 	 */
 	public function GetIP(): string
-    {
+	{
 		if (getenv("HTTP_CLIENT_IP")) {
 			$ip = getenv("HTTP_CLIENT_IP");
 		} elseif (getenv("HTTP_X_FORWARDED_FOR")) {
@@ -330,7 +341,7 @@ class Functions
 	 * @return mixed|null
 	 */
 	public function post($data)
-    {
+	{
 		if (!empty($this->form_lang)) {
 			return $_POST[$data . "_" . $this->form_lang] ?? null;
 		}
@@ -344,36 +355,36 @@ class Functions
 	 * @return mixed|null
 	 */
 	public function get($data)
-    {
+	{
 		return $_GET[$data] ?? null;
 	}
 
 	/**
 	 * $_POST[$data] değerini temizleyerek döner.
 	 * @param $data
-	 * @return string
+	 * @return string|null
 	 */
-	public function clean_post($data): string
+	public function clean_post($data): ?string
 	{
 		return $this->cleaner($this->post($data));
 	}
 
-    public function cleanPostArray($postKey): array
-    {
-        $purified = [];
-        foreach ($this->post($postKey) as $key => $item){
-            $purified[$key] = $this->cleaner($item);
-        }
-        return $purified;
-    }
+	public function cleanPostArray($postKey): array
+	{
+		$purified = [];
+		foreach ($this->post($postKey) as $key => $item) {
+			$purified[$key] = $this->cleaner($item);
+		}
+		return $purified;
+	}
 
 	/**
 	 * Textarea'dan gelen değerleri temizlemek için kullanılır.
 	 *
 	 * @param $data
-	 * @return string
+	 * @return string|null
 	 */
-	public function clean_post_textarea($data): string
+	public function clean_post_textarea($data): ?string
 	{
 		return $this->cleaner_textarea($this->post($data));
 	}
@@ -477,7 +488,7 @@ class Functions
 	 * @return string
 	 */
 	public function tr_strtoupper($string): string
-    {
+	{
 		$search = array("ç", "i", "ı", "ğ", "ö", "ş", "ü");
 		$replace = array("Ç", "İ", "I", "Ğ", "Ö", "Ş", "Ü");
 		$string = str_replace($search, $replace, $string);
@@ -492,7 +503,7 @@ class Functions
 	 * @return string
 	 */
 	public function tr_strtolower($string): string
-    {
+	{
 		$search = array("Ç", "İ", "I", "Ğ", "Ö", "Ş", "Ü");
 		$replace = array("ç", "i", "ı", "ğ", "ö", "ş", "ü");
 		$text = str_replace($search, $replace, $string);
@@ -507,7 +518,7 @@ class Functions
 	 * @return array|string|string[]
 	 */
 	public function tr_cevir($string): string
-    {
+	{
 		$search = array("&#252;", "&#231;", "&#220;", "&#199;", "&#246;", "&#214;", "&uuml;", "&ouml;");
 		$replace = array("ü", "ç", "Ü", "Ç", "ö", "Ö", "ü", "ö");
 		$text = str_replace($search, $replace, $string);
@@ -563,7 +574,7 @@ class Functions
 	 * @return bool|string
 	 */
 	public function curlKullan($url): string
-    {
+	{
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -659,7 +670,7 @@ class Functions
 
 	/**
 	 * @param $password
-	 * @param string $msg_key_text
+	 * @param string|null $msg_key_text
 	 * @return array
 	 */
 	public function passwordControl($password, string $msg_key_text = null): array
@@ -667,24 +678,22 @@ class Functions
 		$password = $this->cleaner($password);
 		$errors = array();
 		if (empty($password)) {
-			$errors[] = $msg_key_text ." boş olamaz.";
+			$errors[] = $msg_key_text . " boş olamaz.";
 		}
 		if (!empty($password)) {
-			if (strlen($password) < 10) {
-				$errors[] = $msg_key_text ." en az 10 karakter olmalıdır.";
+			if (strlen($password) < 8) {
+				$errors[] = $msg_key_text . " en az 8 karakter olmalıdır.";
 			}
-			if (strlen($password) > 50) {
-				$errors[] = $msg_key_text." en fazla 50 karakter olmalıdır.";
-			}
-			if (strlen($password) >= 10 && strlen($password) <= 50) {
+
+			if (strlen($password) >= 8) {
 				if (!preg_match("#[0-9]+#", $password)) {
-					$errors[] = $msg_key_text." en az bir rakam içermek zorundadır.";
+					$errors[] = $msg_key_text . " en az bir rakam içermek zorundadır.";
 				}
 				if (!preg_match("#[a-z]+#", $password)) {
-					$errors[] = $msg_key_text." en az bir küçük harf içermelidir.";
+					$errors[] = $msg_key_text . " en az bir küçük harf içermelidir.";
 				}
 				if (!preg_match("#[A-Z]+#", $password)) {
-					$errors[] = $msg_key_text." en az bir büyük harf içermelidir.";
+					$errors[] = $msg_key_text . " en az bir büyük harf içermelidir.";
 				}
 			}
 		}
@@ -974,7 +983,7 @@ class Functions
 		if (!empty($content)) {
 			$content_link = $content->link . "-" . $content->id;
 		}
-		return $this->site_url_lang($settings->{"content_prefix_".$_SESSION["lang"]}. "/" . $categories_link . "/" . $content_link);
+		return $this->site_url_lang($settings->{"content_prefix_" . $_SESSION["lang"]} . "/" . $categories_link . "/" . $content_link);
 	}
 
 	/**
@@ -1036,6 +1045,8 @@ class Functions
 
 		return $months;
 	}
+
+
 
 
 }

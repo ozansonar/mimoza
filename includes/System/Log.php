@@ -2,53 +2,58 @@
 
 namespace Includes\System;
 
-use \PDO;
+use PDO;
 
 /**
  *
  */
 class Log
 {
-	/**
-	 * @var
-	 */
-	private $database;
-	/**
-	 * @var array|false
-	 */
+
+	private Database $database;
+
 	public $logTypes = array();
 
-	/**
-	 * @param $database
-	 */
-	function __construct($database)
+	public function __construct($database)
 	{
 		$this->database = $database;
 		$this->logTypes = $this->getLogTypes();
 
 	}
 
-	/**
-	 * @param $user_agent
-	 * @return string
-	 */
-	function get_browser_name($user_agent)
+	private function get_browser_name($user_agent): string
 	{
 		$t = strtolower($user_agent);
 		$t = " " . $t;
-		if (strpos($t, 'opera') || strpos($t, 'opr/')) return 'Opera';
-		elseif (strpos($t, 'edge')) return 'Edge';
-		elseif (strpos($t, 'chrome')) return 'Chrome';
-		elseif (strpos($t, 'safari')) return 'Safari';
-		elseif (strpos($t, 'firefox')) return 'Firefox';
-		elseif (strpos($t, 'msie') || strpos($t, 'trident/7')) return 'Internet Explorer';
-		return 'Unkown';
+
+		if (strpos($t, 'opera') || strpos($t, 'opr/')) {
+			return 'Opera';
+		}
+
+		if (strpos($t, 'edge')) {
+			return 'Edge';
+		}
+
+		if (strpos($t, 'chrome')) {
+			return 'Chrome';
+		}
+
+		if (strpos($t, 'safari')) {
+			return 'Safari';
+		}
+
+		if (strpos($t, 'firefox')) {
+			return 'Firefox';
+		}
+
+		if (strpos($t, 'msie') || strpos($t, 'trident/7')) {
+			return 'Internet Explorer';
+		}
+
+		return 'Unknown';
 	}
 
-	/**
-	 * @return string
-	 */
-	function getOS()
+	private function getOS(): string
 	{
 		$user_agent = $_SERVER['HTTP_USER_AGENT'];
 		$os_platform = "Unknown OS Platform";
@@ -86,10 +91,7 @@ class Log
 		return $os_platform;
 	}
 
-	/**
-	 * @return string
-	 */
-	function getBrowser()
+	private function getBrowser(): string
 	{
 		$user_agent = $_SERVER['HTTP_USER_AGENT'];
 		$browser = "Unknown Browser";
@@ -115,11 +117,7 @@ class Log
 		return $browser;
 	}
 
-	/**
-	 * @param $logType
-	 * @param string $detail
-	 */
-	function logThis($logType, $detail = "")
+	public function logThis($logType, string $detail = ""): void
 	{
 
 		$db_connection = $this->database::$db;
@@ -160,9 +158,6 @@ class Log
 
 	}
 
-	/**
-	 * @return array|false
-	 */
 	public function getLogTypes()
 	{
 		$db_connection = $this->database::$db;
@@ -180,30 +175,35 @@ class Log
 
 	}
 
-	/**
-	 * @param $log_val
-	 * @return bool
-	 */
-	function checkLogType($log_val)
+	public function checkLogType($log_val): bool
 	{
-		$db_connection = $this->database::$db;
-		$query = $db_connection->prepare('SELECT * FROM log_types WHERE log_val=:log_val');
+		$db_connection = $this->database;
+		$query = $db_connection::$db->prepare('SELECT * FROM log_types WHERE log_val=:log_val');
 		$query->bindParam(':log_val', $log_val);
 		$query->execute();
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 
 		if ($query->rowCount() > 0) {
 			return true;
-		} else {
-			return false;
 		}
+
+		$lastValueQuery = $db_connection::$db->query('SELECT log_val FROM log_types ORDER BY log_val DESC LIMIT 1');
+		$lastValue = $lastValueQuery->fetch(PDO::FETCH_ASSOC);
+		$uniqueInt = (int)$lastValue['log_val'] + 1;
+
+		$insert = $db_connection::insert('log_types', [
+			'log_key' => $log_val,
+			'log_val' => $uniqueInt,
+			'log_desc' => 'Auto added type'
+		]);
+		if ($insert) {
+			return true;
+		}
+		return false;
 
 	}
 
-	/**
-	 * @return mixed|string
-	 */
-	function getUserIP()
+	private function getUserIP()
 	{
 
 		if (isset($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)) {
@@ -221,13 +221,5 @@ class Log
 		}
 
 		return $ip;
-	}
-
-	/**
-	 *
-	 */
-	function __destruct()
-	{
-		//unset($this);
 	}
 }

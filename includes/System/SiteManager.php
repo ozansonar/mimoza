@@ -190,6 +190,15 @@ class SiteManager
 		return $query->rowCount();
 	}
 
+	public function uniqDataControl(string $table, string $column, string $data): int
+	{
+		/** @var Database $db */
+		$query = $this->database::$db->prepare("SELECT * FROM " . $table . " WHERE " . $column . "=:" . $column . " AND deleted = 0");
+		$query->bindParam(":" . $column . "", $data, PDO::PARAM_STR);
+		$query->execute();
+		return $query->rowCount();
+	}
+
 	/**
 	 * Ana indexde sayfaları konrol etmek için kullanırız
 	 *
@@ -413,4 +422,11 @@ class SiteManager
 	}
 
 	//################################# PLEASE ADD YOUR OWN FUNCTIONS AFTER THAT ############################//
+
+	public function getDefaultLanguageCode()
+	{
+		/** @var Database $db */
+		$defaultLanguage = $this->database::selectQuery('lang',[ 'default_lang'=> 1, 'deleted'=>0, 'status'=>1],true);
+		return $defaultLanguage->short_lang;
+	}
 }

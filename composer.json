@@ -21,6 +21,7 @@
     }
   },
   "require": {
+    "php": "^7.4",
     "verot/class.upload.php": "^2.1",
     "phpmailer/phpmailer": "^6.6",
     "ezyang/htmlpurifier": "^4.14",
@@ -30,7 +31,8 @@
     "ext-ctype": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ozansonar/mimoza-panel-file": "^1.0"
+    "ozansonar/mimoza-panel-file": "^1.0",
+    "ext-json": "*"
   },
   "config": {
     "platform-check": false

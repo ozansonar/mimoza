@@ -13,7 +13,7 @@ class AdminSystem
 	public function adminController($controllerName): string
 	{
 		$controllerName = strtolower($controllerName);
-		return ROOT_PATH . '/admin/Controller/' . $controllerName . '.php';
+		return ROOT_PATH . '/beta/Controller/' . $controllerName . '.php';
 	}
 
 	/**
@@ -22,7 +22,7 @@ class AdminSystem
 	 */
 	public function adminView($viewName): string
 	{
-		return ROOT_PATH . '/admin/View/' . $viewName . '.php';
+		return ROOT_PATH . '/beta/View/proje/' . $viewName . '.php';
 	}
 
 	/**
@@ -40,7 +40,7 @@ class AdminSystem
 	 */
 	public function adminUrl(string $url = ''): string
 	{
-		return SITE_URL . '/admin/' . $url;
+		return SITE_URL . '/beta/' . $url;
 	}
 
 }

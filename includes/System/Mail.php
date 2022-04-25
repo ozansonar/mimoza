@@ -13,47 +13,16 @@ use PHPMailer\PHPMailer\SMTP;
  */
 class Mail
 {
-    /**
-     * @var
-     */
-    private $database;
-    /**
-     * @var Functions
-     */
-    private $functions;
+    private Database $database;
+    private Functions $functions;
+	public string $adress;
+    public string $subject;
+    public string $message;
+    public string $sender_name;
+    public int $sent_status = 0;
+    public ?string $extra_log = null;
+    public int $send_type = 1;
 
-    /**
-     * @var
-     */
-    public $adress;//mail gidecek adress
-    /**
-     * @var
-     */
-    public $subject; //mail konusu
-    /**
-     * @var
-     */
-    public $message; //mail içeriği
-    /**
-     * @var
-     */
-    public $sender_name; //mail içeriği
-    /**
-     * @var int
-     */
-    public $sent_status = 0;// gönderildi ise 1 gönderilemedi ise 2
-    /**
-     * @var null
-     */
-    public $extra_log = null; //hata kısmında hata mesajını kaydedecek
-    /**
-     * @var int
-     */
-    public $send_type = 1; //nerden gönderildiğini temsil eder 1:web,2:cron
-
-    /**
-     * @param $database
-     */
     public function __construct($database)
     {
         $this->database = $database;
@@ -74,21 +43,34 @@ class Mail
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Enable verbose debug output
-            $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host = $settings->smtp_host;                    // Set the SMTP server to send through
-            $mail->SMTPAuth = true;                                   // Enable SMTP authentication
-            $mail->Username = $settings->smtp_email;                     // SMTP username
-            $mail->Password = $settings->smtp_password;                               // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $mail->Port = $settings->smtp_port;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-            $mail->SetLanguage($_SESSION["lang"], 'phpmailler/language/'); // hata dil ayarı
-            $mail->SetFrom($settings->smtp_send_email_adres, $this->sender_name); //giden mailde görünecek ismimiz
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->isSMTP();
+            $mail->Host = $settings->smtp_host;
+            $mail->SMTPAuth = true;
+            $mail->Username = $settings->smtp_email;
+            $mail->Password = $settings->smtp_password;
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = $settings->smtp_port;
+            $mail->SetLanguage($_SESSION["lang"], 'phpmailler/language/');
+            $mail->SetFrom($settings->smtp_send_email_adres, $this->sender_name);
             $mail->CharSet = PHPMailer::CHARSET_UTF8;
             $mail->addReplyTo($settings->smtp_send_email_reply_adres, $this->sender_name);
 
-            if ((int)$settings->smtp_mail_send_debug === 2) {
+//			$mail->SMTPDebug = 0;
+//			$mail->isSMTP();
+//			$mail->Host = 'cp54.servername.co';
+//			$mail->Port = 587;
+//			$mail->SMTPAuth = true;
+//			$mail->Username = 'info@fransizcaogren.com';
+//			$mail->Password = "1'Stanbul34@!";
+//			$mail->SMTPSecure = false;
+//			$mail->SMTPAutoTLS = false;
+//			$mail->SetFrom('info@fransizcaogren.com', 'Fransızca Öğren');
+//			$mail->CharSet = PHPMailer::CHARSET_UTF8;
+//			$mail->addReplyTo('info@fransizcaogren.com', 'Fransızca Öğren');
+
+
+			if ((int)$settings->smtp_mail_send_debug === 2) {
                 $send_adress = $settings->smtp_send_debug_adres;
             } else {
                 $send_adress = $this->adress;
@@ -100,25 +82,22 @@ class Mail
             $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
             $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
             */
+
             //maile ait sabit resim yükleniyor
             if(!empty($settings->mail_tempate_logo) && file_exists($fileTypePath["project_image"]["full_path"].$settings->mail_tempate_logo)){
                 $mail->addEmbeddedImage($fileTypePath["project_image"]["full_path"] . $settings->mail_tempate_logo, "img_header", $settings->mail_tempate_logo);
             }
 
             // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->isHTML();
 
             //mail teması
             include_once $this->functions->root_url("includes/MailTemplate/MailTemplate.php");
 
-            $mailTemplate = str_replace(array("[MESSAGE]", "[SITE_URL]"), array($this->message, $this->functions->site_url()), $mailTemplate);
-            $mailTemplate = str_replace("[SITE_URL]",$this->functions->site_url_lang(),$mailTemplate);
+			$mailTemplate = str_replace(array("[MESSAGE]", "[SITE_URL]", "[SITE_URL]"), array($this->message, $this->functions->site_url(), $this->functions->site_url_lang()), $mailTemplate);
             $mail->Subject = $settings->project_name . $this->subject;
             $mail->Body = $mailTemplate;
-            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
             $mail->send();
-
             $this->sent_status = 1;
             $this->mail_log();
             return true;
@@ -132,7 +111,11 @@ class Mail
     }
 
     //mailing göndermi için kullanılıyor
-    public function maililing_send($id){
+
+	/**
+	 * @throws Exception
+	 */
+	public function maililing_send($id){
         global $fileTypePath, $settings;
         //bu fonksiyona ajaxdan istek gelecek ve sistem $mailing_id yi sorgulayıp her istekte bu mailing için mail atılmamış bir kullanıcıya mail atacak
         //uyarıları depolayacağız
@@ -141,8 +124,7 @@ class Mail
         $query = $this->database::query("SELECT * FROM mailing WHERE id=:id AND status=1 AND deleted=0");
         $query->bindParam(":id",$id,PDO::PARAM_INT);
         $query->execute();
-        $query_count = $query->rowCount();
-        if((int)$query_count !== 1){
+        if($query->rowCount() !== 1){
             $result["result"] = 1;
             $result["message"][] = "Mailing bulunamadı.";
             return $result;
@@ -223,7 +205,7 @@ class Mail
                 if(!empty($query_data->image)){
                     $image_decode = unserialize($query_data->image);
                     foreach ($image_decode as $image_key=>$image_row){
-                        if(strstr($mailBody,"image_".$image_key)){
+                        if(str_contains($mailBody, "image_" . $image_key)){
                             //mail gövdesindeki resimler ekleniyor
                             $mail->addEmbeddedImage($fileTypePath["mailing"]["full_path"] . $image_row, "image_".$image_key, $image_row);
                         }
@@ -246,17 +228,14 @@ class Mail
                         }
                     }
                 }
-                $body = str_replace("[MESSAGE]",$this->message,$body);
-                $body = str_replace("[AD]",$mailing_user_data->name,$body);
-                $body = str_replace("[SOYAD]",$mailing_user_data->surname,$body);
-                $body = str_replace("[SITE_URL]",$this->functions->site_url_lang(),$body);
+				$body = str_replace(array("[MESSAGE]", "[AD]", "[SOYAD]", "[SITE_URL]"), array($this->message, $mailing_user_data->name, $mailing_user_data->surname, $this->functions->site_url_lang()), $body);
 
                 //Same body for all messages, so set this before the sending loop
                 //If you generate a different body for each recipient (e.g. you're using a templating system),
                 //set it inside the loop
                 $mail->msgHTML($body);
 
-                if($settings->smtp_mail_send_debug == 2){
+                if((int)$settings->smtp_mail_send_debug === 2){
                     $this->adress = $settings->smtp_send_debug_adres;
                 }else{
                     $this->adress = $mailing_user_data->email;
@@ -265,7 +244,7 @@ class Mail
                 $mail->addAddress($this->adress, $mailing_user_data->name." ".$mailing_user_data->surname);
 
                 if($mail->send()){
-                    if($query_data->completed == 0){
+                    if((int)$query_data->completed === 0){
                         //henüz mail bekliyor şimdi başladı ve bunu işleyelim şuan için tamamlanmadı olarak işliyoruz
                         $mailing_basladi = $this->database::query("UPDATE mailing SET completed=2 WHERE id=:ma_id");
                         $mailing_basladi->bindParam(":ma_id",$query_data->id,PDO::PARAM_INT);
@@ -306,7 +285,7 @@ class Mail
                     $mail->clearAttachments();
 
                     //mailing tamamlandı mı kontrol et
-                    if($mailing_user_send_count_2 == $mailing_user_send_count){
+                    if($mailing_user_send_count_2 === $mailing_user_send_count){
                         $result = $this->getResult($query_data, $result);
                         $result["message"][] = "Mailing tamamlandı. Sayfayı yenileyiniz.";
 
@@ -331,8 +310,7 @@ class Mail
                         return $result;
                     }
 
-                    return $result;
-                }else{
+				}else{
                     //mail atılamayan satırı güncelleyelim
                     $mail_gonderilemedi = $this->database::query("UPDATE mailing_user SET send=2,try_to_send=try_to_send+1 WHERE id=:id");
                     $mail_gonderilemedi->bindParam(":id",$mailing_user_data->id,PDO::PARAM_INT);
@@ -356,24 +334,23 @@ class Mail
                     $result["no_send"] = 1;
                     $result["no_email"] = $mailing_user_data->email;
 
-                    return $result;
-                }
-            }else{
-                //eğer buraya girerse listede 0 ve 2 yok hepsi 1 dir buda mailing tamamlandı demektir.
+				}
+				return $result;
+			}
 
-                $result = $this->getResult($query_data, $result);
-                $result["message"][] = "Mail gönderilecek kullanıcı bulunamadı.";
-                $result["message"][] = "Mailing tamamlandı.";
-                return $result;
-            }
-        }
+		}
+		//eğer buraya girerse listede 0 ve 2 yok hepsi 1 dir buda mailing tamamlandı demektir.
+		$result = $this->getResult($query_data, $result);
+		$result["message"][] = "Mail gönderilecek kullanıcı bulunamadı.";
+		$result["message"][] = "Mailing tamamlandı.";
+		return $result;
     }
 
     /**
      *
      */
-    public function mail_log()
-    {
+    public function mail_log(): void
+	{
         $db_data = array();
         $db_data["mail"] = $this->adress;
         $db_data["subject"] = $this->subject;

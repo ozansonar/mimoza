@@ -85,4 +85,50 @@ class Core
 		return SITE_URL . '/uploads/' . $url;
 	}
 
+	public function url($url = ''): string
+	{
+		return SITE_URL . '/' . $_SESSION['lang'] . '/' . $url;
+	}
+
+	public function backend($url = ''): string
+	{
+		return SITE_URL . '/' . $_SESSION['lang'] . '/beta/' . $url;
+	}
+
+	public function userUrl(string $username): string
+	{
+		return SITE_URL . '/user/' . $username;
+	}
+
+	public function getTranslation($englishVersion): string
+	{
+		try {
+			$langJson = json_decode(file_get_contents($this->publicPath('languages/' . $_SESSION['lang'] . '.json')), false, 512, JSON_THROW_ON_ERROR);
+		} catch (\JsonException $e) {
+
+		}
+		return $langJson->{$englishVersion} ?? $englishVersion;
+	}
+
+	public function path($filePath = ''): string
+	{
+		return ROOT_PATH . '/' . $filePath;
+	}
+
+	public function setLanguage(string $language): string
+	{
+		unset($_SESSION['lang']);
+		$_SESSION['lang'] = $language;
+		$uri = array_values(array_filter(explode('/', $_SERVER['REQUEST_URI'])));
+		$uri[0] = $language;
+		return SITE_URL . '/' . implode('/', $uri);
+	}
+
+	public function isUrlActive(string $url): bool
+	{
+		$uri = array_values(array_filter(explode('/', $_SERVER['REQUEST_URI'])));
+		return isset($uri[1]) && $url === $uri[1];
+
+	}
+
 }

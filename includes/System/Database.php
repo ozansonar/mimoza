@@ -172,7 +172,7 @@ class Database
 	 * @param array|null $select Çekilecek kolonlar. Varsayılan olarak tüm kolonları çeker
 	 * @param int $type Dönen veri tipi. 5 obje döndürür, 2 ise dizi döndürür. Bakınız: https://phpdelusions.net/pdo/fetch_modes
 	 * @param string $orderColumn Dönen verilerin sıralanması için. Varsayılan değer id'dir.
-	 * @return array|false|mixed
+	 * @return array|false|mixed|object
 	 */
 	public static function selectQuery(string $table, array $where = null, bool $singleRow = false, array $select = null, int $type = 5, string $orderColumn = " id ")
 	{
