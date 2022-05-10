@@ -76,6 +76,6 @@ if (isset($settings->project_image)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!isset($_POST["token"], $_SESSION["token"]) || ($_POST['token'] !== $_SESSION['token'])) {
 		// TODO:: return back with error message
-		//exit('Geçersiz CSRF Token!');
+		exit('Geçersiz CSRF Token!');
 	}
 }
