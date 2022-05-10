@@ -70,7 +70,6 @@ class View
 		global $loggedUser;
 		global $socialMedia;
 		global $message;
-		global $betaMenu;
 		global $adminSystem;
 		global $listPermissionKey;
 		global $editPermissionKey;
