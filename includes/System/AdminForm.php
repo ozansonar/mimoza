@@ -31,7 +31,7 @@ class AdminForm
 	/**
 	 *
 	 */
-	#[Pure] public function __construct()
+	public function __construct()
 	{
 		$this->functions = new Functions();
 	}
