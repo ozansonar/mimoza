@@ -169,14 +169,18 @@ class Session
 	 * @param string $email
 	 * @return array
 	 */
-	public function userControl(string $email): ?object
-	{
-		$userMail = $this->isThatAnEmail($email);
-		return $this->database::selectQuery("users", array(
-			"email" => $userMail,
-			"deleted" => 0,
-		), true);
-	}
+    public function userControl(string $email): ?object
+    {
+        $userMail = $this->isThatAnEmail($email);
+        $user = $this->database::selectQuery("users", array(
+            "email" => $userMail,
+            "deleted" => 0,
+        ), true);
+        if (!empty($user)) {
+            return $user;
+        }
+        return NULL;
+    }
 
 	/**
 	 * It's return session value
