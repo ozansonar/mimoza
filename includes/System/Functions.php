@@ -140,9 +140,7 @@ class Functions
 	 */
 	public function csrfToken(): string
 	{
-		if (!isset($_SESSION['token'])) {
-			$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
-		}
+        $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
 		$token = '<input type="hidden" name="token" id="token" value="' . $_SESSION['token'] . '">';
 		return $token;
 	}
