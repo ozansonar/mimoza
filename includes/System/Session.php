@@ -141,7 +141,7 @@ class Session
 	 * @param int|null $id
 	 * @return false|object
 	 */
-	public function getUserInfo(int $id = null): mixed
+	public function getUserInfo(int $id = null)
 	{
 		$id = (is_null($id)) ? (int)$_SESSION["user_id"] : $id;
 		$selectQuery = $this->database::selectQuery("users", [

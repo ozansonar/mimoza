@@ -13,7 +13,7 @@ class View
 	 * @param string $layout
 	 * @return mixed
 	 */
-	public static function layout(string $view, array $data = null, string $layout = 'main'): mixed
+	public static function layout(string $view, array $data = null, string $layout = 'main')
 	{
 		global $metaTag;
 		global $functions;
@@ -54,7 +54,7 @@ class View
 	 * @param string $layout
 	 * @return mixed
 	 */
-	public static function backend(string $view, array $data = null, string $layout = 'main'): mixed
+	public static function backend(string $view, array $data = null, string $layout = 'main')
 	{
 		if (!isset($_SESSION['theme'])) {
 			$_SESSION['theme'] = 'light-layout';
@@ -82,7 +82,7 @@ class View
 		$data['theme'] = $_SESSION['theme'];
 		$data['view'] = self::backendView($view);
 		$data = (object)$data;
-		return require ROOT_PATH . "/beta/View/layouts/{$layout}.php";
+		return require ROOT_PATH . "admin/View/layouts/{$layout}.php";
 	}
 
 	/**
@@ -93,7 +93,7 @@ class View
 	 */
 	public static function backendView(string $view): string
 	{
-		return ROOT_PATH . '/beta/View/proje/' . $view . '.php';
+		return ROOT_PATH . '/admin/View/proje/' . $view . '.php';
 	}
 
 }

@@ -22,7 +22,7 @@ class AdminSystem
 	 */
 	public function adminView($viewName): string
 	{
-		return ROOT_PATH . '/admin/View/proje/' . $viewName . '.php';
+		return ROOT_PATH . '/admin/View/' . $viewName . '.php';
 	}
 
 	/**
