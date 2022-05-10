@@ -88,7 +88,7 @@ class FileUploader
 	/**
 	 * @return array|false
 	 */
-	public function file_upload(): bool|array
+	public function file_upload()
 	{
 		if (isset($_FILES[$this->global_file_name])) {
 			$url = $this->upload_path_info["default"]["full_path"];

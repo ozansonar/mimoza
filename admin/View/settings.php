@@ -317,19 +317,23 @@
                                 ?>
                             </div>
                             <div class="tab-pane fade" id="lang_content_prefix">
-                                 <?php
-                                 foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefix) {
-                                     ?>
-                                     <div class="alert alert-info" role="alert"><?php echo $systemLinkPrefix["title"]; ?></div>
-                                     <?php
-                                     foreach ($projectLanguages as $project_languages_row){
-                                         echo $form->input($prefixKey.$project_languages_row->short_lang,array(
-                                             "label" => $project_languages_row->lang,
-                                             "required" => 1
-                                         ),$pageData);
-                                     }
-                                 }
-                                 ?>
+                                <?php
+                                foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefix) {
+                                    ?>
+                                    <div class="mb-3 border p-3">
+                                        <div class="alert alert-info" role="alert"><?php echo $systemLinkPrefix["title"]; ?></div>
+                                        <?php
+                                        foreach ($projectLanguages as $project_languages_row){
+                                            echo $form->input($prefixKey.$project_languages_row->short_lang,array(
+                                                "label" => $project_languages_row->lang,
+                                                "required" => 1
+                                            ),$pageData);
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </form>
