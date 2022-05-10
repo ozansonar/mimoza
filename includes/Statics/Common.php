@@ -544,3 +544,46 @@ $pageLinkNoListController = [
 	"site-bakimda",
 	"iletisim"
 ];
+
+$systemLinkPrefix = [
+    "content_prefix_" => [
+        "title" => "İçerik Linki",
+        "controller" => "content",
+    ],
+    "search_prefix_" => [
+        "title" => "Arama Linki",
+        "controller" => "arama",
+    ],
+    "slider_prefix_" => [
+        "title" => "Slider Linki",
+        "controller" => "slider"
+    ],
+    "iletisim_prefix_" => [
+        "title" => "İletişim Linki",
+        "controller" => "iletisim",
+    ],
+    "profile_prefix_" => [
+        "title" => "Profil Linki",
+        "controller" => "profil",
+    ],
+    "giris_prefix_" => [
+        "title" => "Giriş Linki",
+        "controller" => "giris",
+    ],
+    "sifremi_unutum_prefix_" => [
+        "title" => "Şifremi unuttum",
+        "controller" => "sifremi-unuttum",
+    ],
+    "sifre_yenile_prefix_" => [
+        "title" => "Şifre Yenileme Linki",
+        "controller" => "sifre-yenile",
+    ],
+    "uye_ol_prefix_" => [
+        "title" => "Üye Olma",
+        "controller" => "sign-up",
+    ],
+    "hesap_dogrulama_prefix_" => [
+        "title" => "Hesap Doğrulama",
+        "controller" =>  "account-activate",
+    ],
+];

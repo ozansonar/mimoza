@@ -102,19 +102,12 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	$pageData[$default_lang->short_lang]["page_not_found_title"] = $functions->clean_post("page_not_found_title");
 	$pageData[$default_lang->short_lang]["page_not_found_text"] = $functions->clean_post_textarea("page_not_found_text");
 
-	//özel linkler
-	foreach ($projectLanguages as $project_languages_row) {
-		$pageData[$default_lang->short_lang]["content_prefix_".$project_languages_row->short_lang] = $functions->clean_post("content_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["search_prefix_".$project_languages_row->short_lang] = $functions->clean_post("search_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["slider_prefix_".$project_languages_row->short_lang] = $functions->clean_post("slider_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["iletisim_prefix_".$project_languages_row->short_lang] = $functions->clean_post("iletisim_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["profil_prefix_".$project_languages_row->short_lang] = $functions->clean_post("profil_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["giris_prefix_".$project_languages_row->short_lang] = $functions->clean_post("giris_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["sifremi_unutum_prefix_".$project_languages_row->short_lang] = $functions->clean_post("sifremi_unutum_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["sifre_yenile_prefix_".$project_languages_row->short_lang] = $functions->clean_post("sifre_yenile_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["uye_ol_prefix_".$project_languages_row->short_lang] = $functions->clean_post("uye_ol_prefix_" . $project_languages_row->short_lang);
-		$pageData[$default_lang->short_lang]["hesap_dogrulama_prefix_".$project_languages_row->short_lang] = $functions->clean_post("hesap_dogrulama_prefix_" . $project_languages_row->short_lang);
-	}
+    //özel linkler
+    foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefixValue) {
+        foreach ($projectLanguages as $project_languages_row) {
+            $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang] = $functions->clean_post($prefixKey.$project_languages_row->short_lang);
+        }
+    }
 
 
 	$db_data_settings = array();
@@ -294,39 +287,15 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 		}
 	}
 
-	//içerik linkleri
-	foreach ($projectLanguages as $project_languages_row) {
-		if (empty($pageData[$default_lang->short_lang]["content_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen içerik linkini yazınız.";
-		}
-		if (empty($pageData[$default_lang->short_lang]["search_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen arama linkini yazınız.";
-		}
-		if (empty($pageData[$default_lang->short_lang]["slider_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen slider linkini yazınız.";
-		}
-		if (empty($pageData[$default_lang->short_lang]["iletisim_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen iletişim linkini yazınız.";
-		}
-		if (empty($pageData[$default_lang->short_lang]["profil_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen profil linkini yazınız.";
-		}
-        if (empty($pageData[$default_lang->short_lang]["giris_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen giriş linkini yazınız.";
-		}
-        if (empty($pageData[$default_lang->short_lang]["sifremi_unutum_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen şifremi unuttum linkini yazınız.";
-		}
-        if (empty($pageData[$default_lang->short_lang]["sifre_yenile_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen şifre yenileme linkini yazınız.";
-		}
-        if (empty($pageData[$default_lang->short_lang]["uye_ol_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen üye olma linkini yazınız.";
-		}
-        if (empty($pageData[$default_lang->short_lang]["hesap_dogrulama_prefix_".$project_languages_row->short_lang])) {
-			$message["reply"][] = $project_languages_row->lang . " - Lütfen hesap doğrulama linkini yazınız.";
-		}
-	}
+
+    //içerik linkleri
+    foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefixValue2) {
+        foreach ($projectLanguages as $project_languages_row) {
+            if (empty($pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang])) {
+                $message["reply"][] = $project_languages_row->lang . " - Lütfen ".$systemLinkPrefixValue2["title"]." alanını boş bırakmayınız.";
+            }
+        }
+    }
 
 
 	if (empty($message)) {
@@ -474,135 +443,22 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$file_url_array[$file_url_row->url] = $file_url_row->url;
 		}
 
-		foreach ($projectLanguages as $project_languages_row) {
-			$db_data_settings["content_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["content_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["content_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["content_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "content";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-			$db_data_settings["search_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["search_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["search_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["search_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "arama";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-			$db_data_settings["slider_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["slider_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["slider_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["slider_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "slider";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-			$db_data_settings["iletisim_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["iletisim_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["iletisim_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["iletisim_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "iletisim";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-			$db_data_settings["profil_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["profil_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["profil_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["profil_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "profil";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-            $db_data_settings["giris_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["giris_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["giris_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["giris_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "giris";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-            $db_data_settings["sifremi_unutum_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["sifremi_unutum_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["sifremi_unutum_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["sifremi_unutum_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "sifremi-unuttum";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-            $db_data_settings["sifre_yenile_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["sifre_yenile_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["sifre_yenile_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["sifre_yenile_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "sifre-yenile";
-                $db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-            $db_data_settings["uye_ol_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["uye_ol_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["uye_ol_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["uye_ol_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "sign-up";
-				$db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-
-            $db_data_settings["hesap_dogrulama_prefix_" . $project_languages_row->short_lang] = $pageData[$default_lang->short_lang]["hesap_dogrulama_prefix_".$project_languages_row->short_lang];
-			//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-			if (!array_key_exists($pageData[$default_lang->short_lang]["hesap_dogrulama_prefix_".$project_languages_row->short_lang], $file_url_array)) {
-				//bu yeni prefix file_url de yok eklensin
-				$db_prefix = array();
-				$db_prefix["url"] = $pageData[$default_lang->short_lang]["hesap_dogrulama_prefix_".$project_languages_row->short_lang];
-				$db_prefix["controller"] = "account-activate";
-				$db_prefix["lang"] = $project_languages_row->short_lang;
-				$db_prefix["status"] = 1;
-				$db_prefix["user_id"] = $session->get("user_id");
-				$db::insert("file_url", $db_prefix);
-			}
-		}
+        foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefixValue3) {
+            foreach ($projectLanguages as $project_languages_row) {
+                $db_data_settings[$prefixKey.$project_languages_row->short_lang] = $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang];
+                //bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
+                if (!array_key_exists($pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang], $file_url_array)) {
+                    //bu yeni prefix file_url de yok eklensin
+                    $db_prefix = array();
+                    $db_prefix["url"] = $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang];
+                    $db_prefix["controller"] = $systemLinkPrefixValue3["controller"];
+                    $db_prefix["lang"] = $project_languages_row->short_lang;
+                    $db_prefix["status"] = 1;
+                    $db_prefix["user_id"] = $session->get("user_id");
+                    $db::insert("file_url", $db_prefix);
+                }
+            }
+        }
 
 
 		//site ayarlarını çekelim

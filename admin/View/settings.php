@@ -317,93 +317,19 @@
                                 ?>
                             </div>
                             <div class="tab-pane fade" id="lang_content_prefix">
-                                <div class="alert alert-info alert-dismissible">
-                                    <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-                                    Bu kısımda yazacaklarınız şu anlamlara gelmektedir <br>
-                                    <p>Çoklu Dilde -> Varsayılan dil türkçede <b>"site.com/tr/icerik/kategori-ismi"</b> bu aşağıdaki yazacaklarınız bu linkteki <b>"icerik"</b> kısmını temsil eder siz buraya a,b,c de yazabilirsiniz bu durumda da linkiniz <b>"site.com/tr/a/kategori-ismi"</b> olur.</p>
-                                    <p>Tek Dilde -> İçerik linkiniz <b>"site.com/icerik/kategori-ismi"</b> olsun burdaki <b>"icerik"</b> kısmını temsil eder bu kısmı a,b,c diye değiştrebilirsiniz bu durumda linkiniz <b>"site.com/a/kategori-ismi"</b> olur.</p>
-                                    <h5><b>Unutmayın linkler projenin ön yüzünde otomatik burdaki değerlere göre oluşur.</b></h5>
-                                </div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("content_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Arama Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("search_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Slider Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("slider_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">İletişim Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("iletisim_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Profil Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("profil_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Giriş Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("giris_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Giriş Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("sifremi_unutum_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Şifre Yenileme Linki</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("sifre_yenile_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Üye Olma</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("uye_ol_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-                                <div class="alert alert-info" role="alert">Hesap Doğrulama</div>
-                                <?php foreach ($projectLanguages as $project_languages_row){
-                                    echo $form->input("hesap_dogrulama_prefix_".$project_languages_row->short_lang,array(
-                                        "label" => $project_languages_row->lang,
-                                        "required" => 1
-                                    ),$pageData);
-                                } ?>
-
-
+                                 <?php
+                                 foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefix) {
+                                     ?>
+                                     <div class="alert alert-info" role="alert"><?php echo $systemLinkPrefix["title"]; ?></div>
+                                     <?php
+                                     foreach ($projectLanguages as $project_languages_row){
+                                         echo $form->input($prefixKey.$project_languages_row->short_lang,array(
+                                             "label" => $project_languages_row->lang,
+                                             "required" => 1
+                                         ),$pageData);
+                                     }
+                                 }
+                                 ?>
                             </div>
                         </div>
                     </form>
