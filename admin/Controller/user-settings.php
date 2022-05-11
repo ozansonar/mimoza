@@ -7,14 +7,14 @@ $pageRoleKey = "user";
 $pageAddRoleKey = "user-settings";
 
 $customCss = [
-	"plugins/jQuery-Validation-Engine/css/validationEngine.jquery.css",
+	"plugins/form-validation-engine/css/validationEngine.jquery.css",
 	"plugins/icheck-bootstrap/icheck-bootstrap.min.css",
 	"plugins/select2/css/select2.min.css",
 	"plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
 ];
 $customJs = [
-	"plugins/jQuery-Validation-Engine/js/jquery.validationEngine.js",
-	"plugins/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js",
+	"plugins/form-validation-engine/js/jquery.validationEngine.js",
+	"plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js",
 	"plugins/select2/js/select2.full.min.js",
 	"plugins/ckeditor/ckeditor.js",
 	"plugins/bs-custom-file-input/bs-custom-file-input.min.js",

@@ -130,6 +130,22 @@
 <script>
     $(document).ready(function(){
         $("form#pageForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
+        $("#id-password").blur(function(){
+            if($(this).val() == "") {
+                $("#id-password").removeClass("validate[required,funcCall[checkPass]]");
+            } else {
+                $("#id-password").addClass("validate[required,funcCall[checkPass]]");
+                $("form#pageForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
+            }
+        });
+        $("#id-password-again").blur(function(){
+            if($(this).val() == "") {
+                $("#id-password-again").removeClass("validate[required,funcCall[checkPass],equals[id-password]]");
+            } else {
+                $("#id-password-again").addClass("validate[required,funcCall[checkPass],equals[id-password]]");
+                $("form#pageForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
+            }
+        });
     });
 </script>
 
