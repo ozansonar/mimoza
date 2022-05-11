@@ -21,7 +21,7 @@ $customJs = [
 ];
 
 $id = 0;
-$page_data = array();
+$pageData = array();
 
 
 $default_lang = $siteManager->defaultLanguage();
@@ -43,8 +43,8 @@ if (isset($_GET["id"])) {
 	if (empty($data)) {
 		$functions->redirect($adminSystem->adminUrl());
 	}
-	$page_data[$default_lang->short_lang] = (array)$data;
-	unset($page_data[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
+	$pageData[$default_lang->short_lang] = (array)$data;
+	unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
 } else if ($session->sessionRoleControl($pageAddRoleKey, $addPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $editPermissionKey);
 	$session->permissionDenied();
@@ -82,61 +82,61 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$session->permissionDenied();
 	}
 
-	$page_data[$default_lang->short_lang]["email"] = $functions->clean_post("email");
-	$page_data[$default_lang->short_lang]["name"] = $functions->clean_post("name");
-	$page_data[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
-	$page_data[$default_lang->short_lang]["telefon"] = $functions->clean_post("telefon");
-	$page_data[$default_lang->short_lang]["status"] = $functions->clean_post("status");
-	$page_data[$default_lang->short_lang]["password"] = $functions->clean_post("password");
-	$page_data[$default_lang->short_lang]["password_again"] = $functions->clean_post("password_again");
+	$pageData[$default_lang->short_lang]["email"] = $functions->clean_post("email");
+	$pageData[$default_lang->short_lang]["name"] = $functions->clean_post("name");
+	$pageData[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
+	$pageData[$default_lang->short_lang]["telefon"] = $functions->clean_post("telefon");
+	$pageData[$default_lang->short_lang]["status"] = $functions->clean_post("status");
+	$pageData[$default_lang->short_lang]["password"] = $functions->clean_post("password");
+	$pageData[$default_lang->short_lang]["password_again"] = $functions->clean_post("password_again");
 
 	$message = array();
-	if (empty($page_data[$default_lang->short_lang]["email"])) {
+	if (empty($pageData[$default_lang->short_lang]["email"])) {
 		$message["reply"][] = "E-posta boş olamaz.";
 	}
-	if (!empty($page_data[$default_lang->short_lang]["email"]) && !$functions->is_email($page_data[$default_lang->short_lang]["email"])) {
+	if (!empty($pageData[$default_lang->short_lang]["email"]) && !$functions->is_email($pageData[$default_lang->short_lang]["email"])) {
 		$message["reply"][] = "E-postanız email formatında olmalıdır.";
 	}
 	if ($id === 0) {
 		//ekleme kısmı
-		if ($functions->is_email($page_data[$default_lang->short_lang]["email"]) && $siteManager->uniqData("users", "email", $page_data[$default_lang->short_lang]["email"]) > 0) {
+		if ($functions->is_email($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqData("users", "email", $pageData[$default_lang->short_lang]["email"]) > 0) {
 			$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 		}
-	} else if ($functions->is_email($page_data[$default_lang->short_lang]["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $page_data[$default_lang->short_lang]["email"], $id) > 0) {
+	} else if ($functions->is_email($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $pageData[$default_lang->short_lang]["email"], $id) > 0) {
 		$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 	}
 
-	if (empty($page_data[$default_lang->short_lang]["name"])) {
+	if (empty($pageData[$default_lang->short_lang]["name"])) {
 		$message["reply"][] = "İsim boş olamaz.";
 	}
-	if (!empty($page_data[$default_lang->short_lang]["name"])) {
-		if (strlen($page_data[$default_lang->short_lang]["name"]) < 2) {
+	if (!empty($pageData[$default_lang->short_lang]["name"])) {
+		if (strlen($pageData[$default_lang->short_lang]["name"]) < 2) {
 			$message["reply"][] = "İsim 2 karakterden az olamaz.";
 		}
-		if (strlen($page_data[$default_lang->short_lang]["name"]) > 50) {
+		if (strlen($pageData[$default_lang->short_lang]["name"]) > 50) {
 			$message["reply"][] = "İsim 50 karakteri geçemez.";
 		}
 	}
-	if (empty($page_data[$default_lang->short_lang]["surname"])) {
+	if (empty($pageData[$default_lang->short_lang]["surname"])) {
 		$message["reply"][] = "Soyisim boş olamaz.";
 	}
-	if (!empty($page_data[$default_lang->short_lang]["surname"])) {
-		if (strlen($page_data[$default_lang->short_lang]["surname"]) < 2) {
+	if (!empty($pageData[$default_lang->short_lang]["surname"])) {
+		if (strlen($pageData[$default_lang->short_lang]["surname"]) < 2) {
 			$message["reply"][] = "Soyisim 2 karekterden az olamaz.";
 		}
-		if (strlen($page_data[$default_lang->short_lang]["surname"]) > 50) {
+		if (strlen($pageData[$default_lang->short_lang]["surname"]) > 50) {
 			$message["reply"][] = "Soyisim 50 karekteri geçemez.";
 		}
 	}
-    if($page_data[$default_lang->short_lang]["status"]){
-        if(!in_array($page_data[$default_lang->short_lang]["status"],array_keys($systemStatus))){
+    if($pageData[$default_lang->short_lang]["status"]){
+        if(!in_array($pageData[$default_lang->short_lang]["status"],array_keys($systemStatus))){
             $message["reply"][] = "Geçersiz onay durumu.";
         }
     }
 
-    if(!empty($page_data[$default_lang->short_lang]["password"]) && !empty($page_data[$default_lang->short_lang]["password_again"])){
-        $message = getMessage($functions, $page_data[$default_lang->short_lang]["password"], $message, $page_data[$default_lang->short_lang]["password_again"]);
-        if($page_data[$default_lang->short_lang]["password"] !== $page_data[$default_lang->short_lang]["password_again"]){
+    if(!empty($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password_again"])){
+        $message = getMessage($functions, $pageData[$default_lang->short_lang]["password"], $message, $pageData[$default_lang->short_lang]["password_again"]);
+        if($pageData[$default_lang->short_lang]["password"] !== $pageData[$default_lang->short_lang]["password_again"]){
             $message["reply"][] = "Şifre ve şifre tekrarı aynı olmalıdır.";
         }
     }
@@ -154,7 +154,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$file->compressor = true;
 		$uploaded = $file->file_upload();
 		if ((int)$uploaded["result"] === 1) {
-			$page_data[$default_lang->short_lang]["img"] = $uploaded["img_name"];
+			$pageData[$default_lang->short_lang]["img"] = $uploaded["img_name"];
 		}
 		if ((int)$uploaded["result"] === 2) {
 			$message["reply"][] = $uploaded["result_message"];
@@ -164,16 +164,16 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$dat = array();
 
 		$dat["status"] = 1;
-		$dat["email"] = $page_data[$default_lang->short_lang]["email"];
-		$dat["name"] = $page_data[$default_lang->short_lang]["name"];
-		$dat["telefon"] = $page_data[$default_lang->short_lang]["telefon"];
-		$dat["status"] = $page_data[$default_lang->short_lang]["status"];
-		$dat["surname"] = $page_data[$default_lang->short_lang]["surname"];
-        if(isset($page_data[$default_lang->short_lang]["password"]) && !empty($page_data[$default_lang->short_lang]["password"])){
-            $dat["password"] = password_hash($page_data[$default_lang->short_lang]["password"],PASSWORD_BCRYPT);
+		$dat["email"] = $pageData[$default_lang->short_lang]["email"];
+		$dat["name"] = $pageData[$default_lang->short_lang]["name"];
+		$dat["telefon"] = $pageData[$default_lang->short_lang]["telefon"];
+		$dat["status"] = $pageData[$default_lang->short_lang]["status"];
+		$dat["surname"] = $pageData[$default_lang->short_lang]["surname"];
+        if(isset($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password"])){
+            $dat["password"] = password_hash($pageData[$default_lang->short_lang]["password"],PASSWORD_BCRYPT);
         }
-		if (isset($page_data[$default_lang->short_lang]["img"])) {
-			$dat["img"] = $page_data[$default_lang->short_lang]["img"];
+		if (isset($pageData[$default_lang->short_lang]["img"])) {
+			$dat["img"] = $pageData[$default_lang->short_lang]["img"];
 		}
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;

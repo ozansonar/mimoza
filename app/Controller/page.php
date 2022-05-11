@@ -1,7 +1,7 @@
 <?php
 use Includes\System\View;
 
-$log->logThis($log->logTypes["PAGE"], $page_data->id);
+$log->logThis($log->logTypes["PAGE"], $pageData->id);
 
 //bu sayfadakullanılan özel css'ler
 $customCss = [];
@@ -9,14 +9,14 @@ $customCss = [];
 //bu sayfadakullanılan özel js'ler
 $customJs = [];
 
-$metaTag->title = $page_data->title;
-if(!empty($page_data->keywords)){
-    $metaTag->keywords = $page_data->keywords;
+$metaTag->title = $pageData->title;
+if(!empty($pageData->keywords)){
+    $metaTag->keywords = $pageData->keywords;
 }
-if(!empty($page_data->description)){
-    $metaTag->description = $page_data->description;
+if(!empty($pageData->description)){
+    $metaTag->description = $pageData->description;
 }
-//$page_data ana indexten geliyor
+//$pageData ana indexten geliyor
 View::layout('page',[
-    'page_data' => $page_data
+    'page_data' => $pageData
 ]);

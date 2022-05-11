@@ -28,18 +28,18 @@ $customJs[] = "plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.js"
 $customJs[] = "plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.js";
 $customJs[] = "plugins/ckeditor/ckeditor.js";
 
-$page_data = [];
+$pageData = [];
 
 $text_manager_db_data = $db::selectQuery("settings");
 foreach ($text_manager_db_data as $text_manager_db_row){
     if(empty($text_manager_db_row->lang)){
         continue;
     }
-    //$page_data->{$text_manager_db_row->lang} = $page_data[$text_manager_db_row->lang];
-    $page_data[$text_manager_db_row->lang][$text_manager_db_row->name] = $text_manager_db_row->val;
+    //$pageData->{$text_manager_db_row->lang} = $pageData[$text_manager_db_row->lang];
+    $pageData[$text_manager_db_row->lang][$text_manager_db_row->name] = $text_manager_db_row->val;
 }
-foreach ($page_data as $pdataKey=>$pdata){
-    $page_data[$pdataKey] = (array)$pdata;
+foreach ($pageData as $pdataKey=>$pdata){
+    $pageData[$pdataKey] = (array)$pdata;
 }
 
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
@@ -52,19 +52,19 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             foreach($language_text_manager as $language_text_manager_key=>$language_text_manager_value){
                 foreach ($language_text_manager_value["form"] as $language_text_manager_form){
                     if(isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] == "textarea"){
-                        $page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post_textarea($language_text_manager_form["name"]);
+                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post_textarea($language_text_manager_form["name"]);
                     }else{
-                        $page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post($language_text_manager_form["name"]);
+                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post($language_text_manager_form["name"]);
                     }
 
-                    if(empty($page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]]) && !isset($language_text_manager_form["no_required"])){
+                    if(empty($pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]]) && !isset($language_text_manager_form["no_required"])){
                         //$message["reply"][] = $language_text_manager_value["title"]." - ".$language_text_manager_form["label"]." boş olamaz.";
                     }
-                    if(!empty($page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]])){
-                        if(strlen($page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]]) < 2){
+                    if(!empty($pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]])){
+                        if(strlen($pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]]) < 2){
                             $message["reply"][] = $language_text_manager_value["title"]." - ".$language_text_manager_form["label"]." 2 karakterden az olamaz.";
                         }
-                        if(strlen($page_data[$project_languages_row->short_lang][$language_text_manager_form["name"]]) > 5000){
+                        if(strlen($pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]]) > 5000){
                             $message["success"][] = $language_text_manager_value["title"]." - ".$language_text_manager_form["label"]. " 5000 karakterden fazla olamaz.";
                         }
                     }
@@ -90,7 +90,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                             //eğer key varsa update edeceğiz
                             $db_data = array();
                             $db_data["name"] = $language_text_manager_form["name"];
-                            $db_data["val"] = $page_data[$data_lang][$language_text_manager_form["name"]];
+                            $db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]];
                             $db_data["lang"] = $data_lang;
                             $update = $db::update("settings", $db_data, array("id"=>$text_manager_array[$data_lang][$language_text_manager_form["name"]]->id));
                             if(!$update){
@@ -100,7 +100,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                             //key mevcut değerlerde yok yeni eklenecek
                             $db_data = array();
                             $db_data["name"] = $language_text_manager_form["name"];
-                            $db_data["val"] = $page_data[$data_lang][$language_text_manager_form["name"]];
+                            $db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]];
                             $db_data["lang"] = $data_lang;
                             $insert = $db::insert("settings", $db_data);
                             if(!$insert){

@@ -70,40 +70,40 @@
                                 echo $form->input("title",array(
                                     "label" => $admin_text["CONTENT_TITLE"],
                                     "required" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->textarea("abstract",array(
                                     "label" => $admin_text["CONTENT_ACSTRACT"],
                                     "class" => "ckeditor",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->textarea("text",array(
                                     "label" => $admin_text["CONTENT_TEXT"],
                                     "required" => 1,
                                     "class" => "ckeditor",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->file("img",array(
                                     "label" => $admin_text["CONTENT_FILE"],
                                     "file_key" => "content",
                                     "delete_link" => "?id=".$id."&img_delete=".$project_languages_row->short_lang
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->select("cat_id",array(
                                     "label" => $admin_text["CONTENT_CAT_SEC"],
                                     "required" => 1,
                                     "select_item" => $cat_array_select,
                                     "multiple_lang_select" => 1
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->input("show_order",array(
                                     "label" => $admin_text["CONTENT_SHOW_ORDER"],
                                     "required" => 1,
                                     "class" => "numeric_field",
                                     "order" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->input_tags("keywords",array(
                                     "label" => $admin_text["CONTENT_KEYWORDS"],
                                     "class" => "w-100",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->textarea("description",array(
                                     "label" => $admin_text["CONTENT_DESRICTION"],
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->checkbox(array(
                                     "option" => array(
                                         array(
@@ -112,12 +112,12 @@
                                             "value" => 1
                                         )
                                     )
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->select("status",array(
                                     "label" => $admin_text["CONTENT_STATUS"],
                                     "required" => 1,
                                     "select_item" => $systemStatusVersion,
-                                ),$page_data);
+                                ),$pageData);
 
                                 ?>
                             </div>

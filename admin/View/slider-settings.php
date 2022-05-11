@@ -71,11 +71,11 @@
                                 echo $form->input("title",array(
                                     "label" => $admin_text["SLIDER_TITLE"],
                                     "required" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->input("link",array(
                                     "label" => $admin_text["SLIDER_LINK"],
                                     "description" => $admin_text["MENU_DESCRIPTION"]
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->checkbox(array(
                                     "option" => array(
                                         array(
@@ -84,14 +84,14 @@
                                             "value" => 1
                                         )
                                     )
-                                ),$page_data);
+                                ),$pageData);
                                 ?>
-                                <div id="id_site_disi_link_div_<?php echo $project_languages_row->short_lang;?>" style="<?php echo isset($page_data[$project_languages_row->short_lang]) && $page_data[$project_languages_row->short_lang]["site_disi_link"] == 1 ? null:"display: none;"; ?>">
+                                <div id="id_site_disi_link_div_<?php echo $project_languages_row->short_lang;?>" style="<?php echo isset($pageData[$project_languages_row->short_lang]) && $pageData[$project_languages_row->short_lang]["site_disi_link"] == 1 ? null:"display: none;"; ?>">
                                 <?php
                                 echo $form->input("back_link",array(
                                     "label" => $admin_text["SLIDER_DIS_LINK"],
                                     "required" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->checkbox(array(
                                     "option" => array(
                                         array(
@@ -100,34 +100,34 @@
                                             "value" => 1
                                         )
                                     )
-                                ),$page_data);
+                                ),$pageData);
                                 ?>
                                 </div>
                                 <?php
                                 echo $form->textarea("abstract",array(
                                     "label" => $admin_text["SLIDER_SHORT_TEXT"],
                                     "class" => "ckeditor",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->textarea("text",array(
                                     "label" => $admin_text["SLIDER_TEXT"],
                                     "required" => 1,
                                     "class" => "ckeditor",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->file("img",array(
                                     "label" => $admin_text["SLIDER_IMG"],
                                     "file_key" => "slider",
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->input("show_order",array(
                                     "label" => $admin_text["SLIDER_SHOW_ORDER"],
                                     "required" => 1,
                                     "class" => "numeric_field",
                                     "order" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->select("status",array(
                                     "label" => $admin_text["SLIDER_STATUS"],
                                     "required" => 1,
                                     "select_item" => $systemStatusVersion,
-                                ),$page_data);
+                                ),$pageData);
 
                                 ?>
                             </div>

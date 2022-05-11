@@ -32,9 +32,9 @@ if(isset($_GET["q"]) && !empty($_GET["q"])){
     $page_query_categories->bindParam(':lang', $_SESSION["lang"], PDO::PARAM_STR);
     $page_query_categories->bindParam(':keyword', $aranacak, PDO::PARAM_STR);
     $page_query_categories->execute();
-    $page_data_count_categories = $page_query_categories->rowCount();
+    $pageData_count_categories = $page_query_categories->rowCount();
     $pageDataCategories = $page_query_categories->fetchAll(PDO::FETCH_OBJ);
-    $count += $page_data_count_categories;
+    $count += $pageData_count_categories;
 
     //sayfalarda aranıyor
     $page_query = $db::query("SELECT * FROM page

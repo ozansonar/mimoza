@@ -46,10 +46,10 @@ if (!$system->route(1)) {
         "limit" => 10,
     ));
 
-    $page_data = $pagination_and_data["data"];
+    $pageData = $pagination_and_data["data"];
 
     View::layout('content',[
-        "pageData" => $page_data,
+        "pageData" => $pageData,
         "category" => $link_data,
         "pagination" => $pagination_and_data,
     ]);
@@ -81,47 +81,47 @@ if (!$system->route(1)) {
     $page_query->bindParam(":id",$id,PDO::PARAM_INT);
     $page_query->bindParam(":link",$normal_link,PDO::PARAM_STR);
     $page_query->execute();
-    $page_data_count = $page_query->rowCount();
-    $page_data = $page_query->fetch(PDO::FETCH_OBJ);
+    $pageData_count = $page_query->rowCount();
+    $pageData = $page_query->fetch(PDO::FETCH_OBJ);
 
-    if($page_data_count != 1){
+    if($pageData_count != 1){
         $functions->redirect($functions->site_url());
     }
 
-    $metaTag->title = $page_data->title." - ".$settings->title;
-    if(!empty($page_data->keywords)){
-        $metaTag->keywords = $page_data->keywords;
+    $metaTag->title = $pageData->title." - ".$settings->title;
+    if(!empty($pageData->keywords)){
+        $metaTag->keywords = $pageData->keywords;
     }
-    if(!empty($page_data->description)){
-        $metaTag->description = $page_data->description;
+    if(!empty($pageData->description)){
+        $metaTag->description = $pageData->description;
     }
 
 
-    $created_at = new DateTime($page_data->created_at);
+    $created_at = new DateTime($pageData->created_at);
     $imgLink = false;
-    if(!empty($page_data->img) && file_exists($fileTypePath["content"]["full_path"].$page_data->img)){
-        $imgLink = $fileTypePath["content"]["url"].$page_data->img;
+    if(!empty($pageData->img) && file_exists($fileTypePath["content"]["full_path"].$pageData->img)){
+        $imgLink = $fileTypePath["content"]["url"].$pageData->img;
     }
 
     //sağ alan olsun mu ?
     $right_bar  = true;
 
     //okunma sayısı yapımı
-    $cookie_name = $link_data->link."_".$page_data->link."-".$page_data->id;
-    $cookie_value = $page_data->id;
+    $cookie_name = $link_data->link."_".$pageData->link."-".$pageData->id;
+    $cookie_value = $pageData->id;
     $c_time = time() + (60 * 60);
     setcookie($cookie_name, $cookie_value,time() + 86400); // 1 saatlik çerez
     if(!isset($_COOKIE[$cookie_name])) {
         //çerez yok okunmayı arttır
         $show_count = $db::$db->prepare("UPDATE content SET show_count=:show WHERE id=:id AND deleted=0");
-        $count_plus = $page_data->show_count+1;
+        $count_plus = $pageData->show_count+1;
         $show_count->bindParam(":show",$count_plus,PDO::PARAM_INT);
         $show_count->bindParam(":id",$id,PDO::PARAM_INT);
         $show_count->execute();
     }
 
     View::layout('content-detail',[
-        "pageData" => $page_data,
+        "pageData" => $pageData,
         "imgLink" => $imgLink
     ]);
 }

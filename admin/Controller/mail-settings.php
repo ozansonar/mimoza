@@ -9,8 +9,8 @@ $table = "mailing";
 $default_lang = $siteManager->defaultLanguage();
 
 $id = 0;
-$page_data = array();
-$page_data[$default_lang->short_lang]["image"] = "";
+$pageData = array();
+$pageData[$default_lang->short_lang]["image"] = "";
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
     if($session->sessionRoleControl($page_role_key,$editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$listPermissionKey) == false){
@@ -50,7 +50,7 @@ if(isset($_GET["id"])){
         }
     }
 
-    $page_data[$default_lang->short_lang] = (array)$data;
+    $pageData[$default_lang->short_lang] = (array)$data;
 }else{
     //add yetki kontrolü
     if($session->sessionRoleControl($page_add_role_key,$addPermissionKey) == false){
@@ -83,32 +83,32 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     foreach ($projectLanguages as $project_languages_row){
         $functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
-        $page_data[$project_languages_row->short_lang]["subject"] = $functions->clean_post("subject");
-        $page_data[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
-        $page_data[$project_languages_row->short_lang]["not_text"] = $functions->clean_post("not_text");
-        $page_data[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["subject"] = $functions->clean_post("subject");
+        $pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
+        $pageData[$project_languages_row->short_lang]["not_text"] = $functions->clean_post("not_text");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
 
         //istenilen kontroller
         if($project_languages_row->form_validate == 1){
-            if(empty($page_data[$project_languages_row->short_lang]["subject"])){
+            if(empty($pageData[$project_languages_row->short_lang]["subject"])){
                 $message["reply"][] = $project_languages_row->lang." - Konu boş olamaz.";
             }
 
-            if(!empty($page_data[$project_languages_row->short_lang]["subject"])){
-                if(strlen($page_data[$project_languages_row->short_lang]["subject"]) < 2){
+            if(!empty($pageData[$project_languages_row->short_lang]["subject"])){
+                if(strlen($pageData[$project_languages_row->short_lang]["subject"]) < 2){
                     $message["reply"][] = $project_languages_row->lang." - Konu 2 karakterden az olamaz.";
                 }
-                if(strlen($page_data[$project_languages_row->short_lang]["subject"]) > 200){
+                if(strlen($pageData[$project_languages_row->short_lang]["subject"]) > 200){
                     $message["reply"][] = $project_languages_row->lang." - Konu 200 karakterden fazla olamaz.";
                 }
             }
 
-            if(empty($page_data[$project_languages_row->short_lang]["text"])){
+            if(empty($pageData[$project_languages_row->short_lang]["text"])){
                 $message["reply"][] = $project_languages_row->lang." - E-posta içeriği boş olamaz.";
             }
 
 
-            if(!in_array($page_data[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
+            if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
                 $message["reply"][] = $project_languages_row->lang." - Geçersiz onay durumu.";
             }
         }
@@ -117,17 +117,17 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
             $db_data = array();
-            $db_data["subject"] = $page_data[$project_languages_row->short_lang]["subject"];
-            $db_data["text"] = $page_data[$project_languages_row->short_lang]["text"];
-            $db_data["not_text"] = $page_data[$project_languages_row->short_lang]["not_text"];
-            $db_data["status"] = $page_data[$project_languages_row->short_lang]["status"];
+            $db_data["subject"] = $pageData[$project_languages_row->short_lang]["subject"];
+            $db_data["text"] = $pageData[$project_languages_row->short_lang]["text"];
+            $db_data["not_text"] = $pageData[$project_languages_row->short_lang]["not_text"];
+            $db_data["status"] = $pageData[$project_languages_row->short_lang]["status"];
             $db_data["user_id"] = $session->get("user_id");
             if($id > 0){
                 if(array_key_exists($project_languages_row->short_lang,$db_data_lang)){
                     //şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
                     //çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
                     //güncelleme
-                    $update = $db::update($table,$db_data,array("id"=>$page_data[$project_languages_row->short_lang]["id"]));
+                    $update = $db::update($table,$db_data,array("id"=>$pageData[$project_languages_row->short_lang]["id"]));
                 }else{
                     //yeni dil insert ediliyor
                     //lang işlemleri sadece eklemede gönderilsin

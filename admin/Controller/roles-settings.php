@@ -7,7 +7,7 @@ $page_add_role_key = "roles-settings";
 //bu kısımda form sınıfını kullanmaya gerek yok pek değişen bir yer değil
 
 $id = 0;
-$page_data = array();
+$pageData = array();
 
 if (isset($_GET["id"])) {
     //update yetki kontrolü ve gösterme yetkisi de olması lazım

@@ -1,7 +1,7 @@
 <?php
 $page_role_key = "video-upload";
 
-$page_data = array();
+$pageData = array();
 
 if ($session->sessionRoleControl($page_role_key, $addPermissionKey) == false){
     $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
@@ -94,7 +94,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && 
             "deleted" => 0,
         ));
         foreach($data_multi_lang as $data_row){
-            $page_data[$data_row->lang] = (array) $data_row;
+            $pageData[$data_row->lang] = (array) $data_row;
             $db_data_lang[$data_row->lang] = $data_row->lang;
         }
     }
@@ -115,45 +115,45 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     foreach ($projectLanguages as $project_languages_row){
         $functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
-        $page_data[$project_languages_row->short_lang]["title"] = $functions->clean_post("title");
-        $page_data[$project_languages_row->short_lang]["link"] = $functions->clean_post("link");
-        $page_data[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
-        $page_data[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["title"] = $functions->clean_post("title");
+        $pageData[$project_languages_row->short_lang]["link"] = $functions->clean_post("link");
+        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
 
         //istenilen kontroller
         if($project_languages_row->form_validate == 1){
-            if(empty($page_data[$project_languages_row->short_lang]["title"])){
+            if(empty($pageData[$project_languages_row->short_lang]["title"])){
                 $message["reply"][] = $project_languages_row->lang." - Başlık boş olamaz.";
             }
-            if(!empty($page_data[$project_languages_row->short_lang]["title"])){
-                if(strlen($page_data[$project_languages_row->short_lang]["title"]) < 2){
+            if(!empty($pageData[$project_languages_row->short_lang]["title"])){
+                if(strlen($pageData[$project_languages_row->short_lang]["title"]) < 2){
                     $message["reply"][] = $project_languages_row->lang." - Başlık 2 karakterden az olamaz.";
                 }
-                if(strlen($page_data[$project_languages_row->short_lang]["title"]) > 200){
+                if(strlen($pageData[$project_languages_row->short_lang]["title"]) > 200){
                     $message["reply"][] = $project_languages_row->lang." - Başlık 200 karakterden fazla olamaz.";
                 }
             }
 
-            if(empty($page_data[$project_languages_row->short_lang]["link"])){
+            if(empty($pageData[$project_languages_row->short_lang]["link"])){
                 $message["reply"][] = $project_languages_row->lang." - Link boş olamaz.";
             }
-            if(!empty($page_data[$project_languages_row->short_lang]["link"])){
-                if(strlen($page_data[$project_languages_row->short_lang]["link"]) < 2){
+            if(!empty($pageData[$project_languages_row->short_lang]["link"])){
+                if(strlen($pageData[$project_languages_row->short_lang]["link"]) < 2){
                     $message["reply"][] = $project_languages_row->lang." - Link 2 karakterden az olamaz.";
                 }
-                if(strlen($page_data[$project_languages_row->short_lang]["link"]) > 200){
+                if(strlen($pageData[$project_languages_row->short_lang]["link"]) > 200){
                     $message["success"][] = $project_languages_row->lang." - Link 200 karakterden fazla olamaz.";
                 }
             }
 
 
-            if($page_data[$project_languages_row->short_lang]["show_order"] > 5000){
+            if($pageData[$project_languages_row->short_lang]["show_order"] > 5000){
                 $message["reply"][] = $project_languages_row->lang." - Gösterim sırası 5000 den büyük olamaz.";
-            }elseif ($page_data[$project_languages_row->short_lang]["show_order"] == 0){
+            }elseif ($pageData[$project_languages_row->short_lang]["show_order"] == 0){
                 $message["reply"][] = $project_languages_row->lang." - Lütfen gösterim sırasını yazınız.";
             }
 
-            if(!in_array($page_data[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
+            if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
                 $message["reply"][] = $project_languages_row->lang." - Geçersiz onay durumu.";
             }
         }
@@ -163,17 +163,17 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         foreach ($projectLanguages as $project_languages_row){
             $db_data = array();
             $db_data["gallery_id"] = $id;
-            $db_data["title"] = $page_data[$project_languages_row->short_lang]["title"];
-            $db_data["link"] = $page_data[$project_languages_row->short_lang]["link"];
-            $db_data["show_order"] = $page_data[$project_languages_row->short_lang]["show_order"];
-            $db_data["status"] = $page_data[$project_languages_row->short_lang]["status"];
+            $db_data["title"] = $pageData[$project_languages_row->short_lang]["title"];
+            $db_data["link"] = $pageData[$project_languages_row->short_lang]["link"];
+            $db_data["show_order"] = $pageData[$project_languages_row->short_lang]["show_order"];
+            $db_data["status"] = $pageData[$project_languages_row->short_lang]["status"];
             $db_data["user_id"] = $session->get("user_id");
             if($video_id > 0){
                 if(array_key_exists($project_languages_row->short_lang,$db_data_lang)){
                     //şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
                     //çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
                     //güncelleme
-                    $update = $db::update("youtube_videos",$db_data,array("id"=>$page_data[$project_languages_row->short_lang]["id"]));
+                    $update = $db::update("youtube_videos",$db_data,array("id"=>$pageData[$project_languages_row->short_lang]["id"]));
                 }else{
                     //yeni dil insert ediliyor
                     //lang işlemleri sadece eklemede gönderilsin

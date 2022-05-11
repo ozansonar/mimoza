@@ -86,13 +86,13 @@
                                                             "label" => "--".$form_row["label"],
                                                             //"required" => 1,
                                                             "class" => $class,
-                                                        ),$page_data);
+                                                        ),$pageData);
                                                     }else{
                                                         echo $form->input($form_row["name"],array(
                                                             "label" => "--".$form_row["label"],
                                                             //"required" => isset($form_row["no_required"]) ? 0:1,
                                                             "class" => "validate[minSize[2]]",
-                                                        ),$page_data);
+                                                        ),$pageData);
                                                     }
 
                                                 }

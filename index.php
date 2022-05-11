@@ -54,7 +54,7 @@ foreach ($_GET as $getkey => $getvalue) {
 foreach ($_POST as $postKey => $postValue) {
 	if (!is_array($postValue) && !in_array($postKey, $allowedSpecialHtmlPost, true)) {
 		$postValue = $purifier->purify($postValue);
-		$postValue = filter_var($postValue, FILTER_SANITIZE_STRIPPED);
+        $postValue = filter_var($postValue, FILTER_UNSAFE_RAW);
 		$_POST[$postKey] = $postValue;
 	}
 }
@@ -70,8 +70,8 @@ if (!empty($customFileUrl)) {
 }
 
 if (!file_exists($system->controller($system->route(0)))) {
-	$page_data = $siteManager->pageControl($functions->cleaner($system->route(0)));
-	if (!empty($page_data)) {
+	$pageData = $siteManager->pageControl($functions->cleaner($system->route(0)));
+	if (!empty($pageData)) {
 		$route[0] = 'page';
 	} else {// Herhangi bir data çekilmediyse
 		$route[0] = '404';

@@ -63,28 +63,28 @@
                                 echo $form->input("title",array(
                                     "label" => $admin_text["CAT_TITLE"],
                                     "required" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->file("img",array(
                                     "label" => $admin_text["CAT_IMG"],
                                     "file_key" => "content_categories",
                                     "delete_link" => "?id=".$id."&img_delete=".$project_languages_row->short_lang
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->input("show_order",array(
                                     "label" => $admin_text["SLIDER_SHOW_ORDER"],
                                     "required" => 1,
                                     "class" => "numeric_field",
                                     "order" => 1,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->select("show_type",array(
                                     "label" => $admin_text["CAT_SHOW_STATUS"],
                                     "required" => 1,
                                     "select_item" => $systemContentCategoriesShowTypes2,
-                                ),$page_data);
+                                ),$pageData);
                                 echo $form->select("status",array(
                                     "label" => $admin_text["CAT_STATUS"],
                                     "required" => 1,
                                     "select_item" => $systemStatusVersion,
-                                ),$page_data);
+                                ),$pageData);
 
                                 ?>
                             </div>

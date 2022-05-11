@@ -70,23 +70,23 @@
                                     echo $form->input("name",array(
                                         "label" => $admin_text["GALERI_NAME"],
                                         "required" => 1,
-                                    ),$page_data);
+                                    ),$pageData);
                                     echo $form->input("link",array(
                                         "label" => $admin_text["GALERI_LINK"],
-                                    ),$page_data);
+                                    ),$pageData);
                                     echo $form->select("type",array(
                                         "label" => $admin_text["GALERI_TYPE"],
                                         "required" => 1,
                                         "select_item" => $systemGalleryTypesVersion2,
-                                    ),$page_data);
+                                    ),$pageData);
                                     ?>
-                                    <div id="top_gallery_div_<?php echo $project_languages_row->short_lang; ?>" style="<?php echo isset($page_data[$project_languages_row->short_lang]) && $page_data[$project_languages_row->short_lang]["type"] == 2 ? null:"display: none;"; ?>">
+                                    <div id="top_gallery_div_<?php echo $project_languages_row->short_lang; ?>" style="<?php echo isset($pageData[$project_languages_row->short_lang]) && $pageData[$project_languages_row->short_lang]["type"] == 2 ? null:"display: none;"; ?>">
                                         <?php
                                         echo $form->select("top_id",array(
                                             "label" => $admin_text["GALERI_TOP_TYPE"],
                                             "required" => 1,
                                             "select_item" => $gallery_data_array,
-                                        ),$page_data);
+                                        ),$pageData);
                                         ?>
                                     </div>
                                     <?php
@@ -95,16 +95,16 @@
                                         "required" => 1,
                                         "class" => "numeric_field",
                                         "order" => 1,
-                                    ),$page_data);
+                                    ),$pageData);
                                     echo $form->file("img",array(
                                         "label" => $admin_text["GALERI_IMG"],
                                         "file_key" => "gallery",
-                                    ),$page_data);
+                                    ),$pageData);
                                     echo $form->select("status",array(
                                         "label" => $admin_text["GALERI_STATUS"],
                                         "required" => 1,
                                         "select_item" => $systemStatusVersion,
-                                    ),$page_data);
+                                    ),$pageData);
 
                                     ?>
                                 </div>

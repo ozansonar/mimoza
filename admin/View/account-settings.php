@@ -70,35 +70,35 @@
                         "label" => $admin_text["HESAP_EMAIL"],
                         "required" => 1,
                         "class" => "validate[custom[email]]"
-                    ),$page_data);
+                    ),$pageData);
                     echo $form->input("name",array(
                         "label" => $admin_text["HESAP_NAME"],
                         "required" => 1,
-                    ),$page_data);
+                    ),$pageData);
                     echo $form->input("surname",array(
                         "label" => $admin_text["HESAP_SURNAME"],
                         "required" => 1,
-                    ),$page_data);
+                    ),$pageData);
                     echo $form->file("img",array(
                         "label" => $admin_text["HESAP_RESIM"],
                         "file_key" => "user_image",
-                        "delete_link" => "?id=".$page_data[$default_lang->short_lang]["id"]."&img_delete=1"
-                    ),$page_data);
+                        "delete_link" => "?id=".$pageData[$default_lang->short_lang]["id"]."&img_delete=1"
+                    ),$pageData);
                     echo $form->input("password",array(
                         "label" => $admin_text["HESAP_PASSWORD"],
                         "class" => "validate[maxSize[50],minSize[10]]",
                         "type" => "password"
-                    ),$page_data);
+                    ),$pageData);
                     echo $form->input("password_again",array(
                         "label" => $admin_text["HESAP_PASSWORD_AGAIN"],
                         "class" => "validate[maxSize[50],minSize[10]]",
                         "type" => "password"
-                    ),$page_data);
+                    ),$pageData);
                     echo $form->select("theme",array(
                         "label" => $admin_text["ADMIN_THEMA"],
                         "required" => 1,
                         "select_item" => $adminPanelTheme,
-                    ),$page_data);
+                    ),$pageData);
                     ?>
                     </form>
                 </div>

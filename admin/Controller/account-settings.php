@@ -14,9 +14,9 @@ $log->logThis($log->logTypes['ACCOUNT_DETAIL']);
 
 $default_lang = $siteManager->defaultLanguage();
 
-$page_data = array();
-$page_data[$default_lang->short_lang] = (array)$loggedUser;
-unset($page_data[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
+$pageData = array();
+$pageData[$default_lang->short_lang] = (array)$loggedUser;
+unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
 
 //bu sayfadakullanılan özel css'ler
 $customCss = [];
@@ -61,46 +61,46 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
         $session->permissionDenied();
     }
-    $page_data[$default_lang->short_lang]["email"] = $functions->clean_post("email");
-    $page_data[$default_lang->short_lang]["name"] = $functions->clean_post("name");
-    $page_data[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
-    $page_data[$default_lang->short_lang]["theme"] = $functions->clean_post("theme");
+    $pageData[$default_lang->short_lang]["email"] = $functions->clean_post("email");
+    $pageData[$default_lang->short_lang]["name"] = $functions->clean_post("name");
+    $pageData[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
+    $pageData[$default_lang->short_lang]["theme"] = $functions->clean_post("theme");
 
     //formda gözükmemesi için bunları arrayda tutmuyorum
     $password = $functions->clean_post("password");
     $password_again = $functions->clean_post("password_again");
 
     $message = array();
-    if(empty($page_data[$default_lang->short_lang]["email"])){
+    if(empty($pageData[$default_lang->short_lang]["email"])){
         $message["reply"][] = "E-posta boş olamaz.";
     }
-    if(!empty($page_data[$default_lang->short_lang]["email"])){
-        if(!$functions->is_email($page_data[$default_lang->short_lang]["email"])){
+    if(!empty($pageData[$default_lang->short_lang]["email"])){
+        if(!$functions->is_email($pageData[$default_lang->short_lang]["email"])){
             $message["reply"][] = "E-postanız email formatında olmalıdır.";
         }
-        if($siteManager->uniqDataWithoutThis("users","email",$page_data[$default_lang->short_lang]["email"],$_SESSION["user_id"]) > 0){
+        if($siteManager->uniqDataWithoutThis("users","email",$pageData[$default_lang->short_lang]["email"],$_SESSION["user_id"]) > 0){
             $message["reply"][] = "Bu mail adresi kayıtlarımızda mevcut. Lütfen başka bir tane deneyin.";
         }
     }
-    if(empty($page_data[$default_lang->short_lang]["name"])){
+    if(empty($pageData[$default_lang->short_lang]["name"])){
         $message["reply"][] = "İsim boş olamaz.";
     }
-    if(!empty($page_data[$default_lang->short_lang]["name"])){
-        if(strlen($page_data[$default_lang->short_lang]["name"]) < 2){
+    if(!empty($pageData[$default_lang->short_lang]["name"])){
+        if(strlen($pageData[$default_lang->short_lang]["name"]) < 2){
             $message["reply"][] = "İsim 2 karakterden az olamaz.";
         }
-        if(strlen($page_data[$default_lang->short_lang]["name"]) > 20){
+        if(strlen($pageData[$default_lang->short_lang]["name"]) > 20){
             $message["reply"][] = "İsim 20 karakteri geçemez.";
         }
     }
-    if(empty($page_data[$default_lang->short_lang]["surname"])){
+    if(empty($pageData[$default_lang->short_lang]["surname"])){
         $message["reply"][] = "Soyisim boş olamaz.";
     }
-    if(!empty($page_data[$default_lang->short_lang]["surname"])){
-        if(strlen($page_data[$default_lang->short_lang]["surname"]) < 2){
+    if(!empty($pageData[$default_lang->short_lang]["surname"])){
+        if(strlen($pageData[$default_lang->short_lang]["surname"]) < 2){
             $message["reply"][] = "Soyisim 2 karekterden az olamaz.";
         }
-        if(strlen($page_data[$default_lang->short_lang]["surname"]) > 20){
+        if(strlen($pageData[$default_lang->short_lang]["surname"]) > 20){
             $message["reply"][] = "Soyisim 20 karekteri geçemez.";
         }
     }
@@ -111,7 +111,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
             $message["reply"][] = "Şifre ve şifre tekrarı aynı olmalıdır.";
         }
     }
-    if(!array_key_exists($page_data[$default_lang->short_lang]["theme"], $adminPanelTheme)){
+    if(!array_key_exists($pageData[$default_lang->short_lang]["theme"], $adminPanelTheme)){
         $message["reply"][] = "Geçersiz tema seçimi.";
     }
 
@@ -125,7 +125,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
         $file->compressor = true;
         $uploaded = $file->file_upload();
         if((int)$uploaded["result"] === 1){
-            $page_data[$default_lang->short_lang]["img"] = $uploaded["img_name"];
+            $pageData[$default_lang->short_lang]["img"] = $uploaded["img_name"];
         }
         if((int)$uploaded["result"] === 2){
             $message["reply"][] = $uploaded["result_message"];
@@ -133,12 +133,12 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     }
     if(empty($message)){
         $dat = array();
-        $dat["email"] = $page_data[$default_lang->short_lang]["email"];
-        $dat["name"] = $page_data[$default_lang->short_lang]["name"];
-        $dat["surname"] = $page_data[$default_lang->short_lang]["surname"];
-        $dat["theme"] = $page_data[$default_lang->short_lang]["theme"];
-        if(isset($page_data[$default_lang->short_lang]["img"])){
-            $dat["img"] = $page_data[$default_lang->short_lang]["img"];
+        $dat["email"] = $pageData[$default_lang->short_lang]["email"];
+        $dat["name"] = $pageData[$default_lang->short_lang]["name"];
+        $dat["surname"] = $pageData[$default_lang->short_lang]["surname"];
+        $dat["theme"] = $pageData[$default_lang->short_lang]["theme"];
+        if(isset($pageData[$default_lang->short_lang]["img"])){
+            $dat["img"] = $pageData[$default_lang->short_lang]["img"];
         }
         if(!empty($password) && !empty($password_again)){
             $new_password = password_hash($password,PASSWORD_DEFAULT);
