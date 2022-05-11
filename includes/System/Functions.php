@@ -404,10 +404,14 @@ class Functions
 	 * @param $data
 	 * @return int
 	 */
-	public function clean_post_int($data): int
-	{
-		return (int)($this->post($data));
-	}
+    public function clean_post_int($data): int
+    {
+        $post = $this->post($data);
+        if($post === false || empty($post)){
+            $post = 0;
+        }
+        return $this->numberOnly($post);
+    }
 
 	/**
 	 * $_GET[$data] değerini integer olarak ve temizleyerek döner.
@@ -415,10 +419,14 @@ class Functions
 	 * @param $data
 	 * @return int
 	 */
-	public function clean_get_int($data): int
-	{
-		return (int)($this->get($data));
-	}
+    public function clean_get_int($data): int
+    {
+        $get = $this->get($data);
+        if($get === false || empty($get)){
+            $get = 0;
+        }
+        return $this->numberOnly($get);
+    }
 
 	/**
 	 * Verilen name değerini temizler ve $_POST[$name] değerini döner
@@ -713,6 +721,15 @@ class Functions
 		}
 		return $number;
 	}
+
+    /**
+     * @param string $number
+     * @return bool
+     */
+    public function numberOnly(string $number)
+    {
+        return preg_match("/^[0-9]+$/",$number) == 1 ? $number:0;
+    }
 
 	/**
 	 * Büyük-Küçük harfler ve sayılardan oluşan string döndürür
