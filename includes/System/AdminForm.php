@@ -93,8 +93,8 @@ class AdminForm
                                     min: 1, 
                                     buttondown_class: "btn btn-primary",
                                     buttonup_class: "btn btn-primary",
-                                    buttondown_txt: feather.icons["minus"].toSvg(),
-                                    buttonup_txt: feather.icons["plus"].toSvg()
+                                    verticalupclass: "glyphicon glyphicon-plus",
+                                    verticaldownclass: "glyphicon glyphicon-minus"
                                     });
                                 });
                             </script>
