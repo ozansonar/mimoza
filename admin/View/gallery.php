@@ -74,7 +74,7 @@
                     <tbody>
                     <?php foreach ($data as $row): ?>
                         <tr>
-                            <td><?php echo $functions->text_modal($row->name,20); ?></td>
+                            <td><?php echo $functions->textModal($row->name,20); ?></td>
                             <td>
                                 <?php if(!empty($row->img) && file_exists($fileTypePath["gallery"]["full_path"].$row->img)): ?>
                                     <a href="<?php echo $fileTypePath["gallery"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->name; ?>" class="color-unset">

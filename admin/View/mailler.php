@@ -77,8 +77,8 @@
                             ?>
                             <tr>
                                 <td><?php echo $row->id; ?></td>
-                                <td><?php echo $functions->text_modal($row->subject,20); ?></td>
-                                <td><?php echo $functions->text_modal($row->text,20); ?></td>
+                                <td><?php echo $functions->textModal($row->subject,20); ?></td>
+                                <td><?php echo $functions->textModal($row->text,20); ?></td>
                                 <td><span class="<?php echo $mailingSendStatus[$row->completed]["view_class"]; ?>"><?php echo $mailingSendStatus[$row->completed]["view_text"]; ?></span></td>
                                 <td><?php echo $row->completed == 1 ? $functions->date_long($row->completed_date):null; ?></td>
                                 <td><?php echo $functions->date_long($row->created_at); ?></td>

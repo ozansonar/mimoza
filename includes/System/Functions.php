@@ -909,7 +909,7 @@ class Functions
 	 * @param string $icon
 	 * @return mixed|string
 	 */
-	public function text_modal($text, int $limit = 25, string $icon = "fas fa-info-circle ml-2")
+	public function textModal($text, int $limit = 25, string $icon = "fas fa-info-circle ml-2")
 	{
 		$result = null;
 		if (strlen($text) > $limit) {

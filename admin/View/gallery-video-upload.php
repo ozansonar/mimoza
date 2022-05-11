@@ -149,7 +149,7 @@
                     <tbody>
                     <?php foreach ($videos_data as $row): ?>
                         <tr>
-                            <td><?php echo $functions->text_modal($row->title,20); ?></td>
+                            <td><?php echo $functions->textModal($row->title,20); ?></td>
                             <td><?php echo $functions->date_long($row->created_at); ?></td>
                             <td>
                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#page_modal_title_<?php echo $row->id; ?>">

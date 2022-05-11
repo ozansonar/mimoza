@@ -73,7 +73,7 @@
                         <tbody>
                         <?php foreach ($data as $row): ?>
                             <tr>
-                                <td><?php echo $functions->text_modal($row->title,20); ?></td>
+                                <td><?php echo $functions->textModal($row->title,20); ?></td>
                                 <td>
                                     <?php if(!empty($row->img) && file_exists($fileTypePath["slider"]["full_path"].$row->img)): ?>
                                         <a href="<?php echo $fileTypePath["slider"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
@@ -82,7 +82,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td><?php echo $row->link; ?></td>
-                                <td><?php echo $functions->text_modal($row->abstract,20); ?></td>
+                                <td><?php echo $functions->textModal($row->abstract,20); ?></td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
                                 <td><?php echo $row->show_order; ?></td>
                                 <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>

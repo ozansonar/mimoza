@@ -69,6 +69,7 @@
                     <tr>
                         <th>Link</th>
                         <th>Gideceği Dosya</th>
+                        <th>Dil</th>
                         <th>Eklenme Tarihi</th>
                         <th>Durum</th>
                         <th></th>
@@ -77,30 +78,9 @@
                     <tbody>
                     <?php foreach ($data as $row): ?>
                         <tr>
-                            <td>
-                                <?php if(strlen($row->url) <= 20): ?>
-                                    <?php echo $row->url; ?>
-                                <?php else: ?>
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#page_modal_title_<?php echo $row->id; ?>">
-                                        Göster <i class="fas fa-info-circle ml-2"></i>
-                                    </button>
-                                    <!-- Basic modal -->
-                                    <div id="page_modal_title_<?php echo $row->id; ?>" class="modal fade" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <p><?php echo $row->url; ?></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /basic modal -->
-                                <?php endif; ?>
-                            </td>
+                            <td><?php echo $functions->textModal($row->url); ?></td>
                             <td><?php echo $row->controller; ?></td>
+                            <td><?php echo $projectLanguages[$row->lang]->lang ?? null; ?></td>
                             <td><?php echo $functions->date_short($row->created_at); ?></td>
                             <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
                             <td>

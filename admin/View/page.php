@@ -75,7 +75,7 @@
                         <?php foreach ($data as $row): ?>
                             <tr>
                                 <td>
-                                    <?php echo $functions->text_modal($row->title,20); ?>
+                                    <?php echo $functions->textModal($row->title,20); ?>
                                 </td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
                                 <td>

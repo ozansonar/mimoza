@@ -77,11 +77,11 @@
                                 <td>
                                     <?php
                                     $send_user_name = $row->name." ".$row->surname." (".$row->email.")";
-                                    echo $functions->text_modal($send_user_name,25);
+                                    echo $functions->textModal($send_user_name,25);
                                     ?>
                                 </td>
                                 <td>
-                                    <?php echo $functions->text_modal($row->subject,25); ?>
+                                    <?php echo $functions->textModal($row->subject,25); ?>
                                 </td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
                                 <td>

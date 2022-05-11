@@ -74,7 +74,7 @@
                         <?php foreach ($data as $row): ?>
                             <tr>
                                 <td>
-                                    <?php echo $functions->text_modal($row->lang,20); ?>
+                                    <?php echo $functions->textModal($row->lang,20); ?>
                                 </td>
                                 <td><?php echo $row->short_lang; ?></td>
                                 <td><?php echo array_key_exists($row->default_lang,$systemYesAndNoText) ? $systemYesAndNoText[$row->default_lang]["form_text"]:null; ?></td>

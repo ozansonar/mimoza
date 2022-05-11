@@ -74,9 +74,9 @@
                         <?php foreach ($data as $row):
                             ?>
                             <tr>
-                                <td><?php echo $functions->text_modal($row->subject,20); ?></td>
-                                <td><?php echo $functions->text_modal($row->text,20); ?></td>
-                                <td><?php echo !empty($row->not_text) ? $functions->text_modal($row->not_text,20):null; ?></td>
+                                <td><?php echo $functions->textModal($row->subject,20); ?></td>
+                                <td><?php echo $functions->textModal($row->text,20); ?></td>
+                                <td><?php echo !empty($row->not_text) ? $functions->textModal($row->not_text,20):null; ?></td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
                                 <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
                                 <td>

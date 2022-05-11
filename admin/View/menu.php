@@ -73,7 +73,7 @@
                         <?php foreach ($data as $row): ?>
                             <tr>
                                 <td>
-                                    <?php echo $functions->text_modal($row->name,10); ?>
+                                    <?php echo $functions->textModal($row->name,10); ?>
                                 </td>
                                 <td><?php echo $systemMenuTypes[$row->menu_type]["view_text"]; ?></td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
