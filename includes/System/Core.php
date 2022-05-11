@@ -85,14 +85,18 @@ class Core
 		return SITE_URL . '/uploads/' . $url;
 	}
 
-	public function url($url = ''): string
-	{
-		return SITE_URL . '/' . $_SESSION['lang'] . '/' . $url;
-	}
+    public function url($url = ''): string
+    {
+        global $settings;
+        if ((int)$settings->link_sort_lang === 2) {
+            return SITE_URL . '/' . $url;
+        }
+        return SITE_URL . '/' . $_SESSION['lang'] . '/' . $url;
+    }
 
 	public function backend($url = ''): string
 	{
-		return SITE_URL . '/' . $_SESSION['lang'] . '/beta/' . $url;
+		return SITE_URL . '/' . $_SESSION['lang'] . '/admin/' . $url;
 	}
 
 	public function userUrl(string $username): string
