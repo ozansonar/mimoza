@@ -552,7 +552,7 @@ $systemLinkPrefix = [
     ],
     "search_prefix_" => [
         "title" => "Arama Linki",
-        "controller" => "arama",
+        "controller" => "search",
     ],
     "slider_prefix_" => [
         "title" => "Slider Linki",
@@ -560,23 +560,23 @@ $systemLinkPrefix = [
     ],
     "iletisim_prefix_" => [
         "title" => "İletişim Linki",
-        "controller" => "iletisim",
+        "controller" => "contact",
     ],
     "profile_prefix_" => [
         "title" => "Profil Linki",
-        "controller" => "profil",
+        "controller" => "profile",
     ],
     "giris_prefix_" => [
         "title" => "Giriş Linki",
-        "controller" => "giris",
+        "controller" => "login",
     ],
     "sifremi_unutum_prefix_" => [
         "title" => "Şifremi unuttum",
-        "controller" => "sifremi-unuttum",
+        "controller" => "forgot-password",
     ],
     "sifre_yenile_prefix_" => [
         "title" => "Şifre Yenileme Linki",
-        "controller" => "sifre-yenile",
+        "controller" => "password-reset",
     ],
     "uye_ol_prefix_" => [
         "title" => "Üye Olma",
