@@ -4,6 +4,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 CREATE TABLE `contact_form` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
   `subject` varchar(255) DEFAULT NULL,
