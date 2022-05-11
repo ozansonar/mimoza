@@ -74,7 +74,7 @@ class FileUploader
 	/**
 	 * @var int
 	 */
-	public int $gallery_id;
+	public int $gallery_id = 0;
 
 
 	/**
@@ -97,7 +97,8 @@ class FileUploader
 			}
 			$result = array();
 			$image = $_FILES[$this->global_file_name];
-			$image_name = uniqid('', true) . "-" . time();
+            $userId = $_SESSION["user_id"]."-" ?? null;
+            $image_name = $userId.uniqid('', true) . "-" . time();
 			$handle = new Upload($image, "tr_TR");
 			if ($handle->uploaded) {
 				// maksimum yüklenecek dosya boyutu belirlenir. 1024 = 1KB
