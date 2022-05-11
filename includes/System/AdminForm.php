@@ -89,10 +89,11 @@ class AdminForm
 			$html .= '
                             <script>
                                 $(document).ready(function(){
-                                   $("#' . $id . '").TouchSpin({ 
-                                    min: 1, 
-                                    buttondown_class: "btn btn-primary",
-                                    buttonup_class: "btn btn-primary",
+                                   $("#' . $id . '").TouchSpin({
+                                    verticalbuttons: true,
+                                    min: 1,
+                                    max: ' . $max_size . ',
+                                    stepinterval: 0,
                                     verticalupclass: "glyphicon glyphicon-plus",
                                     verticaldownclass: "glyphicon glyphicon-minus"
                                     });
