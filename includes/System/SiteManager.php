@@ -435,7 +435,7 @@ class SiteManager
         global $settings;
         $category = $this->database::selectQuery('content_categories',['deleted' => 0, 'status'=>1,'id'=>$content->cat_id],true);
         if (empty($category)){
-            return 'javascript:void(0);'; 
+            return 'javascript:void(0);';
         }
         return $settings->{"content_prefix_" . $_SESSION["lang"]} . "/" . $category->link . "-" . $category->id . "/" . $content->link . "-" . $content->id;
     }
