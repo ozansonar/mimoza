@@ -7,7 +7,7 @@
  * Time: 20:11
  */
 ?>
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -23,7 +23,7 @@
                 <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true): ?>
                     <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                         <h1>
-                            <a href="<?php echo $adminSystem->adminUrl($page_button_redirect_link); ?>">
+                            <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
                                 <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
                                 <?php echo $page_button_redirect_text; ?>
                             </a>
@@ -93,13 +93,13 @@
                             <td><?php echo $systemAdminUserType[$row->rank]["view_text"]; ?></td>
                             <td>
                                 <?php if($session->sessionRoleControl($page_role_key,$editPermissionKey) == true): ?>
-                                    <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $adminSystem->adminUrl("user-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i></i>Düzenle</button>
+                                    <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $system->adminUrl("user-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i></i>Düzenle</button>
                                 <?php endif; ?>
                                 <?php if($_SESSION["user_id"] != $row->id && $session->sessionRoleControl($page_role_key,$deletePermissionKey) == true): ?>
-                                    <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $adminSystem->adminUrl("user?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
+                                    <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $system->adminUrl("user?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl("user-tracing",$listPermissionKey) == true): ?>
-                                    <a href="<?php echo $adminSystem->adminUrl("user-tracing?id=".$row->id); ?>"  class="btn btn-outline-primary"><i class="fas fa-desktop px-1"></i>Kullanıcı Hareketleri</a>
+                                    <a href="<?php echo $system->adminUrl("user-tracing?id=".$row->id); ?>"  class="btn btn-outline-primary"><i class="fas fa-desktop px-1"></i>Kullanıcı Hareketleri</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -125,7 +125,7 @@
     $(document).ready(function(){
         $("#datatable-1").DataTable({
             /*"language": {
-                "url": "<?php echo $adminSystem->adminPublicUrl("plugins/datatables/lang/".$_SESSION["lang"].".json"); ?>"
+                "url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/".$_SESSION["lang"].".json"); ?>"
                 },*/
             "responsive": true,
             "lengthChange": false,
@@ -134,4 +134,4 @@
         }).buttons().container().appendTo('#datatable-1_wrapper .col-md-6:eq(0)');
     });
 </script>
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

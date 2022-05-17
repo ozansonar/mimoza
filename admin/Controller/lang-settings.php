@@ -25,7 +25,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     $pageData[$default_lang->short_lang] = (array) $data;
 }else{
@@ -136,7 +136,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                     $siteManager->defaultLanguageReset($id);
                 }
 
-                $functions->refresh($adminSystem->adminUrl("lang-settings?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("lang-settings?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['LANG_EDIT_ERR']);
@@ -156,7 +156,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                     $siteManager->defaultLanguageReset($db->getLastInsertedId());
                 }
 
-                $functions->refresh($adminSystem->adminUrl("lang-settings"),$refresh_time);
+                $functions->refresh($system->adminUrl("lang-settings"),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['LANG_ADD_ERR']);
@@ -176,4 +176,4 @@ $sub_title = null;
 $page_button_redirect_link = "lang";
 $page_button_redirect_text = "Diller";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('lang-settings');
+require $system->adminView('lang-settings');

@@ -183,7 +183,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['GALLERY_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($adminSystem->adminUrl("gallery-settings?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("gallery-settings?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['GALLERY_EDIT_ERR']);
@@ -195,7 +195,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['GALLERY_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($adminSystem->adminUrl("gallery-settings"),$refresh_time);
+                $functions->refresh($system->adminUrl("gallery-settings"),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['GALLERY_ADD_ERR']);
@@ -216,4 +216,4 @@ $page_button_redirect_link = "gallery";
 $page_button_redirect_text = "Resim Galerileri";
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('gallery-settings');
+require $system->adminView('gallery-settings');

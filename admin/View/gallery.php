@@ -7,7 +7,7 @@
  * Email: ozansonar1@gmail.com
  */
 ?>
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -23,7 +23,7 @@
                 <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true): ?>
                     <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                         <h1>
-                            <a href="<?php echo $adminSystem->adminUrl($page_button_redirect_link); ?>">
+                            <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
                                 <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
                                 <?php echo $page_button_redirect_text; ?>
                             </a>
@@ -87,16 +87,16 @@
                             <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
                             <td>
                                 <?php if($session->sessionRoleControl($page_role_key,$editPermissionKey) == true): ?>
-                                    <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $adminSystem->adminUrl("gallery-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i>Düzenle</button>
+                                    <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $system->adminUrl("gallery-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i>Düzenle</button>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == true): ?>
-                                    <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $adminSystem->adminUrl("gallery?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
+                                    <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $system->adminUrl("gallery?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl("gallery-image-upload",$addPermissionKey) == true): ?>
-                                    <a href="<?php echo $adminSystem->adminUrl("gallery-image-upload?id=".$row->id); ?>" class="btn btn-outline-primary m-1"><i class="fas fa-plus px-1"></i> Resim Ekle</a>
+                                    <a href="<?php echo $system->adminUrl("gallery-image-upload?id=".$row->id); ?>" class="btn btn-outline-primary m-1"><i class="fas fa-plus px-1"></i> Resim Ekle</a>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl("video-upload",$addPermissionKey) == true): ?>
-                                    <a href="<?php echo $adminSystem->adminUrl("gallery-video-upload?id=".$row->id); ?>" class="btn btn-outline-warning m-1"><i class="fab fa-youtube px-1"></i> Video Ekle</a>
+                                    <a href="<?php echo $system->adminUrl("gallery-video-upload?id=".$row->id); ?>" class="btn btn-outline-warning m-1"><i class="fab fa-youtube px-1"></i> Video Ekle</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -122,7 +122,7 @@
     $(document).ready(function(){
         $("#datatable-1").DataTable({
             /*"language": {
-                "url": "<?php echo $adminSystem->adminPublicUrl("plugins/datatables/lang/".$_SESSION["lang"].".json"); ?>"
+                "url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/".$_SESSION["lang"].".json"); ?>"
                 },*/
             "responsive": true,
             "lengthChange": false,
@@ -131,4 +131,4 @@
         }).buttons().container().appendTo('#datatable-1_wrapper .col-md-6:eq(0)');
     });
 </script>
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

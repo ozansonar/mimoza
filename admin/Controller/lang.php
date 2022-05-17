@@ -57,7 +57,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
             $message["success"][] = $lang["content-delete"];
             $refresh_time = 5;
             $message["refresh_time"] = $refresh_time;
-            $functions->refresh($adminSystem->adminUrl("lang"),$refresh_time);
+            $functions->refresh($system->adminUrl("lang"),$refresh_time);
         }else{
             //log atalım
             $log->logThis($log->logTypes['LANG_DEL_ERR']);
@@ -77,4 +77,4 @@ $page_button_redirect_link = "lang-settings";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('lang');
+require $system->adminView('lang');

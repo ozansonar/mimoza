@@ -116,7 +116,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                     $log->logThis($log->logTypes['LANGUAGE_TEXT_UPDATE_SUCC']);
 
                     $message["success"][] = $lang["content-completed"];
-                    $functions->refresh($adminSystem->adminUrl("language-text-setting"), $refresh_time);
+                    $functions->refresh($system->adminUrl("language-text-setting"), $refresh_time);
                 } else {
                     //log atalım
                     $log->logThis($log->logTypes['LANGUAGE_TEXT_UPDATE_ERR']);
@@ -138,4 +138,4 @@ $page_button_redirect_link = null;
 $page_button_redirect_text = null;
 $page_button_icon = null;
 
-require $adminSystem->adminView('language-text-setting');
+require $system->adminView('language-text-setting');

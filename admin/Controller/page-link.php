@@ -53,7 +53,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("page-link"),$refresh_time);
+        $functions->refresh($system->adminUrl("page-link"),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['PAGE_LINK_DELETE_ERR']);
@@ -73,4 +73,4 @@ $page_button_redirect_link = "page-link-settings";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('page-link');
+require $system->adminView('page-link');

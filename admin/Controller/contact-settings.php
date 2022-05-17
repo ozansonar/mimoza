@@ -22,7 +22,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     if($data->read_user == 0){
         $message_read = $db::query("UPDATE contact_form SET read_user=1,read_user_id=:u_id,read_date=:r_date WHERE id=:id AND deleted=0");
@@ -110,7 +110,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['CONTACT_CEVAP_SEND_SUCC']);
 
                 $message["success"][] = $lang["content-update"];
-                $functions->refresh($adminSystem->adminUrl("contact-settings?id=".$id), $refresh_time);
+                $functions->refresh($system->adminUrl("contact-settings?id=".$id), $refresh_time);
             } else {
                 //log atalım
                 $log->logThis($log->logTypes['CONTACT_CEVAP_SEND_ERR']);
@@ -131,4 +131,4 @@ $sub_title = null;
 $page_button_redirect_link = "contact";
 $page_button_redirect_text = "İletişim Mesajları";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('contact-settings');
+require $system->adminView('contact-settings');

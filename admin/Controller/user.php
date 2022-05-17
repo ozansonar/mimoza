@@ -41,7 +41,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     $id = $functions->clean_get_int("delete");
     if($_SESSION["user_id"] == $id){
         //kişi kendisini silemez
-        $functions->redirect($adminSystem->adminUrl("user"));
+        $functions->redirect($system->adminUrl("user"));
     }
     $data = array();
     $data["deleted"] = 1;
@@ -55,7 +55,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("user"),$refresh_time);
+        $functions->refresh($system->adminUrl("user"),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['USER_DELETE_ERR']);
@@ -75,4 +75,4 @@ $page_button_redirect_link = "user-settings";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('user');
+require $system->adminView('user');

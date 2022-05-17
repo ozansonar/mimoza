@@ -6,7 +6,7 @@
  * Time: 23:40
  */
 ?>
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,7 +22,7 @@
                 <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true): ?>
                     <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                         <h1>
-                            <a href="<?php echo $adminSystem->adminUrl($page_button_redirect_link); ?>">
+                            <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
                                 <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
                                 <?php echo $page_button_redirect_text; ?>
                             </a>
@@ -155,12 +155,12 @@
 
 </div>
 <!-- /.content-wrapper -->
-<script src="<?php echo $adminSystem->adminPublicUrl("plugins/ckeditor/ckeditor.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("plugins/ckeditor/ckeditor.js"); ?>"></script>
 <script>
     $(document).ready(function(){
         $("form#pageForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
     });
-    var roxyFileman = '<?php echo $adminSystem->adminPublicUrl('plugins/fileman/index.html'); ?>';
+    var roxyFileman = '<?php echo $system->adminPublicUrl('plugins/fileman/index.html'); ?>';
     <?php
     foreach ($projectLanguages as $project_languages_row){
         ?>
@@ -180,4 +180,4 @@
     }
     ?>
 </script>
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

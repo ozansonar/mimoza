@@ -152,7 +152,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
             $refresh_time = 5;
             $message["refresh_time"] = $refresh_time;
             $message["success"][] = "Hesap ayarları başarılı bir şekilde güncellendi.";
-            $functions->refresh($adminSystem->adminUrl("account-settings"),$refresh_time);
+            $functions->refresh($system->adminUrl("account-settings"),$refresh_time);
         }else{
             //log atalım
             $log->logThis($log->logTypes['ACCOUNT_EDIT_ERR']);
@@ -174,5 +174,5 @@ $page_button_redirect_text = $page_title;
 $page_button_icon = null;
 
 
-require $adminSystem->adminView('account-settings');
+require $system->adminView('account-settings');
 ?>

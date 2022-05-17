@@ -25,7 +25,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     //id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
     $data_multi_lang = $db::selectQuery($table,array(
@@ -139,7 +139,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($adminSystem->adminUrl($page_add_role_key."?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl($page_add_role_key."?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_EDIT_ERR']);
@@ -151,7 +151,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($adminSystem->adminUrl($page_add_role_key),$refresh_time);
+                $functions->refresh($system->adminUrl($page_add_role_key),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_ADD_ERR']);
@@ -171,4 +171,4 @@ $sub_title = "E-posta içeriğinde <b>\"#\"</b> içinde yazılmış kelimleri l�
 $page_button_redirect_link = $page_role_key;
 $page_button_redirect_text = "E-posta Temaları";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView($page_add_role_key);
+require $system->adminView($page_add_role_key);

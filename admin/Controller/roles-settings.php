@@ -24,7 +24,7 @@ if (isset($_GET["id"])) {
         "deleted" => 0,
     ),true);
     if (empty($data)) {
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     $role_select = $db::query("SELECT * FROM role_permission WHERE deleted=0 AND role_group=:rg");
     $role_select->bindParam(":rg",$data->id,PDO::PARAM_INT);
@@ -165,7 +165,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                     $delete_role->execute();
                 }
                 $message["success"][] = $lang["content-completed"];
-                $functions->refresh($adminSystem->adminUrl("roles-settings?id=".$id, 3));
+                $functions->refresh($system->adminUrl("roles-settings?id=".$id, 3));
 
                 //log atalım
                 $log->logThis($log->logTypes['ROLES_EDIT_SUCC']);
@@ -193,7 +193,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                 }
 
                 $message["success"][] = $lang["content-completed"];
-                $functions->refresh($adminSystem->adminUrl("roles-settings?id=".$last_id, 3));
+                $functions->refresh($system->adminUrl("roles-settings?id=".$last_id, 3));
                 //log atalım
                 $log->logThis($log->logTypes['ROLES_ADD_SUCC']);
             } else {
@@ -213,4 +213,4 @@ $page_button_redirect_link = "roles";
 $page_button_redirect_text = "Kullanıcı Yetkileri";
 $page_button_icon = null;
 
-require $adminSystem->adminView('roles-settings');
+require $system->adminView('roles-settings');

@@ -13,4 +13,4 @@ $page_button_redirect_link = "index";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('index');
+require $system->adminView('index');

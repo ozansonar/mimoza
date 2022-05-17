@@ -497,7 +497,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$log->logThis($log->logTypes['SETTINGS_UPDATE_SUCC']);
 
 			$message["success"][] = $lang["content-completed"];
-			$functions->refresh($adminSystem->adminUrl("settings"), $refresh_time);
+			$functions->refresh($system->adminUrl("settings"), $refresh_time);
 		} else {
 			//log atalım
 			$log->logThis($log->logTypes['SETTINGS_UPDATE_ERR']);
@@ -514,4 +514,4 @@ $page_button_redirect_link = "settings";
 $page_button_redirect_text = $page_title;
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('settings');
+require $system->adminView('settings');

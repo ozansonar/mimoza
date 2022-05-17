@@ -1,3 +1,3 @@
 <?php
 
-require $adminSystem->adminView('404');
+require $system->adminView('404');

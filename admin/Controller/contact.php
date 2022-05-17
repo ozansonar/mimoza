@@ -48,7 +48,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("contact"), $refresh_time);
+        $functions->refresh($system->adminUrl("contact"), $refresh_time);
     } else {
         //log atalım
         $log->logThis($log->logTypes['CONTACT_DELETE_ERR']);
@@ -68,4 +68,4 @@ $page_button_redirect_link = "contact";
 $page_button_redirect_text = $page_title;
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('contact');
+require $system->adminView('contact');

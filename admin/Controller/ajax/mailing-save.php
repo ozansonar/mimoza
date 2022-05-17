@@ -138,7 +138,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
             }
 
             $message["success"][] = "Mailing başarıyla eklendi. Yönlendiriliyorsunuz...";
-            $message["url"] = $adminSystem->adminUrl("mailing-view?id=".$mailing_id);
+            $message["url"] = $system->adminUrl("mailing-view?id=".$mailing_id);
             $message["time"] = 3000;
         }else{
             $message["reply"][] = "Mailing eklenemedi lütfen tekrar deneyin.";

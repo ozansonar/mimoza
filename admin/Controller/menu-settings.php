@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
         "deleted" => 0,
     ),true);
     if (empty($data)) {
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     //id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
     $data_multi_lang = $db::selectQuery("menu",array(
@@ -196,7 +196,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['MENU_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($adminSystem->adminUrl("menu-settings?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("menu-settings?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['MENU_EDIT_ERR']);
@@ -208,7 +208,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['MENU_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($adminSystem->adminUrl("menu-settings"),$refresh_time);
+                $functions->refresh($system->adminUrl("menu-settings"),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['MENU_ADD_ERR']);
@@ -231,4 +231,4 @@ $page_button_redirect_link = "menu";
 $page_button_redirect_text = "Menüler";
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('menu-settings');
+require $system->adminView('menu-settings');

@@ -28,7 +28,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->admin_url());
+        $functions->redirect($system->admin_url());
     }
     //id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
     $data_multi_lang = $db::selectQuery("page",array(
@@ -214,5 +214,5 @@ $sub_title = null;
 $page_button_redirect_link = "menu";
 $page_button_redirect_text = "Sayfalar";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('page-settings');
+require $system->adminView('page-settings');
 ?>

@@ -7,7 +7,7 @@
  * Email: ozansonar1@gmail.com
  */
 ?>
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -86,4 +86,4 @@
 
 </div>
 <!-- /content area -->
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

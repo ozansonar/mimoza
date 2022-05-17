@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
 		"deleted" => 0,
 	), true);
 	if (empty($data)) {
-		$functions->redirect($adminSystem->adminUrl());
+		$functions->redirect($system->adminUrl());
 	}
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
 	$data_multi_lang = $db::selectQuery("slider", array(
@@ -203,7 +203,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 				$log->logThis($log->logTypes['SLIDER_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
 
-				$functions->refresh($adminSystem->adminUrl("slider-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl("slider-settings?id=" . $id), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['SLIDER_EDIT_ERR']);
@@ -215,7 +215,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 				$log->logThis($log->logTypes['SLIDER_ADD_SUCC']);
 				$message["success"][] = $lang["content-insert"];
 
-				$functions->refresh($adminSystem->adminUrl("slider-settings"), $refresh_time);
+				$functions->refresh($system->adminUrl("slider-settings"), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['SLIDER_ADD_ERR']);
@@ -235,5 +235,5 @@ $sub_title = null;
 $page_button_redirect_link = "slider";
 $page_button_redirect_text = "Sliderlar";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('slider-settings');
+require $system->adminView('slider-settings');
 

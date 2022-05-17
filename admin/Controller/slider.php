@@ -50,7 +50,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("slider"),$refresh_time);
+        $functions->refresh($system->adminUrl("slider"),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['SLIDER_DELETE_ERR']);
@@ -72,5 +72,5 @@ $page_button_redirect_link = "slider-settings";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('slider');
+require $system->adminView('slider');
 

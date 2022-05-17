@@ -51,7 +51,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("gallery"),$refresh_time);
+        $functions->refresh($system->adminUrl("gallery"),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['GALLERY_DELETE_ERR']);
@@ -72,4 +72,4 @@ $page_button_redirect_link = "gallery-settings";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('gallery');
+require $system->adminView('gallery');

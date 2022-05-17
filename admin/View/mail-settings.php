@@ -7,7 +7,7 @@
  * Time: 23:38
  */
 ?>
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
@@ -24,7 +24,7 @@
                     <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true): ?>
                         <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                             <h1>
-                                <a href="<?php echo $adminSystem->adminUrl($page_button_redirect_link); ?>">
+                                <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
                                     <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
                                     <?php echo $page_button_redirect_text; ?>
                                 </a>
@@ -341,7 +341,7 @@
                         var data = $("form#mailingForm").serialize();
                         $.ajax({
                             type: 'POST',
-                            url: "<?php echo $adminSystem->adminUrl("ajax/mailing-save"); ?>",
+                            url: "<?php echo $system->adminUrl("ajax/mailing-save"); ?>",
                             data: data,
                             success: function(response){
                                 //$("#id_mailing_save").removeAttr('disabled');
@@ -472,4 +472,4 @@
 
 
     </script>
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

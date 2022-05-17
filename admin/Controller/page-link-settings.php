@@ -23,7 +23,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl("page-link"));
+        $functions->redirect($system->adminUrl("page-link"));
     }
     $pageData[$default_lang->short_lang] = (array) $data;
 }else{
@@ -147,7 +147,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['PAGE_LINK_EDIT_SUCC']);
 
                 $message["success"][] = $lang["content-update"];
-                $functions->refresh($adminSystem->adminUrl("page-link-settings?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("page-link-settings?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['PAGE_LINK_EDIT_ERR']);
@@ -160,7 +160,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             if($add){
                 $log->logThis($log->logTypes['PAGE_LINK_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
-                $functions->refresh($adminSystem->adminUrl("page-link"),$refresh_time);
+                $functions->refresh($system->adminUrl("page-link"),$refresh_time);
             }else{
                 $log->logThis($log->logTypes['PAGE_LINK_ADD_ERR']);
                 $message["reply"][] = $lang["content-insert-error"];
@@ -179,4 +179,4 @@ $sub_title = null;
 $page_button_redirect_link = "page-link";
 $page_button_redirect_text = "Sayfa Linkleri";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('page-link-settings');
+require $system->adminView('page-link-settings');

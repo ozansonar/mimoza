@@ -8,4 +8,4 @@ $sub_title = null;
 $page_button_redirect_link = "user";
 $page_button_redirect_text = "Kullanicilar";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('403');
+require $system->adminView('403');

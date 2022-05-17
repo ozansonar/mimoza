@@ -17,7 +17,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($selectQuery)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     $logs_get = $db::query("SELECT l.*,lt.log_key FROM logs l INNER JOIN log_types lt ON lt.log_val=l.log_type WHERE user_id=:uid ORDER BY l.id DESC");
     $logs_get->bindParam(":uid",$id,PDO::PARAM_INT);
@@ -40,4 +40,4 @@ $sub_title = $selectQuery->name." ".$selectQuery->surname." isimli kullanıcın�
 $page_button_redirect_link = "user";
 $page_button_redirect_text = "Kullancılar";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('user-tracing');
+require $system->adminView('user-tracing');

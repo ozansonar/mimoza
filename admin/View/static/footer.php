@@ -107,29 +107,29 @@ if (!empty($sessionError)): ?>
 <!-- REQUIRED SCRIPTS -->
 
 <!-- Bootstrap -->
-<script src="<?php echo $adminSystem->adminPublicUrl("plugins/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
-<script src="<?php echo $adminSystem->adminPublicUrl("plugins/ekko-lightbox/ekko-lightbox.min.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("plugins/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("plugins/ekko-lightbox/ekko-lightbox.min.js"); ?>"></script>
 <!-- overlayScrollbars -->
-<script src="<?php echo $adminSystem->adminPublicUrl("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo $adminSystem->adminPublicUrl("dist/js/adminlte.js"); ?>"></script>
-<script src="<?php echo $adminSystem->adminPublicUrl("plugins/sweetalert2/sweetalert2.min.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("dist/js/adminlte.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("plugins/sweetalert2/sweetalert2.min.js"); ?>"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo $adminSystem->adminPublicUrl("dist/js/demo.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("dist/js/demo.js"); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo $adminSystem->adminPublicUrl("dist/js/pages/dashboard2.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("dist/js/pages/dashboard2.js"); ?>"></script>
 
 <!-- Page Custom JS -->
 <?php
 if (!empty($customJs)) {
 	foreach ($customJs as $js) {
 		?>
-        <script src="<?php echo $adminSystem->adminPublicUrl($js); ?>"></script>
+        <script src="<?php echo $system->adminPublicUrl($js); ?>"></script>
 		<?php
 	}
 }
 ?>
 
-<script src="<?php echo $adminSystem->adminPublicUrl("dist/js/custom.js"); ?>"></script>
+<script src="<?php echo $system->adminPublicUrl("dist/js/custom.js"); ?>"></script>
 </body>
 </html>

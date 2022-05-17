@@ -6,8 +6,8 @@ if (!$type) {
     exit;
 }
 
-if (file_exists($adminSystem->adminController('ajax/' . $type))) {
-    require $adminSystem->adminController('ajax/' . $type);
+if (file_exists($system->adminController('ajax/' . $type))) {
+    require $system->adminController('ajax/' . $type);
 }
 
 echo json_encode($message);

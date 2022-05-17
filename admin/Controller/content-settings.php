@@ -22,7 +22,7 @@ if(isset($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     //id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
     $data_multi_lang = $db::selectQuery("content",array(
@@ -206,7 +206,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['CONTENT_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($adminSystem->adminUrl("content-settings?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("content-settings?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['CONTENT_EDIT_ERR']);
@@ -218,7 +218,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['CONTENT_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($adminSystem->adminUrl("content-settings"),$refresh_time);
+                $functions->refresh($system->adminUrl("content-settings"),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['CONTENT_ADD_ERR']);
@@ -240,4 +240,4 @@ $page_button_redirect_text = "İçerikler";
 $page_button_icon = "icon-list";
 
 
-require $adminSystem->adminView('content-settings');
+require $system->adminView('content-settings');

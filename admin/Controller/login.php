@@ -1,10 +1,9 @@
 ﻿<?php
-use \Includes\System\AdminForm;
 
-if ($session->isThereUserSession()) {
-	if ($session->get("user_rank") < 60) {
-		$functions->redirect($functions->site_url());
-	}
+use Mrt\MimozaCore\AdminForm;
+
+if ($session->isThereUserSession() && $session->get("user_rank") < 60) {
+	$functions->redirect($functions->site_url());
 }
 
 //log atalım
@@ -20,18 +19,15 @@ $customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
 $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js";
 
 $pageData = [];
-//form class
-include($system->path("includes/System/AdminForm.php"));
-
-$page_form = new Includes\System\AdminForm();
+$page_form = new AdminForm();
 if ($functions->post('submit')) {
-    $pageData["name"] = $functions->clean_post("name");
-    $pageData["password"] = $functions->clean_post("password");
+	$pageData["name"] = $functions->clean_post("name");
+	$pageData["password"] = $functions->clean_post("password");
 	$message = $session->login($pageData["name"], $pageData["password"]);
 	if (isset($message["success"])) {
 		//log atalım
 		$log->logThis($log->logTypes['ADMIN_LOGIN'], "user id: " . $_SESSION["user_id"]);
-		$functions->redirect($adminSystem->adminUrl());
+		$functions->redirect($system->adminUrl());
 	}
 }
-require $adminSystem->adminView('login');
+require $system->adminView('login');

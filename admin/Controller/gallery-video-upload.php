@@ -59,7 +59,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl("gallery-video-upload?id=".intval($_GET["id"])),$refresh_time);
+        $functions->refresh($system->adminUrl("gallery-video-upload?id=".intval($_GET["id"])),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['GALLERY_VIDEO_DEL_ERR']);
@@ -77,7 +77,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && 
         "deleted" => 0,
     ),true);
     if(empty($gallery_data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     if(isset($_GET["video_id"])){
         $video_id = $functions->clean_get_int("video_id");
@@ -86,7 +86,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && 
             "deleted" => 0,
         ),true);
         if(empty($data)){
-            $functions->redirect($adminSystem->adminUrl());
+            $functions->redirect($system->adminUrl());
         }
         //id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
         $data_multi_lang = $db::selectQuery("youtube_videos",array(
@@ -197,7 +197,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['GALLERY_VIDEO_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($adminSystem->adminUrl("gallery-video-upload?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("gallery-video-upload?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['GALLERY_VIDEO_EDIT_ERR']);
@@ -209,7 +209,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['GALLERY_VIDEO_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($adminSystem->adminUrl("gallery-video-upload?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl("gallery-video-upload?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['GALLERY_VIDEO_ADD_ERR']);
@@ -230,4 +230,4 @@ $page_button_redirect_link = "gallery";
 $page_button_redirect_text = "Resim Galerileri";
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('gallery-video-upload');
+require $system->adminView('gallery-video-upload');

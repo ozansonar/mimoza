@@ -21,7 +21,7 @@ $mailing = $db::selectQuery($table, array(
     "deleted" => 0,
 ),true);
 if(empty($mailing)){
-    $functions->redirect($adminSystem->adminUrl("mailler"));
+    $functions->redirect($system->adminUrl("mailler"));
 }
 if(!empty($mailing->image)){
     $image = unserialize($mailing->image);
@@ -59,4 +59,4 @@ $page_button_redirect_link = $page_role_key;
 $page_button_redirect_text = "Mail Listesi";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView('mailing-view');
+require $system->adminView('mailing-view');

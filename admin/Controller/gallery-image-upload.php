@@ -50,7 +50,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"])){
         "deleted" => 0,
     ),true);
     if(empty($data)){
-        $functions->redirect($adminSystem->adminUrl());
+        $functions->redirect($system->adminUrl());
     }
     //log atalım
     $log->logThis($log->logTypes['GALLERY_IMAGE_UPLOAD_DETAIL']);
@@ -90,4 +90,4 @@ $page_button_redirect_link = "gallery";
 $page_button_redirect_text = "Resim Galerileri";
 $page_button_icon = "icon-list";
 
-require $adminSystem->adminView('gallery-image-upload');
+require $system->adminView('gallery-image-upload');

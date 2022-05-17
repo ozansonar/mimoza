@@ -1,4 +1,4 @@
-<?php require $adminSystem->adminView('static/header'); ?>
+<?php require $system->adminView('static/header'); ?>
 
     <div class="login-box">
         <div class="card card-outline card-primary">
@@ -42,4 +42,4 @@
             $("form#PageForm").validationEngine({promptPosition: "bottomLeft", scroll: false});
         });
     </script>
-<?php require $adminSystem->adminView('static/footer'); ?>
+<?php require $system->adminView('static/footer'); ?>

@@ -41,7 +41,7 @@ if (isset($_GET["id"])) {
 		"deleted" => 0,
 	), true);
 	if (empty($data)) {
-		$functions->redirect($adminSystem->adminUrl());
+		$functions->redirect($system->adminUrl());
 	}
 	$pageData[$default_lang->short_lang] = (array)$data;
 	unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
@@ -185,7 +185,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$log->logThis($log->logTypes['USER_EDIT_SUCC']);
 
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($adminSystem->adminUrl("user-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl("user-settings?id=" . $id), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['USER_EDIT_ERR']);
@@ -221,5 +221,5 @@ $sub_title = null;
 $page_button_redirect_link = "user";
 $page_button_redirect_text = "Kullanıcılar";
 $page_button_icon = "icon-list";
-require $adminSystem->adminView('user-settings');
+require $system->adminView('user-settings');
 

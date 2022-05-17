@@ -52,7 +52,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 5;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($adminSystem->adminUrl($page_role_key),$refresh_time);
+        $functions->refresh($system->adminUrl($page_role_key),$refresh_time);
     }else{
         //log atalım
         $log->logThis($log->logTypes['MAILLER_LIST_DEL_ERR']);
@@ -71,4 +71,4 @@ $page_button_redirect_link = $page_add_role_key;
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $adminSystem->adminView($page_role_key);
+require $system->adminView($page_role_key);
