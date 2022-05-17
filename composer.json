@@ -15,8 +15,6 @@
   ],
   "autoload": {
     "psr-4": {
-      "Includes\\Models\\": "includes/Models/",
-      "Includes\\System\\": "includes/System/",
       "Includes\\Project\\": "includes/Project/"
     }
   },
