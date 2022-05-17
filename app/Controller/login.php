@@ -1,5 +1,6 @@
 <?php
 
+use Mrt\MimozaCore\Form;
 use Mrt\MimozaCore\View;
 
 if($session->isThereUserSession()){
@@ -7,17 +8,18 @@ if($session->isThereUserSession()){
 }
 
 //bu sayfadakullanılan özel css'ler
-$customCss = [];
-$customCss[] = "plugins/form-validation-engine/css/validationEngine.jquery.css";
+$customCss = [
+	"plugins/form-validation-engine/css/validationEngine.jquery.css"
+];
 
 //bu sayfadakullanılan özel js'ler
-$customJs = [];
-$customJs[] = "dist/js/sweetalert2.all.min.js";
-$customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
-$customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-".$_SESSION["lang"].".js";
+$customJs = [
+	"dist/js/sweetalert2.all.min.js",
+	"plugins/form-validation-engine/js/jquery.validationEngine.js",
+	"plugins/form-validation-engine/js/languages/jquery.validationEngine-".$_SESSION["lang"].".js",
+];
 
-include($system->path("includes/System/Form.php"));
-$form = new Includes\System\Form();
+$form = new Form();
 $pageData = [];
 $metaTag->title = "Üye Girişi";
 $log->logThis($log->logTypes["GIRIS"]);

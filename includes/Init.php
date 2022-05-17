@@ -41,6 +41,7 @@ $langData = $db::selectQuery("lang", array(
 	"deleted" => 0,
 ));
 
+$constants = new Constants($langData);
 
 // Getting site settings from database
 $settingQuery = $db::selectQuery("settings");
