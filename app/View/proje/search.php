@@ -77,7 +77,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $functions->kisalt($row->title,20); ?></h5>
                                 <p class="card-text"><?php echo $functions->kisalt($row->abstract,200); ?></p>
-                                <a href="<?php echo $functions->site_url_lang($row->link); ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
+                                <a href="<?php echo $system->url($row->link); ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                             </div>
                         </div>
                     </div>

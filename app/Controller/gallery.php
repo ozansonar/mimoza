@@ -1,6 +1,6 @@
 <?php
 
-$functions->redirect($functions->site_url_lang());
+$functions->redirect($system->url());
 $log->logThis($log->logTypes["GALLERY"], $system->route(1));
 $metaTag->title = $lang["gallery"];
 if (count($route) === 1) {

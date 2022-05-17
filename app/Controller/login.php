@@ -3,7 +3,7 @@
 use Mrt\MimozaCore\View;
 
 if($session->isThereUserSession()){
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 //bu sayfadakullanılan özel css'ler
@@ -37,9 +37,9 @@ if(isset($_POST["save"]) && $_POST["save"]){
         $message["refresh_time"] = $refresh_time;
         if(isset($_GET["url"]) && !empty($_GET["url"])){
             $redirect_link = $functions->cleaner($_GET["url"]);
-            $functions->redirect($functions->site_url_lang($redirect_link));
+            $functions->redirect($system->url($redirect_link));
         }else{
-            $functions->redirect($functions->site_url_lang());
+            $functions->redirect($system->url());
         }
     }
 }

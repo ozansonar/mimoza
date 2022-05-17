@@ -2,7 +2,7 @@
 
 use Mrt\MimozaCore\View;
 if(!$session->checkUserSession()){
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 if (!isset($_GET["hash"]) || empty($_GET["hash"])) {
@@ -34,7 +34,7 @@ if (!empty($select_query)) {
             $message["success"][] = "Hesabınız başarılı bir şekilde  doğrulanmıştır. Kayıt sırasında belirlediğiniz bilgiler ile giriş yapabilirsiniz. Üye girişi sayfasına yönlendiriliyorsunuz.";
             $refresh_time = 6;
             $message["refresh_time"] = $refresh_time;
-            $functions->refresh($functions->site_url_lang($settings->{"giris_prefix_".$_SESSION["lang"]}),$refresh_time);
+            $functions->refresh($system->url($settings->{"giris_prefix_".$_SESSION["lang"]}),$refresh_time);
         }else{
             $log->logThis($log->logTypes["HESAP_DOGRULAMA_ERR"]);
             $message["reply"][] = "Hesabınız doğrulanamadı lütfen tekrar deneyin.";

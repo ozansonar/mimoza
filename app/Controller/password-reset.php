@@ -5,14 +5,14 @@ use Mrt\MimozaCore\View;
 $log->logThis($log->logTypes["SIFRE_YENILE_PAGE"]);
 
 if (empty($_GET["hash"])) {
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 $hash = $functions->clean_get("hash");
 if (empty($hash)) {
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 if (strlen($hash) !== 60) {
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 $selectQuery = $db::selectQuery("forgot_password",array(
@@ -20,7 +20,7 @@ $selectQuery = $db::selectQuery("forgot_password",array(
     "deleted" => 0,
 ),true);
 if (empty($selectQuery)) {
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 //bu sayfadakullanılan özel css'ler
@@ -55,7 +55,7 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
             $message["reply"][] = $functions->textManager("sifre_yenileme_linkin_kullanim_suresi_dolmus");
         }
     }else{
-        $functions->redirect($functions->site_url_lang());
+        $functions->redirect($system->url());
     }
 
     $sifre_control = $functions->passwordControl($sifre,"sifreniz");
@@ -90,7 +90,7 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
             $message["success"][] = $functions->textManager("sifre_yenileme_basarili");
             $refresh_time = 5;
             $message["refresh_time"] = $refresh_time;
-            $functions->refresh($functions->site_url_lang("giris"),$refresh_time);
+            $functions->refresh($system->url("giris"),$refresh_time);
         }else{
             $log->logThis($log->logTypes["SIFRE_YENILE_ERR"]);
             $message["reply"][] = $functions->textManager("sifre_yenileme_hatali");

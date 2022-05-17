@@ -2,7 +2,7 @@
 <div class="text"><span>Server Hatası</span><br>İşlem yapılırken hata oluştu. Lütfen daha sonra tekrar deneyin veya site
     yöneticisyle iletişime geçin
 </div>
-<a class="btn btn-primary" href="<?php echo $functions->site_url_lang(); ?>">Ana sayfaya dön</a>
+<a class="btn btn-primary" href="<?php echo $system->url(); ?>">Ana sayfaya dön</a>
 
 <style>
     body {

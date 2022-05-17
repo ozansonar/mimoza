@@ -68,7 +68,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item"
-                               href="<?php echo $functions->site_url_lang($settings->{'profile_prefix_' . $_SESSION["lang"]}) ?>"><?php echo $functions->textManager("header_profil"); ?></a>
+                               href="<?php echo $system->url($settings->{'profile_prefix_' . $_SESSION["lang"]}) ?>"><?php echo $functions->textManager("header_profil"); ?></a>
                         </li>
                         <?php if ($session->isThereAdminSession()): ?>
                             <li>
@@ -83,7 +83,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item"
-                               href="<?php echo $functions->site_url_lang("logout"); ?>">
+                               href="<?php echo $system->url("logout"); ?>">
                                 <?php echo $functions->textManager("header_cikis"); ?>
                             </a>
                         </li>
@@ -91,7 +91,7 @@
                 </div>
             <?php else: ?>
                 <div class="mt-2">
-                    <a href="<?php echo $functions->site_url_lang($settings->{'giris_prefix_' . $_SESSION["lang"]}); ?>" class="btn btn-info">
+                    <a href="<?php echo $system->url($settings->{'giris_prefix_' . $_SESSION["lang"]}); ?>" class="btn btn-info">
                         <?php echo $functions->textManager("header_giris_button"); ?>
                     </a>
                 </div>
@@ -101,7 +101,7 @@
     <div class=" container">
         <div class="row">
             <div class="col-12 col-md-3">
-                <a href="<?php echo $functions->site_url_lang(); ?>">
+                <a href="<?php echo $system->url(); ?>">
                     <?php if (!empty($settings->header_logo) && file_exists($fileTypePath["project_image"]["full_path"] . $settings->header_logo)): ?>
                         <img alt="<?php echo $settings->project_name ?>"
                              width="100%" height="auto"
@@ -126,7 +126,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <?php echo $siteManager->getHeaderNavbar(); ?>
                     </ul>
-                    <form class="d-flex" action="<?php echo $functions->site_url_lang($settings->{'search_prefix_' . $_SESSION["lang"]}); ?>">
+                    <form class="d-flex" action="<?php echo $system->url($settings->{'search_prefix_' . $_SESSION["lang"]}); ?>">
                         <input class="form-control me-2" type="search" name="q"
                                placeholder="<?php echo $functions->textManager("header_search_placeholder"); ?>"
                                aria-label="<?php echo $functions->textManager("header_search_placeholder"); ?>">

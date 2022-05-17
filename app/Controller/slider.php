@@ -9,7 +9,7 @@ $content_link = explode("-",$system->route(1));
 $id = end($content_link);
 $normal_link = array_pop($content_link);
 $normal_link = implode("-",$content_link);
-$link = $functions->site_url_lang($system->route(0)."/".$normal_link."-".$id);
+$link = $system->url($system->route(0)."/".$normal_link."-".$id);
 $sql = $db::$db->prepare("SELECT * FROM slider WHERE lang=:lang AND link=:link AND id=:id AND status=1 AND deleted=0 LIMIT 0,1");
 $sql->bindParam(":lang",$_SESSION['lang']);
 $sql->bindParam(":link",$normal_link);
@@ -22,7 +22,7 @@ $created_at = new DateTime($pageData->created_at);
 
 //içerik
 if($p_count !== 1){
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 //bu sayfadakullanılan özel css'ler

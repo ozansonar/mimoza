@@ -166,7 +166,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
                 //log atalı
                 $log->logThis($log->logTypes['PROFILE_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
-                $functions->refresh($functions->site_url_lang($settings->{'profile_prefix_' . $_SESSION["lang"]}),$refresh_time);
+                $functions->refresh($system->url($settings->{'profile_prefix_' . $_SESSION["lang"]}),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['PROFILE_EDIT_ERR']);
@@ -191,7 +191,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
                     $mailTemplateText = str_replace("#name#",$pageData["name"],$mailTemplateText);
                     $mailTemplateText = str_replace("#surname#",$pageData["surname"],$mailTemplateText);
                     $mailTemplateText = str_replace("#project_name#",$settings->project_name,$mailTemplateText);
-                    $mailTemplateText = str_replace("#link#",$functions->site_url_lang($settings->{"hesap_dogrulama_prefix_".$_SESSION["lang"]}."?hash=".$verifyCode),$mailTemplateText);
+                    $mailTemplateText = str_replace("#link#",$system->url($settings->{"hesap_dogrulama_prefix_".$_SESSION["lang"]}."?hash=".$verifyCode),$mailTemplateText);
 
                     //mail atılıyor
                     include_once $system->path("includes/System/Mail.php");

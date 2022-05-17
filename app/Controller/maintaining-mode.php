@@ -3,7 +3,7 @@
 use Mrt\MimozaCore\View;
 
 if ((int)$settings->site_status !== 1) {
-	$functions->redirect($functions->site_url_lang());
+	$functions->redirect($system->url());
 }
 $log->logThis($log->logTypes["SITE_BAKIMDA"]);
 $metaTag->title = $functions->textManager("site_bakimda_baslik");

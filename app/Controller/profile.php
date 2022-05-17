@@ -1,13 +1,13 @@
 <?php
 //sistem sign.up.php üzerinen çalışıyor buna gerek kalmadı eğer ayırmak isterseniz bunu kullanabilirsiniz.
-$functions->redirect($functions->site_url_lang());
+$functions->redirect($system->url());
 exit;
 
 use Includes\System\Form;
 use Mrt\MimozaCore\View;
 
 if(!$session->isThereUserSession()){
-    $functions->redirect($functions->site_url_lang());
+    $functions->redirect($system->url());
 }
 
 $customCss = [];
@@ -142,7 +142,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
             //log atalı
             $log->logThis($log->logTypes['PROFILE_EDIT_SUCC']);
             $message["success"][] = $lang["content-update"];
-            $functions->refresh($functions->site_url_lang($settings->{'profile_prefix_' . $_SESSION["lang"]}),$refresh_time);
+            $functions->refresh($system->url($settings->{'profile_prefix_' . $_SESSION["lang"]}),$refresh_time);
         }else{
             //log atalım
             $log->logThis($log->logTypes['PROFILE_EDIT_ERR']);

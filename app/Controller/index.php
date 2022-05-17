@@ -20,7 +20,7 @@ foreach ($slider_data as $slider_row){
     if(empty($slider_row->img) || !file_exists($fileTypePath["slider"]["compressed"].$slider_row->img)){
         continue;
     }
-    $link = $functions->site_url_lang($settings->{"slider_prefix_".$_SESSION["lang"]}."/".$slider_row->link."-".$slider_row->id);
+    $link = $system->url($settings->{"slider_prefix_".$_SESSION["lang"]}."/".$slider_row->link."-".$slider_row->id);
     if($slider_row->site_disi_link == 1){
         $link = $slider_row->back_link;
     }
@@ -54,7 +54,7 @@ foreach ($content_data as $content_row){
 	$content_array[$content_row->id]["title"] = $functions->kisalt($content_row->title,45);
     $content_array[$content_row->id]["abstract"] = $functions->kisalt($functions->cleaner($content_row->abstract),100);
     $content_array[$content_row->id]["img"] =  $fileTypePath["content"]["url_compressed"].$content_row->img;
-    $content_array[$content_row->id]["link"] = $functions->site_url_lang($settings->{"content_prefix_".$_SESSION["lang"]}."/".$content_row->c_link."-".$content_row->c_id."/".$content_row->link."-".$content_row->id);
+    $content_array[$content_row->id]["link"] = $system->url($settings->{"content_prefix_".$_SESSION["lang"]}."/".$content_row->c_link."-".$content_row->c_id."/".$content_row->link."-".$content_row->id);
     $content_array[$content_row->id]["date"] = $content_row->created_at;
     //$content_array[$content_row->id]["date"] = $created_at->toAtomString();
     $content_array[$content_row->id]["keywords"] = !empty($content_row->keywords) ? $content_row->keywords:$settings["keywords"];

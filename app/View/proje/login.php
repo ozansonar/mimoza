@@ -72,7 +72,7 @@
                     $("#loader").show();
                     $.ajax({
                         type: 'POST',
-                        url: "<?php echo $functions->site_url_lang("ajax/".$settings->{'sifremi_unutum_prefix_' . $_SESSION["lang"]}); ?>",
+                        url: "<?php echo $system->url("ajax/".$settings->{'sifremi_unutum_prefix_' . $_SESSION["lang"]}); ?>",
                         data: data,
                         processData: false,
                         contentType: false,

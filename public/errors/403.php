@@ -1,6 +1,6 @@
 <div class="number">403</div>
 <div class="text"><span>Hata</span><br> İzniniz bulunmuyor !</div>
-<a class="btn btn-primary" href="<?php echo $functions->site_url_lang(); ?>">Ana sayfaya dön</a>
+<a class="btn btn-primary" href="<?php echo $system->url(); ?>">Ana sayfaya dön</a>
 
 <style>
     body {

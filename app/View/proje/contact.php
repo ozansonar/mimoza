@@ -96,7 +96,7 @@ global $form;
 </div>
 
 <script>
-    var url = "<?php echo $functions->site_url_lang("ajax/contact-api"); ?>";
+    var url = "<?php echo $system->url("ajax/contact-api"); ?>";
     $(document).ready(function(){
         //$("form#myForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
         $("form#pageForm").validationEngine('attach', {

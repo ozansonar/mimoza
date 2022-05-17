@@ -1,6 +1,6 @@
 <div class="number">401</div>
 <div class="text"><span>Hata</span><br> Yetkiniz bulunmuyor. Lütfen giriş yapın !</div>
-<a class="btn btn-primary" href="<?php echo $functions->site_url_lang(); ?>">Ana sayfaya dön</a>
+<a class="btn btn-primary" href="<?php echo $system->url(); ?>">Ana sayfaya dön</a>
 
 <style>
     body {

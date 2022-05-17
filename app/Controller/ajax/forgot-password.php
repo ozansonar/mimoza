@@ -31,7 +31,7 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
     if (empty($message)) {
         $datas = $result->id.$result->rank.$result->email;
         $hash = password_hash($datas, PASSWORD_DEFAULT);
-        $link = $functions->site_url_lang($settings->{"sifre_yenile_prefix_".$_SESSION["lang"]}."?hash=".$hash);
+        $link = $system->url($settings->{"sifre_yenile_prefix_".$_SESSION["lang"]}."?hash=".$hash);
 
         $mail_template = $siteManager->getMailTemplate(4);
         if(empty($mail_template)){
@@ -58,7 +58,7 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
             $mail_send = $mail_class->mail_send();
             if ($mail_send) {
                 $message["success"][] = $functions->textManager("giris_sifremi_unuttum_mail_gonderildi");
-                $message["url"][] = $functions->site_url_lang();
+                $message["url"][] = $system->url();
                 $message["timer"][] = 2000;
             } else {
                 $message["reply"][] = $functions->textManager("giris_sifremi_unuttum_mail_gonderilemedi");
