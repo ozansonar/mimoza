@@ -1,12 +1,12 @@
 <?php
 
-use Includes\System\Functions;
-use Includes\System\AdminSystem;
-use Includes\System\Database;
-use Includes\System\Session;
-use Includes\System\SiteManager;
-use Includes\System\Core;
-use Includes\System\Log;
+use Mrt\MimozaCore\Functions;
+use Mrt\MimozaCore\Database;
+use Mrt\MimozaCore\Session;
+use Mrt\MimozaCore\SiteManager;
+use Mrt\MimozaCore\Core;
+use Mrt\MimozaCore\Log;
+use Mrt\MimozaCore\Constants;
 
 // Debug sınıfını kullanmayacaksanız kaldırabilirsiniz.
 use Whoops\Handler\PrettyPageHandler;
@@ -25,7 +25,6 @@ $db = new Database(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 $functions = new Functions();
 $session = new Session($db);
 $siteManager = new SiteManager($db);
-$adminSystem = new AdminSystem();
 $system = new Core();
 $log = new Log($db);
 
@@ -42,7 +41,6 @@ $langData = $db::selectQuery("lang", array(
 	"deleted" => 0,
 ));
 
-include(__DIR__ . "/Statics/Common.php");
 
 // Getting site settings from database
 $settingQuery = $db::selectQuery("settings");
@@ -69,8 +67,8 @@ $metaTag = (object)$metaTag;
 
 if (isset($settings->project_image)
 	&& !empty($settings->project_image)
-	&& file_exists($fileTypePath["project_image"]["full_path"] . $settings->banner_img)) {
-	$pageBannerImage = $fileTypePath["project_image"]["url"] . $settings->banner_img;
+	&& file_exists(Constants::fileTypePath["project_image"]["full_path"] . $settings->banner_img)) {
+	$pageBannerImage = Constants::fileTypePath["project_image"]["url"] . $settings->banner_img;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
