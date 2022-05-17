@@ -61,14 +61,14 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
         $session->permissionDenied();
     }
-    $pageData[$default_lang->short_lang]["email"] = $functions->clean_post("email");
-    $pageData[$default_lang->short_lang]["name"] = $functions->clean_post("name");
-    $pageData[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
-    $pageData[$default_lang->short_lang]["theme"] = $functions->clean_post("theme");
+    $pageData[$default_lang->short_lang]["email"] = $functions->cleanPost("email");
+    $pageData[$default_lang->short_lang]["name"] = $functions->cleanPost("name");
+    $pageData[$default_lang->short_lang]["surname"] = $functions->cleanPost("surname");
+    $pageData[$default_lang->short_lang]["theme"] = $functions->cleanPost("theme");
 
     //formda gözükmemesi için bunları arrayda tutmuyorum
-    $password = $functions->clean_post("password");
-    $password_again = $functions->clean_post("password_again");
+    $password = $functions->cleanPost("password");
+    $password_again = $functions->cleanPost("password_again");
 
     $message = array();
     if(empty($pageData[$default_lang->short_lang]["email"])){

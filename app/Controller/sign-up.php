@@ -25,12 +25,12 @@ if ($session->isThereUserSession()){
 }
 
 if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
-    $pageData["email"] = $functions->clean_post("email");
-    $pageData["name"] = $functions->clean_post("name");
-    $pageData["surname"] = $functions->clean_post("surname");
-    $pageData["telefon"] = $functions->clean_post("telefon");
-    $pageData["password"] = $functions->clean_post("password");
-    $pageData["password_again"] = $functions->clean_post("password_again");
+    $pageData["email"] = $functions->cleanPost("email");
+    $pageData["name"] = $functions->cleanPost("name");
+    $pageData["surname"] = $functions->cleanPost("surname");
+    $pageData["telefon"] = $functions->cleanPost("telefon");
+    $pageData["password"] = $functions->cleanPost("password");
+    $pageData["password_again"] = $functions->cleanPost("password_again");
 
     $message = array();
     if(empty($pageData["email"])){

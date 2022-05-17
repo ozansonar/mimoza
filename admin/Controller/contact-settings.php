@@ -56,8 +56,8 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $session->permissionDenied();
     }
 
-    $pageData[$default_lang->short_lang]["reply_subject"] = $functions->clean_post("reply_subject");
-    $pageData[$default_lang->short_lang]["reply_text"] = $functions->clean_post("reply_text");
+    $pageData[$default_lang->short_lang]["reply_subject"] = $functions->cleanPost("reply_subject");
+    $pageData[$default_lang->short_lang]["reply_text"] = $functions->cleanPost("reply_text");
 
     if(!empty($pageData[$default_lang->short_lang]["reply_send_user_id"])){
         $message["reply"][] = "Bu mesajı daha önce cevapladınız.";

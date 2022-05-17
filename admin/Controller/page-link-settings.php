@@ -80,9 +80,9 @@ foreach (glob(ROOT_PATH . '/app/Controller/*.php') as $folder){
 
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 
-    $pageData[$default_lang->short_lang]["url"] = $functions->clean_post("url");
-    $pageData[$default_lang->short_lang]["controller"] = $functions->clean_post("controller");
-    $pageData[$default_lang->short_lang]["lang"] = $functions->clean_post("lang");
+    $pageData[$default_lang->short_lang]["url"] = $functions->cleanPost("url");
+    $pageData[$default_lang->short_lang]["controller"] = $functions->cleanPost("controller");
+    $pageData[$default_lang->short_lang]["lang"] = $functions->cleanPost("lang");
     $pageData[$default_lang->short_lang]["status_control"] = is_numeric($functions->post("status"));
     $pageData[$default_lang->short_lang]["status"] = $functions->clean_post_int("status");
 

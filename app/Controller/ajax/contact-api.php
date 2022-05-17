@@ -13,12 +13,12 @@ if(isset($_POST)){
     header('Content-Type: text/html; charset=utf-8');
     header('Content-Type: text/json; charset=utf-8');
     //$functions->pre_arr($_POST);
-    $name = $functions->clean_post("name");
-    $surname = $functions->clean_post("surname");
-    $email = $functions->clean_post("email");
-    $subject = $functions->clean_post("subject");
-    $msg = $functions->clean_post("message");
-    $phone = $functions->clean_post("phone");
+    $name = $functions->cleanPost("name");
+    $surname = $functions->cleanPost("surname");
+    $email = $functions->cleanPost("email");
+    $subject = $functions->cleanPost("subject");
+    $msg = $functions->cleanPost("message");
+    $phone = $functions->cleanPost("phone");
     $message = array();
     if(!$name){
         $message["reply"][] = $functions->textManager("contact_validate_ad");

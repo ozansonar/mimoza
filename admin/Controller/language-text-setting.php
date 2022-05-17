@@ -43,7 +43,7 @@ foreach ($pageData as $pdataKey=>$pdata){
 }
 
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
-    $data_lang = $functions->clean_post("data_lang");
+    $data_lang = $functions->cleanPost("data_lang");
     $message = array();
     foreach ($projectLanguages as $project_languages_row){
         $functions->form_lang = $project_languages_row->short_lang; //namelerde dil uzantısı olacak
@@ -54,7 +54,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                     if(isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] == "textarea"){
                         $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post_textarea($language_text_manager_form["name"]);
                     }else{
-                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post($language_text_manager_form["name"]);
+                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->cleanPost($language_text_manager_form["name"]);
                     }
 
                     if(empty($pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]]) && !isset($language_text_manager_form["no_required"])){

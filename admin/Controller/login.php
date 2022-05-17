@@ -21,8 +21,8 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 $pageData = [];
 $page_form = new AdminForm();
 if ($functions->post('submit')) {
-	$pageData["name"] = $functions->clean_post("name");
-	$pageData["password"] = $functions->clean_post("password");
+	$pageData["name"] = $functions->cleanPost("name");
+	$pageData["password"] = $functions->cleanPost("password");
 	$message = $session->login($pageData["name"], $pageData["password"]);
 	if (isset($message["success"])) {
 		//log atalım

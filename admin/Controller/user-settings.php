@@ -82,13 +82,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$session->permissionDenied();
 	}
 
-	$pageData[$default_lang->short_lang]["email"] = $functions->clean_post("email");
-	$pageData[$default_lang->short_lang]["name"] = $functions->clean_post("name");
-	$pageData[$default_lang->short_lang]["surname"] = $functions->clean_post("surname");
-	$pageData[$default_lang->short_lang]["telefon"] = $functions->clean_post("telefon");
-	$pageData[$default_lang->short_lang]["status"] = $functions->clean_post("status");
-	$pageData[$default_lang->short_lang]["password"] = $functions->clean_post("password");
-	$pageData[$default_lang->short_lang]["password_again"] = $functions->clean_post("password_again");
+	$pageData[$default_lang->short_lang]["email"] = $functions->cleanPost("email");
+	$pageData[$default_lang->short_lang]["name"] = $functions->cleanPost("name");
+	$pageData[$default_lang->short_lang]["surname"] = $functions->cleanPost("surname");
+	$pageData[$default_lang->short_lang]["telefon"] = $functions->cleanPost("telefon");
+	$pageData[$default_lang->short_lang]["status"] = $functions->cleanPost("status");
+	$pageData[$default_lang->short_lang]["password"] = $functions->cleanPost("password");
+	$pageData[$default_lang->short_lang]["password_again"] = $functions->cleanPost("password_again");
 
 	$message = array();
 	if (empty($pageData[$default_lang->short_lang]["email"])) {

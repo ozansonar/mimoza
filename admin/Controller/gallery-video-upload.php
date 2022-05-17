@@ -115,8 +115,8 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     foreach ($projectLanguages as $project_languages_row){
         $functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
-        $pageData[$project_languages_row->short_lang]["title"] = $functions->clean_post("title");
-        $pageData[$project_languages_row->short_lang]["link"] = $functions->clean_post("link");
+        $pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
+        $pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
         $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
         $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
 

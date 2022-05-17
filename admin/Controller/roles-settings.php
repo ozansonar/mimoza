@@ -106,7 +106,7 @@ $onyuz_yetkiler = array(
 if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 
     $message = array();
-    $role_group_name = $functions->clean_post("group_name");
+    $role_group_name = $functions->cleanPost("group_name");
     $permissions = isset($_POST["permissions"]) ? $functions->post("permissions") : null;
 
     if (empty($role_group_name)) {

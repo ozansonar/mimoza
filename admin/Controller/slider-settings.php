@@ -64,15 +64,15 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	foreach ($projectLanguages as $project_languages_row) {
 		$functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
-		$pageData[$project_languages_row->short_lang]["title"] = $functions->clean_post("title");
-		$pageData[$project_languages_row->short_lang]["link"] = $functions->clean_post("link");
+		$pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
+		$pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
 		$pageData[$project_languages_row->short_lang]["abstract"] = $functions->clean_post_textarea("abstract");
 		$pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
 		$pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
 		$pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
 		$pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
 		$pageData[$project_languages_row->short_lang]["site_disi_link"] = $functions->post("site_disi_link") ? 1 : 0;
-		$pageData[$project_languages_row->short_lang]["back_link"] = $functions->clean_post("back_link");
+		$pageData[$project_languages_row->short_lang]["back_link"] = $functions->cleanPost("back_link");
 		$pageData[$project_languages_row->short_lang]["yeni_sekme"] = $functions->post("yeni_sekme") ? 1 : 0;
 
 		//istenilen kontroller

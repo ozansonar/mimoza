@@ -22,8 +22,8 @@ $pageData = [];
 $metaTag->title = "Üye Girişi";
 $log->logThis($log->logTypes["GIRIS"]);
 if(isset($_POST["save"]) && $_POST["save"]){
-    $pageData["email"] = $functions->clean_post("email");
-    $pageData["password"] = $functions->clean_post("password");
+    $pageData["email"] = $functions->cleanPost("email");
+    $pageData["password"] = $functions->cleanPost("password");
 
     $message = $session->login($pageData["email"],$pageData["password"]);
     if(isset($message["success"])){

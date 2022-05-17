@@ -52,60 +52,60 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $listPermissionKey);
 		$session->permissionDenied();
 	}
-	$pageData[$default_lang->short_lang]["keywords"] = $functions->clean_post("keywords");
-	$pageData[$default_lang->short_lang]["description"] = $functions->clean_post("description");
+	$pageData[$default_lang->short_lang]["keywords"] = $functions->cleanPost("keywords");
+	$pageData[$default_lang->short_lang]["description"] = $functions->cleanPost("description");
 	$pageData[$default_lang->short_lang]["link_sort_lang"] = $functions->clean_post_int("link_sort_lang");
 
 	$pageData[$default_lang->short_lang]["site_status_control"] = is_numeric($functions->post("site_status"));
 	$pageData[$default_lang->short_lang]["site_status"] = $functions->clean_post_int("site_status");
-	$pageData[$default_lang->short_lang]["post_theme"] = $functions->clean_post("theme");
-	$pageData[$default_lang->short_lang]["title"] = $functions->clean_post("title");
-	$pageData[$default_lang->short_lang]["project_name"] = $functions->clean_post("project_name");
-	$pageData[$default_lang->short_lang]["logo_text"] = $functions->clean_post("logo_text");
+	$pageData[$default_lang->short_lang]["post_theme"] = $functions->cleanPost("theme");
+	$pageData[$default_lang->short_lang]["title"] = $functions->cleanPost("title");
+	$pageData[$default_lang->short_lang]["project_name"] = $functions->cleanPost("project_name");
+	$pageData[$default_lang->short_lang]["logo_text"] = $functions->cleanPost("logo_text");
 
-	$pageData[$default_lang->short_lang]["google"] = $functions->clean_post("google");
-	$pageData[$default_lang->short_lang]["facebook"] = $functions->clean_post("facebook");
-	$pageData[$default_lang->short_lang]["twitter"] = $functions->clean_post("twitter");
-	$pageData[$default_lang->short_lang]["instagram"] = $functions->clean_post("instagram");
-	$pageData[$default_lang->short_lang]["youtube"] = $functions->clean_post("youtube");
-	$pageData[$default_lang->short_lang]["linkedin"] = $functions->clean_post("linkedin");
-	$pageData[$default_lang->short_lang]["vk"] = $functions->clean_post("vk");
-	$pageData[$default_lang->short_lang]["telegram"] = $functions->clean_post("telegram");
-	$pageData[$default_lang->short_lang]["whatsapp"] = $functions->clean_post("whatsapp");
+	$pageData[$default_lang->short_lang]["google"] = $functions->cleanPost("google");
+	$pageData[$default_lang->short_lang]["facebook"] = $functions->cleanPost("facebook");
+	$pageData[$default_lang->short_lang]["twitter"] = $functions->cleanPost("twitter");
+	$pageData[$default_lang->short_lang]["instagram"] = $functions->cleanPost("instagram");
+	$pageData[$default_lang->short_lang]["youtube"] = $functions->cleanPost("youtube");
+	$pageData[$default_lang->short_lang]["linkedin"] = $functions->cleanPost("linkedin");
+	$pageData[$default_lang->short_lang]["vk"] = $functions->cleanPost("vk");
+	$pageData[$default_lang->short_lang]["telegram"] = $functions->cleanPost("telegram");
+	$pageData[$default_lang->short_lang]["whatsapp"] = $functions->cleanPost("whatsapp");
 
-	$pageData[$default_lang->short_lang]["site_mail"] = $functions->clean_post("site_mail");
-	$pageData[$default_lang->short_lang]["phone"] = $functions->clean_post("phone");
-	$pageData[$default_lang->short_lang]["fax"] = $functions->clean_post("fax");
-	$pageData[$default_lang->short_lang]["maps"] = $functions->clean_post("maps");
+	$pageData[$default_lang->short_lang]["site_mail"] = $functions->cleanPost("site_mail");
+	$pageData[$default_lang->short_lang]["phone"] = $functions->cleanPost("phone");
+	$pageData[$default_lang->short_lang]["fax"] = $functions->cleanPost("fax");
+	$pageData[$default_lang->short_lang]["maps"] = $functions->cleanPost("maps");
 	$pageData[$default_lang->short_lang]["adres"] = $functions->clean_post_textarea("adres");
 	$pageData[$default_lang->short_lang]["contact_despription"] = $functions->clean_post_textarea("contact_despription");
 
 
-	$pageData[$default_lang->short_lang]["site_status_title"] = $functions->clean_post("site_status_title");
+	$pageData[$default_lang->short_lang]["site_status_title"] = $functions->cleanPost("site_status_title");
 	$pageData[$default_lang->short_lang]["site_status_text"] = $functions->clean_post_textarea("site_status_text");
 
 	//smtp
 	$pageData[$default_lang->short_lang]["mail_send_mode"] = isset($_POST["mail_send_mode"]) ? 1 : 0;
-	$pageData[$default_lang->short_lang]["smtp_host"] = $functions->clean_post("smtp_host");
-	$pageData[$default_lang->short_lang]["smtp_email"] = $functions->clean_post("smtp_email");
-	$pageData[$default_lang->short_lang]["smtp_password"] = $functions->clean_post("smtp_password");
-	$pageData[$default_lang->short_lang]["smtp_port"] = $functions->clean_post("smtp_port");
-	$pageData[$default_lang->short_lang]["smtp_secure"] = $functions->clean_post("smtp_secure");
-	$pageData[$default_lang->short_lang]["smtp_send_name_surname"] = $functions->clean_post("smtp_send_name_surname");
-	$pageData[$default_lang->short_lang]["smtp_send_email_adres"] = $functions->clean_post("smtp_send_email_adres");
-	$pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"] = $functions->clean_post("smtp_send_email_reply_adres");
+	$pageData[$default_lang->short_lang]["smtp_host"] = $functions->cleanPost("smtp_host");
+	$pageData[$default_lang->short_lang]["smtp_email"] = $functions->cleanPost("smtp_email");
+	$pageData[$default_lang->short_lang]["smtp_password"] = $functions->cleanPost("smtp_password");
+	$pageData[$default_lang->short_lang]["smtp_port"] = $functions->cleanPost("smtp_port");
+	$pageData[$default_lang->short_lang]["smtp_secure"] = $functions->cleanPost("smtp_secure");
+	$pageData[$default_lang->short_lang]["smtp_send_name_surname"] = $functions->cleanPost("smtp_send_name_surname");
+	$pageData[$default_lang->short_lang]["smtp_send_email_adres"] = $functions->cleanPost("smtp_send_email_adres");
+	$pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"] = $functions->cleanPost("smtp_send_email_reply_adres");
 	$pageData[$default_lang->short_lang]["smtp_mail_send_debug"] = $functions->clean_post_int("smtp_mail_send_debug");
 	$pageData[$default_lang->short_lang]["smtp_mail_send_debug_control"] = is_numeric($functions->post("smtp_mail_send_debug"));
-	$pageData[$default_lang->short_lang]["smtp_send_debug_adres"] = $functions->clean_post("smtp_send_debug_adres");
+	$pageData[$default_lang->short_lang]["smtp_send_debug_adres"] = $functions->cleanPost("smtp_send_debug_adres");
 
 	//sayfa bulunamadı
-	$pageData[$default_lang->short_lang]["page_not_found_title"] = $functions->clean_post("page_not_found_title");
+	$pageData[$default_lang->short_lang]["page_not_found_title"] = $functions->cleanPost("page_not_found_title");
 	$pageData[$default_lang->short_lang]["page_not_found_text"] = $functions->clean_post_textarea("page_not_found_text");
 
     //özel linkler
     foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefixValue) {
         foreach ($projectLanguages as $project_languages_row) {
-            $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang] = $functions->clean_post($prefixKey.$project_languages_row->short_lang);
+            $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang] = $functions->cleanPost($prefixKey.$project_languages_row->short_lang);
         }
     }
 

@@ -8,13 +8,13 @@
  */
 if(isset($_POST["subject"]) && !empty($_POST["subject"])){
     $pageData = array();
-    $pageData["subject"] = $functions->clean_post("subject");
+    $pageData["subject"] = $functions->cleanPost("subject");
     $pageData["text"] = $functions->clean_post_textarea("text");
     $pageData["attachment"] = $functions->post("attecament");
     $pageData["user"] = $functions->post("user");
     $pageData["send"] = $functions->post("send");
     $pageData["test_user"] = $functions->post("user_test");
-    $pageData["image"] = $functions->clean_post("image");
+    $pageData["image"] = $functions->cleanPost("image");
     if(empty($pageData["subject"])){
         $message["reply"][] = "Lütfen mailin konusunu yazınız.";
     }

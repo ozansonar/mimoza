@@ -36,9 +36,9 @@ $metaTag->title = $functions->textManager("sifre_yenileme_baslik");
 
 if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
     $message = array();
-    $sifre = $functions->clean_post("password");
-    $sifre_tekrar = $functions->clean_post("password_again");
-    $hash = $functions->clean_post("hash");
+    $sifre = $functions->cleanPost("password");
+    $sifre_tekrar = $functions->cleanPost("password_again");
+    $hash = $functions->cleanPost("hash");
 
     if(!empty($selectQuery)){
         $created_at = date($selectQuery->created_at);
