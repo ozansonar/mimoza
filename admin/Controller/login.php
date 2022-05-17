@@ -3,20 +3,20 @@
 use Mrt\MimozaCore\AdminForm;
 
 if ($session->isThereUserSession() && $session->get("user_rank") < 60) {
-	$functions->redirect($functions->site_url());
+	$functions->redirect($system->url());
 }
 
 //log atalım
 $log->logThis($log->logTypes['ADMIN_LOGIN_PAGE']);
 
-//bu sayfadakullanılan özel css'ler
-$customCss = [];
-$customCss[] = "plugins/form-validation-engine/css/validationEngine.jquery.css";
+$customCss = [
+	"plugins/form-validation-engine/css/validationEngine.jquery.css"
+];
 
-//bu sayfadakullanılan özel js'ler
-$customJs = [];
-$customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
-$customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js";
+$customJs = [
+	"plugins/form-validation-engine/js/jquery.validationEngine.js",
+	"plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js",
+];
 
 $pageData = [];
 $page_form = new AdminForm();

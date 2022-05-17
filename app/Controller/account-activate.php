@@ -6,15 +6,15 @@ if(!$session->checkUserSession()){
 }
 
 if (!isset($_GET["hash"]) || empty($_GET["hash"])) {
-    $functions->redirect($functions->site_url());
+    $functions->redirect($system->url());
 }
 $log->logThis($log->logTypes["HESAP_DOGRULAMA"]);
 $hash = $functions->clean_get("hash");
 if (empty($hash)) {
-    $functions->redirect($functions->site_url());
+    $functions->redirect($system->url());
 }
 if (strlen($hash) != 60) {
-    $functions->redirect($functions->site_url());
+    $functions->redirect($system->url());
 }
 $select_query = $db::selectQuery("users",array(
     "verify_code" => $hash,

@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["INDEX"]);

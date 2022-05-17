@@ -8,5 +8,5 @@
        <?php
     }
     ?>
-    <?php echo str_replace("../",$functions->site_url(),$data->page_data->text); ?>
+    <?php echo str_replace("../",$system->url(),$data->page_data->text); ?>
 </div>

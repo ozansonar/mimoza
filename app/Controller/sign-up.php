@@ -21,7 +21,7 @@ if ($session->isThereUserSession()){
     $userInfo = $loggedUser;
     $pageData = (array)$loggedUser;
 }else{
-    $functions->redirect($functions->site_url());
+    $functions->redirect($system->url());
 }
 
 if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){

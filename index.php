@@ -89,7 +89,7 @@ if ($session->isThereUserSession()) {
 	$loggedUser = $session->getUserInfo();
 }
 //else if ($system->route(0) !== "giris") {
-//	$functions->redirect($functions->site_url("giris"));
+//	$functions->redirect($system->url("giris"));
 //}
 
 

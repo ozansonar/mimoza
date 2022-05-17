@@ -4,5 +4,5 @@
     <?php if(isset($data->imgLink)  && $data->imgLink): ?>
         <img src="<?php echo $data->imgLink; ?>" class="img-fluid" alt="<?php echo $data->pageData->title; ?>" />
     <?php endif; ?>
-    <?php echo str_replace("../",$functions->site_url(),$data->pageData->text); ?>
+    <?php echo str_replace("../",$system->url(),$data->pageData->text); ?>
 </div>

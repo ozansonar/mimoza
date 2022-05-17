@@ -57,7 +57,7 @@
         <div class="col text-end">
             <?php foreach ($projectLanguages as $languages): ?>
                 <?php if ($languages->short_lang === $_SESSION["lang"]): continue; endif ?>
-                <a href="<?php echo $functions->site_url($languages->short_lang) ?>"
+                <a href="<?php echo $system->url($languages->short_lang) ?>"
                    class="btn btn-info"><?php echo $languages->lang; ?></a>
             <?php endforeach; ?>
             <?php if ($session->isThereUserSession()): ?>
@@ -72,7 +72,7 @@
                         </li>
                         <?php if ($session->isThereAdminSession()): ?>
                             <li>
-                                <a class=" dropdown-item" href="<?php echo $functions->site_url("admin"); ?>"
+                                <a class=" dropdown-item" href="<?php echo $system->url("admin"); ?>"
                                    target="_blank">
                                     <?php echo $functions->textManager("header_yonetim_paneli"); ?>
                                 </a>

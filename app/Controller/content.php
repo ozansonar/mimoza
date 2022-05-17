@@ -30,7 +30,7 @@ if (!$system->route(1)) {
     //içerik kategorisi bilgileri
     list($link_count,$link_data) = $siteManager->getCategory($id);
     if($link_count != 1){
-        $functions->redirect($functions->site_url());
+        $functions->redirect($system->url());
     }
 
 
@@ -65,7 +65,7 @@ if (!$system->route(1)) {
     //içerik kategorisi bilgileri
     list($link_count,$link_data) = $siteManager->getCategory($id);
     if($link_count != 1){
-        $functions->redirect($functions->site_url());
+        $functions->redirect($system->url());
     }
 
     $log->logThis($log->logTypes["CONTENT_DETAIL"], $system->route(1));
@@ -85,7 +85,7 @@ if (!$system->route(1)) {
     $pageData = $page_query->fetch(PDO::FETCH_OBJ);
 
     if($pageData_count != 1){
-        $functions->redirect($functions->site_url());
+        $functions->redirect($system->url());
     }
 
     $metaTag->title = $pageData->title." - ".$settings->title;
