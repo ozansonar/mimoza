@@ -75,8 +75,8 @@
                             <tr>
                                 <td><?php echo $functions->textModal($row->title,20); ?></td>
                                 <td>
-                                    <?php if(!empty($row->img) && file_exists($fileTypePath["slider"]["full_path"].$row->img)): ?>
-                                        <a href="<?php echo $fileTypePath["slider"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
+                                    <?php if(!empty($row->img) && file_exists($constants::fileTypePath["slider"]["full_path"].$row->img)): ?>
+                                        <a href="<?php echo $constants::fileTypePath["slider"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
                                             <i class="fas fa-images"></i>
                                         </a>
                                     <?php endif; ?>

@@ -79,8 +79,8 @@
                                 </td>
                                 <td><?php echo $functions->date_short($row->created_at); ?></td>
                                 <td>
-                                    <?php if(!empty($row->img) && file_exists($fileTypePath["page_image"]["full_path"].$row->img)): ?>
-                                        <a href="<?php echo $fileTypePath["page_image"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
+                                    <?php if(!empty($row->img) && file_exists($constants::fileTypePath["page_image"]["full_path"].$row->img)): ?>
+                                        <a href="<?php echo $constants::fileTypePath["page_image"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
                                             <i class="fas fa-images"></i>
                                         </a>
                                     <?php endif; ?>

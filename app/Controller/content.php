@@ -99,8 +99,8 @@ if (!$system->route(1)) {
 
     $created_at = new DateTime($pageData->created_at);
     $imgLink = false;
-    if(!empty($pageData->img) && file_exists($fileTypePath["content"]["full_path"].$pageData->img)){
-        $imgLink = $fileTypePath["content"]["url"].$pageData->img;
+    if(!empty($pageData->img) && file_exists($constants::fileTypePath["content"]["full_path"].$pageData->img)){
+        $imgLink = $constants::fileTypePath["content"]["url"].$pageData->img;
     }
 
     //sağ alan olsun mu ?

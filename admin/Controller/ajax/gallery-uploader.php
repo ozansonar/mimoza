@@ -19,7 +19,7 @@ if(isset($_FILES["file_data"])){
     $gallery_id = $functions->clean_post_int("gallery_id");
 
     include_once($system->path("includes/System/FileUploader.php"));
-    $file = new \Includes\System\FileUploader($fileTypePath);
+    $file = new \Includes\System\FileUploader($constants::fileTypePath);
     $file->global_file_name = "file_data";
     $file->upload_folder = "gallery";
     $file->gallery_id = $gallery_id;
@@ -40,7 +40,7 @@ if(isset($_FILES["file_data"])){
         $db_data["status"] = 1;
         $insert = $db::insert("gallery_image",$db_data);
         if($insert){
-            $img_directory = $fileTypePath["gallery"]["url"].$gallery_id."/".$uploaded["img_name"];
+            $img_directory = $constants::fileTypePath["gallery"]["url"].$gallery_id."/".$uploaded["img_name"];
 
             //log atalım
             $log->logThis($log->logTypes['GALLERY_IMAGE_UPLOAD_SUCC'],"eklenen id row id:".$db->getLastInsertedId());

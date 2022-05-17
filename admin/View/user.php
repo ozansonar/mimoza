@@ -82,8 +82,8 @@
                             <td><?php echo $row->email; ?></td>
                             <td><?php echo $row->telefon; ?></td>
                             <td>
-                                <?php if(!empty($row->img) && file_exists($fileTypePath["user_image"]["full_path"].$row->img)): ?>
-                                    <a href="<?php echo $fileTypePath["user_image"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->name." ".$row->surname; ?>" class="color-unset">
+                                <?php if(!empty($row->img) && file_exists($constants::fileTypePath["user_image"]["full_path"].$row->img)): ?>
+                                    <a href="<?php echo $constants::fileTypePath["user_image"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->name." ".$row->surname; ?>" class="color-unset">
                                         <i class="fas fa-images"></i>
                                     </a>
                                 <?php endif; ?>

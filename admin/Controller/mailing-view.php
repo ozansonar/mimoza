@@ -26,7 +26,7 @@ if(empty($mailing)){
 if(!empty($mailing->image)){
     $image = unserialize($mailing->image);
     foreach ($image as $m_key=>$m_value){
-        $mailing->text = str_replace("cid:image_".$m_key,$fileTypePath["mailing"]["url"].$m_value,$mailing->text);
+        $mailing->text = str_replace("cid:image_".$m_key,$constants::fileTypePath["mailing"]["url"].$m_value,$mailing->text);
     }
 }
 
@@ -35,8 +35,8 @@ if(!empty($mailing->attachment)){
     $attachment = unserialize($mailing->attachment);
     foreach ($attachment as $attachment_key=>$attachment_row){
         $at_name = $functions->cleaner($attachment_row);
-        if(file_exists($fileTypePath["mailing_attachment"]["full_path"].$at_name)){
-            $attachment_array[$attachment_key]["url"] = $fileTypePath["mailing_attachment"]["url"].$at_name;
+        if(file_exists($constants::fileTypePath["mailing_attachment"]["full_path"].$at_name)){
+            $attachment_array[$attachment_key]["url"] = $constants::fileTypePath["mailing_attachment"]["url"].$at_name;
             $attachment_array[$attachment_key]["name"] = $at_name;
         }
     }

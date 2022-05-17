@@ -6,9 +6,9 @@
             foreach($data->pageData as $page_row){
                 $div_col = 12;
                 $img = false;
-                if(!empty($page_row->img) && file_exists($fileTypePath["content"]["full_path"].$page_row->img)){
+                if(!empty($page_row->img) && file_exists($constants::fileTypePath["content"]["full_path"].$page_row->img)){
                     $img = true;
-                    $img_link = $fileTypePath["content"]["url"].$page_row->img;
+                    $img_link = $constants::fileTypePath["content"]["url"].$page_row->img;
                     $div_col = 8;
                 }
                 if ($data->category->show_type == 1) {

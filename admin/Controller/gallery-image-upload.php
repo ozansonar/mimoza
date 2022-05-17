@@ -69,10 +69,10 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"])){
     if($images_count > 0){
         $images_result = $images->fetchAll(PDO::FETCH_OBJ);
         foreach ($images_result as $images_row){
-            $image_path = $fileTypePath["gallery"]["full_path"].$id."/".$images_row->image;
+            $image_path = $constants::fileTypePath["gallery"]["full_path"].$id."/".$images_row->image;
             if(!empty($images_row->image) && file_exists($image_path)){
                 $file_size = filesize($image_path);
-                $initialPreview .= '"'.$fileTypePath["gallery"]["url"].$id."/".$images_row->image.'",';
+                $initialPreview .= '"'.$constants::fileTypePath["gallery"]["url"].$id."/".$images_row->image.'",';
                 $initialPreviewConfig .= '{caption: "'.$images_row->image.'", size: '.$file_size.', width: "200px", url: "gallery-image-upload", key: '.$images_row->id.', extra: {token: "'.$_SESSION["token"].'", id : "'.$images_row->id.'"}  },';
             }
             // {caption: "nature-21.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},

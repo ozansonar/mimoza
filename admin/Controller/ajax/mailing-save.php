@@ -76,7 +76,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
             if (!empty($uploaded_image_row)) {
                 if (strstr($pageData["text"], $uploaded_image_row)) {
                     $uniq = time() . uniqid();
-                    $pageData["text"] = str_replace( $fileTypePath["mailing"]["url"]. $uploaded_image_row, "cid:image_" . $uniq, $pageData["text"]);
+                    $pageData["text"] = str_replace( $constants::fileTypePath["mailing"]["url"]. $uploaded_image_row, "cid:image_" . $uniq, $pageData["text"]);
                     $replaced_image[$uniq] = $uploaded_image_row;
                 }
             }
@@ -87,7 +87,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
     if (!empty($pageData["attachment"])) {
         foreach ($pageData["attachment"] as $attecament_row) {
             $at_name = $functions->cleaner($attecament_row);
-            if (file_exists($fileTypePath["mailing_attachment"]["full_path"].$at_name)) {
+            if (file_exists($constants::fileTypePath["mailing_attachment"]["full_path"].$at_name)) {
                 $attacament_array[] = $at_name;
             }
         }

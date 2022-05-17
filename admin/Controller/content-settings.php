@@ -145,7 +145,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         //üsteki şartlar sağlandığında resim yükleme işlemlerine geç her seferde resim yüklenmesin
         foreach ($projectLanguages as $project_languages_row){
             include_once($system->path("includes/System/FileUploader.php"));
-            $file = new \Includes\System\FileUploader($fileTypePath);
+            $file = new \Includes\System\FileUploader($constants::fileTypePath);
             $file->global_file_name = "img_".$project_languages_row->short_lang;
             $file->upload_folder = "content";
             $file->max_file_size = 5;

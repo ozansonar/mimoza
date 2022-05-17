@@ -1,7 +1,9 @@
 
 <div class="container">
     <div class="row p-0 m-0">
-        <?php if($data->count > 0): ?>
+        <?php
+
+		if($data->count > 0): ?>
             <div class="alert alert-success mt-3">
                 <?php
                     $sonuc_text = $functions->textManager("arama_icerik_sonuc_bulundu");
@@ -17,9 +19,9 @@
                     $content_categories_row["id"] = $row->cat_id;
                     $content_categories_row["link"] = $row->c_link;
                     $img = false;
-                    if(!empty($row->img) && file_exists($fileTypePath["content"]["full_path"].$row->img)){
+                    if(!empty($row->img) && file_exists($constants::fileTypePath["content"]["full_path"].$row->img)){
                         $img = true;
-                        $img_link = $fileTypePath["content"]["url"].$row->img;
+                        $img_link = $constants::fileTypePath["content"]["url"].$row->img;
                     }
                     ?>
                     <div class="col-12 col-md-4 mt-3">
@@ -41,9 +43,9 @@
                 <h2 class="mt-2"><?php echo $functions->textManager("arama_bulunan_category"); ?></h2>
                 <?php foreach ($data->pageDataCategories as $row):
                     $img = false;
-                    if(!empty($row->img) && file_exists($fileTypePath["content_categories"]["full_path"].$row->img)){
+                    if(!empty($row->img) && file_exists($constants::fileTypePath["content_categories"]["full_path"].$row->img)){
                         $img = true;
-                        $img_link = $fileTypePath["content_categories"]["url"].$row->img;
+                        $img_link = $constants::fileTypePath["content_categories"]["url"].$row->img;
                     }
                     ?>
                     <div class="col-12 col-md-4 mt-3">
@@ -64,9 +66,9 @@
                 <h2 class="mt-2"><?php echo $functions->textManager("arama_bulunan_sayfa"); ?></h2>
                 <?php foreach ($data->pageQueryData as $row):
                     $img = false;
-                    if(!empty($row->img) && file_exists($fileTypePath["page_image"]["full_path"].$row->img)){
+                    if(!empty($row->img) && file_exists($constants::fileTypePath["page_image"]["full_path"].$row->img)){
                         $img = true;
-                        $img_link = $fileTypePath["page_image"]["url"].$row->img;
+                        $img_link = $constants::fileTypePath["page_image"]["url"].$row->img;
                     }
                     ?>
                     <div class="col-12 col-md-4 mt-3">

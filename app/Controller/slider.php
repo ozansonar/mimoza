@@ -32,8 +32,8 @@ $customCss = [];
 $customJs = [];
 
 $imgLink = false;
-if(!empty($pageData->img) && file_exists($fileTypePath["slider"]["full_path"].$pageData->img)){
-    $imgLink = $fileTypePath["slider"]["url"].$pageData->img;
+if(!empty($pageData->img) && file_exists($constants::fileTypePath["slider"]["full_path"].$pageData->img)){
+    $imgLink = $constants::fileTypePath["slider"]["url"].$pageData->img;
 }
 
 //meta tag

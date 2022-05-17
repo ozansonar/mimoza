@@ -10,7 +10,7 @@
 $message = array();
 if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){
     include_once($system->path("includes/System/FileUploader.php"));
-    $file = new \Includes\System\FileUploader($fileTypePath);
+    $file = new \Includes\System\FileUploader($constants::fileTypePath);
     $file->global_file_name = "attachment";
     $file->upload_folder = "mailing_attachment";
     $file->upload_type = "pdf_word_image_excel";
@@ -18,7 +18,7 @@ if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){
     $uploaded = $file->file_upload();
     if($uploaded["result"] == 1){
         $message["success"][] = "Ek başarıyla yüklendi.";
-        $message["img_path"] = $fileTypePath["mailing_attachment"]["url"].$uploaded["img_name"];
+        $message["img_path"] = $constants::fileTypePath["mailing_attachment"]["url"].$uploaded["img_name"];
         $message["img_name"] = $uploaded["img_name"];
         $message["uniq_id"] = uniqid();
     }else{

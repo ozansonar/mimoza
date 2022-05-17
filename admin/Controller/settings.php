@@ -38,7 +38,7 @@ include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
 include_once($system->path("includes/System/FileUploader.php"));
-$file = new \Includes\System\FileUploader($fileTypePath);
+$file = new \Includes\System\FileUploader($constants::fileTypePath);
 
 $themes = [];
 foreach (glob(ROOT_PATH . '/app/View/*/') as $folder){

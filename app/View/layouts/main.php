@@ -102,10 +102,10 @@
         <div class="row">
             <div class="col-12 col-md-3">
                 <a href="<?php echo $system->url(); ?>">
-                    <?php if (!empty($settings->header_logo) && file_exists($fileTypePath["project_image"]["full_path"] . $settings->header_logo)): ?>
+                    <?php if (!empty($settings->header_logo) && file_exists($constants::fileTypePath["project_image"]["full_path"] . $settings->header_logo)): ?>
                         <img alt="<?php echo $settings->project_name ?>"
                              width="100%" height="auto"
-                             src="<?php echo $fileTypePath["project_image"]["url"] . $settings->header_logo ?>">
+                             src="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->header_logo ?>">
                     <?php endif; ?>
                 </a>
             </div>

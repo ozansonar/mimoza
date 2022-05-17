@@ -16,14 +16,14 @@ foreach ($slider_data as $slider_row){
     if(empty($slider_row->title)){
         continue;
     }
-    if(empty($slider_row->img) || !file_exists($fileTypePath["slider"]["compressed"].$slider_row->img)){
+    if(empty($slider_row->img) || !file_exists($constants::fileTypePath["slider"]["compressed"].$slider_row->img)){
         continue;
     }
     $link = $system->url($settings->{"slider_prefix_".$_SESSION["lang"]}."/".$slider_row->link."-".$slider_row->id);
     if($slider_row->site_disi_link == 1){
         $link = $slider_row->back_link;
     }
-    $img = $fileTypePath["slider"]["url_compressed"].$slider_row->img;
+    $img = $constants::fileTypePath["slider"]["url_compressed"].$slider_row->img;
     $slider_array[$slider_row->id]["count"] = $slider_count;
     $slider_array[$slider_row->id]["img"] = $img;
     $slider_array[$slider_row->id]["active"] = $slider_count == 0 ? "active":null;
@@ -45,14 +45,14 @@ $content_array = array();
 
 foreach ($content_data as $content_row){
 
-    if(empty($content_row->img) || !file_exists($fileTypePath["content"]["compressed"].$content_row->img)){
+    if(empty($content_row->img) || !file_exists($constants::fileTypePath["content"]["compressed"].$content_row->img)){
         continue;
     }
     //$created_at = Carbon::createFromFormat('Y-m-d H:i:s',$content_row->created_at);
     $content_array[$content_row->id]["id"] = $content_row->id;
 	$content_array[$content_row->id]["title"] = $functions->kisalt($content_row->title,45);
     $content_array[$content_row->id]["abstract"] = $functions->kisalt($functions->cleaner($content_row->abstract),100);
-    $content_array[$content_row->id]["img"] =  $fileTypePath["content"]["url_compressed"].$content_row->img;
+    $content_array[$content_row->id]["img"] =  $constants::fileTypePath["content"]["url_compressed"].$content_row->img;
     $content_array[$content_row->id]["link"] = $system->url($settings->{"content_prefix_".$_SESSION["lang"]}."/".$content_row->c_link."-".$content_row->c_id."/".$content_row->link."-".$content_row->id);
     $content_array[$content_row->id]["date"] = $content_row->created_at;
     //$content_array[$content_row->id]["date"] = $created_at->toAtomString();

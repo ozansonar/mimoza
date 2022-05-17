@@ -5,8 +5,8 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <?php
-                        if(!empty($loggedUser->img) && file_exists($fileTypePath["user_image"]["full_path"].$loggedUser->img)){
-                            $profile_image = $fileTypePath["user_image"]["url"].$loggedUser->img;
+                        if(!empty($loggedUser->img) && file_exists($constants::fileTypePath["user_image"]["full_path"].$loggedUser->img)){
+                            $profile_image = $constants::fileTypePath["user_image"]["url"].$loggedUser->img;
                         }
                     ?>
 

@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $metaTag->title ?></title>
-	<?php if (!empty($settings->fav_icon) && file_exists($fileTypePath["project_image"]["full_path"] . $settings->fav_icon)): ?>
+	<?php if (!empty($settings->fav_icon) && file_exists($constants::fileTypePath["project_image"]["full_path"] . $settings->fav_icon)): ?>
         <link rel="icon" type="image/png"
-              href="<?php echo $fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
+              href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
         <link rel="icon" type="image/png"
-              href="<?php echo $fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
+              href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
 	<?php endif; ?>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -68,10 +68,10 @@
     </nav>
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar <?php echo isset($loggedUser) && (int)$loggedUser->theme === 1 ? "sidebar-dark-primary" : "sidebar-light-primary"; ?>  elevation-4">
-		<?php if (file_exists($fileTypePath["project_image"]["full_path"] . $settings->header_logo)): ?>
+		<?php if (file_exists($constants::fileTypePath["project_image"]["full_path"] . $settings->header_logo)): ?>
             <!-- Brand Logo -->
             <a href="<?php echo $system->adminUrl(); ?>" class="brand-link">
-                <img src="<?php echo $fileTypePath["project_image"]["url"] . $settings->header_logo ?>" alt=""
+                <img src="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->header_logo ?>" alt=""
                      class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><?php echo $functions->kisalt($settings->project_name, 10, 0) ?></span>
             </a>

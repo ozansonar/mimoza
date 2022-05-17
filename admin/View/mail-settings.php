@@ -193,7 +193,7 @@
                                     ?>
                                     <div class="alert alert-success" id="attachment_<?php echo $uniq_id; ?>" role="alert">
                                         Ek -
-                                        <a href="<?php echo $fileTypePath["mailing_attachment"]["url"].$attachment_row; ?>"
+                                        <a href="<?php echo $constants::fileTypePath["mailing_attachment"]["url"].$attachment_row; ?>"
                                            target="_blank"><?php echo $attachment_row; ?></a>
                                         <input type="hidden" name="attecament[]" value="<?php echo $attachment_row; ?>">
                                         <button type="button" onclick="AttecamentDelete('<?php echo $uniq_id; ?>')"
@@ -423,7 +423,7 @@
                 contentType: false,
                 success: function (response) {
                     if (response.success) {
-                        $("#attachment_upload_result").append('<div class="alert alert-success" id="attachment_' + response.uniq_id + '" role="alert">Ek - <a href="<?php echo $fileTypePath["mailing_attachment"]["url"]; ?>' + response.img_name + '" target="_blank">' + response.img_name + '</a> <input type="hidden" name="attecament[]" value="' + response.img_name + '"> <button type="button" onclick="AttecamentDelete(\'' + response.uniq_id + '\')" class="btn btn-danger">Sil</button></div>');
+                        $("#attachment_upload_result").append('<div class="alert alert-success" id="attachment_' + response.uniq_id + '" role="alert">Ek - <a href="<?php echo $constants::fileTypePath["mailing_attachment"]["url"]; ?>' + response.img_name + '" target="_blank">' + response.img_name + '</a> <input type="hidden" name="attecament[]" value="' + response.img_name + '"> <button type="button" onclick="AttecamentDelete(\'' + response.uniq_id + '\')" class="btn btn-danger">Sil</button></div>');
                         $("#attachment_upload_result").show();
 
                         toast_message("bg-success","Tebrikler",response.success);

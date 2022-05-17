@@ -34,7 +34,7 @@ if(isset($_GET["id"])){
     if (!empty($data->image)) {
         $mailing_image_unserialize = unserialize($data->image);
         foreach ($mailing_image_unserialize as $m_key => $m_value) {
-            $data->text = str_replace("cid:image_" . $m_key, $fileTypePath["mailing"]["url"].$m_value, $data->text);
+            $data->text = str_replace("cid:image_" . $m_key, $constants::fileTypePath["mailing"]["url"].$m_value, $data->text);
         }
         $data->image = implode(",", $mailing_image_unserialize);
     }
@@ -44,7 +44,7 @@ if(isset($_GET["id"])){
         $attecament = unserialize($data->attachment);
         foreach ($attecament as $attecament_row) {
             $at_name = $functions->cleaner($attecament_row);
-            if (file_exists($fileTypePath["mailing_attachment"]["full_path"].$at_name)) {
+            if (file_exists($constants::fileTypePath["mailing_attachment"]["full_path"].$at_name)) {
                 $attachment_array[] = $at_name;
             }
         }

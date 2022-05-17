@@ -9,9 +9,9 @@
                     if(isset($data->list) && !empty($data->list)){
                         foreach ($data->list as $row){
                             $img = false;
-                            if(!empty($row->img) && file_exists($fileTypePath["content_categories"]["full_path"].$row->img)){
+                            if(!empty($row->img) && file_exists($constants::fileTypePath["content_categories"]["full_path"].$row->img)){
                                 $img = true;
-                                $img_link = $fileTypePath["content_categories"]["url"].$row->img;
+                                $img_link = $constants::fileTypePath["content_categories"]["url"].$row->img;
                             }
                             ?>
                             <div class="col-md-6 col-lg-4">

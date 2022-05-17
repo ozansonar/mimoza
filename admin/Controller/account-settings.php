@@ -118,7 +118,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     if(empty($message)){
         //resim yükleme işlemi en son
         include_once($system->path("includes/System/FileUploader.php"));
-        $file = new FileUploader($fileTypePath);
+        $file = new FileUploader($constants::fileTypePath);
         $file->global_file_name = "img";
         $file->upload_folder = "user_image";
         $file->max_file_size = 5;
