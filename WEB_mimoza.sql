@@ -757,6 +757,9 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `img`, `telefon`, `role_group`, `rank`, `email_verify`, `send_mail`, `verify_code`, `theme`, `status`, `deleted`) VALUES
 (81, 'demo@demo.com', '$2y$10$.jci1zvg95FQAih9pTLphunLcJZ8TWJpOUX2P6l5AdOl/Affo3Esq', 'Demo', 'Demo', '', '', 1, 90, 1, 1, '', 1, 1, 0);
+
+INSERT INTO `lang` (`id`, `lang`, `short_lang`, `lang_iso`, `default_lang`, `form_validate`, `user_id`, `status`, `deleted`, `created_at`, `updated_at`) VALUES (NULL, 'Türkçe', 'tr', 'tr_TR', '1', '1', '1', '1', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 CREATE TABLE `youtube_videos` (
   `id` int(11) NOT NULL,
   `gallery_id` int(11) DEFAULT NULL,
