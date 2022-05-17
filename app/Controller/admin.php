@@ -10,7 +10,7 @@ if (!file_exists($adminSystem->adminController($system->route(1)))){
     $route[1] = '404';
 }
 $userHeaderTopImg = $adminSystem->adminPublicUrl("dist/img/user2-160x160.jpg");
-if(!empty($loggedUser->img) && file_exists($functions->root_url("uploads/user/".$loggedUser->img))){
+if(!empty($loggedUser->img) && file_exists($system->path("uploads/user/".$loggedUser->img))){
     $userHeaderTopImg = $functions->site_url("uploads/user/".$loggedUser->img);
 }
 // Menüler array olarak tanımlanıyor kullanıcın tipine göre gözükecek

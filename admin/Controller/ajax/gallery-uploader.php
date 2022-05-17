@@ -18,7 +18,7 @@ if(isset($_FILES["file_data"])){
     header('Content-Type: application/json'); // set json response headers
     $gallery_id = $functions->clean_post_int("gallery_id");
 
-    include_once($functions->root_url("includes/System/FileUploader.php"));
+    include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($fileTypePath);
     $file->global_file_name = "file_data";
     $file->upload_folder = "gallery";

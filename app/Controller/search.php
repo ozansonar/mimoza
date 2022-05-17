@@ -1,6 +1,6 @@
 <?php
 
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["SEARCH"]);
 $count = 0;

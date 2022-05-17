@@ -1,7 +1,7 @@
 <?php
 
 use Includes\System\Form;
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["KAYIT_PAGE"]);
 
@@ -126,7 +126,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
 
     if(empty($message)) {
         //resim yükleme işlemi en son
-        include_once($functions->root_url("includes/System/FileUploader.php"));
+        include_once($system->path("includes/System/FileUploader.php"));
         $file = new \Includes\System\FileUploader($fileTypePath);
         $file->global_file_name = "img";
         $file->upload_folder = "user_image";
@@ -194,7 +194,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
                     $mailTemplateText = str_replace("#link#",$functions->site_url_lang($settings->{"hesap_dogrulama_prefix_".$_SESSION["lang"]}."?hash=".$verifyCode),$mailTemplateText);
 
                     //mail atılıyor
-                    include_once $functions->root_url("includes/System/Mail.php");
+                    include_once $system->path("includes/System/Mail.php");
 
                     $mailler = new \Includes\System\Mail($db);
                     $mailler->adress = $pageData["email"];
@@ -217,7 +217,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
 }
 
 //form dahil ediliyor
-include($functions->root_url("includes/System/Form.php"));
+include($system->path("includes/System/Form.php"));
 $pageForm = new Form();
 
 View::layout('sign-up',[

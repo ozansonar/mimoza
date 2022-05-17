@@ -21,7 +21,7 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 
 $pageData = [];
 //form class
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 
 $page_form = new Includes\System\AdminForm();
 if ($functions->post('submit')) {

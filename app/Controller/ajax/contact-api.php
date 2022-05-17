@@ -124,7 +124,7 @@ if(isset($_POST)){
         $db_data["message"] = $msg;
         $db::insert("contact_form",$db_data);
 
-        include_once $functions->root_url("includes/System/Mail.php");
+        include_once $system->path("includes/System/Mail.php");
 
         $mail_class = new \Includes\System\Mail($db);
         $mail_class->message = $mail_temp;

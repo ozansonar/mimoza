@@ -34,10 +34,10 @@ $customJs[] = "plugins/form/switch.min.js";
 $customJs[] = "plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.js";
 $customJs[] = "plugins/ckeditor/ckeditor.js";
 
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
-include_once($functions->root_url("includes/System/FileUploader.php"));
+include_once($system->path("includes/System/FileUploader.php"));
 $file = new \Includes\System\FileUploader($fileTypePath);
 
 $themes = [];

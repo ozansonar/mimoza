@@ -13,7 +13,6 @@ if (SUBFOLDER_NAME !== '/') {
 		}
 	}
 }
-
 $projectLanguages = [];
 if (!is_null($langData)) {
 	if ((int)$settings->link_sort_lang === 1) {
@@ -32,7 +31,7 @@ if (!is_null($langData)) {
 		&& !array_key_exists($system->route(0), $projectLanguages)) {
 		//linklerde dil kısaltması olması gerek yoksa yönlendir
 		$_SESSION["lang"] = $functions->cleaner($siteManager->defaultLanguage()->short_lang);
-		$functions->redirect($functions->site_url_lang('404'));
+		$system->abort(404);
 	}
 
 	if ($system->route(0) !== "admin" && (int)$settings->link_sort_lang === 1) {
@@ -100,5 +99,5 @@ if ($session->isThereUserSession()) {
  */
 
 Carbon::getFormatsToIsoReplacements($projectLanguages[$_SESSION["lang"]]->lang_iso);
-include($functions->root_url('app/Controller/' . strtolower($system->route(0)) . ".php"));
+include($system->path('app/Controller/' . strtolower($system->route(0)) . ".php"));
 ob_end_flush();

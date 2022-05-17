@@ -161,7 +161,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     }
 }
 
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
 //sayfa başlıkları

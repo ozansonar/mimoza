@@ -1,6 +1,6 @@
 <?php
 
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["SIFRE_YENILE_PAGE"]);
 
@@ -98,7 +98,7 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
     }
 }
 
-include($functions->root_url("includes/System/Form.php"));
+include($system->path("includes/System/Form.php"));
 $form = new Includes\System\Form();
 
 

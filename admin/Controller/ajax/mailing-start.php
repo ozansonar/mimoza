@@ -10,7 +10,7 @@ $message = array();
 if(isset($_POST["mailing_id"])){
     $id = $functions->clean_post_int("mailing_id");
 
-    include_once $functions->root_url("includes/System/Mail.php");
+    include_once $system->path("includes/System/Mail.php");
     $mail_class = new \Includes\System\Mail($db);
     $send = $mail_class->maililing_send($id);
     $message = $send;

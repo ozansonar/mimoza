@@ -18,7 +18,7 @@
         <?php endforeach ?>
     <?php endif ?>
 
-    <link rel="stylesheet" href="<?php echo $system->publicUrl('dist/css/custom.css?v='.filemtime($functions->root_url("public/proje/dist/css/custom.css")).''); ?>">
+    <link rel="stylesheet" href="<?php echo $system->publicUrl('dist/css/custom.css?v='.filemtime($system->path("public/proje/dist/css/custom.css")).''); ?>">
 
     <script src="<?php echo $system->publicUrl("dist/js/jquery-3.6.0.min.js"); ?>"></script>
 </head>

@@ -1,7 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["INDEX"]);
 //bu sayfadakullanılan özel css'ler

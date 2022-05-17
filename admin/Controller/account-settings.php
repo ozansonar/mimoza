@@ -117,7 +117,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
 
     if(empty($message)){
         //resim yükleme işlemi en son
-        include_once($functions->root_url("includes/System/FileUploader.php"));
+        include_once($system->path("includes/System/FileUploader.php"));
         $file = new FileUploader($fileTypePath);
         $file->global_file_name = "img";
         $file->upload_folder = "user_image";
@@ -162,7 +162,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     }
 }
 
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
 //sayfa başlıkları

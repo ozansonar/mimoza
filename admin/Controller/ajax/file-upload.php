@@ -7,7 +7,7 @@
  * Time: 15:54
  */
 if(isset($_FILES["file"]) && !empty($_FILES["file"]["name"])){
-    include_once($functions->root_url("includes/System/FileUploader.php"));
+    include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($fileTypePath);
     $file->global_file_name = "file";
     $file->upload_folder = "mailing";

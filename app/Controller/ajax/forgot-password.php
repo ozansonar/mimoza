@@ -49,7 +49,7 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
         if ($query) {
             $log->logThis($log->logTypes["SIFREMI_UNUTTUM_SUCC"]);
 
-            include_once $functions->root_url("includes/System/Mail.php");
+            include_once $system->path("includes/System/Mail.php");
 
             $mail_class = new \Includes\System\Mail($db);
             $mail_class->adress = $result->email;

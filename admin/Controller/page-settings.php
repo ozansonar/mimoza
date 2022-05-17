@@ -123,7 +123,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         //üsteki şartlar sağlandığında resim yükleme işlemlerine geç her seferde resim yüklenmesin
         foreach ($projectLanguages as $project_languages_row){
-            include_once($functions->root_url("includes/System/FileUploader.php"));
+            include_once($system->path("includes/System/FileUploader.php"));
             $file = new \Includes\System\FileUploader($fileTypePath);
             $file->global_file_name = "img_".$project_languages_row->short_lang;
             $file->upload_folder = "page_image";
@@ -204,7 +204,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     }
 }
 
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
 //sayfa başlıkları

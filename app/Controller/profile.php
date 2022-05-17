@@ -4,7 +4,7 @@ $functions->redirect($functions->site_url_lang());
 exit;
 
 use Includes\System\Form;
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 if(!$session->isThereUserSession()){
     $functions->redirect($functions->site_url_lang());
@@ -106,7 +106,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
 
     if(empty($message)) {
         //resim yükleme işlemi en son
-        include_once($functions->root_url("includes/System/FileUploader.php"));
+        include_once($system->path("includes/System/FileUploader.php"));
         $file = new \Includes\System\FileUploader($fileTypePath);
         $file->global_file_name = "img";
         $file->upload_folder = "user_image";
@@ -151,7 +151,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
     }
 }
 //form dahil ediliyor
-include($functions->root_url("includes/System/Form.php"));
+include($system->path("includes/System/Form.php"));
 $pageForm = new Form();
 
 View::layout('profile',[

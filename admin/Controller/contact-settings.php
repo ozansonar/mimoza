@@ -92,7 +92,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             $refresh_time = 5;
             $message["refresh_time"] = $refresh_time;
             //kişiye cevabı gönder
-            include_once $functions->root_url("includes/System/Mail.php");
+            include_once $system->path("includes/System/Mail.php");
 
             $mail_class = new \Includes\System\Mail($db);
 
@@ -121,7 +121,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     }
 }
 
-include($functions->root_url("includes/System/AdminForm.php"));
+include($system->path("includes/System/AdminForm.php"));
 $form = new Includes\System\AdminForm();
 
 //sayfa başlıkları

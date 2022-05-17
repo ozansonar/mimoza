@@ -1,5 +1,5 @@
 <?php
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["CONTACT"]);
 
@@ -15,7 +15,7 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 
 $metaTag->title = $functions->textManager("contact_title");
 
-include($functions->root_url("includes/System/Form.php"));
+include($system->path("includes/System/Form.php"));
 $form = new Includes\System\Form();
 
 View::layout('contact',[

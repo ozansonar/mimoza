@@ -1,6 +1,6 @@
 <?php
 
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 
 if($session->isThereUserSession()){
     $functions->redirect($functions->site_url_lang());
@@ -16,7 +16,7 @@ $customJs[] = "dist/js/sweetalert2.all.min.js";
 $customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
 $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-".$_SESSION["lang"].".js";
 
-include($functions->root_url("includes/System/Form.php"));
+include($system->path("includes/System/Form.php"));
 $form = new Includes\System\Form();
 $pageData = [];
 $metaTag->title = "Üye Girişi";

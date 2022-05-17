@@ -1,6 +1,6 @@
 <?php
 
-use Includes\System\View;
+use Mrt\MimozaCore\View;
 if(!$session->checkUserSession()){
     $functions->redirect($functions->site_url_lang());
 }
