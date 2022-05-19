@@ -1,6 +1,4 @@
-    <!-- Content
-    ============================================= -->
-    <section id="content">
+ <section id="content">
         <div class="content-wrap">
             <div class="container">
                 <div class="row pricing col-mb-30 mb-4">
@@ -32,7 +30,7 @@
                     }else{
                         ?>
                         <div class="alert alert-warning mt-3">
-                            <?php echo $functions->text_manager("icerik_bulunamadi"); ?>
+                            <?php echo $functions->textManager("icerik_bulunamadi"); ?>
                         </div>
                         <?php
                     }

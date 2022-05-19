@@ -1,12 +1,3 @@
-<?php
-/**
- *
- * Created by PhpStorm.
- * User: Ozan SONAR ( ozansonar1@gmail.com )
- * Date: 15.08.2020
- * Time: 14:09
- */
-?>
 <?php require $system->adminView('static/header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -31,10 +22,8 @@
                     </div>
                 <?php endif; ?>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-
 
     <!-- Main content -->
     <section class="content">
