@@ -8,7 +8,7 @@
  */
 $message = array();
 if(isset($_POST["mailing_id"])){
-    $id = $functions->clean_post_int("mailing_id");
+    $id = $functions->cleanPostInt("mailing_id");
 
     include_once $system->path("includes/System/Mail.php");
     $mail_class = new \Includes\System\Mail($db);

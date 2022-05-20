@@ -77,15 +77,15 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $pageData[$project_languages_row->short_lang]["name"] = $functions->cleanPost("name");
         $pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
         $pageData[$project_languages_row->short_lang]["menu_type_control"] = is_numeric($functions->post("menu_type"));
-        $pageData[$project_languages_row->short_lang]["menu_type"] = $functions->clean_post_int("menu_type");
+        $pageData[$project_languages_row->short_lang]["menu_type"] = $functions->cleanPostInt("menu_type");
         $pageData[$project_languages_row->short_lang]["top_id_control"] = is_numeric($functions->post("top_id"));
-        $pageData[$project_languages_row->short_lang]["top_id"] = $functions->clean_post_int("top_id");
-        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
+        $pageData[$project_languages_row->short_lang]["top_id"] = $functions->cleanPostInt("top_id");
+        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->cleanPostInt("show_order");
         $pageData[$project_languages_row->short_lang]["redirect"] = is_numeric($functions->post("redirect"));
         $pageData[$project_languages_row->short_lang]["redirect_link"] = $functions->cleanPost("redirect_link");
         $pageData[$project_languages_row->short_lang]["redirect_open_type"] = $functions->post("redirect_open_type") == 1 ? 1:0;
-        $pageData[$project_languages_row->short_lang]["show_type"] = $functions->clean_post_int("show_type");
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["show_type"] = $functions->cleanPostInt("show_type");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 
 
         //istenilen kontroller

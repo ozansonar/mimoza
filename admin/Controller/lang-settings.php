@@ -61,9 +61,9 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     $functions->form_lang = $default_lang->short_lang;
     $pageData[$default_lang->short_lang]["lang"] = $functions->cleanPost("lang");
     $pageData[$default_lang->short_lang]["short_lang"] = $functions->cleanPost("short_lang");
-    $pageData[$default_lang->short_lang]["default_lang"] = $functions->clean_post_int("default_lang");
-    $pageData[$default_lang->short_lang]["form_validate"] = $functions->clean_post_int("form_validate");
-    $pageData[$default_lang->short_lang]["status"] = $functions->clean_post_int("status");
+    $pageData[$default_lang->short_lang]["default_lang"] = $functions->cleanPostInt("default_lang");
+    $pageData[$default_lang->short_lang]["form_validate"] = $functions->cleanPostInt("form_validate");
+    $pageData[$default_lang->short_lang]["status"] = $functions->cleanPostInt("status");
 
 
     if(empty($pageData[$default_lang->short_lang]["lang"])){

@@ -68,11 +68,11 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 
         $pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
         $pageData[$project_languages_row->short_lang]["show_order_control"] = is_numeric($functions->post("show_order"));
-        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
+        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->cleanPostInt("show_order");
         $pageData[$project_languages_row->short_lang]["show_type_control"] = is_numeric($functions->post("show_type"));
-        $pageData[$project_languages_row->short_lang]["show_type"] = $functions->clean_post_int("show_type");
+        $pageData[$project_languages_row->short_lang]["show_type"] = $functions->cleanPostInt("show_type");
         $pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 
         //istenilen kontroller
         if($project_languages_row->form_validate == 1){

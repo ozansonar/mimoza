@@ -7,7 +7,7 @@
  * Email: ozansonar1@gmail.com
  */
 if(isset($_POST["count"]) && is_numeric($_POST["count"])){
-    $count = $functions->clean_post_int("count");
+    $count = $functions->cleanPostInt("count");
     $html = '<div class="border my-1 p-2 test-user-[count]">
                 <div class="form-group">
                     <label for="id_[count]_email">E-posta</label>

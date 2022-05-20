@@ -71,13 +71,13 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 
         $pageData[$project_languages_row->short_lang]["name"] = $functions->cleanPost("name");
         $pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
-        $pageData[$project_languages_row->short_lang]["type"] = $functions->clean_post_int("type");
+        $pageData[$project_languages_row->short_lang]["type"] = $functions->cleanPostInt("type");
         if($pageData[$project_languages_row->short_lang]["type"] == 2){
-            $pageData[$project_languages_row->short_lang]["top_id"] = $functions->clean_post_int("top_id");
+            $pageData[$project_languages_row->short_lang]["top_id"] = $functions->cleanPostInt("top_id");
         }
 
-        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->cleanPostInt("show_order");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 
         //istenilen kontroller
         if($project_languages_row->form_validate == 1){

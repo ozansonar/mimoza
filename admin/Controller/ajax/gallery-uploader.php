@@ -16,7 +16,7 @@ if(isset($_FILES["file_data"])){
     //$functions->pre_arr($_POST);
     //$functions->pre_arr($_FILES);
     header('Content-Type: application/json'); // set json response headers
-    $gallery_id = $functions->clean_post_int("gallery_id");
+    $gallery_id = $functions->cleanPostInt("gallery_id");
 
     include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($constants::fileTypePath);

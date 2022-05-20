@@ -73,7 +73,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $pageData[$project_languages_row->short_lang]["subject"] = $functions->cleanPost("subject");
         $pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
         $pageData[$project_languages_row->short_lang]["not_text"] = $functions->cleanPost("not_text");
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 
         //istenilen kontroller
         if($project_languages_row->form_validate == 1){

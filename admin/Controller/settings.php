@@ -54,10 +54,10 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	}
 	$pageData[$default_lang->short_lang]["keywords"] = $functions->cleanPost("keywords");
 	$pageData[$default_lang->short_lang]["description"] = $functions->cleanPost("description");
-	$pageData[$default_lang->short_lang]["link_sort_lang"] = $functions->clean_post_int("link_sort_lang");
+	$pageData[$default_lang->short_lang]["link_sort_lang"] = $functions->cleanPostInt("link_sort_lang");
 
 	$pageData[$default_lang->short_lang]["site_status_control"] = is_numeric($functions->post("site_status"));
-	$pageData[$default_lang->short_lang]["site_status"] = $functions->clean_post_int("site_status");
+	$pageData[$default_lang->short_lang]["site_status"] = $functions->cleanPostInt("site_status");
 	$pageData[$default_lang->short_lang]["post_theme"] = $functions->cleanPost("theme");
 	$pageData[$default_lang->short_lang]["title"] = $functions->cleanPost("title");
 	$pageData[$default_lang->short_lang]["project_name"] = $functions->cleanPost("project_name");
@@ -94,7 +94,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	$pageData[$default_lang->short_lang]["smtp_send_name_surname"] = $functions->cleanPost("smtp_send_name_surname");
 	$pageData[$default_lang->short_lang]["smtp_send_email_adres"] = $functions->cleanPost("smtp_send_email_adres");
 	$pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"] = $functions->cleanPost("smtp_send_email_reply_adres");
-	$pageData[$default_lang->short_lang]["smtp_mail_send_debug"] = $functions->clean_post_int("smtp_mail_send_debug");
+	$pageData[$default_lang->short_lang]["smtp_mail_send_debug"] = $functions->cleanPostInt("smtp_mail_send_debug");
 	$pageData[$default_lang->short_lang]["smtp_mail_send_debug_control"] = is_numeric($functions->post("smtp_mail_send_debug"));
 	$pageData[$default_lang->short_lang]["smtp_send_debug_adres"] = $functions->cleanPost("smtp_send_debug_adres");
 

@@ -75,7 +75,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
         $pageData[$project_languages_row->short_lang]["keywords"] = $functions->cleanPost("keywords");
         $pageData[$project_languages_row->short_lang]["description"] = $functions->cleanPost("description");
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
         $pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
 
         //istenilen kontroller

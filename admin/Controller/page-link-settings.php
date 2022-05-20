@@ -72,19 +72,19 @@ foreach (glob(ROOT_PATH . '/app/Controller/*.php') as $folder){
     $folder = explode('/', rtrim($folder, '/'));
     $folder_end = end($folder);
     $folder_parse = explode(".",$folder_end);
-    if(in_array($folder_parse[0],$pageLinkNoListController)){
+    if(in_array($folder_parse[0], $constants::pageLinkNoListController,true)){
         continue;
     }
     $pl_controller[$folder_parse[0]] = $folder_parse[0];
 }
 
-if(isset($_POST["submit"]) && $_POST["submit"] == 1){
+if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
 
     $pageData[$default_lang->short_lang]["url"] = $functions->cleanPost("url");
     $pageData[$default_lang->short_lang]["controller"] = $functions->cleanPost("controller");
     $pageData[$default_lang->short_lang]["lang"] = $functions->cleanPost("lang");
     $pageData[$default_lang->short_lang]["status_control"] = is_numeric($functions->post("status"));
-    $pageData[$default_lang->short_lang]["status"] = $functions->clean_post_int("status");
+    $pageData[$default_lang->short_lang]["status"] = $functions->cleanPostInt("status");
 
 
     if(empty($pageData[$default_lang->short_lang]["url"])){

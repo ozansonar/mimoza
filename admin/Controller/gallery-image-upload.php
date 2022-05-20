@@ -20,7 +20,7 @@ $customJs[] = "plugins/bootstrap-fileinput-master/themes/explorer-fas/theme.js";
 
 $id = 0;
 if(isset($_POST["id"]) && is_numeric($_POST["id"])){
-    $del_id = $functions->clean_post_int("id");
+    $del_id = $functions->cleanPostInt("id");
     $data = array();
     $data["deleted"] = 1;
     $delete = $db::update("gallery_image",$data,array("id"=>$del_id));

@@ -79,12 +79,12 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
         $pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
         $pageData[$project_languages_row->short_lang]["abstract"] = $functions->clean_post_textarea("abstract");
-        $pageData[$project_languages_row->short_lang]["cat_id"] = $functions->clean_post_int("cat_id");
-        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->clean_post_int("show_order");
+        $pageData[$project_languages_row->short_lang]["cat_id"] = $functions->cleanPostInt("cat_id");
+        $pageData[$project_languages_row->short_lang]["show_order"] = $functions->cleanPostInt("show_order");
         $pageData[$project_languages_row->short_lang]["keywords"] = $functions->cleanPost("keywords");
         $pageData[$project_languages_row->short_lang]["description"] = $functions->cleanPost("description");
-        $pageData[$project_languages_row->short_lang]["index_show"] = $functions->clean_post_int("index_show") > 0 ? 1:0;
-        $pageData[$project_languages_row->short_lang]["status"] = $functions->clean_post_int("status");
+        $pageData[$project_languages_row->short_lang]["index_show"] = $functions->cleanPostInt("index_show") > 0 ? 1:0;
+        $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
         $pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
 
         //istenilen kontroller
