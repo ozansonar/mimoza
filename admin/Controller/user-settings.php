@@ -27,15 +27,15 @@ $pageData = array();
 $default_lang = $siteManager->defaultLanguage();
 if (isset($_GET["id"])) {
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
-	if ($session->sessionRoleControl($pageRoleKey, $editPermissionKey) === false || $session->sessionRoleControl($pageRoleKey, $listPermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $editPermissionKey);
+	if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === false || $session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 		$session->permissionDenied();
 	}
 
 	//log atalım
 	$log->logThis($log->logTypes['USER_DETAIL']);
 
-	$id = $functions->clean_get_int("id");
+	$id = $functions->cleanGetInt("id");
 	$data = $db::selectQuery("users", array(
 		"id" => $id,
 		"deleted" => 0,
@@ -45,8 +45,8 @@ if (isset($_GET["id"])) {
 	}
 	$pageData[$default_lang->short_lang] = (array)$data;
 	unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
-} else if ($session->sessionRoleControl($pageAddRoleKey, $addPermissionKey) === false) {
-	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $editPermissionKey);
+} else if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
+	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 	$session->permissionDenied();
 }
 
@@ -77,8 +77,8 @@ function getMessage(\Includes\System\Functions $functions, string $password, arr
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
-	if ($session->sessionRoleControl($pageRoleKey, $editPermissionKey) === false || $session->sessionRoleControl($pageRoleKey, $listPermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $editPermissionKey);
+	if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === false || $session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 		$session->permissionDenied();
 	}
 

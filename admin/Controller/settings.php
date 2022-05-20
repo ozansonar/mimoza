@@ -5,8 +5,8 @@ $page_role_key = "settings";
 $page_add_role_key = "settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if ($session->sessionRoleControl($page_role_key, $listPermissionKey) == false) {
-	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $listPermissionKey);
+if ($session->sessionRoleControl($page_role_key, $constants::listPermissionKey) == false) {
+	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
 $default_lang = $siteManager->defaultLanguage();
@@ -48,8 +48,8 @@ foreach (glob(ROOT_PATH . '/app/View/*/') as $folder){
 
 if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	//edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-	if ($session->sessionRoleControl($page_role_key, $listPermissionKey) == false || $session->sessionRoleControl($page_role_key, $editPermissionKey) == false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $listPermissionKey);
+	if ($session->sessionRoleControl($page_role_key, $constants::listPermissionKey) == false || $session->sessionRoleControl($page_role_key, $constants::editPermissionKey) == false) {
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
 		$session->permissionDenied();
 	}
 	$pageData[$default_lang->short_lang]["keywords"] = $functions->cleanPost("keywords");

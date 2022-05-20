@@ -4,8 +4,8 @@ $page_role_key = "gallery";
 $page_add_role_key = "gallery-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$listPermissionKey);
+if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 
@@ -39,7 +39,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $session->permissionDenied();
     }
 
-    $del_id = $functions->clean_get_int("delete");
+    $del_id = $functions->cleanGetInt("delete");
     $data = array();
     $data["deleted"] = 1;
     $delete = $db::update("gallery",$data,array("id"=>$del_id));

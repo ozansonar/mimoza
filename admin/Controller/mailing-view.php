@@ -8,14 +8,14 @@ $table = "mailing";
 $table_2 = "mailing_user";
 
 if ($session->sessionRoleControl($page_role_key, $detailPermissionKey) == false) {
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $listPermissionKey);
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
     $session->permissionDenied();
 }
 
 //log atalım
 $log->logThis($log->logTypes['MAILLER_DETAIL']);
 
-$id = $functions->clean_get_int("id");
+$id = $functions->cleanGetInt("id");
 $mailing = $db::selectQuery($table, array(
     "id" => $id,
     "deleted" => 0,

@@ -7,8 +7,8 @@
  * Email: ozansonar1@gmail.com
  */
 $page_role_key = "gallery-image-upload";
-if ($session->sessionRoleControl($page_role_key, $addPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+if ($session->sessionRoleControl($page_role_key, $constants::addPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
     $session->permissionDenied();
 }
 if(isset($_FILES["file_data"])){

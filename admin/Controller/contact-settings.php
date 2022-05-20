@@ -9,14 +9,14 @@ $pageData = array();
 $default_lang = $siteManager->defaultLanguage();
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
     //log atalım
     $log->logThis($log->logTypes['CONTACT_DETAIL']);
 
-    $id = $functions->clean_get_int("id");
+    $id = $functions->cleanGetInt("id");
     $data = $db::selectQuery("contact_form",array(
         "id" => $id,
         "deleted" => 0,
@@ -51,8 +51,8 @@ $customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
 $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js";
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,"send") == false || $session->sessionRoleControl($page_role_key,$editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+    if($session->sessionRoleControl($page_role_key,"send") == false || $session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 

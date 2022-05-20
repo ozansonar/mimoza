@@ -8,15 +8,15 @@ $pageData = array();
 
 if (isset($_GET["id"])) {
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
     //log atalım
     $log->logThis($log->logTypes['MENU_DETAIL']);
 
     //id'ye ait içeriği çekiyoruz
-    $id = $functions->clean_get_int("id");
+    $id = $functions->cleanGetInt("id");
     $data = $db::selectQuery("menu",array(
         "id" => $id,
         "deleted" => 0,
@@ -35,8 +35,8 @@ if (isset($_GET["id"])) {
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$addPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 }

@@ -20,7 +20,7 @@
                         <?php echo $page_title; ?>
                     </h1>
                 </div>
-                <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true): ?>
+                <?php if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == true): ?>
                     <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                         <h1>
                             <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
@@ -86,16 +86,16 @@
                             <td><?php echo $functions->date_short($row->created_at); ?></td>
                             <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
                             <td>
-                                <?php if($session->sessionRoleControl($page_role_key,$editPermissionKey) == true): ?>
+                                <?php if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == true): ?>
                                     <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $system->adminUrl("gallery-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i>Düzenle</button>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == true): ?>
                                     <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $system->adminUrl("gallery?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
                                 <?php endif; ?>
-                                <?php if($session->sessionRoleControl("gallery-image-upload",$addPermissionKey) == true): ?>
+                                <?php if($session->sessionRoleControl("gallery-image-upload",$constants::addPermissionKey) == true): ?>
                                     <a href="<?php echo $system->adminUrl("gallery-image-upload?id=".$row->id); ?>" class="btn btn-outline-primary m-1"><i class="fas fa-plus px-1"></i> Resim Ekle</a>
                                 <?php endif; ?>
-                                <?php if($session->sessionRoleControl("video-upload",$addPermissionKey) == true): ?>
+                                <?php if($session->sessionRoleControl("video-upload",$constants::addPermissionKey) == true): ?>
                                     <a href="<?php echo $system->adminUrl("gallery-video-upload?id=".$row->id); ?>" class="btn btn-outline-warning m-1"><i class="fab fa-youtube px-1"></i> Video Ekle</a>
                                 <?php endif; ?>
                             </td>

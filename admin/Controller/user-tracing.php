@@ -1,8 +1,8 @@
 <?php
 
 $page_role_key = "user-tracing";
-if ($session->sessionRoleControl($page_role_key, $listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+if ($session->sessionRoleControl($page_role_key, $constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
     $session->permissionDenied();
 }
 
@@ -11,7 +11,7 @@ $log->logThis($log->logTypes['USER_TRACING']);
 
 $id = 0;
 if(isset($_GET["id"])){
-    $id = $functions->clean_get_int("id");
+    $id = $functions->cleanGetInt("id");
     $selectQuery = $db::selectQuery("users",array(
         "id" => $id,
         "deleted" => 0,

@@ -3,8 +3,8 @@ $page_role_key = "video-upload";
 
 $pageData = array();
 
-if ($session->sessionRoleControl($page_role_key, $addPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$editPermissionKey);
+if ($session->sessionRoleControl($page_role_key, $constants::addPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
     $session->permissionDenied();
 }
 
@@ -43,12 +43,12 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($page_role_key,$addPermissionKey) == false){
+    if($session->sessionRoleControl($page_role_key,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$deletePermissionKey);
         $session->permissionDenied();
     }
 
-    $del_id = $functions->clean_get_int("delete");
+    $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete("youtube_videos",$del_id);
 
     $message = array();
@@ -71,7 +71,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
 $id = 0;
 $video_id = 0;
 if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && is_numeric($_GET["video_id"])){
-    $id = $functions->clean_get_int("id");
+    $id = $functions->cleanGetInt("id");
     $gallery_data = $db::selectQuery("gallery",array(
         "status" => $id,
         "deleted" => 0,
@@ -80,7 +80,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && 
         $functions->redirect($system->adminUrl());
     }
     if(isset($_GET["video_id"])){
-        $video_id = $functions->clean_get_int("video_id");
+        $video_id = $functions->cleanGetInt("video_id");
         $data = $db::selectQuery("youtube_videos",array(
             "id" => $video_id,
             "deleted" => 0,

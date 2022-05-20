@@ -21,7 +21,7 @@
                             <?php echo $page_title; ?>
                         </h1>
                     </div>
-                    <?php if($session->sessionRoleControl($page_role_key,$listPermissionKey) == true && !empty($page_button_redirect_link)): ?>
+                    <?php if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == true && !empty($page_button_redirect_link)): ?>
                         <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                             <h1>
                                 <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
