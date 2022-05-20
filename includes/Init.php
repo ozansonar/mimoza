@@ -41,7 +41,24 @@ $langData = $db::selectQuery("lang", array(
 	"deleted" => 0,
 ));
 
-$constants = new Constants($langData);
+
+// Html purify exception array
+$allowedSpecialHtmlPost = ["text", "adres", "contact_despription"];
+//çoklu dildeki keyleri bu şekilde ekleyelim
+foreach ($langData as $langRow) {
+	$allowedSpecialHtmlPost[] = [
+		"text_" . $langRow->short_lang,
+		"abstract_" . $langRow->short_lang,
+		"site_bakimda_aciklama_" . $langRow->short_lang,
+		"404_page_text_" . $langRow->short_lang,
+		"info_right_bar_text_2_" . $langRow->short_lang,
+		"info_right_bar_text_3" . $langRow->short_lang,
+	];
+	for ($i = 1; $i <= 10; $i++) {
+		$allowedSpecialHtmlPost[] = "bilgilendirme_alani_tab_text_" . $i . "_" . $langRow->short_lang;
+	}
+}
+
 
 // Getting site settings from database
 $settingQuery = $db::selectQuery("settings");
