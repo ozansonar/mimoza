@@ -50,8 +50,8 @@ foreach ($content_data as $content_row){
     }
     //$created_at = Carbon::createFromFormat('Y-m-d H:i:s',$content_row->created_at);
     $content_array[$content_row->id]["id"] = $content_row->id;
-	$content_array[$content_row->id]["title"] = $functions->kisalt($content_row->title,45);
-    $content_array[$content_row->id]["abstract"] = $functions->kisalt($functions->cleaner($content_row->abstract),100);
+	$content_array[$content_row->id]["title"] = $functions->shorten($content_row->title,45);
+    $content_array[$content_row->id]["abstract"] = $functions->shorten($functions->cleaner($content_row->abstract),100);
     $content_array[$content_row->id]["img"] =  $constants::fileTypePath["content"]["url_compressed"].$content_row->img;
     $content_array[$content_row->id]["link"] = $system->url($settings->{"content_prefix_".$_SESSION["lang"]}."/".$content_row->c_link."-".$content_row->c_id."/".$content_row->link."-".$content_row->id);
     $content_array[$content_row->id]["date"] = $content_row->created_at;

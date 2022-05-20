@@ -1,6 +1,9 @@
 ﻿<?php
 
+include_once ROOT_PATH . '/includes/Project/Helpers.php';
 //sayfanın izin keyi
+use Mrt\MimozaCore\View;
+
 $page_role_key = "index";
 $page_add_role_key = "index";
 
@@ -13,4 +16,8 @@ $page_button_redirect_link = "index";
 $page_button_redirect_text = "Yeni Ekle";
 $page_button_icon = "fas fa-plus-square";
 
-require $system->adminView('index');
+View::backend('index',[
+	'title' => __('Home'),
+	'sub_title' => '',
+
+]);

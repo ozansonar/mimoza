@@ -1,14 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Ozan PC
- * Date: 5.09.2020
- * Time: 16:43
- * Email: ozansonar1@gmail.com
- */
-?>
-<?php require $system->adminView('static/header'); ?>
-<!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -86,4 +76,3 @@
 
 </div>
 <!-- /content area -->
-<?php require $system->adminView('static/footer'); ?>

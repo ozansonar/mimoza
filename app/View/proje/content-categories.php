@@ -17,7 +17,7 @@
                             <img src="<?php echo $img_link; ?>" class="card-img-top" alt="<?php echo $metaTag->keywords; ?>">
                         <?php endif; ?>
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $functions->kisalt($row->title,20); ?></h5>
+                            <h5 class="card-title"><?php echo $functions->shorten($row->title,20); ?></h5>
                             <a href="<?php echo $functions->createContentUrl($row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                         </div>
                     </div>

@@ -30,8 +30,8 @@
                                 <img src="<?php echo $img_link; ?>" class="card-img-top" alt="<?php echo $metaTag->keywords; ?>">
                             <?php endif; ?>
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $functions->kisalt($row->title,20); ?></h5>
-                                <p class="card-text"><?php echo $functions->kisalt($row->abstract,200); ?></p>
+                                <h5 class="card-title"><?php echo $functions->shorten($row->title,20); ?></h5>
+                                <p class="card-text"><?php echo $functions->shorten($row->abstract,200); ?></p>
                                 <a href="<?php echo $functions->createContentUrl((object)$content_categories_row,$row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <img src="<?php echo $img_link; ?>" class="card-img-top" alt="<?php echo $metaTag->keywords; ?>">
                             <?php endif; ?>
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $functions->kisalt($row->title,20); ?></h5>
+                                <h5 class="card-title"><?php echo $functions->shorten($row->title,20); ?></h5>
                                 <a href="<?php echo $functions->createContentUrl((object)$row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                             </div>
                         </div>
@@ -77,8 +77,8 @@
                                 <img src="<?php echo $img_link; ?>" class="card-img-top" alt="<?php echo $metaTag->keywords; ?>">
                             <?php endif; ?>
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $functions->kisalt($row->title,20); ?></h5>
-                                <p class="card-text"><?php echo $functions->kisalt($row->abstract,200); ?></p>
+                                <h5 class="card-title"><?php echo $functions->shorten($row->title,20); ?></h5>
+                                <p class="card-text"><?php echo $functions->shorten($row->abstract,200); ?></p>
                                 <a href="<?php echo $system->url($row->link); ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                             </div>
                         </div>
