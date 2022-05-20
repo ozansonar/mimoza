@@ -52,7 +52,7 @@ foreach ($_GET as $getkey => $getvalue) {
 }
 
 foreach ($_POST as $postKey => $postValue) {
-	if (!is_array($postValue) && !in_array($postKey, Constants::allowedSpecialHtmlPost, true)) {
+	if (!is_array($postValue) && !in_array($postKey, $allowedSpecialHtmlPost, true)) {
 		$postValue = $purifier->purify($postValue);
         $postValue = filter_var($postValue, FILTER_UNSAFE_RAW);
 		$_POST[$postKey] = $postValue;

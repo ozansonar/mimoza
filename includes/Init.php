@@ -27,6 +27,7 @@ $session = new Session($db);
 $siteManager = new SiteManager($db);
 $system = new Core();
 $log = new Log($db);
+$constants = new Constants();
 
 // If DEBUG_MOD is true, errors will show with whoops package
 if (DEBUG_MODE) {
