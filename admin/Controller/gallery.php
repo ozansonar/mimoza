@@ -1,11 +1,11 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "gallery";
+$data->pageRoleKey = "gallery";
 $page_add_role_key = "gallery-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 
@@ -34,8 +34,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
         $session->permissionDenied();
     }
 
@@ -68,8 +68,8 @@ $data = $db::selectQuery("gallery",array(
 $page_title = "Resim Galerisi";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "gallery-settings";
-$page_button_redirect_text = "Yeni Ekle";
-$page_button_icon = "fas fa-plus-square";
+$data->pageButtonRedirectLink = "gallery-settings";
+$data->pageButtonRedirectText = "Yeni Ekle";
+$data->pageButtonIcon = "fas fa-plus-square";
 
 require $system->adminView('gallery');

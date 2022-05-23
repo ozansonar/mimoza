@@ -2,11 +2,11 @@
 use Includes\System\FileUploader;
 
 //sayfanın izin keyi
-$page_role_key = "account-settings";
+$data->pageRoleKey = "account-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 //log atalım
@@ -57,8 +57,8 @@ function getMessage(\Includes\System\Functions $functions, string $password, arr
 
 if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
     $pageData[$default_lang->short_lang]["email"] = $functions->cleanPost("email");
@@ -169,9 +169,9 @@ $form = new Includes\System\AdminForm();
 $page_title = "Hesap Ayarlarım";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "account-settings";
-$page_button_redirect_text = $page_title;
-$page_button_icon = null;
+$data->pageButtonRedirectLink = "account-settings";
+$data->pageButtonRedirectText = $page_title;
+$data->pageButtonIcon = null;
 
 
 require $system->adminView('account-settings');

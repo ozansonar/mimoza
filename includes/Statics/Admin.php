@@ -1,6 +1,7 @@
 <?php
+global $menu;
 
-$menus = [
+$menu = [
 	[
 		'url' => 'index',
 		'title' => 'Anasayfa',

@@ -1,15 +1,15 @@
 <?php
 
 //sayfanın izin keyi
-$page_role_key = "content";
+$data->pageRoleKey = "content";
 $page_add_role_key = "content-settings";
 
 $id = 0;
 $pageData = array();
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 
@@ -36,7 +36,7 @@ if(isset($_GET["id"])){
 }else{
     //add yetki kontrolü
     if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 }
@@ -235,9 +235,9 @@ $form = new Includes\System\AdminForm();
 $page_title = "İçerik ".(isset($data) ? "Düzenle":"Ekle");
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "content";
-$page_button_redirect_text = "İçerikler";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "content";
+$data->pageButtonRedirectText = "İçerikler";
+$data->pageButtonIcon = "icon-list";
 
 
 require $system->adminView('content-settings');

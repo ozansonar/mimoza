@@ -1,6 +1,6 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "menu";
+$data->pageRoleKey = "menu";
 $page_add_role_key = "menu-settings";
 
 $id = 0;
@@ -8,8 +8,8 @@ $pageData = array();
 
 if (isset($_GET["id"])) {
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
     //log atalım
@@ -36,7 +36,7 @@ if (isset($_GET["id"])) {
 }else{
     //add yetki kontrolü
     if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 }
@@ -227,8 +227,8 @@ $form = new Includes\System\AdminForm();
 $page_title = "Menü ".(isset($data) ? "Düzenle":"Ekle");
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "menu";
-$page_button_redirect_text = "Menüler";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "menu";
+$data->pageButtonRedirectText = "Menüler";
+$data->pageButtonIcon = "icon-list";
 
 require $system->adminView('menu-settings');

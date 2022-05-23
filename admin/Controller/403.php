@@ -5,7 +5,7 @@ $metaTag->title = "Yetkiniz yok izinsiz erişim.";
 $page_title = "Yetkiniz Yok";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "user";
-$page_button_redirect_text = "Kullanicilar";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "user";
+$data->pageButtonRedirectText = "Kullanicilar";
+$data->pageButtonIcon = "icon-list";
 require $system->adminView('403');

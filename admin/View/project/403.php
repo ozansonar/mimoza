@@ -7,7 +7,7 @@
                 <div class="col-sm-6 admin-page-top-settings">
                     <h1>
                         <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
-                        <?php echo $page_title; ?>
+                        <?php echo $data->title; ?>
                     </h1>
                 </div>
             </div>
@@ -18,7 +18,7 @@
     <section class="content">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title"><?php echo $page_title; ?>
+                <h3 class="card-title"><?php echo $data->title; ?>
                     <?php if(!empty($sub_title)): ?>
                         <br>
                         <small><?php echo $sub_title; ?></small>

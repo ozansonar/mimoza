@@ -1,10 +1,10 @@
 <?php
-$page_role_key = "video-upload";
+$data->pageRoleKey = "video-upload";
 
 $pageData = array();
 
-if ($session->sessionRoleControl($page_role_key, $constants::addPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
     $session->permissionDenied();
 }
 
@@ -43,8 +43,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($page_role_key,$constants::addPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::addPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
         $session->permissionDenied();
     }
 
@@ -226,8 +226,8 @@ $form = new Includes\System\AdminForm();
 $page_title = "Video ".(isset($data) ? "Düzenle":"Ekle");
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "gallery";
-$page_button_redirect_text = "Resim Galerileri";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "gallery";
+$data->pageButtonRedirectText = "Resim Galerileri";
+$data->pageButtonIcon = "icon-list";
 
 require $system->adminView('gallery-video-upload');

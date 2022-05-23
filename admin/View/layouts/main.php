@@ -88,21 +88,21 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon classx
 						 with font-awesome or any other icon font library -->
-					<?php foreach ($menus as $mainUrl => $menu): if (!$session->sessionRoleControl($menu['url'], 's')) :continue; endif; ?>
-                        <li class="nav-item <?php echo isset($menu['submenu']) ? "has-treeview" : null; ?> <?php echo ($system->route(1) === $menu['url']) || (isset($menu['submenu']) && in_array($system->route(1), array_column($menu['submenu'], 'url'), true)) ? ' menu-open ' : null ?>">
-                            <a href="<?php echo $system->adminUrl($menu['url']) ?>"
-                               class="nav-link <?php echo isset($menu['submenu']) ? " " : null; ?>" <?php echo isset($menu["submenu"]) ? 'active' : null; ?>>
-                                <i class="<?php echo $menu['icon'] ?>"></i>
+					<?php foreach ($menu as $mainUrl => $item): if (!$session->sessionRoleControl($item['url'], 's')) :continue; endif; ?>
+                        <li class="nav-item <?php echo isset($item['submenu']) ? "has-treeview" : null; ?> <?php echo ($system->route(1) === $item['url']) || (isset($item['submenu']) && in_array($system->route(1), array_column($item['submenu'], 'url'), true)) ? ' item-open ' : null ?>">
+                            <a href="<?php echo $system->adminUrl($item['url']) ?>"
+                               class="nav-link <?php echo isset($item['submenu']) ? " " : null; ?>" <?php echo isset($item["submenu"]) ? 'active' : null; ?>>
+                                <i class="<?php echo $item['icon'] ?>"></i>
                                 <p>
-									<?php echo $menu['title'] ?>
-									<?php if (isset($menu['submenu'])): ?>
+									<?php echo $item['title'] ?>
+									<?php if (isset($item['submenu'])): ?>
                                         <i class="right fas fa-angle-left"></i>
 									<?php endif; ?>
                                 </p>
                             </a>
-							<?php if (isset($menu['submenu'])): ?>
-                                <ul class="nav nav-treeview" data-submenu-title="<?php echo $menu['title'] ?>">
-									<?php foreach ($menu['submenu'] as $k => $submenu): if (!$session->sessionRoleControl($submenu['url'], 's') && !$session->sessionRoleControl($submenu['url'], 'a')) continue; ?>
+							<?php if (isset($item['submenu'])): ?>
+                                <ul class="nav nav-treeview" data-submenu-title="<?php echo $item['title'] ?>">
+									<?php foreach ($item['submenu'] as $k => $submenu): if (!$session->sessionRoleControl($submenu['url'], 's') && !$session->sessionRoleControl($submenu['url'], 'a')) continue; ?>
                                         <li class="nav-item <?php //echo $system->route(1) == $submenu['url'] ? 'active' : null?>">
                                             <a href="<?php echo $system->adminUrl($submenu['url']) ?>"
                                                class="nav-link <?php echo $system->route(1) === $submenu['url'] ? 'active' : null ?>">
@@ -123,7 +123,7 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
                     </li>
                 </ul>
             </nav>
-            <!-- /.sidebar-menu -->
+            <!-- /.sidebar-item -->
         </div>
         <!-- /.sidebar -->
     </aside>

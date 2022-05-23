@@ -1,11 +1,11 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "page";
+$data->pageRoleKey = "page";
 $page_add_role_key = "page-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 //log atalım
@@ -33,8 +33,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
         $session->permissionDenied();
     }
 
@@ -65,8 +65,8 @@ $data = $db::selectQuery("page",array(
 $page_title = "Sayfalar";
 $sub_title = "Bu sayfada ki içerikler diğer içeriklerden farklıdır burda olan içerikler siteadi.com/icerik-link olarak erişebilir \"İçerik işlemleri\" sayfasında olan içerikler ise siteadi.com/icerik-kategorisi/icerik-linki-icerik-id olarak gözükür.";
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "page-settings";
-$page_button_redirect_text = "Yeni Ekle";
-$page_button_icon = "fas fa-plus-square";
+$data->pageButtonRedirectLink = "page-settings";
+$data->pageButtonRedirectText = "Yeni Ekle";
+$data->pageButtonIcon = "fas fa-plus-square";
 
 require $system->adminView('page');

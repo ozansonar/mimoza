@@ -1,7 +1,7 @@
 <?php
-$page_role_key = "gallery-image-upload";
-if ($session->sessionRoleControl($page_role_key, $constants::addPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+$data->pageRoleKey = "gallery-image-upload";
+if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
     $session->permissionDenied();
 }
 
@@ -86,8 +86,8 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"])){
 $page_title = "Galeri Resim ".(isset($data) ? "Düzenle":"Ekle");
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "gallery";
-$page_button_redirect_text = "Resim Galerileri";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "gallery";
+$data->pageButtonRedirectText = "Resim Galerileri";
+$data->pageButtonIcon = "icon-list";
 
 require $system->adminView('gallery-image-upload');

@@ -1,14 +1,14 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "mailler";
+$data->pageRoleKey = "mailler";
 $page_add_role_key = "mail-settings";
 
 //sayfada işlem yapılacak table
 $table = "mailing";
 $table_2 = "mailing_user";
 
-if ($session->sessionRoleControl($page_role_key, $detailPermissionKey) == false) {
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
+if ($session->sessionRoleControl($data->pageRoleKey, $detailPermissionKey) == false) {
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::listPermissionKey);
     $session->permissionDenied();
 }
 
@@ -55,8 +55,8 @@ foreach ($mailing_user as $user_row){
 $page_title = "Mail Detayları";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = $page_role_key;
-$page_button_redirect_text = "Mail Listesi";
-$page_button_icon = "fas fa-plus-square";
+$data->pageButtonRedirectLink = $data->pageRoleKey;
+$data->pageButtonRedirectText = "Mail Listesi";
+$data->pageButtonIcon = "fas fa-plus-square";
 
 require $system->adminView('mailing-view');

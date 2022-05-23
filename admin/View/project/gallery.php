@@ -17,15 +17,15 @@
                 <div class="col-sm-6">
                     <h1>
                         <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
-                        <?php echo $page_title; ?>
+                        <?php echo $data->title; ?>
                     </h1>
                 </div>
-                <?php if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == true): ?>
+                <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == true): ?>
                     <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                         <h1>
-                            <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
-                                <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
-                                <?php echo $page_button_redirect_text; ?>
+                            <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
+                                <i class="<?php echo !empty($data->pageButtonIcon) ? $data->pageButtonIcon:"fas fa-th-list"; ?>"></i>
+                                <?php echo $data->pageButtonRedirectText; ?>
                             </a>
                         </h1>
                     </div>
@@ -47,7 +47,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><?php echo $page_title; ?>
+                <h3 class="card-title"><?php echo $data->title; ?>
                 </h3>
 
                 <div class="card-tools">
@@ -86,10 +86,10 @@
                             <td><?php echo $functions->date_short($row->created_at); ?></td>
                             <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
                             <td>
-                                <?php if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == true): ?>
+                                <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == true): ?>
                                     <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $system->adminUrl("gallery-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i>Düzenle</button>
                                 <?php endif; ?>
-                                <?php if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == true): ?>
+                                <?php if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == true): ?>
                                     <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $system->adminUrl("gallery?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
                                 <?php endif; ?>
                                 <?php if($session->sessionRoleControl("gallery-image-upload",$constants::addPermissionKey) == true): ?>

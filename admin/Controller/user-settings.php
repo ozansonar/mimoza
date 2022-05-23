@@ -218,8 +218,8 @@ $page_title = "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle");
 $sub_title = null;
 
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "user";
-$page_button_redirect_text = "Kullanıcılar";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "user";
+$data->pageButtonRedirectText = "Kullanıcılar";
+$data->pageButtonIcon = "icon-list";
 require $system->adminView('user-settings');
 

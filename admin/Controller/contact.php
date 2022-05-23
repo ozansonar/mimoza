@@ -1,10 +1,10 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "contact";
+$data->pageRoleKey = "contact";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 //log atalım
@@ -31,8 +31,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])) {
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($page_role_key,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
         $session->permissionDenied();
     }
 
@@ -64,8 +64,8 @@ $data = $db::selectQuery("contact_form",array(
 $page_title = "İletişim Formu Mesajları";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "contact";
-$page_button_redirect_text = $page_title;
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "contact";
+$data->pageButtonRedirectText = $page_title;
+$data->pageButtonIcon = "icon-list";
 
 require $system->adminView('contact');

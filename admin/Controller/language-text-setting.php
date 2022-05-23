@@ -1,11 +1,11 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "language-text-setting";
+$data->pageRoleKey = "language-text-setting";
 $page_add_role_key = "language-text-setting";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::listPermissionKey);
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+    $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }
 //log atalım
@@ -134,8 +134,8 @@ $form = new Includes\System\AdminForm();
 $page_title = "Dillere Göre Yazı İşlemleri";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = null;
-$page_button_redirect_text = null;
-$page_button_icon = null;
+$data->pageButtonRedirectLink = null;
+$data->pageButtonRedirectText = null;
+$data->pageButtonIcon = null;
 
 require $system->adminView('language-text-setting');

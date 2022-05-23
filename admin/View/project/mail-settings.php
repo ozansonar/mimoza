@@ -18,15 +18,15 @@
                     <div class="col-sm-6">
                         <h1>
                             <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
-                            <?php echo $page_title; ?>
+                            <?php echo $data->title; ?>
                         </h1>
                     </div>
-                    <?php if($session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == true): ?>
+                    <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == true): ?>
                         <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                             <h1>
-                                <a href="<?php echo $system->adminUrl($page_button_redirect_link); ?>">
-                                    <i class="<?php echo !empty($page_button_icon) ? $page_button_icon:"fas fa-th-list"; ?>"></i>
-                                    <?php echo $page_button_redirect_text; ?>
+                                <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
+                                    <i class="<?php echo !empty($data->pageButtonIcon) ? $data->pageButtonIcon:"fas fa-th-list"; ?>"></i>
+                                    <?php echo $data->pageButtonRedirectText; ?>
                                 </a>
                             </h1>
                         </div>

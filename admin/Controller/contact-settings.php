@@ -1,6 +1,6 @@
 <?php
 //sayfanın izin keyi
-$page_role_key = "contact";
+$data->pageRoleKey = "contact";
 $page_add_role_key = "contact-settings";
 
 $id = 0;
@@ -9,8 +9,8 @@ $pageData = array();
 $default_lang = $siteManager->defaultLanguage();
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
     //log atalım
@@ -51,8 +51,8 @@ $customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
 $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js";
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
-    if($session->sessionRoleControl($page_role_key,"send") == false || $session->sessionRoleControl($page_role_key,$constants::editPermissionKey) == false || $session->sessionRoleControl($page_role_key,$constants::listPermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$page_role_key." permissions => ".$constants::editPermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,"send") == false || $session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
 
@@ -128,7 +128,7 @@ $form = new Includes\System\AdminForm();
 $page_title = "Gelen Mesajı ".(isset($data) ? "Cevapla":"Ekle");
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "contact";
-$page_button_redirect_text = "İletişim Mesajları";
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "contact";
+$data->pageButtonRedirectText = "İletişim Mesajları";
+$data->pageButtonIcon = "icon-list";
 require $system->adminView('contact-settings');

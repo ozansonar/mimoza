@@ -1,12 +1,12 @@
 <?php
 
 //sayfanın izin keyi
-$page_role_key = "settings";
+$data->pageRoleKey = "settings";
 $page_add_role_key = "settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if ($session->sessionRoleControl($page_role_key, $constants::listPermissionKey) == false) {
-	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
+if ($session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) == false) {
+	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
 $default_lang = $siteManager->defaultLanguage();
@@ -48,8 +48,8 @@ foreach (glob(ROOT_PATH . '/app/View/*/') as $folder){
 
 if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	//edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-	if ($session->sessionRoleControl($page_role_key, $constants::listPermissionKey) == false || $session->sessionRoleControl($page_role_key, $constants::editPermissionKey) == false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $page_role_key . " permissions => " . $constants::listPermissionKey);
+	if ($session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) == false) {
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::listPermissionKey);
 		$session->permissionDenied();
 	}
 	$pageData[$default_lang->short_lang]["keywords"] = $functions->cleanPost("keywords");
@@ -510,8 +510,8 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 $page_title = "Genel Ayarlar";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$page_button_redirect_link = "settings";
-$page_button_redirect_text = $page_title;
-$page_button_icon = "icon-list";
+$data->pageButtonRedirectLink = "settings";
+$data->pageButtonRedirectText = $page_title;
+$data->pageButtonIcon = "icon-list";
 
 require $system->adminView('settings');
