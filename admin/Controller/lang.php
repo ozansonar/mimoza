@@ -38,7 +38,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::deletePermissionKey);
         $session->permissionDenied();
     }
-    $message = array();
+    $message = [];
 
     $del_id = $functions->cleanGetInt("delete");
     $lang_control = $siteManager->getDefaultLangNotId($del_id);
@@ -47,7 +47,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     }
 
     if(empty($message)){
-        $data = array();
+        $data = [];
         $data["deleted"] = 1;
         $delete = $db::update("lang",$data,array("id"=>$del_id));
         if($delete){

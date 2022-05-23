@@ -1,7 +1,7 @@
 <?php
 $data->pageRoleKey = "video-upload";
 
-$pageData = array();
+$pageData = [];
 
 if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) == false){
     $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
@@ -51,7 +51,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete("youtube_videos",$del_id);
 
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['GALLERY_VIDEO_DEL_SUCC']);
@@ -161,7 +161,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
-            $db_data = array();
+            $db_data = [];
             $db_data["gallery_id"] = $id;
             $db_data["title"] = $pageData[$project_languages_row->short_lang]["title"];
             $db_data["link"] = $pageData[$project_languages_row->short_lang]["link"];

@@ -6,7 +6,7 @@
  * Date: 29.07.2021
  * Time: 13:54
  */
-$message = array();
+$message = [];
 if(isset($_POST["mailing_id"])){
     $id = $functions->cleanPostInt("mailing_id");
 

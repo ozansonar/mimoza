@@ -31,26 +31,26 @@
 				echo $form->input("lang", array(
 					"label" => $admin_text["LANG_TITLE"],
 					"required" => 1,
-				), $pageData);
+				), $data->pageData);
 				echo $form->input("short_lang", array(
 					"label" => $admin_text["LANG_SHORT"],
 					"required" => 1,
-				), $pageData);
+				), $data->pageData);
 				echo $form->select("default_lang", array(
 					"label" => $admin_text["LANG_DEFAULT"],
 					"required" => 1,
 					"select_item" => $constants::systemSiteModVersion2,
-				), $pageData);
+				), $data->pageData);
 				echo $form->select("form_validate", array(
 					"label" => $admin_text["LANG_VALIDATE"],
 					"required" => 1,
 					"select_item" => $constants::systemSiteModVersion2,
-				), $pageData);
+				), $data->pageData);
 				echo $form->select("status", array(
 					"label" => $admin_text["PG_SET_STATUS"],
 					"required" => 1,
 					"select_item" => $constants::systemStatusVersion,
-				), $pageData);
+				), $data->pageData);
 				?>
             </form>
         </div>

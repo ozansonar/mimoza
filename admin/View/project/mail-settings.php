@@ -130,11 +130,11 @@
 				echo $form->input("subject", array(
 					"label" => $admin_text["MAILING_SUBJECT"],
 					"required" => 1,
-				), $pageData);
+				), $data->pageData);
 				echo $form->textarea("text", array(
 					"label" => $admin_text["MAILING_TEXT"],
 					"class" => "ckeditor",
-				), $pageData);
+				), $data->pageData);
 				?>
                 <div class="col-12 p-0" id="attachment_upload_result"
                      style="<?php echo isset($attachment_array) && !empty($attachment_array) ? null : "display: none;"; ?>">
@@ -246,7 +246,7 @@
 				<?php
 				echo $form->input("image", array(
 					"type" => "hidden",
-				), $pageData);
+				), $data->pageData);
 				echo $form->input("test_user_counter", array(
 					"type" => "hidden",
 				), array("tr" => array("test_user_counter" => 1)));
@@ -258,7 +258,7 @@
 							"value" => 1
 						)
 					)
-				), $pageData);
+				), $data->pageData);
 				?>
             </form>
         </div>

@@ -23,7 +23,7 @@ function sweetAlert(type,title,text,yonlendir=1,url="",btn_text="TAMAM") {
 
     })
 }
-function AlertMessage(type, title, message = array(), btn_text = "OK", yonlendir, url, time = false) {
+function AlertMessage(type, title, message = [], btn_text = "OK", yonlendir, url, time = false) {
     /*var tit;
     $.each(title, function( key, value ) {
         tit = value;

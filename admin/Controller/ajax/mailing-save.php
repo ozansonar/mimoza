@@ -7,7 +7,7 @@
  * Time: 01:00
  */
 if(isset($_POST["subject"]) && !empty($_POST["subject"])){
-    $pageData = array();
+    $pageData = [];
     $pageData["subject"] = $functions->cleanPost("subject");
     $pageData["text"] = $functions->clean_post_textarea("text");
     $pageData["attachment"] = $functions->post("attecament");
@@ -36,7 +36,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
 
 
     if (empty($pageData["send"])) {
-        $test_user_array = array();
+        $test_user_array = [];
         //alttaki checkbox işaretlenmedi yazılan kişiye test maili atılıyor
         foreach ($pageData["test_user"] as $user_key => $user_value) {
             $email = $functions->cleaner($user_value["email"]);
@@ -68,7 +68,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
     }elseif(!empty($pageData["send"]) && empty($pageData["user"])){
         $message["reply"][] = "Lütfen mail göndermek kullanıcı gurubunu seçiniz.";
     }
-    $replaced_image = array();
+    $replaced_image = [];
     //gizli olarak gelen $image değeri boş değilse mesajda bu değerleri arayıp replace edeceğiz
     if (!empty($pageData["image"])) {
         $uploaded_image = explode(",", $pageData["image"]);
@@ -83,7 +83,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
         }
     }
     //mailing ekler
-    $attacament_array = array();
+    $attacament_array = [];
     if (!empty($pageData["attachment"])) {
         foreach ($pageData["attachment"] as $attecament_row) {
             $at_name = $functions->cleaner($attecament_row);
@@ -93,7 +93,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
         }
     }
     if(empty($message)){
-        $add_data = array();
+        $add_data = [];
         $add_data["user_id"] = $_SESSION["user_id"];
         $add_data["subject"] = $pageData["subject"];
         $add_data["text"] = $pageData["text"];
@@ -106,7 +106,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
             $mailing_id = $db::getLastInsertedId();
             if(empty($pageData["send"])){
                 foreach ($test_user_array as $test_user){
-                    $mailing_user = array();
+                    $mailing_user = [];
                     $mailing_user["mailing_id"] = $mailing_id;
                     $mailing_user["name"] = $test_user["name"];
                     $mailing_user["surname"] = $test_user["surname"];
@@ -126,7 +126,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
                 $user_data = $user_select->fetchAll(PDO::FETCH_OBJ);
                 if(!empty($user_data)){
                     foreach ($user_data as $user_row){
-                        $mailing_user = array();
+                        $mailing_user = [];
                         $mailing_user["mailing_id"] = $mailing_id;
                         $mailing_user["name"] = $user_row->name;
                         $mailing_user["surname"] = $user_row->surname;

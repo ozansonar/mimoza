@@ -7,7 +7,7 @@
  * Time: 15:54
  */
 
-$message = array();
+$message = [];
 if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){
     include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($constants::fileTypePath);

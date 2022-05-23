@@ -40,7 +40,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
 
     $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete("page",$del_id);
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['PAGE_LIST_DELETE_SUCC']);

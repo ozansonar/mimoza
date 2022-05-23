@@ -31,7 +31,7 @@ if(!empty($mailing->image)){
 }
 
 if(!empty($mailing->attachment)){
-    $attachment_array = array();
+    $attachment_array = [];
     $attachment = unserialize($mailing->attachment);
     foreach ($attachment as $attachment_key=>$attachment_row){
         $at_name = $functions->cleaner($attachment_row);
@@ -47,7 +47,7 @@ $mailing_user = $db::selectQuery($table_2, array(
     "mailing_id" => $mailing->id,
     "deleted" => 0,
 ));
-$mailing_user_list = array();
+$mailing_user_list = [];
 foreach ($mailing_user as $user_row){
     $mailing_user_list[$user_row->send][$user_row->id] = $user_row;
 }

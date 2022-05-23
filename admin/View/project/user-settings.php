@@ -68,39 +68,39 @@
                         "label" => $admin_text["HESAP_EMAIL"],
                         "required" => 1,
                         "class" => "validate[custom[email]]"
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->input("name",array(
                         "label" => $admin_text["HESAP_NAME"],
                         "required" => 1,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->input("surname",array(
                         "label" => $admin_text["HESAP_SURNAME"],
                         "required" => 1,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->input("telefon",array(
                         "label" => $admin_text["HESAP_PHONE"],
                         "required" => 1,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->file("img",array(
                         "label" => $admin_text["HESAP_RESIM"],
                         "file_key" => "user_image",
                         "delete_link" => "?id=".$id."&img_delete=1"
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->input("password",array(
                         "type" => "password",
                         "label" => $admin_text["HESAP_PASSWORD"],
                         "class" => "validate[maxSize[50],minSize[10]]"
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->input("password_again",array(
                         "type" => "password",
                         "label" => $admin_text["HESAP_PASSWORD_AGAIN"],
                         "class" => "validate[maxSize[50],minSize[10]]"
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->select("status",array(
                         "label" => $admin_text["HESAP_DURUMU"],
                         "required" => 1,
                         "select_item" => $constants::systemStatusVersion,
-                    ),$pageData);
+                    ),$data->pageData);
 
                     ?>
                 </form>

@@ -37,10 +37,10 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
     }
 
     $del_id = $functions->cleanGetInt("delete");
-    $data = array();
+    $data = [];
     $data["deleted"] = 1;
     $delete = $db::update("contact_form", $data, array("id"=>$del_id));
-    $message = array();
+    $message = [];
     if ($delete) {
         //log atalım
         $log->logThis($log->logTypes['CONTACT_DELETE_SUCC']);

@@ -9,7 +9,7 @@ $table = "mailing";
 $default_lang = $siteManager->defaultLanguage();
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 $pageData[$default_lang->short_lang]["image"] = "";
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
@@ -40,7 +40,7 @@ if(isset($_GET["id"])){
     }
 
     if (!empty($data->attachment)) {
-        $attachment_array = array();
+        $attachment_array = [];
         $attecament = unserialize($data->attachment);
         foreach ($attecament as $attecament_row) {
             $at_name = $functions->cleaner($attecament_row);
@@ -116,7 +116,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
-            $db_data = array();
+            $db_data = [];
             $db_data["subject"] = $pageData[$project_languages_row->short_lang]["subject"];
             $db_data["text"] = $pageData[$project_languages_row->short_lang]["text"];
             $db_data["not_text"] = $pageData[$project_languages_row->short_lang]["not_text"];

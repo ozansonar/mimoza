@@ -14,7 +14,7 @@ $log->logThis($log->logTypes['ACCOUNT_DETAIL']);
 
 $default_lang = $siteManager->defaultLanguage();
 
-$pageData = array();
+$pageData = [];
 $pageData[$default_lang->short_lang] = (array)$loggedUser;
 unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
 
@@ -70,7 +70,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     $password = $functions->cleanPost("password");
     $password_again = $functions->cleanPost("password_again");
 
-    $message = array();
+    $message = [];
     if(empty($pageData[$default_lang->short_lang]["email"])){
         $message["reply"][] = "E-posta boş olamaz.";
     }
@@ -132,7 +132,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
         }
     }
     if(empty($message)){
-        $dat = array();
+        $dat = [];
         $dat["email"] = $pageData[$default_lang->short_lang]["email"];
         $dat["name"] = $pageData[$default_lang->short_lang]["name"];
         $dat["surname"] = $pageData[$default_lang->short_lang]["surname"];

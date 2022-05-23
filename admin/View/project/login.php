@@ -13,7 +13,7 @@
 					"input_group" => 1,
 					"group_icon" => "fas fa-envelope",
 					"required" => 1
-				), $pageData);
+				), $data->pageData);
 				echo $page_form->input("password", array(
 					"type" => "password",
 					"label" => "Parola",

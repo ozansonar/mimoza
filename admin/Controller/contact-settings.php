@@ -4,7 +4,7 @@ $data->pageRoleKey = "contact";
 $pageAddRoleKey = "contact-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 $default_lang = $siteManager->defaultLanguage();
 if(isset($_GET["id"])){
@@ -46,7 +46,7 @@ $readUser = $session->getUserInfo($pageData[$default_lang->short_lang]["read_use
 $customCss = [];
 $customCss[] = "plugins/form-validation-engine/css/validationEngine.jquery.css";
 //bu sayfadda kullanılan özel js'ler
-$customJs = array();
+$customJs = [];
 $customJs[] = "plugins/form-validation-engine/js/jquery.validationEngine.js";
 $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js";
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
@@ -83,7 +83,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         }
         if (empty($message)) {
 
-            $db_data = array();
+            $db_data = [];
             $db_data["reply_subject"] = $pageData[$default_lang->short_lang]["reply_subject"];
             $db_data["reply_text"] = $pageData[$default_lang->short_lang]["reply_text"];
             $db_data["reply_send_date"] = date("Y-m-d H:i:s");

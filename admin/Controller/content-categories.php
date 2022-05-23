@@ -41,7 +41,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete("content_categories",$del_id);
 
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['CONTENT_CATEGORIES_DEL_SUCC']);

@@ -9,7 +9,7 @@
 
 $log->logThis($log->logTypes["SIFREMI_UNUTTUM_PAGE"]);
 if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 99){
-    $message = array();
+    $message = [];
     $email = $functions->cleanPost("forgot_email");
     $result = $db::selectQuery("users",array(
         "email" => $email,
@@ -40,7 +40,7 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
         $m_temp = $mail_template->text;
         $m_temp = str_replace("#link#",$link,$m_temp);
 
-        $data = array();
+        $data = [];
         $data["user_id"] = $result->id;
         $data["type"] = $result->rank;
         $data["email"] = $result->email;

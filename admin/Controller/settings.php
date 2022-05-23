@@ -110,10 +110,10 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
     }
 
 
-	$db_data_settings = array();
+	$db_data_settings = [];
 
 
-	$message = array();
+	$message = [];
 	if (empty($pageData[$default_lang->short_lang]["title"])) {
 		$message["reply"][] = "Site başlığı boş olamaz.";
 	}
@@ -435,7 +435,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 		$db_data_settings["page_not_found_text"] = $pageData[$default_lang->short_lang]["page_not_found_text"];
 
 		//mevcut urlleri çekip array yapalım
-		$file_url_array = array();
+		$file_url_array = [];
 		$data_file_url = $db::selectQuery("file_url", array(
 			"deleted" => 0,
 		));
@@ -449,7 +449,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                 //bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
                 if (!array_key_exists($pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang], $file_url_array)) {
                     //bu yeni prefix file_url de yok eklensin
-                    $db_prefix = array();
+                    $db_prefix = [];
                     $db_prefix["url"] = $pageData[$default_lang->short_lang][$prefixKey.$project_languages_row->short_lang];
                     $db_prefix["controller"] = $systemLinkPrefixValue3["controller"];
                     $db_prefix["lang"] = $project_languages_row->short_lang;
@@ -463,7 +463,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 
 		//site ayarlarını çekelim
 		$settings_query_data = $db::selectQuery("settings");
-		$settings_db = array();
+		$settings_db = [];
 		foreach ($settings_query_data as $settings_row) {
 			$settings_db[$settings_row->name] = $settings_row;
 		}
@@ -474,7 +474,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 		foreach ($db_data_settings as $key => $value) {
 			if (array_key_exists($key, $settings_db)) {
 				//eğer key varsa update edeceğiz
-				$db_data = array();
+				$db_data = [];
 				$db_data["name"] = $key;
                 $db_data["val"] = $value;
 				$update = $db::update("settings", $db_data, array("id" => $settings_db[$key]->id));
@@ -483,7 +483,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 				}
 			} else {
 				//key mevcut değerlerde yok yeni eklenecek
-				$db_data = array();
+				$db_data = [];
 				$db_data["name"] = $key;
 				$db_data["val"] = $value;
 				$insert = $db::insert("settings", $db_data);

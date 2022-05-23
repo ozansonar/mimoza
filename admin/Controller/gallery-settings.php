@@ -5,7 +5,7 @@ $data->pageRoleKey = "gallery";
 $pageAddRoleKey = "gallery-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 $default_lang = $siteManager->defaultLanguage();
 
@@ -42,7 +42,7 @@ if (isset($_GET["id"])) {
 $gallery_data = $db::selectQuery("gallery",array(
     "deleted" => 0,
 ));
-$gallery_data_array = array();
+$gallery_data_array = [];
 foreach ($gallery_data as $gallery_data_row){
     if($id > 0 && $id == $gallery_data_row->id){
         continue;
@@ -139,7 +139,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
-            $db_data = array();
+            $db_data = [];
             $db_data["name"] = $pageData[$project_languages_row->short_lang]["name"];
             $db_data["link"] = !empty($pageData[$project_languages_row->short_lang]["link"]) ? $pageData[$project_languages_row->short_lang]["link"]:$functions->permalink($pageData[$project_languages_row->short_lang]["name"]);
             $db_data["type"] = $pageData[$project_languages_row->short_lang]["type"];

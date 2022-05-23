@@ -71,49 +71,49 @@
                                     "label" => $admin_text["SETTINGS_PROJECT_NAME"],
                                     "required" => 1,
                                     "class" => "validate[required,maxSize[100],minSize[5]]"
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input("title",array(
                                     "label" => $admin_text["SETTINGS_TITLE"],
                                     "required" => 1,
                                     "class" => "validate[required,maxSize[100],minSize[5]]"
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input("logo_text",array(
                                     "label" => $admin_text["SETTINGS_LOGO_TEXT"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->file("fav_icon",array(
                                     "label" => $admin_text["SETTINGS_FAV_ICON"],
                                     "file_key" => "project_image",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->file("header_logo",array(
                                     "label" => $admin_text["SETTINGS_LOGO"],
                                     "file_key" => "project_image",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->file("footer_logo",array(
                                     "label" => $admin_text["SETTINGS_LOGO_FOOTER"],
                                     "file_key" => "project_image",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->select("link_sort_lang",array(
                                     "label" => "Linklerde dil kısaltması olsun ?",
                                     "required" => 1,
                                     "select_item" => $systemYesAndNoVersion2,
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input_tags("keywords",array(
                                     "label" => $admin_text["SETTINGS_KEYWORDS"],
                                     "class" => "w-100",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->textarea("description",array(
                                     "label" => $admin_text["SETTINGS_DESCRIPTION"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->select("theme",array(
                                     "label" => $admin_text["SETTINGS_THEMA"],
                                     "required" => 1,
                                     "select_item" => $themes,
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->select("site_status",array(
                                     "label" => $admin_text["SETTINGS_STATUS"],
                                     "required" => 1,
                                     "select_item" => $constants::systemSiteModVersion2,
-                                ),$pageData);
+                                ),$data->pageData);
                                 ?>
                             </div>
                             <div class="tab-pane fade" id="profile">
@@ -128,7 +128,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["google"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="google" value="<?php echo isset($pageData[$default_lang->short_lang]->google) ? $pageData[$default_lang->short_lang]->google:null; ?>" class="form-control">
+                                    <input type="text" name="google" value="<?php echo isset($data->pageData[$default_lang->short_lang]->google) ? $data->pageData[$default_lang->short_lang]->google:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -138,7 +138,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["facebook"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="facebook" value="<?php echo isset($pageData[$default_lang->short_lang]->facebook) ? $pageData[$default_lang->short_lang]->facebook:null; ?>" class="form-control">
+                                    <input type="text" name="facebook" value="<?php echo isset($data->pageData[$default_lang->short_lang]->facebook) ? $data->pageData[$default_lang->short_lang]->facebook:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -148,7 +148,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["twitter"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="twitter" value="<?php echo isset($pageData[$default_lang->short_lang]->twitter) ? $pageData[$default_lang->short_lang]->twitter:null; ?>" class="form-control">
+                                    <input type="text" name="twitter" value="<?php echo isset($data->pageData[$default_lang->short_lang]->twitter) ? $data->pageData[$default_lang->short_lang]->twitter:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -158,7 +158,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["instagram"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="instagram" value="<?php echo isset($pageData[$default_lang->short_lang]->instagram) ? $pageData[$default_lang->short_lang]->instagram:null; ?>" class="form-control">
+                                    <input type="text" name="instagram" value="<?php echo isset($data->pageData[$default_lang->short_lang]->instagram) ? $data->pageData[$default_lang->short_lang]->instagram:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -168,7 +168,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["youtube"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="youtube" value="<?php echo isset($pageData[$default_lang->short_lang]->youtube) ? $pageData[$default_lang->short_lang]->youtube:null; ?>" class="form-control">
+                                    <input type="text" name="youtube" value="<?php echo isset($data->pageData[$default_lang->short_lang]->youtube) ? $data->pageData[$default_lang->short_lang]->youtube:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -178,7 +178,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["linkedin"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="linkedin" value="<?php echo isset($pageData[$default_lang->short_lang]->linkedin) ? $pageData[$default_lang->short_lang]->linkedin:null; ?>" class="form-control">
+                                    <input type="text" name="linkedin" value="<?php echo isset($data->pageData[$default_lang->short_lang]->linkedin) ? $data->pageData[$default_lang->short_lang]->linkedin:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -188,7 +188,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["whatsapp"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="whatsapp" value="<?php echo isset($pageData[$default_lang->short_lang]->whatsapp) ? $pageData[$default_lang->short_lang]->whatsapp:null; ?>" class="form-control">
+                                    <input type="text" name="whatsapp" value="<?php echo isset($data->pageData[$default_lang->short_lang]->whatsapp) ? $data->pageData[$default_lang->short_lang]->whatsapp:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -198,7 +198,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["vk"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="vk" value="<?php echo isset($pageData[$default_lang->short_lang]->vk) ? $pageData[$default_lang->short_lang]->vk:null; ?>" class="form-control">
+                                    <input type="text" name="vk" value="<?php echo isset($data->pageData[$default_lang->short_lang]->vk) ? $data->pageData[$default_lang->short_lang]->vk:null; ?>" class="form-control">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -208,7 +208,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><?php echo $socialMedia["telegram"]["url"];  ?></span>
                                     </div>
-                                    <input type="text" name="telegram" value="<?php echo isset($pageData[$default_lang->short_lang]->telegram) ? $pageData[$default_lang->short_lang]->telegram:null; ?>" class="form-control">
+                                    <input type="text" name="telegram" value="<?php echo isset($data->pageData[$default_lang->short_lang]->telegram) ? $data->pageData[$default_lang->short_lang]->telegram:null; ?>" class="form-control">
                                 </div>
 
                             </div>
@@ -220,27 +220,27 @@
                                 echo $form->input("site_mail",array(
                                     "label" => $admin_text["SETTINGS_MAIL"],
                                     "required" => 1
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input("phone",array(
                                     "label" => $admin_text["SETTINGS_TELEFONU"],
                                     "class" => "numeric_field"
-                                ),$pageData);
+                                ),$data->pageData);
                                 /*
                                 echo $form->input("phone_cep",array(
                                     "label" => $admin_text["SETTINGS_CEP_TELEFONU"],
                                     "class" => "numeric_field"
-                                ),$pageData);
+                                ),$data->pageData);
                                 */
                                 echo $form->input("fax",array(
                                     "label" => $admin_text["SETTINGS_FAX"],
                                     "class" => "numeric_field"
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input("maps",array(
                                     "label" => $admin_text["SETTINGS_GOOGLE_MAPS"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->textarea("adres",array(
                                     "label" => $admin_text["SETTINGS_ADRESS"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 ?>
                             </div>
                             <div class="tab-pane fade" id="mail-smtp">
@@ -258,53 +258,53 @@
                                     echo $form->file("mail_tempate_logo",array(
                                         "label" => $admin_text["SETTINGS_MAIL_TEMPLATE_LOGO"],
                                         "file_key" => "project_image",
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_host",array(
                                         "label" => $admin_text["SETTINGS_MAIL_HOST"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_email",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SMTP"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_password",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SIFRE"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_port",array(
                                         "label" => $admin_text["SETTINGS_MAIL_PORT"],
                                         "required" => 1,
                                         "class" => "numeric_field"
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->select("smtp_secure",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SECURE"],
                                         "required" => 1,
                                         "select_item" => $smtpSecureType,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_send_name_surname",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SEND_NAME_SURNAME"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_send_email_adres",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SEND_EMAIL_ADRES"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_send_email_reply_adres",array(
                                         "label" => $admin_text["SETTINGS_MAIL_REPLY_EMAIL_ADRES"],
                                         "required" => 1,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->select("smtp_mail_send_debug",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SEND_DEBUG"],
                                         "required" => 1,
                                         "select_item" => $smtpSendMode,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     echo $form->input("smtp_send_debug_adres",array(
                                         "label" => $admin_text["SETTINGS_MAIL_SEND_DEBUG_ADRESS"],
                                         "required" => 1,
                                         "item_hidden" => 1,
-                                        "show_data" => $pageData[$default_lang->short_lang]["smtp_mail_send_debug"],
+                                        "show_data" => $data->pageData[$default_lang->short_lang]["smtp_mail_send_debug"],
                                         "show_value" => 2,
-                                    ),$pageData);
+                                    ),$data->pageData);
                                     ?>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@
                                 echo $form->file("banner_img",array(
                                     "label" => $admin_text["SETTINGS_PAGE_BANNER_IMG"],
                                     "file_key" => "project_image"
-                                ),$pageData);
+                                ),$data->pageData);
                                 ?>
                             </div>
                             <div class="tab-pane fade" id="lang_content_prefix">
@@ -327,7 +327,7 @@
                                             echo $form->input($prefixKey.$project_languages_row->short_lang,array(
                                                 "label" => $project_languages_row->lang,
                                                 "required" => 1
-                                            ),$pageData);
+                                            ),$data->pageData);
                                         }
                                         ?>
                                     </div>

@@ -15,7 +15,7 @@
             <?php if(!empty($data->contentQueryQata)): ?>
                 <h2 class="mt-2"><?php echo $functions->textManager("arama_bulunan_content"); ?></h2>
                 <?php foreach ($data->contentQueryQata as $row):
-                    $content_categories_row = array();
+                    $content_categories_row = [];
                     $content_categories_row["id"] = $row->cat_id;
                     $content_categories_row["link"] = $row->c_link;
                     $img = false;

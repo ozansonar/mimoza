@@ -7,7 +7,7 @@ $data->pageRoleKey = "content";
 $pageAddRoleKey = "content-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
     if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
@@ -63,8 +63,8 @@ $customJs[] = "plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.js";
 $selectQuery = $db::selectQuery("content_categories",array(
     "deleted" => 0,
 ),false,null,2);
-$cat_array = array();
-$cat_array_select = array();
+$cat_array = [];
+$cat_array_select = [];
 foreach ($selectQuery as $cat_value){
     if(empty($cat_value["title"]) || empty($cat_value["link"])){
         continue;
@@ -164,7 +164,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
-            $db_data = array();
+            $db_data = [];
             $db_data["cat_id"] = $pageData[$project_languages_row->short_lang]["cat_id"];
             $db_data["title"] = $pageData[$project_languages_row->short_lang]["title"];
             $db_data["link"] = $functions->permalink($pageData[$project_languages_row->short_lang]["title"]);

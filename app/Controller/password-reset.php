@@ -35,7 +35,7 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 $metaTag->title = $functions->textManager("sifre_yenileme_baslik");
 
 if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
-    $message = array();
+    $message = [];
     $sifre = $functions->cleanPost("password");
     $sifre_tekrar = $functions->cleanPost("password_again");
     $hash = $functions->cleanPost("hash");
@@ -49,7 +49,7 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
         $datestrto = strtotime($date);
         if($current_date > $datestrto){
             //geçeriz olduguna göre bu hashi silelim
-            $hash_del = array();
+            $hash_del = [];
             $hash_del["deleted"] = 1;
             $db::update("forgot_password",$hash_del,array("hash"=>$hash));
             $message["reply"][] = $functions->textManager("sifre_yenileme_linkin_kullanim_suresi_dolmus");
@@ -76,14 +76,14 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
 	}
 
     if(empty($message)){
-        $ups = array();
+        $ups = [];
         $ups["password"] = password_hash($sifre,PASSWORD_DEFAULT);
         $up = $db::update("users",$ups,array("id"=>$selectQuery->user_id));
         if($up){
             $log->logThis($log->logTypes["SIFRE_YENILE_SUCC"]);
             //kullanıcı şifresini güncelledi şimdi hash'i silelim
             //geçeriz olduguna göre bu hashi silelim
-            $hash_del = array();
+            $hash_del = [];
             $hash_del["deleted"] = 1;
             $db::update("forgot_password",$hash_del,array("hash"=>$hash));
 

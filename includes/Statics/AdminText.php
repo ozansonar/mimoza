@@ -1,6 +1,6 @@
 <?php
-$admin_text = array();
-$lang = array();
+$admin_text = [];
+$lang = [];
 $lang["content-delete"] = "İçerik başarılı bir şekilde silinmiştir.";
 $lang["content-delete-error"] = "İçerik silinemedi. Lütfen tekrar deneyiniz.";
 

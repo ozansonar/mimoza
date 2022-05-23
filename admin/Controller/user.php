@@ -43,11 +43,11 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         //kişi kendisini silemez
         $functions->redirect($system->adminUrl("user"));
     }
-    $data = array();
+    $data = [];
     $data["deleted"] = 1;
     $delete = $db::update("users",$data,"id",$id);
 
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['USER_DELETE_SUCC']);

@@ -4,13 +4,13 @@ use Mrt\MimozaCore\View;
 
 $log->logThis($log->logTypes["INDEX"]);
 //bu sayfadakullanılan özel css'ler
-$customCss = array(); 
+$customCss = []; 
 $slider_data_query = $db::$db->prepare("SELECT * FROM slider WHERE lang=:lang AND img != '' AND status=1 AND deleted=0 ORDER BY show_order ASC");
 $slider_data_query->bindParam(':lang',$_SESSION['lang'],PDO::PARAM_STR);
 $slider_data_query->execute();
 $slider_data_count = $slider_data_query->rowCount();
 $slider_data = $slider_data_query->fetchAll(PDO::FETCH_OBJ);
-$slider_array = array();
+$slider_array = [];
 $slider_count = 0;
 foreach ($slider_data as $slider_row){
     if(empty($slider_row->title)){
@@ -41,7 +41,7 @@ $content_query->bindParam(":lang",$_SESSION["lang"],PDO::PARAM_STR);
 $content_query->execute();
 $content_count = $content_query->rowCount();
 $content_data = $content_query->fetchAll(PDO::FETCH_OBJ);
-$content_array = array();
+$content_array = [];
 
 foreach ($content_data as $content_row){
 

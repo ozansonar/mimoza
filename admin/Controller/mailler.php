@@ -44,7 +44,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete($table,$del_id);
 
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['MAILLER_LIST_DEL_SUCC']);

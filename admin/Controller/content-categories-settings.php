@@ -4,7 +4,7 @@ $data->pageRoleKey = "content-categories";
 $pageAddRoleKey = "content-categories-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 if(isset($_GET["id"])){
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
     if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == false || $session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
@@ -139,7 +139,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     if(empty($message)){
         $lang_id = date("YmdHis");
         foreach ($projectLanguages as $project_languages_row){
-            $db_data = array();
+            $db_data = [];
             $db_data["title"] = $pageData[$project_languages_row->short_lang]["title"];
             $db_data["link"] = $functions->permalink($pageData[$project_languages_row->short_lang]["title"]);
             if(isset($pageData[$project_languages_row->short_lang]["img"])){

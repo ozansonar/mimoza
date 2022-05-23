@@ -43,7 +43,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 
 	$del_id = $functions->cleanGetInt("delete");
 	$delete = $siteManager->multipleLanguageDataDelete("menu", $del_id);
-	$message = array();
+	$message = [];
 	if ($delete) {
 		//log atalım
 		$log->logThis($log->logTypes['MENU_DELETE_SUCC']);

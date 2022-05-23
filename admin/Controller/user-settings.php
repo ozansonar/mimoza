@@ -21,7 +21,7 @@ $customJs = [
 ];
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 
 $default_lang = $siteManager->defaultLanguage();
@@ -90,7 +90,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	$pageData[$default_lang->short_lang]["password"] = $functions->cleanPost("password");
 	$pageData[$default_lang->short_lang]["password_again"] = $functions->cleanPost("password_again");
 
-	$message = array();
+	$message = [];
 	if (empty($pageData[$default_lang->short_lang]["email"])) {
 		$message["reply"][] = "E-posta boş olamaz.";
 	}
@@ -161,7 +161,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		}
 	}
 	if (empty($message)) {
-		$dat = array();
+		$dat = [];
 
 		$dat["status"] = 1;
 		$dat["email"] = $pageData[$default_lang->short_lang]["email"];

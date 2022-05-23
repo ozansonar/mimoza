@@ -41,11 +41,11 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     }
 
     $del_id = $functions->cleanGetInt("delete");
-    $data = array();
+    $data = [];
     $data["deleted"] = 1;
     $delete = $db::update("file_url",$data,array("id"=>$del_id));
 
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['PAGE_LINK_DELETE_SUCC']);

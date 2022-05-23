@@ -21,10 +21,10 @@ $select_query = $db::selectQuery("users",array(
     "deleted" => 0,
 ),true);
 
-$message = array();
+$message = [];
 if (!empty($select_query)) {
     if($select_query->email_verify == 0){
-        $verify = array();
+        $verify = [];
         $verify["email_verify"] = 1;
         //doğrulama kodunu silmeyeceğiz eğer tekrardan doğrulamak isterlerse doğrulandı diye mesaj çıkacak
         //$verify["verify_code"] = null;

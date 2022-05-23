@@ -4,7 +4,7 @@ $data->pageRoleKey = "lang";
 $pageAddRoleKey = "lang-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 $default_lang = $siteManager->defaultLanguage();
 
@@ -114,7 +114,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 
 
     if(empty($message)){
-        $db_data = array();
+        $db_data = [];
         $db_data["lang"] = $pageData[$default_lang->short_lang]["lang"];
         $db_data["short_lang"] = $pageData[$default_lang->short_lang]["short_lang"];
         $db_data["default_lang"] = $pageData[$default_lang->short_lang]["default_lang"];

@@ -59,22 +59,22 @@
                     echo $form->input("url",array(
                         "label" => $admin_text["PG_SET_LINK"],
                         "required" => 1,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->select("controller",array(
                         "label" => $admin_text["PG_SET_FILE"],
                         "required" => 1,
                         "select_item" => $pl_controller,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->select("lang",array(
                         "label" => $admin_text["PG_SET_LANG"],
                         "required" => 1,
                         "select_item" => $pageLang,
-                    ),$pageData);
+                    ),$data->pageData);
                     echo $form->select("status",array(
                         "label" => $admin_text["PG_SET_STATUS"],
                         "required" => 1,
                         "select_item" => $constants::systemStatusVersion,
-                    ),$pageData);
+                    ),$data->pageData);
                     ?>
                 </form>
             </div>

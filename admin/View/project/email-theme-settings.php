@@ -37,19 +37,19 @@
 							echo $form->input("subject", array(
 								"label" => $admin_text["MAIL_TEMASI_SUBJECT"],
 								"required" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->textarea("text", array(
 								"label" => $admin_text["MAIL_TEMASI_TEXT"],
 								"class" => "ckeditor",
-							), $pageData);
+							), $data->pageData);
 							echo $form->textarea("not_text", array(
 								"label" => $admin_text["MAIL_TEMASI_NOT"],
-							), $pageData);
+							), $data->pageData);
 							echo $form->select("status", array(
 								"label" => $admin_text["SERVISLER_STATUS"],
 								"required" => 1,
 								"select_item" => $constants::systemStatusVersion,
-							), $pageData);
+							), $data->pageData);
 							?>
                         </div>
 						<?php

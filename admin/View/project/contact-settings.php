@@ -63,27 +63,27 @@
 							"label" => $admin_text["CONTACT_NAME"],
 							"required" => 1,
 							"disabled" => 1,
-						), $pageData);
+						), $data->pageData);
 						echo $form->input("surname", array(
 							"label" => $admin_text["CONTACT_SURNAME"],
 							"required" => 1,
 							"disabled" => 1,
-						), $pageData);
+						), $data->pageData);
 						echo $form->input("email", array(
 							"label" => $admin_text["CONTACT_EMAIL"],
 							"required" => 1,
 							"disabled" => 1,
-						), $pageData);
+						), $data->pageData);
 						echo $form->input("subject", array(
 							"label" => $admin_text["CONTACT_SUBJECT"],
 							"required" => 1,
 							"disabled" => 1,
-						), $pageData);
+						), $data->pageData);
 						echo $form->textarea("message", array(
 							"label" => $admin_text["CONTACT_MESSAGE"],
 							"required" => 1,
 							"disabled" => 1,
-						), $pageData);
+						), $data->pageData);
 						?>
                     </div>
                     <div class="col-md-6 col-12">
@@ -94,21 +94,21 @@
 								"label" => $admin_text["CONTACT_REPLY_SUBJECT"],
 								"required" => 1,
 								"disabled" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->textarea("reply_text", array(
 								"label" => $admin_text["CONTACT_REPLY_TEXT"],
 								"required" => 1,
 								"disabled" => 1,
-							), $pageData);
+							), $data->pageData);
 						} else {
 							echo $form->input("reply_subject", array(
 								"label" => $admin_text["CONTACT_REPLY_SUBJECT"],
 								"required" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->textarea("reply_text", array(
 								"label" => $admin_text["CONTACT_REPLY_TEXT"],
 								"required" => 1,
-							), $pageData);
+							), $data->pageData);
 						}
 						?>
                     </div>

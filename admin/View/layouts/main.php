@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $metaTag->title ?></title>
+    <title><?php echo $data->title ?></title>
 	<?php if (!empty($settings->fav_icon) && file_exists($constants::fileTypePath["project_image"]["full_path"] . $settings->fav_icon)): ?>
         <link rel="icon" type="image/png"
               href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
@@ -28,19 +28,21 @@
             <link href="<?php echo $system->adminPublicUrl($css); ?>" rel="stylesheet">
 		<?php endforeach ?>
 	<?php endif ?>
+
 	<?php if (isset($loggedUser) && (int)$loggedUser->theme === 1): ?>
         <link rel="stylesheet" href="<?php echo $system->adminPublicUrl("dist/css/theme-dark.css"); ?>">
 	<?php elseif (isset($loggedUser) && (int)$loggedUser->theme === 2): ?>
         <link rel="stylesheet" href="<?php echo $system->adminPublicUrl("dist/css/theme-light.css"); ?>">
 	<?php endif; ?>
+
     <link rel="stylesheet" href="<?php echo $system->adminPublicUrl("dist/css/custom.css"); ?>">
     <script src="<?php echo $system->adminPublicUrl("plugins/jquery/jquery.min.js"); ?>"></script>
 </head>
 <body class="hold-transition
 sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
 <?php echo $system->route(1) === "login"
-    ? "login-page"
-    : "sidebar-mini"; ?>
+	? "login-page"
+	: "sidebar-mini"; ?>
     <?php echo isset($loggedUser) && (int)$loggedUser->theme === 1 ? "dark-mode" : NULL; ?>">
 <?php if ($session->isThereAdminSession() && $system->route(1) !== "login"): ?>
 <div class="wrapper">
@@ -89,7 +91,8 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
                     <!-- Add icons to the links using the .nav-icon classx
 						 with font-awesome or any other icon font library -->
 					<?php foreach ($menu as $mainUrl => $item): if (!$session->sessionRoleControl($item['url'], 's')) :continue; endif; ?>
-                        <li class="nav-item <?php echo isset($item['submenu']) ? "has-treeview" : null; ?> <?php echo ($system->route(1) === $item['url']) || (isset($item['submenu']) && in_array($system->route(1), array_column($item['submenu'], 'url'), true)) ? ' item-open ' : null ?>">
+                        <li class="nav-item <?php echo isset($item['submenu']) ? "has-treeview" : null; ?>
+                        <?php echo ($system->route(1) === $item['url']) || (isset($item['submenu']) && in_array($system->route(1), array_column($item['submenu'], 'url'), true)) ? ' item-open ' : null ?>">
                             <a href="<?php echo $system->adminUrl($item['url']) ?>"
                                class="nav-link <?php echo isset($item['submenu']) ? " " : null; ?>" <?php echo isset($item["submenu"]) ? 'active' : null; ?>>
                                 <i class="<?php echo $item['icon'] ?>"></i>
@@ -102,7 +105,9 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
                             </a>
 							<?php if (isset($item['submenu'])): ?>
                                 <ul class="nav nav-treeview" data-submenu-title="<?php echo $item['title'] ?>">
-									<?php foreach ($item['submenu'] as $k => $submenu): if (!$session->sessionRoleControl($submenu['url'], 's') && !$session->sessionRoleControl($submenu['url'], 'a')) continue; ?>
+									<?php foreach ($item['submenu'] as $k => $submenu): if (!$session->sessionRoleControl($submenu['url'], 's') && !$session->sessionRoleControl($submenu['url'], 'a')) {
+										continue;
+									} ?>
                                         <li class="nav-item <?php //echo $system->route(1) == $submenu['url'] ? 'active' : null?>">
                                             <a href="<?php echo $system->adminUrl($submenu['url']) ?>"
                                                class="nav-link <?php echo $system->route(1) === $submenu['url'] ? 'active' : null ?>">
@@ -129,33 +134,32 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
     </aside>
 	<?php endif; ?>
 	<?php if ($session->isThereAdminSession() && $system->route(1) !== "login"): ?>
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2 admin-page-top-settings">
-                        <div class="col-sm-6">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 admin-page-top-settings">
+                    <div class="col-sm-6">
+                        <h1>
+                            <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
+							<?php echo $data->title; ?>
+                        </h1>
+                    </div>
+					<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) === true): ?>
+                        <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                             <h1>
-                                <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
-								<?php echo $data->title; ?>
+                                <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
+                                    <i class="<?php echo !empty($data->pageButtonIcon) ? $data->pageButtonIcon : "fas fa-th-list"; ?>"></i>
+									<?php echo $data->pageButtonRedirectText; ?>
+                                </a>
                             </h1>
                         </div>
-						<?php if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) === true): ?>
-                            <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
-                                <h1>
-                                    <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
-                                        <i class="<?php echo !empty($data->pageButtonIcon) ? $data->pageButtonIcon:"fas fa-th-list"; ?>"></i>
-										<?php echo $data->pageButtonRedirectText; ?>
-                                    </a>
-                                </h1>
-                            </div>
-						<?php endif; ?>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-            <?php include_once $data->view ?>
-        </div>
-    <!-- Main Footer -->
+					<?php endif; ?>
+                </div>
+            </div>
+        </section>
+		<?php include_once $data->view ?>
+    </div>
     <footer class="main-footer">
         <strong><?php echo $settings->project_name; ?></strong>
     </footer>

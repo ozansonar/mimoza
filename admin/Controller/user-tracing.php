@@ -23,7 +23,7 @@ if(isset($_GET["id"])){
     $logs_get->bindParam(":uid",$id,PDO::PARAM_INT);
     $logs_get->execute();
     $logs_count = $logs_get->rowCount();
-    $log_array = array();
+    $log_array = [];
     if($logs_count > 0){
         $logs_data = $logs_get->fetchAll(PDO::FETCH_OBJ);
         foreach ($logs_data as $logs_row){

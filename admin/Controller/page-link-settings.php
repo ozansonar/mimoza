@@ -6,7 +6,7 @@ $data->pageRoleKey = "page-link";
 $pageAddRoleKey = "page-link-settings";
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 $default_lang = $siteManager->defaultLanguage();
 
@@ -60,7 +60,7 @@ $customJs = [
 ];
 
 //mevcut urlleri çekip array yapalım
-$file_url_array = array();
+$file_url_array = [];
 $data_file_url = $db::selectQuery("file_url", array(
 	"deleted" => 0,
 ));
@@ -128,7 +128,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 
 	if (empty($message)) {
-		$db_data = array();
+		$db_data = [];
 		$db_data["url"] = $functions->permalink($pageData[$default_lang->short_lang]["url"]);
 		$db_data["controller"] = $pageData[$default_lang->short_lang]["controller"];
 		$db_data["lang"] = $pageData[$default_lang->short_lang]["lang"];

@@ -71,37 +71,37 @@
                                 echo $form->input("title",array(
                                     "label" => $admin_text["PAGE_TITLE"],
                                     "required" => 1,
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input("link",array(
                                     "label" => $admin_text["PAGE_LINK"],
                                     "description" => $admin_text["PAGE_LINK_DESCRIPTION"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->textarea("abstract",array(
                                     "label" => $admin_text["PAGE_ABSTRACT"],
                                     "class" => "ckeditor",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->textarea("text",array(
                                     "label" => $admin_text["PAGE_TEXT"],
                                     "required" => 1,
                                     "class" => "ckeditor",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->file("img",array(
                                     "label" => $admin_text["PAGE_IMG"],
                                     "file_key" => "page_image",
                                     "delete_link" => "?id=".$id."&img_delete=".$project_languages_row->short_lang
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->input_tags("keywords",array(
                                     "label" => $admin_text["PAGE_KEYWORDS"],
                                     "class" => "w-100",
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->textarea("description",array(
                                     "label" => $admin_text["PAGE_DESCRIPTION"],
-                                ),$pageData);
+                                ),$data->pageData);
                                 echo $form->select("status",array(
                                     "label" => $admin_text["PAGE_STATUS"],
                                     "required" => 1,
                                     "select_item" => $constants::systemStatusVersion,
-                                ),$pageData);
+                                ),$data->pageData);
                                 ?>
                             </div>
                             <?php

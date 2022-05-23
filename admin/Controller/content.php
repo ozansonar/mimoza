@@ -40,7 +40,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     }
     $del_id = $functions->cleanGetInt("delete");
     $delete = $siteManager->multipleLanguageDataDelete("content",$del_id);
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['CONTENT_DEL_SUCC']);
@@ -64,7 +64,7 @@ $selectQuery = $db::selectQuery("content_categories",array(
     "lang" => $siteManager->defaultLanguage()->short_lang,
     "deleted" => 0,
 ));
-$cats = array();
+$cats = [];
 foreach ($selectQuery as $key=>$value){
     $cats[$value->id] = $value->title;
 }

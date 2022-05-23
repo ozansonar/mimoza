@@ -38,10 +38,10 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     }
 
     $del_id = $functions->cleanGetInt("delete");
-    $data = array();
+    $data = [];
     $data["deleted"] = 1;
     $delete = $db::update("role_groups",$data,"id",$del_id);
-    $message = array();
+    $message = [];
     if($delete){
         //log atalım
         $log->logThis($log->logTypes['ROLES_DELETE_SUCC']);
@@ -61,7 +61,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
 $data = $db::selectQuery("role_groups",array(
     "deleted" => 0,
 ));
-$menuler_array = array();
+$menuler_array = [];
 foreach ($data as $key=>$value){
     $menuler_array[$value->id] = $value;
 }

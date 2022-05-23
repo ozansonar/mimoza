@@ -7,7 +7,7 @@ $pageAddRoleKey = "roles-settings";
 //bu kısımda form sınıfını kullanmaya gerek yok pek değişen bir yer değil
 
 $id = 0;
-$pageData = array();
+$pageData = [];
 
 if (isset($_GET["id"])) {
     //update yetki kontrolü ve gösterme yetkisi de olması lazım
@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
     $role_select->bindParam(":rg",$data->id,PDO::PARAM_INT);
     $role_select->execute();
     $role_data = $role_select->fetchAll(PDO::FETCH_OBJ);
-    $role_array = array();
+    $role_array = [];
     foreach ($role_data as $roles){
         $role_array[$roles->role_key][] = $roles->permission;
     }
@@ -105,7 +105,7 @@ $onyuz_yetkiler = array(
 
 if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 
-    $message = array();
+    $message = [];
     $role_group_name = $functions->cleanPost("group_name");
     $permissions = isset($_POST["permissions"]) ? $functions->post("permissions") : null;
 
@@ -114,7 +114,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
     }
 
     if (empty($message)) {
-        $add_data = array();
+        $add_data = [];
         $add_data["group_name"] = $role_group_name;
         $add_data["status"] = 1;
         if ($id > 0) {
@@ -125,7 +125,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                         foreach ($p_val as $key => $val) {
                             //kontrollü bir şekilde ekle olmayanlari
                             if (!isset($role_array[$p_key]) || !in_array($val, $role_array[$p_key])) {
-                                $role_add = array();
+                                $role_add = [];
                                 $role_add["role_group"] = $id;
                                 $role_add["role_key"] = $functions->cleaner($p_key);
                                 $role_add["permission"] = $functions->cleaner($val);
@@ -140,7 +140,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                     $m_role_data = $m_role->fetchAll(PDO::FETCH_OBJ);
                     $m_role_count = $m_role->rowCount();
                     if ($m_role_count > 0) {
-                        $mevcut_izinler = array();
+                        $mevcut_izinler = [];
                         foreach ($m_role_data as $m_role) {
                             if (isset($permissions[$m_role->role_key])) {
                                 if (!in_array($m_role->permission, $permissions[$m_role->role_key])) {
@@ -183,7 +183,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
                 if (isset($_POST["permissions"])) {
                     foreach ($permissions as $p_key => $p_val) {
                         foreach ($p_val as $key => $val) {
-                            $role_add = array();
+                            $role_add = [];
                             $role_add["role_group"] = $last_id;
                             $role_add["role_key"] = $functions->cleaner($p_key);
                             $role_add["permission"] = $functions->cleaner($val);

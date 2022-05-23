@@ -22,7 +22,7 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 
 $metaTag->title = "Bilgilerim";
 
-$pageData = array();
+$pageData = [];
 foreach ($loggedUser as $key_user=>$value_user){
     $pageData[$key_user] = $value_user;
 }
@@ -35,7 +35,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
     $pageData["password"] = $functions->cleanPost("password");
     $pageData["password_again"] = $functions->cleanPost("password_again");
 
-    $message = array();
+    $message = [];
     if(empty($pageData["email"])){
         $message["reply"][] = "E-posta boş olamaz.";
     }
@@ -122,7 +122,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
     }
 
     if(empty($message)){
-        $dbData = array();
+        $dbData = [];
         $dbData["email"] = $pageData["email"];
         $dbData["name"] = $pageData["name"];
         $dbData["surname"] = $pageData["surname"];

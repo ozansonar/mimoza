@@ -26,7 +26,7 @@ if(isset($_FILES["file_data"])){
     $file->max_file_size = 5;
     $file->compressor = true;
     $uploaded = $file->file_upload();
-    $message = array();
+    $message = [];
     if($uploaded == 3){
         $message["error"] = "Dosya seçilmedi.";
     }
@@ -34,7 +34,7 @@ if(isset($_FILES["file_data"])){
         $message["error"] = "Resim yüklenirken hata oluştuştu.";
     }
     if(empty($message)){
-        $db_data = array();
+        $db_data = [];
         $db_data["gallery_id"] = $gallery_id;
         $db_data["image"] = $uploaded["img_name"];
         $db_data["status"] = 1;
@@ -68,7 +68,7 @@ if(isset($_FILES["file_data"])){
     }
 
 }else{
-    $message = array();
+    $message = [];
     $message["error"] = "Dosya seçilmedi.";
 
 }

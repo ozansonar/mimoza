@@ -19,7 +19,7 @@ if(isset($_POST)){
     $subject = $functions->cleanPost("subject");
     $msg = $functions->cleanPost("message");
     $phone = $functions->cleanPost("phone");
-    $message = array();
+    $message = [];
     if(!$name){
         $message["reply"][] = $functions->textManager("contact_validate_ad");
     }
@@ -115,7 +115,7 @@ if(isset($_POST)){
         $mail_temp = $mail_template->text;
         $mail_temp = str_replace(array("#project_name#", "#message#"), array($settings->project_name, $s_msg), $mail_temp);
 
-        $db_data = array();
+        $db_data = [];
         $db_data["name"] = $name;
         $db_data["surname"] = $surname;
         $db_data["subject"] = $subject;

@@ -44,7 +44,7 @@ foreach ($pageData as $pdataKey=>$pdata){
 
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     $data_lang = $functions->cleanPost("data_lang");
-    $message = array();
+    $message = [];
     foreach ($projectLanguages as $project_languages_row){
         $functions->form_lang = $project_languages_row->short_lang; //namelerde dil uzantısı olacak
         //bu form ayrı ayrı akyıt edilecek o yüzden böyle bir şart ekliyoruz
@@ -76,7 +76,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $text_manager_db_data = $db::selectQuery("settings",array(
                     "lang" => $data_lang
                 ));
-                $text_manager_array = array();
+                $text_manager_array = [];
                 foreach ($text_manager_db_data as $text_manager_db_row){
                     $text_manager_array[$data_lang][$text_manager_db_row->name] = $text_manager_db_row;
                 }
@@ -88,7 +88,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                     foreach ($language_text_manager_value["form"] as $language_text_manager_form){
                         if(isset($text_manager_array[$data_lang]) && array_key_exists($language_text_manager_form["name"],$text_manager_array[$data_lang])){
                             //eğer key varsa update edeceğiz
-                            $db_data = array();
+                            $db_data = [];
                             $db_data["name"] = $language_text_manager_form["name"];
                             $db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]];
                             $db_data["lang"] = $data_lang;
@@ -98,7 +98,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                             }
                         }else{
                             //key mevcut değerlerde yok yeni eklenecek
-                            $db_data = array();
+                            $db_data = [];
                             $db_data["name"] = $language_text_manager_form["name"];
                             $db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]];
                             $db_data["lang"] = $data_lang;

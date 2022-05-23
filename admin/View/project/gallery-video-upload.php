@@ -37,22 +37,22 @@
 							echo $form->input("title", array(
 								"label" => $admin_text["VIDEO_TITLE"],
 								"required" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->input("link", array(
 								"label" => $admin_text["VIDEO_LINK"],
 								"required" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->input("show_order", array(
 								"label" => $admin_text["VIDEO_SHOW_ORDER"],
 								"required" => 1,
 								"class" => "numeric_field",
 								"order" => 1,
-							), $pageData);
+							), $data->pageData);
 							echo $form->select("status", array(
 								"label" => $admin_text["VIDEO_STATUS"],
 								"required" => 1,
 								"select_item" => $constants::systemStatusVersion,
-							), $pageData);
+							), $data->pageData);
 							?>
                         </div>
 						<?php

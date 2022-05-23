@@ -32,7 +32,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     $pageData["password"] = $functions->cleanPost("password");
     $pageData["password_again"] = $functions->cleanPost("password_again");
 
-    $message = array();
+    $message = [];
     if(empty($pageData["email"])){
         $message["reply"][] = "E-posta boş olamaz.";
     }
@@ -145,7 +145,7 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
     }
 
     if(empty($message)){
-        $dbData = array();
+        $dbData = [];
         $dbData["email"] = $pageData["email"];
         $dbData["name"] = $pageData["name"];
         $dbData["surname"] = $pageData["surname"];
