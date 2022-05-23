@@ -108,7 +108,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             }
 
 
-            if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
+            if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($constants::systemStatus))){
                 $message["reply"][] = $project_languages_row->lang." - Geçersiz onay durumu.";
             }
         }

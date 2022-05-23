@@ -114,7 +114,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             }
 
             if($pageData[$project_languages_row->short_lang]["status_control"]){
-                if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($systemStatus))){
+                if(!in_array($pageData[$project_languages_row->short_lang]["status"],array_keys($constants::systemStatus))){
                     $message["reply"][] = $project_languages_row->lang." - Geçersiz onay durumu.";
                 }
             }
@@ -125,11 +125,11 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         foreach ($projectLanguages as $project_languages_row){
             include_once($system->path("includes/System/FileUploader.php"));
             $file = new \Includes\System\FileUploader($constants::fileTypePath);
-            $file->global_file_name = "img_".$project_languages_row->short_lang;
-            $file->upload_folder = "page_image";
-            $file->max_file_size = 5;
+            $file->globalFileName = "img_".$project_languages_row->short_lang;
+            $file->uploadFolder = "page_image";
+            $file->maxFileSize = 5;
             $file->compressor = true;
-            $uploaded = $file->file_upload();
+            $uploaded = $file->fileUpload();
             if($uploaded["result"] == 1){
                 $pageData[$project_languages_row->short_lang]["img"] = $uploaded["img_name"];
             }

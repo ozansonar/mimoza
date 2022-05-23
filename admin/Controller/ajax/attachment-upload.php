@@ -11,11 +11,11 @@ $message = [];
 if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){
     include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($constants::fileTypePath);
-    $file->global_file_name = "attachment";
-    $file->upload_folder = "mailing_attachment";
+    $file->globalFileName = "attachment";
+    $file->uploadFolder = "mailing_attachment";
     $file->upload_type = "pdf_word_image_excel";
-    $file->max_file_size = 5;
-    $uploaded = $file->file_upload();
+    $file->maxFileSize = 5;
+    $uploaded = $file->fileUpload();
     if($uploaded["result"] == 1){
         $message["success"][] = "Ek başarıyla yüklendi.";
         $message["img_path"] = $constants::fileTypePath["mailing_attachment"]["url"].$uploaded["img_name"];

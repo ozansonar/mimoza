@@ -20,12 +20,12 @@ if(isset($_FILES["file_data"])){
 
     include_once($system->path("includes/System/FileUploader.php"));
     $file = new \Includes\System\FileUploader($constants::fileTypePath);
-    $file->global_file_name = "file_data";
-    $file->upload_folder = "gallery";
+    $file->globalFileName = "file_data";
+    $file->uploadFolder = "gallery";
     $file->gallery_id = $gallery_id;
-    $file->max_file_size = 5;
+    $file->maxFileSize = 5;
     $file->compressor = true;
-    $uploaded = $file->file_upload();
+    $uploaded = $file->fileUpload();
     $message = [];
     if($uploaded == 3){
         $message["error"] = "Dosya seçilmedi.";

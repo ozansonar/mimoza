@@ -301,14 +301,14 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	if (empty($message)) {
 		//diğer herşey tamamsa resim işlemlerini yap
 		if (!empty($_FILES["header_logo"]["name"])) {
-			$file->global_file_name = "header_logo";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "header_logo";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
             $file->resize = true;
             $file->width= 250;
             $file->height = 100;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["header_logo"] = $uploaded["img_name"];
 			}
@@ -317,11 +317,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			}
 		}
 		if (!empty($_FILES["footer_logo"]["name"])) {
-			$file->global_file_name = "footer_logo";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "footer_logo";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["footer_logo"] = $uploaded["img_name"];
 			}
@@ -330,11 +330,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			}
 		}
 		if (!empty($_FILES["footer_logo_2"]["name"])) {
-			$file->global_file_name = "footer_logo_2";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "footer_logo_2";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["footer_logo_2"] = $uploaded["img_name"];
 			}
@@ -343,11 +343,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			}
 		}
 		if (!empty($_FILES["mail_tempate_logo"]["name"])) {
-			$file->global_file_name = "mail_tempate_logo";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "mail_tempate_logo";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["mail_tempate_logo"] = $uploaded["img_name"];
 			}
@@ -356,11 +356,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			}
 		}
 		if (!empty($_FILES["banner_img"]["name"])) {
-			$file->global_file_name = "banner_img";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "banner_img";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["banner_img"] = $uploaded["img_name"];
 			}
@@ -369,11 +369,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			}
 		}
 		if (!empty($_FILES["fav_icon"]["name"])) {
-			$file->global_file_name = "fav_icon";
-			$file->upload_folder = "project_image";
-			$file->max_file_size = 5;
+			$file->globalFileName = "fav_icon";
+			$file->uploadFolder = "project_image";
+			$file->maxFileSize = 5;
 			$file->compressor = true;
-			$uploaded = $file->file_upload();
+			$uploaded = $file->fileUpload();
 			if ($uploaded["result"] == 1) {
 				$db_data_settings["fav_icon"] = $uploaded["img_name"];
 			}

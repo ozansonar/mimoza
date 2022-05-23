@@ -108,11 +108,11 @@ if(isset($_POST["submit"]) && $_POST["submit"]){
         //resim yükleme işlemi en son
         include_once($system->path("includes/System/FileUploader.php"));
         $file = new \Includes\System\FileUploader($constants::fileTypePath);
-        $file->global_file_name = "img";
-        $file->upload_folder = "user_image";
-        $file->max_file_size = 5;
+        $file->globalFileName = "img";
+        $file->uploadFolder = "user_image";
+        $file->maxFileSize = 5;
         $file->compressor = true;
-        $uploaded = $file->file_upload();
+        $uploaded = $file->fileUpload();
         if($uploaded["result"] == 1){
             $pageData["img"] = $uploaded["img_name"];
         }

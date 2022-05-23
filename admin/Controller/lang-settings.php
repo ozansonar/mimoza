@@ -100,7 +100,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $message["reply"][] = "Geçersiz form doğrulama durumu.";
     }
 
-    if(!in_array($pageData[$default_lang->short_lang]["status"],array_keys($systemStatus))){
+    if(!in_array($pageData[$default_lang->short_lang]["status"],array_keys($constants::systemStatus))){
         $message["reply"][] = "Geçersiz onay durumu.";
     }
 
