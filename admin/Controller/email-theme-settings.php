@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "email-themes";
-$page_add_role_key = "email-theme-settings";
+$pageAddRoleKey = "email-theme-settings";
 
 //sayfada işlem yapılacak table
 $table = "email_template";
@@ -38,7 +38,7 @@ if(isset($_GET["id"])){
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
@@ -139,7 +139,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_EDIT_SUCC']);
                 $message["success"][] = $lang["content-update"];
 
-                $functions->refresh($system->adminUrl($page_add_role_key."?id=".$id),$refresh_time);
+                $functions->refresh($system->adminUrl($pageAddRoleKey."?id=".$id),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_EDIT_ERR']);
@@ -151,7 +151,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_ADD_SUCC']);
                 $message["success"][] = $lang["content-insert"];
 
-                $functions->refresh($system->adminUrl($page_add_role_key),$refresh_time);
+                $functions->refresh($system->adminUrl($pageAddRoleKey),$refresh_time);
             }else{
                 //log atalım
                 $log->logThis($log->logTypes['EMAIL_TEMALARI_ADD_ERR']);
@@ -171,4 +171,4 @@ $sub_title = "E-posta içeriğinde <b>\"#\"</b> içinde yazılmış kelimleri l�
 $data->pageButtonRedirectLink = $data->pageRoleKey;
 $data->pageButtonRedirectText = "E-posta Temaları";
 $data->pageButtonIcon = "icon-list";
-require $system->adminView($page_add_role_key);
+require $system->adminView($pageAddRoleKey);

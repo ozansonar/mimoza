@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "slider";
-$page_add_role_key = "slider-settings";
+$pageAddRoleKey = "slider-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
@@ -34,8 +34,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::deletePermissionKey);
         $session->permissionDenied();
     }
 

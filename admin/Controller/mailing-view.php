@@ -1,13 +1,13 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "mailler";
-$page_add_role_key = "mail-settings";
+$pageAddRoleKey = "mail-settings";
 
 //sayfada işlem yapılacak table
 $table = "mailing";
 $table_2 = "mailing_user";
 
-if ($session->sessionRoleControl($data->pageRoleKey, $detailPermissionKey) == false) {
+if ($session->sessionRoleControl($data->pageRoleKey, $constants::detailPermissionKey) == false) {
     $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::listPermissionKey);
     $session->permissionDenied();
 }

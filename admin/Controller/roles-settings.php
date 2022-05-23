@@ -2,7 +2,7 @@
 
 //sayfanın izin keyi
 $data->pageRoleKey = "roles";
-$page_add_role_key = "roles-settings";
+$pageAddRoleKey = "roles-settings";
 
 //bu kısımda form sınıfını kullanmaya gerek yok pek değişen bir yer değil
 
@@ -36,7 +36,7 @@ if (isset($_GET["id"])) {
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }

@@ -1,6 +1,7 @@
 ﻿<?php
 
 use Mrt\MimozaCore\AdminForm;
+use Mrt\MimozaCore\View;
 
 if ($session->isThereUserSession() && $session->get("user_rank") < 60) {
 	$functions->redirect($system->url());
@@ -30,4 +31,5 @@ if ($functions->post('submit')) {
 		$functions->redirect($system->adminUrl());
 	}
 }
-require $system->adminView('login');
+
+View::backend('login',[],'guest');

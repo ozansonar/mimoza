@@ -112,7 +112,7 @@
                                 echo $form->select("site_status",array(
                                     "label" => $admin_text["SETTINGS_STATUS"],
                                     "required" => 1,
-                                    "select_item" => $systemSiteModVersion2,
+                                    "select_item" => $constants::systemSiteModVersion2,
                                 ),$pageData);
                                 ?>
                             </div>

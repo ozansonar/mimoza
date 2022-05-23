@@ -73,7 +73,7 @@
                     echo $form->select("status",array(
                         "label" => $admin_text["PG_SET_STATUS"],
                         "required" => 1,
-                        "select_item" => $systemStatusVersion,
+                        "select_item" => $constants::systemStatusVersion,
                     ),$pageData);
                     ?>
                 </form>

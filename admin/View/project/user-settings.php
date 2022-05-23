@@ -99,7 +99,7 @@
                     echo $form->select("status",array(
                         "label" => $admin_text["HESAP_DURUMU"],
                         "required" => 1,
-                        "select_item" => $systemStatusVersion,
+                        "select_item" => $constants::systemStatusVersion,
                     ),$pageData);
 
                     ?>

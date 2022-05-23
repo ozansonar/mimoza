@@ -67,7 +67,7 @@
                             <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
                                 <?php $log_count = 1; ?>
                                 <?php foreach ($log_array as $log_key=>$log): ?>
-                                    <a class="nav-link <?php echo $log_count == 1 ? "active":null; ?>" id="<?php echo $log_key; ?>-tab" data-toggle="pill" href="#tab-<?php echo $log_key; ?>" role="tab" aria-controls="tab-<?php echo $log_key; ?>" aria-selected="<?php echo $log_count == 1 ? "true":"false"; ?>"><?php echo $functions->date_long($log_key); ?></a>
+                                    <a class="nav-link <?php echo $log_count == 1 ? "active":null; ?>" id="<?php echo $log_key; ?>-tab" data-toggle="pill" href="#tab-<?php echo $log_key; ?>" role="tab" aria-controls="tab-<?php echo $log_key; ?>" aria-selected="<?php echo $log_count == 1 ? "true":"false"; ?>"><?php echo $functions->dateLong($log_key); ?></a>
                                     <?php $log_count++; ?>
                                 <?php endforeach; ?>
                             </div>
@@ -83,7 +83,7 @@
                                         <div class="timeline">
                                             <!-- timeline time label -->
                                             <div class="time-label">
-                                                <span class="bg-red"><?php echo $functions->date_long($log_key); ?></span>
+                                                <span class="bg-red"><?php echo $functions->dateLong($log_key); ?></span>
                                             </div>
                                             <!-- /.timeline-label -->
                                             <?php $log_count = 1; ?>

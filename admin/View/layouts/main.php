@@ -129,7 +129,32 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
     </aside>
 	<?php endif; ?>
 	<?php if ($session->isThereAdminSession() && $system->route(1) !== "login"): ?>
-    <?php include_once $data->view ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2 admin-page-top-settings">
+                        <div class="col-sm-6">
+                            <h1>
+                                <a href="javascript:goBack()"><i class="fas fa-arrow-circle-left"></i></a>
+								<?php echo $data->title; ?>
+                            </h1>
+                        </div>
+						<?php if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) === true): ?>
+                            <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
+                                <h1>
+                                    <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
+                                        <i class="<?php echo !empty($data->pageButtonIcon) ? $data->pageButtonIcon:"fas fa-th-list"; ?>"></i>
+										<?php echo $data->pageButtonRedirectText; ?>
+                                    </a>
+                                </h1>
+                            </div>
+						<?php endif; ?>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <?php include_once $data->view ?>
+        </div>
     <!-- Main Footer -->
     <footer class="main-footer">
         <strong><?php echo $settings->project_name; ?></strong>

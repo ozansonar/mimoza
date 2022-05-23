@@ -25,7 +25,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $functions->shorten($page_row->title,20); ?></h5>
                                     <p class="card-text"><?php echo $functions->shorten($page_row->abstract,200); ?></p>
-                                    <p class="card-text"><small class="text-muted"><?php echo $functions->date_long($page_row->created_at); ?></small></p>
+                                    <p class="card-text"><small class="text-muted"><?php echo $functions->dateLong($page_row->created_at); ?></small></p>
                                     <p><a href="<?php echo $functions->createContentUrl($data->category,$page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a></p>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                            <div class="card-body">
                                <h5 class="card-title"><?php echo $functions->shorten($page_row->title,20); ?></h5>
                                <p class="card-text"><?php echo $functions->shorten($page_row->abstract,200); ?></p>
-                               <p class="card-text"><small class="text-muted"><?php echo $functions->date_long($page_row->created_at); ?></small></p>
+                               <p class="card-text"><small class="text-muted"><?php echo $functions->dateLong($page_row->created_at); ?></small></p>
                                <a href="<?php echo $functions->createContentUrl($data->category,$page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                            </div>
                        </div>

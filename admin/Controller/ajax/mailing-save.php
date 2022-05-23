@@ -28,7 +28,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
             $pageData["clean_users"][999] = 999;
         }
         foreach ($pageData["user"] as $user_key){
-            if(array_key_exists($user_key,$systemAdminUserType)){
+            if(array_key_exists($user_key,$constants::systemAdminUserType)){
                 $pageData["clean_users"][$user_key] = $user_key;
             }
         }

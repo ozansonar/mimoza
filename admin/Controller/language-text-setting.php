@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "language-text-setting";
-$page_add_role_key = "language-text-setting";
+$pageAddRoleKey = "language-text-setting";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){

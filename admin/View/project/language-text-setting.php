@@ -55,7 +55,7 @@
                         <?php foreach ($projectLanguages as $project_languages_row){
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo $project_languages_row->default_lang == 1 ? "active":null; ?>" id="content-tab-<?php echo $project_languages_row->short_lang; ?>" data-toggle="pill" href="#content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tab" aria-controls="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" aria-selected="<?php echo $project_languages_row->default_lang == 1 ? "true":"false"; ?>"><?php echo $project_languages_row->lang; ?>&nbsp;<i class="flag-icon flag-icon-<?php echo $project_languages_row->short_lang; ?>"></i></a>
+                                <a class="nav-link <?php echo (int)$project_languages_row->default_lang === 1 ? "active":null; ?>" id="content-tab-<?php echo $project_languages_row->short_lang; ?>" data-toggle="pill" href="#content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tab" aria-controls="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" aria-selected="<?php echo (int)$project_languages_row->default_lang === 1 ? "true":"false"; ?>"><?php echo $project_languages_row->lang; ?>&nbsp;<i class="flag-icon flag-icon-<?php echo $project_languages_row->short_lang; ?>"></i></a>
                             </li>
                             <?php
                         } ?>
@@ -66,7 +66,7 @@
                     <div class="tab-content" id="custom-tabs-two-tabContent">
                         <?php foreach ($projectLanguages as $project_languages_row){
                             ?>
-                            <div class="tab-pane fade <?php echo $project_languages_row->default_lang == 1 ? "show active":null; ?>" id="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tabpanel" aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
+                            <div class="tab-pane fade <?php echo (int)$project_languages_row->default_lang === 1 ? "show active":null; ?>" id="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tabpanel" aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
                                 <form action="" method="post" id="pageForm_<?php echo $project_languages_row->short_lang; ?>" enctype="multipart/form-data">
                                     <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                                     <?php

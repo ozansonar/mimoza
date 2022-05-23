@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "email-themes";
-$page_add_role_key = "email-theme-settings";
+$pageAddRoleKey = "email-theme-settings";
 
 //sayfada işlem yapılacak table
 $table = "email_template";
@@ -37,8 +37,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::deletePermissionKey);
         $session->permissionDenied();
     }
     $del_id = $functions->cleanGetInt("delete");
@@ -68,7 +68,7 @@ $data = $db::selectQuery($table,array(
 $page_title = "E-posta Temaları";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$data->pageButtonRedirectLink = $page_add_role_key;
+$data->pageButtonRedirectLink = $pageAddRoleKey;
 $data->pageButtonRedirectText = "Yeni Ekle";
 $data->pageButtonIcon = "fas fa-plus-square";
 

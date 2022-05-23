@@ -77,7 +77,7 @@
                                 <td>
                                     <?php echo $functions->textModal($row->title,20); ?>
                                 </td>
-                                <td><?php echo $functions->date_short($row->created_at); ?></td>
+                                <td><?php echo $functions->dateShort($row->created_at); ?></td>
                                 <td>
                                     <?php if(!empty($row->img) && file_exists($constants::fileTypePath["page_image"]["full_path"].$row->img)): ?>
                                         <a href="<?php echo $constants::fileTypePath["page_image"]["url"].$row->img; ?>" data-toggle="lightbox" data-title="<?php echo $row->title; ?>" class="color-unset">
@@ -85,12 +85,12 @@
                                         </a>
                                     <?php endif; ?>
                                 </td>
-                                <td><span class="<?php echo $systemStatus[$row->status]["view_class"]; ?>"><?php echo $systemStatus[$row->status]["view_text"]; ?></span></td>
+                                <td><span class="<?php echo $constants::systemStatus[$row->status]["view_class"]; ?>"><?php echo $constants::systemStatus[$row->status]["view_text"]; ?></span></td>
                                 <td>
                                     <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) == true): ?>
                                         <button type="button" class="btn btn-outline-success m-1" onclick="post_edit('<?php echo $system->adminUrl("page-settings?id=".$row->id); ?>')"><i class="fas fa-pencil-alt px-1"></i></i>Düzenle</button>
                                     <?php endif; ?>
-                                    <?php if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == true): ?>
+                                    <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::deletePermissionKey) == true): ?>
                                         <button type="button" class="btn btn-outline-danger m-1" onclick="post_delete('<?php echo $system->adminUrl("page?delete=".$row->id); ?>')"><i class="fas fa-trash px-1"></i> Sil</button>
                                     <?php endif; ?>
                                 </td>

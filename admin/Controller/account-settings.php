@@ -1,11 +1,11 @@
 <?php
-use Includes\System\FileUploader;
+use Mrt\MimozaCore\FileUploader;
 
 //sayfanın izin keyi
 $data->pageRoleKey = "account-settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
-if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) == false){
+if($session->sessionRoleControl($data->pageRoleKey,$constants::listPermissionKey) === false){
     $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::listPermissionKey);
     $session->permissionDenied();
 }

@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "contact";
-$page_add_role_key = "contact-settings";
+$pageAddRoleKey = "contact-settings";
 
 $id = 0;
 $pageData = array();
@@ -99,7 +99,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             $mail_class->adress = $data->email;
             $mail_class->subject = " İletişim mesjınıza cevap verildi -".$pageData[$default_lang->short_lang]["reply_subject"];
             $on_ek = "<p>Sayın <b>".$data->name." ".$data->surname.",</b></p>";
-            $on_ek .= "<p><b>".$functions->date_long($data->created_at)."</b> tarihinde gönderdiğiniz iletişim mesajına yöneticimiz tarafından cevap verildi. Yönetici mesajı aşağıdadır.</p><hr>";
+            $on_ek .= "<p><b>".$functions->dateLong($data->created_at)."</b> tarihinde gönderdiğiniz iletişim mesajına yöneticimiz tarafından cevap verildi. Yönetici mesajı aşağıdadır.</p><hr>";
             $mail_class->message = nl2br($on_ek.$pageData[$default_lang->short_lang]["reply_text"]);
 
             $mail_class->mail_send();

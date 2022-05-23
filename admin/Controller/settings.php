@@ -2,7 +2,7 @@
 
 //sayfanın izin keyi
 $data->pageRoleKey = "settings";
-$page_add_role_key = "settings";
+$pageAddRoleKey = "settings";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) == false) {

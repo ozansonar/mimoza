@@ -1,14 +1,3 @@
-<?php
-/**
- * Author: Ozan SONAR
- * Mail : ozansonar1@gmail.com
- * User: Ozan
- * Date: 22.08.2021
- * Time: 21:07
- */
-?>
-<?php require $system->adminView('static/header'); ?>
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -55,6 +44,3 @@
     </section>
     <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-
-<?php require $system->adminView('static/footer'); ?>

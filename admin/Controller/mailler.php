@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "mailler";
-$page_add_role_key = "mail-settings";
+$pageAddRoleKey = "mail-settings";
 
 //sayfada işlem yapılacak table
 $table = "mailing";
@@ -37,8 +37,8 @@ $customJs[] = "plugins/datatables-buttons/js/buttons.colVis.min.js";
 
 if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])){
     //silme yetkisi kontrol
-    if($session->sessionRoleControl($data->pageRoleKey,$deletePermissionKey) == false){
-        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$deletePermissionKey);
+    if($session->sessionRoleControl($data->pageRoleKey,$constants::deletePermissionKey) == false){
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::deletePermissionKey);
         $session->permissionDenied();
     }
     $del_id = $functions->cleanGetInt("delete");
@@ -67,7 +67,7 @@ $data = $db::selectQuery($table,array(
 $page_title = "Daha Önce Eklenmiş Mailler";
 $sub_title = null;
 //butonun gideceği link ve yazısı
-$data->pageButtonRedirectLink = $page_add_role_key;
+$data->pageButtonRedirectLink = $pageAddRoleKey;
 $data->pageButtonRedirectText = "Yeni Ekle";
 $data->pageButtonIcon = "fas fa-plus-square";
 

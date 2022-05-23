@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "content-categories";
-$page_add_role_key = "content-categories-settings";
+$pageAddRoleKey = "content-categories-settings";
 
 $id = 0;
 $pageData = array();
@@ -35,7 +35,7 @@ if(isset($_GET["id"])){
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
@@ -103,7 +103,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 $message["reply"][] = $project_languages_row->lang." - Lütfen gösterim seklini seçiniz.";
             }
             if($pageData[$project_languages_row->short_lang]["show_type_control"]){
-                if(!in_array($pageData[$project_languages_row->short_lang]["show_type"],array_keys($systemContentCategoriesShowTypes2))){
+                if(!in_array($pageData[$project_languages_row->short_lang]["show_type"],array_keys($constants::systemContentCategoriesShowTypes2))){
                     $message["reply"][] = $project_languages_row->lang." - Geçersiz gösterim şekli seçimi.";
                 }
             }

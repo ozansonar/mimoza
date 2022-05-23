@@ -1,7 +1,7 @@
 <?php
 //sayfanın izin keyi
 $data->pageRoleKey = "lang";
-$page_add_role_key = "lang-settings";
+$pageAddRoleKey = "lang-settings";
 
 $id = 0;
 $pageData = array();
@@ -30,7 +30,7 @@ if(isset($_GET["id"])){
     $pageData[$default_lang->short_lang] = (array) $data;
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
@@ -92,11 +92,11 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         }
     }
 
-    if(!in_array($pageData[$default_lang->short_lang]["default_lang"],array_keys($systemSiteModVersion2))){
+    if(!in_array($pageData[$default_lang->short_lang]["default_lang"],array_keys($constants::systemSiteModVersion2))){
         $message["reply"][] = "Geçersiz varsayılan dil durumu.";
     }
 
-    if(!in_array($pageData[$default_lang->short_lang]["form_validate"],array_keys($systemSiteModVersion2))){
+    if(!in_array($pageData[$default_lang->short_lang]["form_validate"],array_keys($constants::systemSiteModVersion2))){
         $message["reply"][] = "Geçersiz form doğrulama durumu.";
     }
 

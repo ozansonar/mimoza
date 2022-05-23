@@ -2,7 +2,7 @@
 
 //sayfanın izin keyi
 $data->pageRoleKey = "gallery";
-$page_add_role_key = "gallery-settings";
+$pageAddRoleKey = "gallery-settings";
 
 $id = 0;
 $pageData = array();
@@ -34,7 +34,7 @@ if (isset($_GET["id"])) {
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
@@ -94,7 +94,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
                 }
             }
 
-            if(!in_array($pageData[$project_languages_row->short_lang]["type"],array_keys($systemGalleryTypesVersion2))){
+            if(!in_array($pageData[$project_languages_row->short_lang]["type"],array_keys($constants::systemGalleryTypesVersion2))){
                 $message["reply"][] = $project_languages_row->lang." - Geçersiz galeri tipi seçimi.";
             }
 

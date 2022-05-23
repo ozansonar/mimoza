@@ -1,8 +1,10 @@
 <?php
 
 //sayfanın izin keyi
+use Mrt\MimozaCore\AdminForm;
+
 $data->pageRoleKey = "content";
-$page_add_role_key = "content-settings";
+$pageAddRoleKey = "content-settings";
 
 $id = 0;
 $pageData = array();
@@ -35,7 +37,7 @@ if(isset($_GET["id"])){
     }
 }else{
     //add yetki kontrolü
-    if($session->sessionRoleControl($page_add_role_key,$constants::addPermissionKey) == false){
+    if($session->sessionRoleControl($pageAddRoleKey,$constants::addPermissionKey) == false){
         $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"],"izinsiz erişim isteği user id->".$_SESSION["user_id"]." role key => ".$data->pageRoleKey." permissions => ".$constants::editPermissionKey);
         $session->permissionDenied();
     }
@@ -229,7 +231,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 }
 
 include($system->path("includes/System/AdminForm.php"));
-$form = new Includes\System\AdminForm();
+$form = new AdminForm();
 
 //sayfa başlıkları
 $page_title = "İçerik ".(isset($data) ? "Düzenle":"Ekle");
