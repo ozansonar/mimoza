@@ -33,11 +33,11 @@
 								"label" => $admin_text["CAT_TITLE"],
 								"required" => 1,
 							), $data->pageData);
-							echo $form->file("img", array(
-								"label" => $admin_text["CAT_IMG"],
-								"file_key" => "content_categories",
-								"delete_link" => "?id=" . $id . "&img_delete=" . $project_languages_row->short_lang
-							), $data->pageData);
+//							echo $form->file("img", array(
+//								"label" => $admin_text["CAT_IMG"],
+//								"file_key" => "content_categories",
+//								"delete_link" => "?id=" .$data->id. "&img_delete=" . $project_languages_row->short_lang
+//							), $data->pageData);
 							echo $form->input("show_order", array(
 								"label" => $admin_text["SLIDER_SHOW_ORDER"],
 								"required" => 1,
