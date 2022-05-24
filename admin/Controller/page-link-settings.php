@@ -176,7 +176,7 @@ View::backend('page-link-settings',[
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $default_lang,
-	'pageData' => $data,
+	'pageData' => ($data) ?? [],
 	'pl_controller' => $pl_controller,
 	'pageLanguages' => $pageLanguages,
 ]);
