@@ -195,8 +195,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-$form = new AdminForm();
-
 View::backend('content-categories-settings', [
 	'title' => "İçerik Kategorisi " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "content-categories",

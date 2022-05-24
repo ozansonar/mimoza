@@ -167,8 +167,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-include($system->path("includes/System/AdminForm.php"));
-$form = new AdminForm();
 
 //sayfa başlıkları
 $page_title = "Sayfa Linki " . (isset($data) ? "Düzenle" : "Ekle");

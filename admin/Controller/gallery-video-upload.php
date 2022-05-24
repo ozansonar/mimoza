@@ -219,8 +219,6 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
     }
 }
 
-include($system->path("includes/System/AdminForm.php"));
-$form = new Includes\System\AdminForm();
 
 //sayfa başlıkları
 $page_title = "Video ".(isset($data) ? "Düzenle":"Ekle");

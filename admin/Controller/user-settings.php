@@ -1,7 +1,5 @@
 <?php
 
-use Includes\System\AdminForm;
-use Includes\System\FileUploader;
 
 $pageRoleKey = "user";
 $pageAddRoleKey = "user-settings";
@@ -210,8 +208,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-
-$form = new AdminForm();
 
 //sayfa başlıkları
 $page_title = "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle");

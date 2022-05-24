@@ -215,8 +215,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-$form = new AdminForm();
-
 View::backend('menu-settings', [
 	'title' => "Menü " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "menu",

@@ -15,8 +15,6 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 
 $metaTag->title = $functions->textManager("contact_title");
 
-include($system->path("includes/System/Form.php"));
-$form = new Includes\System\Form();
 
 View::layout('contact',[
     'customCss' => $customCss,

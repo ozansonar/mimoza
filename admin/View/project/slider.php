@@ -3,12 +3,7 @@
         <div class="card-header">
             <h3 class="card-title">
                 <?php echo $data->title; ?>
-				<?php if (!empty($sub_title)): ?>
-                    <br>
-                    <small><?php echo $sub_title; ?></small>
-				<?php endif; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>

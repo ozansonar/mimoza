@@ -80,11 +80,10 @@
 								"required" => 1,
 								"class" => "ckeditor",
 							), $data->pageData);
-//                            TODO:: img adminForm
-//							echo $form->file("img", array(
-//								"label" => $admin_text["SLIDER_IMG"],
-//								"file_key" => "slider",
-//							), $data->pageData);
+							echo $form->file("img", array(
+								"label" => $admin_text["SLIDER_IMG"],
+								"file_key" => "slider",
+							), $data->pageData);
 							echo $form->input("show_order", array(
 								"label" => $admin_text["SLIDER_SHOW_ORDER"],
 								"required" => 1,
@@ -104,17 +103,13 @@
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer text-right">
-			<?php
-			echo $form->button("submit", array(
+			<?php echo $form->button("submit", array(
 				"text" => "Kaydet",
 				"icon" => "fas fa-save",
 				"btn_class" => "btn btn-success",
-			));
-			?>
+			)); ?>
         </div>
-        <!-- /.card-footer-->
     </div>
 </section>
 <script src="<?php echo $system->adminPublicUrl("plugins/ckeditor/ckeditor.js"); ?>"></script>

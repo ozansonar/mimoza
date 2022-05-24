@@ -212,7 +212,6 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	}
 }
 
-$form = new AdminForm();
 
 View::backend('slider-settings',[
 	'title' => "Slider " . (isset($data) ? "Düzenle" : "Ekle"),
