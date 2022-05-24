@@ -1,8 +1,8 @@
 <?php
-//sayfanın izin keyi
-use Mrt\MimozaCore\AdminForm;
 
-$data->pageRoleKey = "page-link";
+use Mrt\MimozaCore\View;
+
+$pageRoleKey = "page-link";
 $pageAddRoleKey = "page-link-settings";
 
 $id = 0;
@@ -12,34 +12,35 @@ $default_lang = $siteManager->defaultLanguage();
 
 if (isset($_GET["id"])) {
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
-	if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === false
-		|| $session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::editPermissionKey);
+	if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === false
+		|| $session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 		$session->permissionDenied();
 	}
-	//log atalım
-	$log->logThis($log->logTypes['PAGE_LINK_DETAIL']);
 
+	$log->logThis($log->logTypes['PAGE_LINK_DETAIL']);
 	$id = $functions->cleanGetInt("id");
+
 	$data = $db::selectQuery("file_url", array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
+
 	if (empty($data)) {
 		$functions->redirect($system->adminUrl("page-link"));
 	}
+
 	$pageData[$default_lang->short_lang] = (array)$data;
 } else {
 	//add yetki kontrolü
 	if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::editPermissionKey);
+		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 		$session->permissionDenied();
 	}
 
-	//log atalım
 	$log->logThis($log->logTypes['PAGE_LINK_ADD_PAGE']);
 }
-//bu sayfadakullanılan özel css'ler
+
 $customCss = [
 	"plugins/form-validation-engine/css/validationEngine.jquery.css",
 	"plugins/icheck-bootstrap/icheck-bootstrap.min.css",
@@ -49,7 +50,6 @@ $customCss = [
 	"plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
 ];
 
-//bu sayfadakullanılan özel js'ler
 $customJs = [
 	"plugins/form-validation-engine/js/jquery.validationEngine.js",
 	"plugins/form-validation-engine/js/languages/jquery.validationEngine-tr.js",
@@ -59,11 +59,12 @@ $customJs = [
 	"plugins/ckeditor/ckeditor.js",
 ];
 
-//mevcut urlleri çekip array yapalım
 $file_url_array = [];
+
 $data_file_url = $db::selectQuery("file_url", array(
 	"deleted" => 0,
 ));
+
 foreach ($data_file_url as $file_url_row) {
 	$file_url_array[$file_url_row->url] = $file_url_row->url;
 }
@@ -167,12 +168,15 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
+View::backend('page-link-settings',[
+	'title' =>"Sayfa Linki " . (isset($data) ? "Düzenle" : "Ekle"),
+	'pageButtonRedirectLink' => "page-link",
+	'pageButtonRedirectText' => "Sayfa Linkleri",
+	'pageButtonIcon' => "icon-list",
+	'pageRoleKey' => $pageRoleKey,
+	'pageAddRoleKey' => $pageAddRoleKey,
+	'defaultLanguage' => $default_lang,
+	'pageData' => $data,
+	'pl_controller' => $pl_controller,
 
-//sayfa başlıkları
-$page_title = "Sayfa Linki " . (isset($data) ? "Düzenle" : "Ekle");
-$sub_title = null;
-//butonun gideceği link ve yazısı
-$data->pageButtonRedirectLink = "page-link";
-$data->pageButtonRedirectText = "Sayfa Linkleri";
-$data->pageButtonIcon = "icon-list";
-require $system->adminView('page-link-settings');
+]);
