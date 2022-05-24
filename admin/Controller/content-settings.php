@@ -1,6 +1,5 @@
 <?php
 
-use Mrt\MimozaCore\AdminForm;
 use Mrt\MimozaCore\FileUploader;
 use Mrt\MimozaCore\View;
 
@@ -217,9 +216,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		}
 	}
 }
-
-$form = new AdminForm();
-
 
 View::backend('content-settings', [
 	'title' => "İçerik " . (isset($data) ? "Düzenle" : "Ekle"),

@@ -43,11 +43,11 @@
 								"required" => 1,
 								"class" => "ckeditor",
 							), $data->pageData);
-//							echo $form->file("img", array(
-//								"label" => $admin_text["CONTENT_FILE"],
-//								"file_key" => "content",
-//								"delete_link" => "?id=" . $data->id . "&img_delete=" . $project_languages_row->short_lang
-//							), $data->pageData);
+							echo $form->file("img", array(
+								"label" => $admin_text["CONTENT_FILE"],
+								"file_key" => "content",
+								"delete_link" => "?id=" . $data->id . "&img_delete=" . $project_languages_row->short_lang
+							), $data->pageData);
 							echo $form->select("cat_id", array(
 								"label" => $admin_text["CONTENT_CAT_SEC"],
 								"required" => 1,
