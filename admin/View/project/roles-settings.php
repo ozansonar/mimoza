@@ -25,26 +25,26 @@
                 <div class="col-12 p-0"><h3>Yetkiler</h3></div>
 
                 <div class="row">
-					<?php foreach ($data->menus as $mainUrl => $menu): ?>
+					<?php foreach ($menu as $mainUrl => $menuItem): ?>
 						<?php $rand = rand(1, 99999); ?>
                         <div class="col-12 table-bordered m-2 p-2">
                             <div class="form-group mb-3 mb-md-2">
-								<?php if (isset($menu["submenu"])): ?>
+								<?php if (isset($menuItem["submenu"])): ?>
                                     <div class="icheck-primary d-inline">
                                         <input type="checkbox" class="<?php echo $rand ?>_top"
-                                               id="id_permission_<?php echo $menu["url"] . "_s"; ?>"
-                                               name="permissions[<?php echo $menu["url"]; ?>][<?php echo "s"; ?>]"
-                                               value="<?php echo "s"; ?>" <?php echo isset($role_array[$menu["url"]]) && in_array("s", $role_array[$menu["url"]]) ? "checked" : null; ?>>
-                                        <label for="id_permission_<?php echo $menu["url"] . "_s"; ?>">
-											<?php echo $menu["title"]; ?>
+                                               id="id_permission_<?php echo $menuItem["url"] . "_s"; ?>"
+                                               name="permissions[<?php echo $menuItem["url"]; ?>][<?php echo "s"; ?>]"
+                                               value="<?php echo "s"; ?>" <?php echo isset($data->role_array[$menuItem["url"]]) && in_array("s", $data->role_array[$menuItem["url"]]) ? "checked" : null; ?>>
+                                        <label for="id_permission_<?php echo $menuItem["url"] . "_s"; ?>">
+											<?php echo $menuItem["title"]; ?>
                                         </label>
                                     </div>
 								<?php else: ?>
-                                    <label class="font-weight-semibold"><?php echo $menu["title"]; ?></label>
+                                    <label class="font-weight-semibold"><?php echo $menuItem["title"]; ?></label>
 								<?php endif; ?>
                                 <div class="row p-0 m-0">
-									<?php if (isset($menu['submenu'])): ?>
-										<?php foreach ($menu['submenu'] as $k => $submenu): ?>
+									<?php if (isset($menuItem['submenu'])): ?>
+										<?php foreach ($menuItem['submenu'] as $k => $submenu): ?>
                                             <div class="col-12 mt-2">
 												<?php echo $submenu['title']; ?>
 												<?php if (isset($submenu["permissions"])): ?>
@@ -55,7 +55,7 @@
                                                                        data-permission-category="<?php echo $rand; ?>"
                                                                        id="id_permission_<?php echo $submenu["url"] . "_" . $per_key; ?>"
                                                                        name="permissions[<?php echo $submenu["url"]; ?>][<?php echo $per_key; ?>]"
-                                                                       value="<?php echo $per_key; ?>" <?php echo isset($role_array[$submenu["url"]]) && in_array($per_key, $role_array[$submenu["url"]], true) ? "checked" : null; ?>>
+                                                                       value="<?php echo $per_key; ?>" <?php echo isset($data->role_array[$submenu["url"]]) && in_array($per_key, $data->role_array[$submenu["url"]], true) ? "checked" : null; ?>>
                                                                 <label for="id_permission_<?php echo $submenu["url"] . "_" . $per_key; ?>">
 																	<?php echo $per_val; ?>
                                                                 </label>
@@ -66,15 +66,15 @@
                                             </div>
 										<?php endforeach; ?>
 									<?php else: ?>
-										<?php if (isset($menu["permissions"])): ?>
+										<?php if (isset($menuItem["permissions"])): ?>
                                             <div class="row pl-2 mt-1">
-												<?php foreach ($menu["permissions"] as $per_key => $per_val): ?>
+												<?php foreach ($menuItem["permissions"] as $per_key => $per_val): ?>
                                                     <div class="icheck-primary d-inline pr-4">
                                                         <input type="checkbox"
-                                                               id="id_permission_<?php echo $menu["url"] . "_" . $per_key; ?>"
-                                                               name="permissions[<?php echo $menu["url"]; ?>][<?php echo $per_key; ?>]"
-                                                               value="<?php echo $per_key; ?>" <?php echo isset($role_array[$menu["url"]]) && in_array($per_key, $role_array[$menu["url"]]) ? "checked" : null; ?> >
-                                                        <label for="id_permission_<?php echo $menu["url"] . "_" . $per_key; ?>">
+                                                               id="id_permission_<?php echo $menuItem["url"] . "_" . $per_key; ?>"
+                                                               name="permissions[<?php echo $menuItem["url"]; ?>][<?php echo $per_key; ?>]"
+                                                               value="<?php echo $per_key; ?>" <?php echo isset($data->role_array[$menuItem["url"]]) && in_array($per_key, $data->role_array[$menuItem["url"]], true) ? "checked" : null; ?> >
+                                                        <label for="id_permission_<?php echo $menuItem["url"] . "_" . $per_key; ?>">
 															<?php echo $per_val; ?>
                                                         </label>
                                                     </div>
@@ -95,7 +95,7 @@
                                         <input type="checkbox"
                                                id="id_permission_<?php echo $extra_row["url"] . "_" . $permission_extra_key; ?>"
                                                name="permissions[<?php echo $extra_row["url"]; ?>][<?php echo $permission_extra_key; ?>]"
-                                               value="<?php echo $permission_extra_key; ?>" <?php echo isset($role_array[$extra_row["url"]]) && in_array($permission_extra_key, $role_array[$extra_row["url"]]) ? "checked" : null; ?>>
+                                               value="<?php echo $permission_extra_key; ?>" <?php echo isset($data->role_array[$extra_row["url"]]) && in_array($permission_extra_key, $data->role_array[$extra_row["url"]]) ? "checked" : null; ?>>
                                         <label for="id_permission_<?php echo $extra_row["url"] . "_" . $permission_extra_key; ?>">
 											<?php echo $permission_extra; ?>
                                         </label>
@@ -118,7 +118,7 @@
                                         <input type="checkbox" class="<?php echo $rand ?>_top"
                                                id="id_permission_<?php echo $on_row["url"] . "_s"; ?>"
                                                name="permissions[<?php echo $on_row["url"]; ?>][<?php echo "s"; ?>]"
-                                               value="<?php echo "s"; ?>" <?php echo isset($role_array[$on_row["url"]]) && in_array("s", $role_array[$on_row["url"]]) ? "checked" : null; ?>>
+                                               value="<?php echo "s"; ?>" <?php echo isset($data->role_array[$on_row["url"]]) && in_array("s", $data->role_array[$on_row["url"]]) ? "checked" : null; ?>>
                                         <label for="id_permission_<?php echo $on_row["url"] . "_s"; ?>">
 											<?php echo $on_row["title"]; ?>
                                         </label>
@@ -139,7 +139,7 @@
                                                                        data-permission-category="<?php echo $rand; ?>"
                                                                        id="id_permission_<?php echo $submenu["url"] . "_" . $per_key; ?>"
                                                                        name="permissions[<?php echo $submenu["url"]; ?>][<?php echo $per_key; ?>]"
-                                                                       value="<?php echo $per_key; ?>" <?php echo isset($role_array[$submenu["url"]]) && in_array($per_key, $role_array[$submenu["url"]]) ? "checked" : null; ?>>
+                                                                       value="<?php echo $per_key; ?>" <?php echo isset($data->role_array[$submenu["url"]]) && in_array($per_key, $data->role_array[$submenu["url"]]) ? "checked" : null; ?>>
                                                                 <label for="id_permission_<?php echo $submenu["url"] . "_" . $per_key; ?>">
 																	<?php echo $per_val; ?>
                                                                 </label>
@@ -157,7 +157,7 @@
                                                         <input type="checkbox"
                                                                id="id_permission_<?php echo $on_row["url"] . "_" . $per_key; ?>"
                                                                name="permissions[<?php echo $on_row["url"]; ?>][<?php echo $per_key; ?>]"
-                                                               value="<?php echo $per_key; ?>" <?php echo isset($role_array[$on_row["url"]]) && in_array($per_key, $role_array[$on_row["url"]]) ? "checked" : null; ?> >
+                                                               value="<?php echo $per_key; ?>" <?php echo isset($data->role_array[$on_row["url"]]) && in_array($per_key, $data->role_array[$on_row["url"]]) ? "checked" : null; ?> >
                                                         <label for="id_permission_<?php echo $on_row["url"] . "_" . $per_key; ?>">
 															<?php echo $per_val; ?>
                                                         </label>

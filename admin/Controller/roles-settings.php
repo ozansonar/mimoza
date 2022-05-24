@@ -210,6 +210,6 @@ View::backend('roles-settings', [
 	'pageRoleKey' => $pageRoleKey,
 	'onyuz_yetkiler' => $onyuz_yetkiler ?? NULL,
 	'extra' => $extra ?? NULL,
-	'menus' => $pageData,
-
+	'role_array' => $role_array,
+	'pageData' => $pageData,
 ]);
