@@ -69,9 +69,9 @@ foreach ($data_file_url as $file_url_row) {
 	$file_url_array[$file_url_row->url] = $file_url_row->url;
 }
 
-$pageLang = [];
+$pageLanguages = [];
 foreach ($projectLanguages as $projectLanguagesKey => $projectLanguagesValue) {
-	$pageLang[$projectLanguagesKey] = $projectLanguagesKey;
+	$pageLanguages[$projectLanguagesKey] = $projectLanguagesKey;
 }
 
 $pl_controller = [];
@@ -120,7 +120,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$message["reply"][] = "Geçersiz onay durumu.";
 	}
 
-	if ($pageData[$default_lang->short_lang]["lang"] && !array_key_exists($pageData[$default_lang->short_lang]["lang"], $pageLang)) {
+	if ($pageData[$default_lang->short_lang]["lang"] && !array_key_exists($pageData[$default_lang->short_lang]["lang"], $pageLanguages)) {
 		$message["reply"][] = "Geçersiz dil seçimi";
 	}
 
@@ -178,5 +178,5 @@ View::backend('page-link-settings',[
 	'defaultLanguage' => $default_lang,
 	'pageData' => $data,
 	'pl_controller' => $pl_controller,
-
+	'pageLanguages' => $pageLanguages,
 ]);

@@ -30,7 +30,7 @@
 			echo $form->select("lang", array(
 				"label" => $admin_text["PG_SET_LANG"],
 				"required" => 1,
-				"select_item" => $pageLang,
+				"select_item" => $data->pageLanguages,
 			), $data->pageData);
 			echo $form->select("status", array(
 				"label" => $admin_text["PG_SET_STATUS"],
