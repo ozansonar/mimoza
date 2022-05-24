@@ -77,12 +77,12 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	$pageData[$default_lang->short_lang]["phone"] = $functions->cleanPost("phone");
 	$pageData[$default_lang->short_lang]["fax"] = $functions->cleanPost("fax");
 	$pageData[$default_lang->short_lang]["maps"] = $functions->cleanPost("maps");
-	$pageData[$default_lang->short_lang]["adres"] = $functions->clean_post_textarea("adres");
-	$pageData[$default_lang->short_lang]["contact_despription"] = $functions->clean_post_textarea("contact_despription");
+	$pageData[$default_lang->short_lang]["adres"] = $functions->cleanPostTextarea("adres");
+	$pageData[$default_lang->short_lang]["contact_despription"] = $functions->cleanPostTextarea("contact_despription");
 
 
 	$pageData[$default_lang->short_lang]["site_status_title"] = $functions->cleanPost("site_status_title");
-	$pageData[$default_lang->short_lang]["site_status_text"] = $functions->clean_post_textarea("site_status_text");
+	$pageData[$default_lang->short_lang]["site_status_text"] = $functions->cleanPostTextarea("site_status_text");
 
 	//smtp
 	$pageData[$default_lang->short_lang]["mail_send_mode"] = isset($_POST["mail_send_mode"]) ? 1 : 0;
@@ -100,7 +100,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 
 	//sayfa bulunamadı
 	$pageData[$default_lang->short_lang]["page_not_found_title"] = $functions->cleanPost("page_not_found_title");
-	$pageData[$default_lang->short_lang]["page_not_found_text"] = $functions->clean_post_textarea("page_not_found_text");
+	$pageData[$default_lang->short_lang]["page_not_found_text"] = $functions->cleanPostTextarea("page_not_found_text");
 
     //özel linkler
     foreach ($systemLinkPrefix as $prefixKey => $systemLinkPrefixValue) {

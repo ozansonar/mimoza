@@ -97,7 +97,7 @@
                                     "required" => 1,
                                     "select_item" => $systemYesAndNoVersion2,
                                 ),$data->pageData);
-                                echo $form->input_tags("keywords",array(
+                                echo $form->inputTags("keywords",array(
                                     "label" => $admin_text["SETTINGS_KEYWORDS"],
                                     "class" => "w-100",
                                 ),$data->pageData);

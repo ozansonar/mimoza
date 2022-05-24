@@ -52,7 +52,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
             foreach($language_text_manager as $language_text_manager_key=>$language_text_manager_value){
                 foreach ($language_text_manager_value["form"] as $language_text_manager_form){
                     if(isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] == "textarea"){
-                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->clean_post_textarea($language_text_manager_form["name"]);
+                        $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->cleanPostTextarea($language_text_manager_form["name"]);
                     }else{
                         $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->cleanPost($language_text_manager_form["name"]);
                     }

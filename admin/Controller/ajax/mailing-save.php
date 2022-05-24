@@ -9,7 +9,7 @@
 if(isset($_POST["subject"]) && !empty($_POST["subject"])){
     $pageData = [];
     $pageData["subject"] = $functions->cleanPost("subject");
-    $pageData["text"] = $functions->clean_post_textarea("text");
+    $pageData["text"] = $functions->cleanPostTextarea("text");
     $pageData["attachment"] = $functions->post("attecament");
     $pageData["user"] = $functions->post("user");
     $pageData["send"] = $functions->post("send");

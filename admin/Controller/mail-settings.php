@@ -84,7 +84,7 @@ if(isset($_POST["submit"]) && $_POST["submit"] == 1){
         $functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
         $pageData[$project_languages_row->short_lang]["subject"] = $functions->cleanPost("subject");
-        $pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
+        $pageData[$project_languages_row->short_lang]["text"] = $functions->cleanPostTextarea("text");
         $pageData[$project_languages_row->short_lang]["not_text"] = $functions->cleanPost("not_text");
         $pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 

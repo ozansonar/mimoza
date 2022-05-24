@@ -90,7 +90,7 @@
                                     "file_key" => "page_image",
                                     "delete_link" => "?id=".$id."&img_delete=".$project_languages_row->short_lang
                                 ),$data->pageData);
-                                echo $form->input_tags("keywords",array(
+                                echo $form->inputTags("keywords",array(
                                     "label" => $admin_text["PAGE_KEYWORDS"],
                                     "class" => "w-100",
                                 ),$data->pageData);

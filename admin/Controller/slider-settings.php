@@ -72,8 +72,8 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 		$functions->form_lang = $project_languages_row->short_lang;
 		$pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
 		$pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
-		$pageData[$project_languages_row->short_lang]["abstract"] = $functions->clean_post_textarea("abstract");
-		$pageData[$project_languages_row->short_lang]["text"] = $functions->clean_post_textarea("text");
+		$pageData[$project_languages_row->short_lang]["abstract"] = $functions->cleanPostTextarea("abstract");
+		$pageData[$project_languages_row->short_lang]["text"] = $functions->cleanPostTextarea("text");
 		$pageData[$project_languages_row->short_lang]["show_order"] = $functions->cleanPostInt("show_order");
 		$pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 		$pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
