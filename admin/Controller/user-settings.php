@@ -1,5 +1,7 @@
 <?php
 
+use Mrt\MimozaCore\FileUploader;
+use Mrt\MimozaCore\View;
 
 $pageRoleKey = "user";
 $pageAddRoleKey = "user-settings";
@@ -21,8 +23,8 @@ $customJs = [
 $id = 0;
 $pageData = [];
 
-
 $default_lang = $siteManager->defaultLanguage();
+
 if (isset($_GET["id"])) {
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
 	if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === false || $session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
@@ -42,7 +44,7 @@ if (isset($_GET["id"])) {
 		$functions->redirect($system->adminUrl());
 	}
 	$pageData[$default_lang->short_lang] = (array)$data;
-	unset($pageData[$default_lang->short_lang]["password"]);//datanın içinde şifre olmasın
+	unset($pageData[$default_lang->short_lang]["password"]);
 } else if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 	$session->permissionDenied();
@@ -103,18 +105,17 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$message["reply"][] = "Soyisim 50 karekteri geçemez.";
 		}
 	}
-    if($pageData[$default_lang->short_lang]["status"]){
-        if(!in_array($pageData[$default_lang->short_lang]["status"],array_keys($constants::systemStatus))){
-            $message["reply"][] = "Geçersiz onay durumu.";
-        }
-    }
+	if ($pageData[$default_lang->short_lang]["status"]
+		&& !array_key_exists($pageData[$default_lang->short_lang]["status"], $constants::systemStatus)) {
+		$message["reply"][] = "Geçersiz onay durumu.";
+	}
 
-    if(!empty($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password_again"])){
-        $message = getMessage($functions, $pageData[$default_lang->short_lang]["password"], $message, $pageData[$default_lang->short_lang]["password_again"]);
-        if($pageData[$default_lang->short_lang]["password"] !== $pageData[$default_lang->short_lang]["password_again"]){
-            $message["reply"][] = "Şifre ve şifre tekrarı aynı olmalıdır.";
-        }
-    }
+	if (!empty($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password_again"])) {
+		$message = getMessage($functions, $pageData[$default_lang->short_lang]["password"], $message, $pageData[$default_lang->short_lang]["password_again"]);
+		if ($pageData[$default_lang->short_lang]["password"] !== $pageData[$default_lang->short_lang]["password_again"]) {
+			$message["reply"][] = "Şifre ve şifre tekrarı aynı olmalıdır.";
+		}
+	}
 
 
 	if (empty($message)) {
@@ -144,9 +145,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$dat["telefon"] = $pageData[$default_lang->short_lang]["telefon"];
 		$dat["status"] = $pageData[$default_lang->short_lang]["status"];
 		$dat["surname"] = $pageData[$default_lang->short_lang]["surname"];
-        if(isset($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password"])){
-            $dat["password"] = password_hash($pageData[$default_lang->short_lang]["password"],PASSWORD_BCRYPT);
-        }
+		if (isset($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password"])) {
+			$dat["password"] = password_hash($pageData[$default_lang->short_lang]["password"], PASSWORD_BCRYPT);
+		}
 		if (isset($pageData[$default_lang->short_lang]["img"])) {
 			$dat["img"] = $pageData[$default_lang->short_lang]["img"];
 		}
@@ -156,15 +157,11 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			//güncelleme
 			$update = $db::update("users", $dat, array("id" => $id));
 			if ($update) {
-				//log atalım
 				$log->logThis($log->logTypes['USER_EDIT_SUCC']);
-
 				$message["success"][] = $lang["content-update"];
 				$functions->refresh($system->adminUrl("user-settings?id=" . $id), $refresh_time);
 			} else {
-				//log atalım
 				$log->logThis($log->logTypes['USER_EDIT_ERR']);
-
 				$message["reply"][] = $lang["content-update-error"];
 			}
 		} else {
@@ -185,14 +182,15 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-
-//sayfa başlıkları
-$page_title = "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle");
-$sub_title = null;
-
-//butonun gideceği link ve yazısı
-$data->pageButtonRedirectLink = "user";
-$data->pageButtonRedirectText = "Kullanıcılar";
-$data->pageButtonIcon = "icon-list";
-require $system->adminView('user-settings');
+View::backend('user-settings', [
+	'id' => $id,
+	'title' => "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle"),
+	'pageButtonRedirectLink' => "user",
+	'pageButtonRedirectText' => "Kullanıcılar",
+	'pageButtonIcon' => "icon-list",
+	'pageRoleKey' => $pageRoleKey,
+	'pageAddRoleKey' => $pageAddRoleKey,
+	'defaultLanguage' => $default_lang,
+	'pageData' => $pageData,
+]);
 
