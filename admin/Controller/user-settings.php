@@ -48,29 +48,6 @@ if (isset($_GET["id"])) {
 	$session->permissionDenied();
 }
 
-/**
- * @param \Includes\System\Functions $functions
- * @param string $password
- * @param array $message
- * @param string $password_again
- * @return array
- */
-function getMessage(\Includes\System\Functions $functions, string $password, array $message, string $password_again): array
-{
-    $password_control = $functions->passwordControl($password, "Şifre");
-    if (!empty($password_control)) {
-        foreach ($password_control as $s_cntr) {
-            $message["reply"][] = $s_cntr;
-        }
-    }
-    $password_again_control = $functions->passwordControl($password_again, "Şifre tekrarı");
-    if (!empty($password_again_control)) {
-        foreach ($password_again_control as $st_cntr) {
-            $message["reply"][] = $st_cntr;
-        }
-    }
-    return $message;
-}
 
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
@@ -92,15 +69,15 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	if (empty($pageData[$default_lang->short_lang]["email"])) {
 		$message["reply"][] = "E-posta boş olamaz.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["email"]) && !$functions->is_email($pageData[$default_lang->short_lang]["email"])) {
+	if (!empty($pageData[$default_lang->short_lang]["email"]) && !$functions->isEmail($pageData[$default_lang->short_lang]["email"])) {
 		$message["reply"][] = "E-postanız email formatında olmalıdır.";
 	}
 	if ($id === 0) {
 		//ekleme kısmı
-		if ($functions->is_email($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqData("users", "email", $pageData[$default_lang->short_lang]["email"]) > 0) {
+		if ($functions->isEmail($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqData("users", "email", $pageData[$default_lang->short_lang]["email"]) > 0) {
 			$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 		}
-	} else if ($functions->is_email($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $pageData[$default_lang->short_lang]["email"], $id) > 0) {
+	} else if ($functions->isEmail($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $pageData[$default_lang->short_lang]["email"], $id) > 0) {
 		$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 	}
 

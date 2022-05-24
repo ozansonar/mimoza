@@ -172,7 +172,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 	}
 
 	if (!empty($pageData[$default_lang->short_lang]["site_mail"])) {
-		if (!$functions->is_email($pageData[$default_lang->short_lang]["site_mail"])) {
+		if (!$functions->isEmail($pageData[$default_lang->short_lang]["site_mail"])) {
 			$message["reply"][] = "Lütfen geçerli bir e-posta adresi giriniz.";
 		}
 	}
@@ -217,7 +217,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$message["reply"][] = "Smtp e-posta adresi boş olamaz.";
 		}
 		if (!empty($pageData[$default_lang->short_lang]["smtp_email"])) {
-			if (!$functions->is_email($pageData[$default_lang->short_lang]["smtp_email"])) {
+			if (!$functions->isEmail($pageData[$default_lang->short_lang]["smtp_email"])) {
 				$message["reply"][] = "Lütfen geçerli bir smtp e-posta adresi giriniz.";
 			}
 		}
@@ -247,7 +247,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$message["reply"][] = "Gönderen e-posta adresi boş olamaz.";
 		}
 		if (!empty($pageData[$default_lang->short_lang]["smtp_send_email_adres"])) {
-			if (!$functions->is_email($pageData[$default_lang->short_lang]["smtp_send_email_adres"])) {
+			if (!$functions->isEmail($pageData[$default_lang->short_lang]["smtp_send_email_adres"])) {
 				$message["reply"][] = "Lütfen gönderen e-posta adresini geçerli formatta yazın.";
 			}
 		}
@@ -255,7 +255,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$message["reply"][] = "Cevap e-posta adresi boş olamaz.";
 		}
 		if (!empty($pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"])) {
-			if (!$functions->is_email($pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"])) {
+			if (!$functions->isEmail($pageData[$default_lang->short_lang]["smtp_send_email_reply_adres"])) {
 				$message["reply"][] = "Lütfen cevap e-posta adresini geçerli formatta yazın.";
 			}
 		}
@@ -271,13 +271,13 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			if (empty($pageData[$default_lang->short_lang]["smtp_send_debug_adres"])) {
 				$message["reply"][] = "Test maillerinin gideceği adres boş olamaz.";
 			}
-			if (!$functions->is_email($pageData[$default_lang->short_lang]["smtp_send_debug_adres"])) {
+			if (!$functions->isEmail($pageData[$default_lang->short_lang]["smtp_send_debug_adres"])) {
 				$message["reply"][] = "Test maillerinin gideceği adres e-posta formatında olmalıdır.";
 			}
 		}
 
 		if (!empty($pageData[$default_lang->short_lang]["smtp_send_debug_adres"])) {
-			if (!$functions->is_email($pageData[$default_lang->short_lang]["smtp_email"])) {
+			if (!$functions->isEmail($pageData[$default_lang->short_lang]["smtp_email"])) {
 				$message["reply"][] = "Lütfen test maillerinin gideceği geçerli bir e-posta adresi giriniz.";
 			}
 		}

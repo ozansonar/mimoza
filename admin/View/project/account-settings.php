@@ -1,18 +1,9 @@
 <section class="content">
-
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
-
-    <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
+            <h3 class="card-title">
+                <?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -25,7 +16,7 @@
         <div class="card-body">
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php
-				$form->lang = $default_lang->short_lang;
+				$form->lang = $data->defaultLanguage->short_lang;
 				$form->formNameWithoutLangCode = 1;
 				echo $functions->csrfToken();
 				echo $form->input("email", array(
@@ -44,7 +35,7 @@
 				echo $form->file("img", array(
 					"label" => $admin_text["HESAP_RESIM"],
 					"file_key" => "user_image",
-					"delete_link" => "?id=" . $data->pageData[$default_lang->short_lang]["id"] . "&img_delete=1"
+					"delete_link" => "?id=" . $data->pageData[$data->defaultLanguage->short_lang]["id"] . "&img_delete=1"
 				), $data->pageData);
 				echo $form->input("password", array(
 					"label" => $admin_text["HESAP_PASSWORD"],
@@ -64,20 +55,14 @@
 				?>
             </form>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer text-right">
-			<?php
-			echo $form->button("submit", array(
+			<?php echo $form->button("submit", array(
 				"text" => "Kaydet",
 				"icon" => "fas fa-save",
 				"btn_class" => "btn btn-success",
-			));
-			?>
+			)); ?>
         </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
-
 </section>
 <script>
     $(document).ready(function () {

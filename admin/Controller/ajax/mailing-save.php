@@ -47,7 +47,7 @@ if(isset($_POST["subject"]) && !empty($_POST["subject"])){
                 $message["reply"][] = "Lütfen test maili gönderilecek adresi yazınız.";
             }
             if (!empty($email)) {
-                if (!$functions->is_email($email)) {
+                if (!$functions->isEmail($email)) {
                     $message["reply"][] = "Lütfen geçerli bir mail adresi yazınız.";
                 }
             }
