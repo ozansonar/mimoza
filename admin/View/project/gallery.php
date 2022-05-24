@@ -1,15 +1,9 @@
 <section class="content">
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
+            <h3 class="card-title">
+                <?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -32,11 +26,12 @@
                 </tr>
                 </thead>
                 <tbody>
-				<?php foreach ($data as $row): ?>
+				<?php foreach ($data->content as $row): ?>
                     <tr>
                         <td><?php echo $functions->textModal($row->name, 20); ?></td>
                         <td>
-							<?php if (!empty($row->img) && file_exists($constants::fileTypePath["gallery"]["full_path"] . $row->img)): ?>
+							<?php if (!empty($row->img) &&
+                                file_exists($constants::fileTypePath["gallery"]["full_path"] . $row->img)): ?>
                                 <a href="<?php echo $constants::fileTypePath["gallery"]["url"] . $row->img; ?>"
                                    data-toggle="lightbox" data-title="<?php echo $row->name; ?>" class="color-unset">
                                     <i class="fas fa-images"></i>
@@ -46,7 +41,9 @@
                         <td><?php echo $constants::systemGalleryTypes[$row->type]["view_text"]; ?></td>
                         <td><?php echo $functions->dateShort($row->created_at); ?></td>
                         <td>
-                            <span class="<?php echo $constants::systemStatus[$row->status]["view_class"]; ?>"><?php echo $constants::systemStatus[$row->status]["view_text"]; ?></span>
+                            <span class="<?php echo $constants::systemStatus[$row->status]["view_class"]; ?>">
+                                <?php echo $constants::systemStatus[$row->status]["view_text"]; ?>
+                            </span>
                         </td>
                         <td>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === true): ?>
@@ -63,12 +60,15 @@
 							<?php endif; ?>
 							<?php if ($session->sessionRoleControl("gallery-image-upload", $constants::addPermissionKey) === true): ?>
                                 <a href="<?php echo $system->adminUrl("gallery-image-upload?id=" . $row->id); ?>"
-                                   class="btn btn-outline-primary m-1"><i class="fas fa-plus px-1"></i> Resim Ekle</a>
+                                   class="btn btn-outline-primary m-1"><i class="fas fa-plus px-1"></i>
+                                    Resim Ekle
+                                </a>
 							<?php endif; ?>
 							<?php if ($session->sessionRoleControl("video-upload", $constants::addPermissionKey) === true): ?>
                                 <a href="<?php echo $system->adminUrl("gallery-video-upload?id=" . $row->id); ?>"
-                                   class="btn btn-outline-warning m-1"><i class="fab fa-youtube px-1"></i> Video
-                                    Ekle</a>
+                                   class="btn btn-outline-warning m-1"><i class="fab fa-youtube px-1"></i>
+                                    Video Ekle
+                                </a>
 							<?php endif; ?>
                         </td>
                     </tr>
@@ -81,9 +81,6 @@
 <script>
     $(document).ready(function () {
         $("#datatable-1").DataTable({
-            /*"language": {
-                "url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/" . $_SESSION["lang"] . ".json"); ?>"
-                },*/
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,

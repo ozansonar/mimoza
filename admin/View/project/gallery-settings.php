@@ -1,10 +1,4 @@
 <section class="content">
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
     <div class="card card-danger card-outline card-outline-tabs">
         <div class="card-header">
             <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
@@ -27,8 +21,7 @@
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php echo $functions->csrfToken(); ?>
                 <div class="tab-content" id="custom-tabs-two-tabContent">
-					<?php foreach ($projectLanguages as $project_languages_row) {
-						?>
+					<?php foreach ($projectLanguages as $project_languages_row): ?>
                         <div class="tab-pane fade <?php echo (int)$project_languages_row->default_lang === 1 ? "show active" : null; ?>"
                              id="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tabpanel"
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
@@ -53,7 +46,7 @@
 								echo $form->select("top_id", array(
 									"label" => $admin_text["GALERI_TOP_TYPE"],
 									"required" => 1,
-									"select_item" => $gallery_data_array,
+									"select_item" => $data->galleryDataArray,
 								), $data->pageData);
 								?>
                             </div>
@@ -76,20 +69,16 @@
 
 							?>
                         </div>
-						<?php
-					} ?>
+					<?php endforeach ?>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer text-right">
-			<?php
-			echo $form->button("submit", array(
+			<?php echo $form->button("submit", array(
 				"text" => "Kaydet",
 				"icon" => "fas fa-save",
 				"btn_class" => "btn btn-success",
-			));
-			?>
+			)); ?>
         </div>
     </div>
 </section>
@@ -97,10 +86,9 @@
     $(document).ready(function () {
         $("form#pageForm").validationEngine({promptPosition: "bottomLeft", scroll: false});
     });
-	<?php foreach ($projectLanguages as $project_languages_row){
-	?>
+	<?php foreach ($projectLanguages as $project_languages_row): ?>
     $("#id_type_<?php echo $project_languages_row->short_lang; ?>").change(function () {
-        var this_val = $(this).val();
+        let this_val = $(this).val();
         if (this_val == 2) {
             $("#top_gallery_div_<?php echo $project_languages_row->short_lang; ?>").slideDown();
         } else {
@@ -108,6 +96,5 @@
             $("#top_gallery_div_<?php echo $project_languages_row->short_lang; ?> option:selected").prop("selected", false);
         }
     });
-	<?php
-	} ?>
+	<?php endforeach ?>
 </script>
