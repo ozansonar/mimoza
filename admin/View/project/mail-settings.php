@@ -1,14 +1,7 @@
 <section class="content">
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Mailing de kullanılacak resim(ler).</h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -40,28 +33,22 @@
             </form>
             <div class="col-12 p-0" id="image_upload_result" style="display: none;"></div>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer text-right">
-			<?php
-			echo $form->button("img_upload", array(
+			<?php echo $form->button("img_upload", array(
 				"text" => "Yükle",
 				"type" => "button",
 				"icon" => "fas fa-save",
 				"form_name" => "fileForm",
 				"onclick_function" => "fileUpload();",
 				"btn_class" => "btn btn-success",
-			));
-			?>
+			)); ?>
         </div>
-        <!-- /.card-footer-->
     </div>
 </section>
 <section class="content">
-    <!-- Default box -->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Mailing de gönderilecek ek(ler).</h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -88,28 +75,21 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-right">
-			<?php
-			echo $form->button("attachment", array(
+			<?php echo $form->button("attachment", array(
 				"text" => "Yükle",
 				"type" => "button",
 				"icon" => "fas fa-save",
 				"form_name" => "fileForm",
 				"onclick_function" => "AttachmentUpload();",
 				"btn_class" => "btn btn-success",
-			));
-			?>
+			)); ?>
         </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
-
 </section>
 <section class="content">
-    <!-- Default box -->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Mailing hazırla.</h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -136,7 +116,7 @@
 					"class" => "ckeditor",
 				), $data->pageData);
 				?>
-                <div class="col-12 p-0" id="attachment_upload_result"
+                <div class="col-12" id="attachment_upload_result"
                      style="<?php echo isset($attachment_array) && !empty($attachment_array) ? null : "display: none;"; ?>">
 					<?php
 					if (isset($attachment_array) && !empty($attachment_array)) {
@@ -157,24 +137,35 @@
 					}
 					?>
                 </div>
-                <div class="row p-2">
-                    <div class="col-12 p-0"><h4>Kullanıcılar</h4></div>
-                    <div class="col-4 form-group icheck-primary d-inline">
-                        <input type="checkbox" class="form-check-input" name="user[]" value="999" id="id_user_hepsi">
-                        <label class="form-check-label" for="id_user_hepsi">Hepsi</label>
-                    </div>
-					<?php foreach ($constants::systemAdminUserType as $user_key => $user_value): ?>
-						<?php if ((int)$user_key === 999) {
-							continue;
-						} ?>
-                        <div class="col-4 form-group icheck-primary d-inline">
-                            <input type="checkbox" class="form-check-input user_checkbox"
-                                   name="user[<?php echo $user_key; ?>]" value="<?php echo $user_key; ?>"
-                                   id="id_user_<?php echo $user_key; ?>">
-                            <label class="form-check-label"
-                                   for="id_user_<?php echo $user_key; ?>"><?php echo $user_value["form_text"]; ?></label>
+                <div class="col-12">
+                    <div class="card w-100 row p-2 d-flex">
+                       <div class="card-header">
+                           <div class="col-12">
+                               <h4>Kullanıcılar</h4>
+                           </div>
+                       </div>
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="row">
+                                <div class="col-4 form-group icheck-primary d-inline">
+                                    <input type="checkbox" class="form-check-input" name="user[]" value="999"
+                                           id="id_user_hepsi">
+                                    <label class="form-check-label" for="id_user_hepsi">Hepsi</label>
+                                </div>
+								<?php foreach ($constants::systemAdminUserType as $user_key => $user_value): ?>
+									<?php if ((int)$user_key === 999) {
+										continue;
+									} ?>
+                                    <div class="col-4 form-group icheck-primary d-inline">
+                                        <input type="checkbox" class="form-check-input user_checkbox"
+                                               name="user[<?php echo $user_key; ?>]" value="<?php echo $user_key; ?>"
+                                               id="id_user_<?php echo $user_key; ?>">
+                                        <label class="form-check-label"
+                                               for="id_user_<?php echo $user_key; ?>"><?php echo $user_value["form_text"]; ?></label>
+                                    </div>
+								<?php endforeach ?>
+                            </div>
                         </div>
-					<?php endforeach ?>
+                    </div>
                 </div>
                 <div class="alert alert-info alert-dismissible">
                     <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
@@ -274,7 +265,6 @@
 </section>
 <script>
     $(document).ready(function () {
-        //$("form#pageForm").validationEngine({promptPosition : "bottomLeft", scroll: false});
         $("form#mailingForm").validationEngine('attach', {
             "promptPosition": "bottomLeft",
             scroll: false,
