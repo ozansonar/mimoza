@@ -1,5 +1,6 @@
-<div class="number">401</div>
-<div class="text"><span>Hata</span><br> Yetkiniz bulunmuyor. Lütfen giriş yapın !</div>
+<?php $system = new \Mrt\MimozaCore\Core(); ?>
+<div class="number">404</div>
+<div class="text"><span>Hata</span><br> Ulaşmaya Çalıştığınız sayfa bulunamadı</div>
 <a class="btn btn-primary" href="<?php echo $system->url(); ?>">Ana sayfaya dön</a>
 
 <style>

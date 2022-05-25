@@ -8,7 +8,7 @@ $menu = [
 		'icon' => 'nav-icon fas fa-home',
 		'permissions' => [
 			's' => 'Görüntüleme'
-		]
+		],
 	],
 	[
 		'url' => '../',
@@ -16,7 +16,8 @@ $menu = [
 		'icon' => 'nav-icon fas fa-paper-plane',
 		'permissions' => [
 			's' => 'Görüntüleme'
-		]
+		],
+		'target' => 'blank',
 	],
 	[
 		'url' => 'top-menu',

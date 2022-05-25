@@ -94,6 +94,9 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
                         <li class="nav-item <?php echo isset($item['submenu']) ? "has-treeview" : null; ?>
                         <?php echo ($system->route(1) === $item['url']) || (isset($item['submenu']) && in_array($system->route(1), array_column($item['submenu'], 'url'), true)) ? ' item-open ' : null ?>">
                             <a href="<?php echo $system->adminUrl($item['url']) ?>"
+								<?php if (isset($item['target']) && $item['target'] === 'blank'): ?>
+                                    target="_blank"
+								<?php endif ?>
                                class="nav-link <?php echo isset($item['submenu']) ? " " : null; ?>" <?php echo isset($item["submenu"]) ? 'active' : null; ?>>
                                 <i class="<?php echo $item['icon'] ?>"></i>
                                 <p>

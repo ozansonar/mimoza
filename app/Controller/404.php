@@ -1,2 +1,8 @@
 <?php
-require $system->publicPath('errors/404.php',false);
+
+use Mrt\MimozaCore\View;
+
+View::layout('404',[
+	'title' => 'Bulunamadı',
+
+],'error');
