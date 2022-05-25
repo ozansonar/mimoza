@@ -1,14 +1,5 @@
 <?php
-/**
- * Author: Ozan SONAR
- * Mail : ozansonar1@gmail.com
- * User: Ozan
- * Date: 2.09.2021
- * Time: 22:16
- */
-
 //sistemde kullanılan keyler burada üretiliyor ve db de burdaki arraydan generate ediliyor
-
 $language_text_manager = array(
 	"header" => array(
 		"title" => "Header Yazılar (sayfanın en üst kısmı)",
