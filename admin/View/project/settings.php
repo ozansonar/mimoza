@@ -244,7 +244,10 @@
                             <div class="m-b-30">
                                 <input type="checkbox" name="mail_send_mode" id="id_mail_send_mode"
                                        data-on-color="success" data-off-color="danger" data-on-text="Aktif"
-                                       data-off-text="Pasif" <?php if (isset($mail_send_mode) && $mail_send_mode == 1):echo "checked"; elseif (isset($settings->mail_send_mode) && $settings->mail_send_mode == 1):echo "checked";endif; ?>>
+                                       data-off-text="Pasif"
+									<?php if (isset($mail_send_mode) && (int)$mail_send_mode === 1): echo "checked";
+                                    elseif (isset($settings->mail_send_mode) && (int)$settings->mail_send_mode === 1): echo "checked";endif; ?>
+                                >
                             </div>
                         </div>
                         <div id="mail_mode_on"
@@ -307,12 +310,10 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="page-banner-image">
-						<?php
-						echo $form->file("banner_img", array(
+						<?php echo $form->file("banner_img", array(
 							"label" => $admin_text["SETTINGS_PAGE_BANNER_IMG"],
 							"file_key" => "project_image"
-						), $data->pageData);
-						?>
+						), $data->pageData); ?>
                     </div>
                     <div class="tab-pane fade" id="lang_content_prefix">
 						<?php foreach ($constants::systemLinkPrefix as $prefixKey => $systemLinkPrefix) : ?>
@@ -320,11 +321,11 @@
                                 <div class="alert alert-info"
                                      role="alert"><?php echo $systemLinkPrefix["title"]; ?></div>
 								<?php foreach ($projectLanguages as $project_languages_row):
-                                        echo $form->input($prefixKey . $project_languages_row->short_lang, array(
-                                            "label" => $project_languages_row->lang,
-                                            "required" => 1
-                                        ), $data->pageData);
-                                      endforeach ?>
+									echo $form->input($prefixKey . $project_languages_row->short_lang, array(
+										"label" => $project_languages_row->lang,
+										"required" => 1
+									), $data->pageData);
+								endforeach ?>
                             </div>
 						<?php endforeach ?>
                     </div>
