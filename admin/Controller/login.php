@@ -32,4 +32,8 @@ if ($functions->post('submit')) {
 	}
 }
 
-View::backend('login',[],'guest');
+View::backend('login',[
+	'title' => 'Giriş Yap',
+	'pageData' => $pageData,
+
+],'guest');

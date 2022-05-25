@@ -30,10 +30,9 @@
 <body class="hold-transition
 sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
-<section class="container">
-    <?php include_once $data->view ?>
+<section class="container d-flex vh-100 justify-content-center align-items-center">
+	<?php include_once $data->view ?>
 </section>
-
 <script>
     $(document).ready(function () {
         $("#page_alert_modal").modal();
@@ -62,7 +61,6 @@ if (!empty($sessionError)): ?>
         </div>
     </div>
 <?php $session->delete('session_error') ?>
-    <!-- /.modal -->
     <script>
         $(document).ready(function () {
             $("#page_alert_modal").modal();
@@ -77,14 +75,12 @@ if (!empty($sessionError)): ?>
 <script src="<?php echo $system->adminPublicUrl("dist/js/adminlte.js"); ?>"></script>
 <script src="<?php echo $system->adminPublicUrl("plugins/sweetalert2/sweetalert2.min.js"); ?>"></script>
 <!-- Page Custom JS -->
-<?php if (!empty($customJs)) {
-	foreach ($customJs as $js) {
-		?>
+<?php if (!empty($customJs)):
+	foreach ($customJs as $js):?>
         <script src="<?php echo $system->adminPublicUrl($js); ?>"></script>
-		<?php
-	}
-}
-?>
+	<?php endforeach ?>
+<?php endif ?>
+
 <script src="<?php echo $system->adminPublicUrl("dist/js/custom.js"); ?>"></script>
 </body>
 </html>

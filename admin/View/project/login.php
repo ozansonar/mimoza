@@ -8,13 +8,13 @@
             <form action="" method="post" id="pageForm">
 				<?php
 				echo $functions->csrfToken();
-				echo $page_form->input("name", array(
+				echo $form->input("name", array(
 					"label" => "Kullanıcı Adı",
 					"input_group" => 1,
 					"group_icon" => "fas fa-envelope",
 					"required" => 1
 				), $data->pageData);
-				echo $page_form->input("password", array(
+				echo $form->input("password", array(
 					"type" => "password",
 					"label" => "Parola",
 					"input_group" => 1,
@@ -24,7 +24,7 @@
 				?>
                 <div class="row">
                     <div class="col-4 offset-8">
-						<?php echo $page_form->button("submit", array(
+						<?php echo $form->button("submit", array(
 							"text" => "Giriş",
 							"class" => "btn-block",
 							"icon" => "fas fa-save"
