@@ -1,18 +1,9 @@
 <section class="content">
-
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
-
-    <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
+            <h3 class="card-title">
+				<?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -34,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody>
-				<?php foreach ($data as $row): ?>
+				<?php foreach ($data->content as $row): ?>
                     <tr>
                         <td>
 							<?php
@@ -47,7 +38,9 @@
                         </td>
                         <td><?php echo $functions->dateShort($row->created_at); ?></td>
                         <td>
-                            <span class="badge badge-<?php echo $row->read_user == 1 ? "success" : "danger"; ?>"><?php echo $row->read_user == 1 ? "Okundu" : "Okunmadı"; ?></span>
+                            <span class="badge badge-<?php echo (int)$row->read_user === 1 ? "success" : "danger"; ?>">
+                                <?php echo (int)$row->read_user === 1 ? "Okundu" : "Okunmadı"; ?>
+                            </span>
 							<?php if (!empty($row->reply_send_user_id)): ?>
                                 <span class="badge badge-info">Cevaplandı</span>
 							<?php endif; ?>
@@ -56,13 +49,15 @@
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-success m-1"
                                         onclick="post_edit('<?php echo $system->adminUrl("contact-settings?id=" . $row->id); ?>')">
-                                    <i class="fas fa-pencil-alt px-1"></i>Görüntüle
+                                    <i class="fas fa-pencil-alt px-1"></i>
+                                    Görüntüle
                                 </button>
 							<?php endif; ?>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::deletePermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-danger m-1"
                                         onclick="post_delete('<?php echo $system->adminUrl("contact?delete=" . $row->id); ?>')">
-                                    <i class="fas fa-trash px-1"></i> Sil
+                                    <i class="fas fa-trash px-1"></i>
+                                    Sil
                                 </button>
 							<?php endif; ?>
                         </td>
@@ -76,9 +71,6 @@
 <script>
     $(document).ready(function () {
         $("#datatable-1").DataTable({
-            /*"language": {
-				"url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/" . $_SESSION["lang"] . ".json"); ?>"
-                },*/
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
