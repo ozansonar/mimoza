@@ -215,5 +215,6 @@ View::backend('gallery-video-upload',[
 	'pageButtonIcon' => "icon-list",
 	'id' =>$id,
 	'videosData' =>$videos_data,
-
+	'css' => $customCss,
+	'js' => $customJs,
 ]);

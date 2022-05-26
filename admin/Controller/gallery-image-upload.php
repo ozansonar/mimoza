@@ -75,12 +75,13 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 	}
 }
 
-View::backend('gallery-image-upload',[
-	'title' =>"Galeri Resim " . (isset($data) ? "Düzenle" : "Ekle"),
+View::backend('gallery-image-upload', [
+	'title' => "Galeri Resim " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",
 	'pageButtonIcon' => "icon-list",
 	'initialPreview' => $initialPreview ?? NULL,
 	'initialPreviewConfig' => $initialPreviewConfig ?? NULL,
-
+	'css' => $customCss,
+	'js' => $customJs,
 ]);

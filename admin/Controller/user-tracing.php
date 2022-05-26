@@ -46,4 +46,5 @@ View::backend('user-tracing', [
 	'pageButtonIcon' => "icon-list",
 	'pageRoleKey' => $pageRoleKey,
 	'logs' => $log_array,
+
 ]);
