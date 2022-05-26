@@ -1,15 +1,9 @@
 <section class="content">
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
+            <h3 class="card-title">
+                <?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -26,17 +20,12 @@
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-
-        </div>
-        <!-- /.card-footer-->
     </div>
 </section>
 <script>
     $(document).ready(function () {
-        var token = $("#token").val();
-        var g_id = "<?php echo $id; ?>";
+        let token = $("#token").val();
+        let g_id = "<?php echo $id; ?>";
         $("#kv-explorer").fileinput({
             'theme': 'explorer-fas',
             'uploadUrl': 'ajax/gallery-uploader',
