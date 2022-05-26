@@ -1,19 +1,15 @@
 <?php
-/**
- * Author: Ozan SONAR
- * Mail : ozansonar1@gmail.com
- * User: Ozan
- * Date: 29.07.2021
- * Time: 13:54
- */
-$message = [];
-if(isset($_POST["mailing_id"])){
-    $id = $functions->cleanPostInt("mailing_id");
 
-    include_once $system->path("includes/System/Mail.php");
-    $mail_class = new \Includes\System\Mail($db);
-    $send = $mail_class->maililing_send($id);
-    $message = $send;
-}else{
-    $message["reply"][] = "Birşeyler yanış gitti tekrar deneyin.";
+use Mrt\MimozaCore\Mail;
+
+$message = [];
+if (isset($_POST["mailing_id"])) {
+	$id = $functions->cleanPostInt("mailing_id");
+
+	include_once $system->path("includes/System/Mail.php");
+	$mail_class = new Mail($db);
+	$send = $mail_class->sendMailing($id);
+	$message = $send;
+} else {
+	$message["reply"][] = "Birşeyler yanış gitti tekrar deneyin.";
 }
