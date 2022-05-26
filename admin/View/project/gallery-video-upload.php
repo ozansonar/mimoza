@@ -1,34 +1,30 @@
 <section class="content">
-	<?php if (!empty($sub_title)): ?>
-        <div class="alert alert-info alert-dismissible">
-            <h5><i class="icon fas fa-info"></i> Dikkat !</h5>
-			<?php echo $sub_title; ?>
-        </div>
-	<?php endif; ?>
     <div class="card card-danger card-outline card-outline-tabs">
         <div class="card-header">
             <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
-                <li class="pt-2 pr-3"><h3 class="card-title"><?php echo $data->title; ?></h3></li>
-				<?php foreach ($projectLanguages as $project_languages_row) {
-					?>
+                <li class="pt-2 pr-3">
+                    <h3 class="card-title">
+						<?php echo $data->title; ?>
+                    </h3>
+                </li>
+				<?php foreach ($projectLanguages as $project_languages_row): ?>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (int)$project_languages_row->default_lang === 1 ? "active" : null; ?>"
                            id="content-tab-<?php echo $project_languages_row->short_lang; ?>" data-toggle="pill"
                            href="#content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tab"
                            aria-controls="content-dashboard-<?php echo $project_languages_row->short_lang; ?>"
                            aria-selected="<?php echo (int)$project_languages_row->default_lang === 1 ? "true" : "false"; ?>"><?php echo $project_languages_row->lang; ?>
-                            &nbsp;<i class="flag-icon flag-icon-<?php echo $project_languages_row->short_lang; ?>"></i></a>
+                            &nbsp;<i class="flag-icon flag-icon-<?php echo $project_languages_row->short_lang; ?>"></i>
+                        </a>
                     </li>
-					<?php
-				} ?>
+				<?php endforeach ?>
             </ul>
         </div>
         <div class="card-body">
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php echo $functions->csrfToken(); ?>
                 <div class="tab-content" id="custom-tabs-two-tabContent">
-					<?php foreach ($projectLanguages as $project_languages_row) {
-						?>
+					<?php foreach ($projectLanguages as $project_languages_row): ?>
                         <div class="tab-pane fade <?php echo (int)$project_languages_row->default_lang === 1 ? "show active" : null; ?>"
                              id="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tabpanel"
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
@@ -55,8 +51,7 @@
 							), $data->pageData);
 							?>
                         </div>
-						<?php
-					} ?>
+					<?php endforeach ?>
                 </div>
             </form>
         </div>
@@ -72,13 +67,9 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
-				<?php if (!empty($sub_title)): ?>
-                    <br>
-                    <small><?php echo $sub_title; ?></small>
-				<?php endif; ?>
+            <h3 class="card-title">
+				<?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -100,7 +91,7 @@
                 </tr>
                 </thead>
                 <tbody>
-				<?php foreach ($data->videos_data as $row): ?>
+				<?php foreach ($data->videosData as $row): ?>
                     <tr>
                         <td><?php echo $functions->textModal($row->title, 20); ?></td>
                         <td><?php echo $functions->dateLong($row->created_at); ?></td>
@@ -128,7 +119,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /basic modal -->
                         </td>
                         <td>
                             <span class="<?php echo $constants::systemStatus[$row->status]["view_class"]; ?>"><?php echo $constants::systemStatus[$row->status]["view_text"]; ?></span>
@@ -137,13 +127,15 @@
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-success m-1"
                                         onclick="post_edit('<?php echo $system->adminUrl("gallery-video-upload?id=" . $row->gallery_id . "&video_id=" . $row->id); ?>')">
-                                    <i class="fas fa-pencil-alt px-1 px-1"></i></i>Düzenle
+                                    <i class="fas fa-pencil-alt px-1 px-1"></i>
+                                    Düzenle
                                 </button>
 							<?php endif; ?>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-danger  m-1"
                                         onclick="post_delete('<?php echo $system->adminUrl("gallery-video-upload?id=" . $row->gallery_id . "&delete=" . $row->id); ?>')">
-                                    <i class="fas fa-trash px-1 px-1"></i> Sil
+                                    <i class="fas fa-trash px-1 px-1"></i>
+                                    Sil
                                 </button>
 							<?php endif; ?>
                         </td>
@@ -158,13 +150,9 @@
     $(document).ready(function () {
         $("form#pageForm").validationEngine({promptPosition: "bottomLeft", scroll: false});
     });
-</script>
-<script>
+
     $(document).ready(function () {
         $("#datatable-1").DataTable({
-            /*"language": {
-                "url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/" . $_SESSION["lang"] . ".json"); ?>"
-                },*/
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
