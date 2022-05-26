@@ -71,4 +71,6 @@ View::backend('user', [
 	'content' => $data,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

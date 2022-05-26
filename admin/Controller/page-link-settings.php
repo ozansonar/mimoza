@@ -179,4 +179,6 @@ View::backend('page-link-settings',[
 	'pageData' => ($data) ?? [],
 	'pl_controller' => $pl_controller,
 	'pageLanguages' => $pageLanguages,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

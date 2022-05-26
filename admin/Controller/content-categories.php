@@ -72,5 +72,7 @@ View::backend('content-categories', [
 	'pageData' => $data,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);
 

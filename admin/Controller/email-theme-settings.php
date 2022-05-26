@@ -72,7 +72,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 	foreach ($projectLanguages as $project_languages_row) {
 		// formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
-		$functions->form_lang = $project_languages_row->short_lang;
+		$functions->formLang = $project_languages_row->short_lang;
 		$pageData[$project_languages_row->short_lang]["subject"] = $functions->cleanPost("subject");
 		$pageData[$project_languages_row->short_lang]["text"] = $functions->cleanPostTextarea("text");
 		$pageData[$project_languages_row->short_lang]["not_text"] = $functions->cleanPost("not_text");
@@ -157,5 +157,6 @@ View::backend('email-theme-settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,
 	'id' => $id,
-
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

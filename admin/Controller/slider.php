@@ -74,4 +74,6 @@ View::backend('slider',[
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'data' => $data,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

@@ -23,8 +23,8 @@
     <link href="<?php echo $system->adminPublicUrl("plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"); ?>"
           rel="stylesheet">
 
-	<?php if (!empty($customCss)) : ?>
-		<?php foreach ($customCss as $css): ?>
+	<?php if (!empty($data->css)) : ?>
+		<?php foreach ($data->css as $css): ?>
             <link href="<?php echo $system->adminPublicUrl($css); ?>" rel="stylesheet">
 		<?php endforeach ?>
 	<?php endif ?>
@@ -282,16 +282,12 @@ if (!empty($sessionError)): ?>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo $system->adminPublicUrl("dist/js/pages/dashboard2.js"); ?>"></script>
 
-<!-- Page Custom JS -->
-<?php
-if (!empty($customJs)) {
-	foreach ($customJs as $js) {
-		?>
+<?php if (!empty($data->js)): ?>
+    <!-- Page Custom JS -->
+	<?php foreach ($data->js as $js): ?>
         <script src="<?php echo $system->adminPublicUrl($js); ?>"></script>
-		<?php
-	}
-}
-?>
+	<?php endforeach ?>
+<?php endif ?>
 
 <script src="<?php echo $system->adminPublicUrl("dist/js/custom.js"); ?>"></script>
 </body>

@@ -64,5 +64,7 @@ View::backend('email-themes', [
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'content' => $data
+	'content' => $data,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

@@ -64,4 +64,6 @@ View::backend('mailler', [
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'content' => $data,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

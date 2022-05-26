@@ -77,5 +77,6 @@ View::backend('lang',[
 	'content' => $data,
 	'pageRoleKey'=> $pageRoleKey,
 	'pageAddRoleKey' =>$pageAddRoleKey,
-
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

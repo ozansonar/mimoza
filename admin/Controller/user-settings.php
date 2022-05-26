@@ -192,5 +192,7 @@ View::backend('user-settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $default_lang,
 	'pageData' => $pageData,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);
 

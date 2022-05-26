@@ -68,4 +68,6 @@ View::backend('page-link',[
 	'pageButtonRedirectLink' => "page-link-settings",
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

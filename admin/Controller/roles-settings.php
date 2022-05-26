@@ -212,4 +212,6 @@ View::backend('roles-settings', [
 	'extra' => $extra ?? NULL,
 	'role_array' => $role_array,
 	'pageData' => $pageData,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

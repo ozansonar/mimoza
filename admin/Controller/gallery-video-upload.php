@@ -113,7 +113,7 @@ if(isset($_GET["id"]) && is_numeric($_GET["id"]) || isset($_GET["video_id"]) && 
 if(isset($_POST["submit"]) && $_POST["submit"] == 1){
 
     foreach ($projectLanguages as $project_languages_row){
-        $functions->form_lang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
+        $functions->formLang = $project_languages_row->short_lang; // formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
 
         $pageData[$project_languages_row->short_lang]["title"] = $functions->cleanPost("title");
         $pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");

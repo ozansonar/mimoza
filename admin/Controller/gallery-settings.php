@@ -1,6 +1,5 @@
 <?php
 
-//sayfanın izin keyi
 use Mrt\MimozaCore\FileUploader;
 use Mrt\MimozaCore\View;
 
@@ -72,7 +71,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 	foreach ($projectLanguages as $project_languages_row) {
 		// formda dil ektensi olduğunu belirtiyoruz class ona göre post edecek
-		$functions->form_lang = $project_languages_row->short_lang;
+		$functions->formLang = $project_languages_row->short_lang;
 		$pageData[$project_languages_row->short_lang]["name"] = $functions->cleanPost("name");
 		$pageData[$project_languages_row->short_lang]["link"] = $functions->cleanPost("link");
 		$pageData[$project_languages_row->short_lang]["type"] = $functions->cleanPostInt("type");
@@ -207,5 +206,6 @@ View::backend('gallery-settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,
 	'galleryDataArray' => $gallery_data_array,
-
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

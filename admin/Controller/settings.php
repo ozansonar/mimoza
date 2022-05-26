@@ -481,4 +481,6 @@ View::backend('settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $defaultLanguage,
 	'themes' => $themes,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

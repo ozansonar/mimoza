@@ -64,4 +64,6 @@ View::backend('contact', [
 	'pageButtonIcon' => "icon-list",
 	'pageRoleKey' => $pageRoleKey,
 	'content' => $data,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

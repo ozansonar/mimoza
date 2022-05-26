@@ -165,4 +165,6 @@ View::backend('account-settings',[
 	'pageRoleKey' =>$pageRoleKey,
 	'pageData' =>$pageData,
 	'defaultLanguage' =>$default_lang,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

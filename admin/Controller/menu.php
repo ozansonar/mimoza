@@ -66,12 +66,12 @@ $data = $db::selectQuery("menu", array(
 
 View::backend('menu', [
 	'title' => 'Menüler',
-	'customCss' => $customCss,
-	'customJs' => $customJs,
 	'pageButtonRedirectLink' => "menu-settings",
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'content' => $data,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

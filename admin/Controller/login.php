@@ -35,5 +35,6 @@ if ($functions->post('submit')) {
 View::backend('login',[
 	'title' => 'Giriş Yap',
 	'pageData' => $pageData,
-
+	'css' =>$customCss,
+	'js' =>$customJs,
 ],'guest');

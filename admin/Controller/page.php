@@ -69,5 +69,7 @@ View::backend('page',[
 	'pageButtonIcon' => "fas fa-plus-square",
 	'content' => $data,
 	'pageAddRoleKey'=>$pageAddRoleKey,
-	'pageRoleKey'=>$pageRoleKey
+	'pageRoleKey'=>$pageRoleKey,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

@@ -57,7 +57,7 @@ $customJs = [
 
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
-	$functions->form_lang = $defaultLanguage->short_lang;
+	$functions->formLang = $defaultLanguage->short_lang;
 	$pageData[$defaultLanguage->short_lang]["lang"] = $functions->cleanPost("lang");
 	$pageData[$defaultLanguage->short_lang]["short_lang"] = $functions->cleanPost("short_lang");
 	$pageData[$defaultLanguage->short_lang]["default_lang"] = $functions->cleanPostInt("default_lang");
@@ -165,4 +165,6 @@ View::backend('lang-settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $defaultLanguage,
 	'pageData' => $pageData,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);

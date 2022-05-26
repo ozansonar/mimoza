@@ -46,7 +46,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	$data_lang = $functions->cleanPost("data_lang");
 	$message = [];
 	foreach ($projectLanguages as $project_languages_row) {
-		$functions->form_lang = $project_languages_row->short_lang;
+		$functions->formLang = $project_languages_row->short_lang;
 		//bu form ayrı ayrı akyıt edilecek o yüzden böyle bir şart ekliyoruz
 		if ($data_lang === $project_languages_row->short_lang) {
 			foreach ($language_text_manager as $language_text_manager_key => $language_text_manager_value) {
@@ -126,4 +126,6 @@ View::backend("language-text-setting", [
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'languageTextManager' => $language_text_manager,
+	'css' =>$customCss,
+	'js' =>$customJs,
 ]);
