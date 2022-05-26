@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ozan PC
- * Date: 16.12.2020
- * Time: 14:24
- * Email: ozansonar1@gmail.com
- */
 if(isset($_POST["count"]) && is_numeric($_POST["count"])){
     $count = $functions->cleanPostInt("count");
     $html = '<div class="border my-1 p-2 test-user-[count]">
