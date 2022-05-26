@@ -3,7 +3,7 @@
 use Mrt\MimozaCore\View;
 
 View::backend('index',[
-	'title' => __('Home'),
+	'title' => 'Ana Sayfa',
 	'pageRoleKey' => 'index',
 	'pageAddRoleKey' => 'index',
 	'pageButtonRedirectLink' => 'index',
