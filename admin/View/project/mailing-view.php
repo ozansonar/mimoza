@@ -1,13 +1,9 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo $data->title; ?>
-				<?php if (!empty($sub_title)): ?>
-                    <br>
-                    <small><?php echo $sub_title; ?></small>
-				<?php endif; ?>
+            <h3 class="card-title">
+				<?php echo $data->title; ?>
             </h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -18,8 +14,8 @@
             </div>
         </div>
         <div class="card-body">
-            <p><b>Mail Konusu: </b> <?php echo $mailing->subject; ?></p>
-            <p><b>Mail İçeriği: </b> <?php echo $mailing->text; ?></p>
+            <p><b>Mail Konusu: </b> <?php echo $data->mailing->subject; ?></p>
+            <p><b>Mail İçeriği: </b> <?php echo $data->mailing->text; ?></p>
 			<?php if (isset($attachment_array) && !empty($attachment_array)): ?>
                 <p>
                     <b>Mailde Gidecek Ek(ler): </b><br>
@@ -33,35 +29,30 @@
 
             <div class="col-12 py-2 p-0">
 				<?php echo $functions->csrfToken(); ?>
-				<?php
-				if ($mailing->completed == 3) {
-					?>
-                    <p class="alert alert-info mailing_start mailing-request-btn" role="alert">Mailleri göndermek için
-                        tıklayın.. ->
+				<?php if ((int)$data->mailing->completed === 3): ?>
+                    <p class="alert alert-info mailing_start mailing-request-btn" role="alert">
+                        Mailleri göndermek için tıklayın.. ->
                         <button type="button" class="btn btn-success"
-                                onclick="send_alert('Dikkat','Mailingi başlatmak istediğinize emin misiniz?','info','<?php echo $mailing->id; ?>')">
+                                onclick="send_alert('Dikkat','Mailingi başlatmak istediğinize emin misiniz?','info','<?php echo $data->mailing->id; ?>')">
                             Mail Gönder
                         </button>
                     </p>
-					<?php
-				} else if (isset($maling_user_array[3]) || isset($maling_user_array[2]) || $mailing->completed == 2) {
-					?>
-                    <p class="alert alert-info mailing-request-btn" role="alert">Mail gönderilemeyen adresler mevcut
-                        lütfen tekrar deneyin.
+				<?php elseif (isset($maling_user_array[3]) || isset($maling_user_array[2]) || (int)$data->mailing->completed === 2): ?>
+                    <p class="alert alert-info mailing-request-btn" role="alert">
+                        Mail gönderilemeyen adresler mevcut lütfen tekrar deneyin.
                         <button type="button" class="btn btn-warning"
                                 onclick="send_alert('Dikkat','Yarıda kalan mailingi devam ettirmek istediğinize emin misiniz?','info','<?php echo $data->id; ?>')">
                             Tekrar Dene
                         </button>
                     </p>
-					<?php
-				} else {
-					?>
-                    <div class="alert alert-info mailing_completed" role="alert">Mail gönderimi tamamlanmış. <span
-                                class="font-weight-bold">Tamamlanma Tarihi <?php echo $mailing->completed_date; ?></span>
+				<?php else : ?>
+                    <div class="alert alert-info mailing_completed" role="alert">
+                        Mail gönderimi tamamlanmış.
+                        <span class="font-weight-bold">
+                            Tamamlanma Tarihi <?php echo $data->mailing->completed_date; ?>
+                        </span>
                     </div>
-					<?php
-				}
-				?>
+				<?php endif ?>
             </div>
 
             <div class="col-12 px-0">
@@ -78,18 +69,16 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-								<?php if (isset($mailing_user_list[1])): ?>
-                                    <p>Toplam <b><?php echo count($mailing_user_list[1]) ?></b> kişiye mail gönderilmiş.
+								<?php if (isset($data->mailingUsers[1])): ?>
+                                    <p>Toplam <b><?php echo count($data->mailingUsers[1]) ?></b>
+                                        kişiye mail gönderilmiş.
                                     </p>
 									<?php
-									$counter = 1;
-									foreach ($mailing_user_list[1] as $gonderilmis_user) {
-										?>
+									$counter = 1; ?>
+									<?php foreach ($data->mailingUsers[1] as $gonderilmis_user): ?>
                                         <p><?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?></p>
-										<?php
-										$counter++;
-									}
-									?>
+										<?php $counter++; ?>
+									<?php endforeach ?>
 								<?php else: ?>
                                     <p>Gönderilmiş mail bulunamadı.</p>
 								<?php endif; ?>
@@ -98,11 +87,8 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                             </div>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
 
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-gonderilememis">
                     Gönderilememiş Mailler
@@ -117,18 +103,18 @@
                                 </button>
                             </div>
                             <div class="modal-body" id="mailSendGonderilmeyen">
-								<?php if (isset($mailing_user_list[2])): ?>
-                                    <p>Toplam <b><?php echo count($mailing_user_list[2]) ?></b> kişiye mail
-                                        gönderilememiş.</p>
-									<?php
-									$counter = 1;
-									foreach ($mailing_user_list[2] as $gonderilmis_user) {
-										?>
-                                        <p><?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?></p>
-										<?php
-										$counter++;
-									}
-									?>
+								<?php if (isset($data->mailingUsers[2])): ?>
+                                    <p>Toplam <b><?php echo count($data->mailingUsers[2]) ?></b>
+                                        kişiye mail gönderilememiş.
+                                    </p>
+									<?php $counter = 1; ?>
+									<?php foreach ($data->mailingUsers[2] as $gonderilmis_user) : ?>
+                                        ?>
+                                        <p>
+											<?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?>
+                                        </p>
+										<?php $counter++; ?>
+									<?php endforeach ?>
 								<?php else: ?>
                                     <p>Gönderilememiş mail bulunamadı.</p>
 								<?php endif; ?>
@@ -137,12 +123,8 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                             </div>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
-
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-bekleyen">
                     Bekleyen Mailler
                 </button>
@@ -156,18 +138,16 @@
                                 </button>
                             </div>
                             <div class="modal-body" id="mailBekleyenMailler">
-								<?php if (isset($mailing_user_list[3])): ?>
-                                    <p>Toplam <b><?php echo count($mailing_user_list[3]) ?></b> mail gönderilmeyi
+								<?php if (isset($data->mailingUsers[3])): ?>
+                                    <p>Toplam <b><?php echo count($data->mailingUsers[3]) ?></b> mail gönderilmeyi
                                         bekliyor.</p>
-									<?php
-									$counter = 1;
-									foreach ($mailing_user_list[3] as $gonderilmis_user) {
-										?>
-                                        <p><?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?></p>
-										<?php
-										$counter++;
-									}
-									?>
+									<?php $counter = 1; ?>
+									<?php foreach ($data->mailingUsers[3] as $gonderilmis_user): ?>
+                                        <p>
+											<?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?>
+                                        </p>
+										<?php $counter++; ?>
+									<?php endforeach ?>
 								<?php else: ?>
                                     <p>Bekleyen mail bulunamadı.</p>
 								<?php endif; ?>
@@ -176,20 +156,10 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                             </div>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
-
-
             </div>
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-
-        </div>
-        <!-- /.card-footer-->
     </div>
 </section>
 <!-- mail gönderim işlemlerinin işlendiği modal -->
@@ -230,8 +200,6 @@
         }).then((result) => {
             if (result.value) {
                 if (result.value) {
-                    //$("form#mailingStart").submit();
-                    //formu post etmek yerine bir her mail gönderimi için 1 ajax isteiği atacağız
                     $(".mailIslemleriBody").html("");
                     $("#mail_count").val("0");
                     mail_send(mailing_id);
@@ -240,32 +208,32 @@
         });
     }
 
-
     function mail_send(mailing_id) {
-        var token = $("#token").val();
+        const token = $("#token").val();
         $.ajax({
             type: 'POST',
             url: "ajax/mailing-start",
             data: {"mailing_id": mailing_id, "token": token},
             success: function (response) {
+                let islem_mail;
                 console.log(response);
                 if (response.result) {
                     $("#mailIslemleri").modal();
                     if (response.ok_send || response.no_send || response.error_mail) {
-                        var m_count = parseInt($("#mail_count").val()) + 1;
+                        const m_count = parseInt($("#mail_count").val()) + 1;
                         $("#mail_count").val(m_count);
-                        var islem_icon = "";
-                        var islem_text = "";
+                        let islem_icon = "";
+                        let islem_text = "";
                         if (response.ok_send) {
-                            var islem_mail = response.ok_email;
+                            islem_mail = response.ok_email;
                             islem_icon = '<i class="fas fa-check-circle text-success"></i>';
                             islem_text = "<b class='text-success'>" + m_count + "-Gönderildi: </b>";
                         } else if (response.no_send) {
-                            var islem_mail = response.no_email;
+                            islem_mail = response.no_email;
                             islem_icon = '<i class="fas fa-exclamation-circle text-danger"></i>';
                             islem_text = "<b class='text-danger'>" + m_count + "-Gönderilmedi: </b>";
                         } else if (response.error_mail) {
-                            var islem_mail = response.error_mail;
+                            islem_mail = response.error_mail;
                             islem_icon = '<i class="fas fa-exclamation-triangle text-danger"></i>';
                             islem_text = "<b class='text-danger'>" + m_count + "-Hatalı e-mail listeden silindi: </b>";
                         }
@@ -279,7 +247,7 @@
                         if (response.success_send) {
                             $("#modal-gonderilmis .modal-body").html("");
                             $.each(response.success_send, function (index, value) {
-                                var success_send = parseInt($("#success_send").val()) + 1;
+                                const success_send = parseInt($("#success_send").val()) + 1;
                                 $("#success_send").val(success_send);
                                 $("#modal-gonderilmis .modal-body").append("<p><b>" + success_send + "</b>-" + value + " <i class='fas fa-check-circle text-success'></i></p>");
                             });
@@ -289,7 +257,7 @@
                         if (response.error_send) {
                             $("#modal-gonderilememis .modal-body").html("");
                             $.each(response.error_send, function (index, value) {
-                                var error_send = parseInt($("#error_send").val()) + 1;
+                                const error_send = parseInt($("#error_send").val()) + 1;
                                 $("#error_send").val(error_send);
                                 $("#modal-gonderilememis .modal-body").append("<p><b>" + error_send + "</b>-" + value + " <i class='fas fa-exclamation-circle text-danger'></i></p>");
                             });
@@ -299,7 +267,7 @@
                         if (response.wait_mail) {
                             $("#modal-bekleyen .modal-body").html("");
                             $.each(response.wait_mail, function (index, value) {
-                                var wait_mail = parseInt($("#wait_mail").val()) + 1;
+                                const wait_mail = parseInt($("#wait_mail").val()) + 1;
                                 $("#wait_mail").val(wait_mail);
                                 $("#modal-bekleyen .modal-body").append("<p><b>" + wait_mail + "</b>-" + value + " <i class='fas fa-hourglass-start text-info'></i></p>");
                             });
@@ -324,5 +292,4 @@
             dataType: 'json'
         });
     }
-
 </script>
