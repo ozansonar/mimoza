@@ -109,7 +109,6 @@
                                     </p>
 									<?php $counter = 1; ?>
 									<?php foreach ($data->mailingUsers[2] as $gonderilmis_user) : ?>
-                                        ?>
                                         <p>
 											<?php echo $counter . "." . $gonderilmis_user->email . " - " . $gonderilmis_user->name . " " . $gonderilmis_user->surname; ?>
                                         </p>
