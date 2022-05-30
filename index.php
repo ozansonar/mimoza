@@ -73,7 +73,8 @@ if (!file_exists($system->controller($system->route(0)))) {
 	$pageData = $siteManager->pageControl($functions->cleaner($system->route(0)));
 	if (!empty($pageData)) {
 		$route[0] = 'page';
-	} else { // Herhangi bir data çekilmediyse
+	} else {
+		// Herhangi bir data çekilmediyse
 		$route[0] = '404';
 	}
 }
