@@ -38,6 +38,9 @@ $file = new FileUploader($constants::fileTypePath);
 $themes = [];
 foreach (glob(ROOT_PATH . '/app/View/*/') as $folder) {
 	$folder = explode('/', rtrim($folder, '/'));
+	if (end($folder) === 'errors' || end($folder) === 'layouts') {
+		continue;
+	}
 	$themes[end($folder)] = end($folder);
 }
 
@@ -471,6 +474,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
+
 View::backend('settings', [
 	'title' => 'Genel Ayarlar',
 	'pageButtonRedirectLink' => "settings",
@@ -481,6 +485,6 @@ View::backend('settings', [
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $defaultLanguage,
 	'themes' => $themes,
-	'css' =>$customCss,
-	'js' =>$customJs,
+	'css' => $customCss,
+	'js' => $customJs,
 ]);
