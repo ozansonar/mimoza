@@ -2,6 +2,6 @@
 
 use Mrt\MimozaCore\View;
 
-View::layout('404',[
+View::error(404,[
 	'title' => '404 Not Found',
-],'error');
+]);

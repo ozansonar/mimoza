@@ -163,6 +163,15 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$db_data["show_type"] = $pageData[$project_languages_row->short_lang]["show_type"];
 			$db_data["status"] = $pageData[$project_languages_row->short_lang]["status"];
 			$db_data["user_id"] = $session->get("user_id");
+
+			if(empty($db_data['top_id'])){
+				unset($db_data['top_id']);
+			}
+
+			if(empty($db_data['redirect_link'])){
+				unset($db_data['redirect_link']);
+			}
+
 			if ($id > 0) {
 				if (array_key_exists($project_languages_row->short_lang, $db_data_lang)) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
