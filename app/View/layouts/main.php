@@ -7,8 +7,12 @@
     <meta name="description" content="<?php echo ($metaTag->description) ?? $metaTag->description ?>">
     <meta name="keywords" content="<?php echo ($metaTag->keywords) ?? $metaTag->keywords ?>">
     <title><?php echo ($metaTag->title) ? $metaTag->title.' | ' . $settings->project_name : '' ?></title>
-    <link rel="shortcut icon" href="<?php echo $system->uploadUrl('images/statics/logo.ico') ?>">
-
+	<?php if (!empty($settings->fav_icon) && file_exists($constants::fileTypePath["project_image"]["full_path"] . $settings->fav_icon)): ?>
+        <link rel="icon" type="image/png"
+              href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
+        <link rel="icon" type="image/png"
+              href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
+	<?php endif; ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="<?php echo $system->publicUrl('plugins/bootstrap/css/bootstrap.min.css'); ?>">
 
