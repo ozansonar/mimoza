@@ -7,7 +7,6 @@ $pageAddRoleKey = "roles-settings";
 
 
 $id = 0;
-$pageData = [];
 
 if (isset($_GET["id"])) {
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
@@ -80,29 +79,6 @@ $extra = [
 		]
 	],
 ];
-
-//eğer ön yüzde de yetki isterseniz istediğiniz yetkileri aşağıdaki array yapıp kontrollerini sağlayabilirsiniz
-/*
-$onyuz_yetkiler = array(
-    [
-        'url' => 'top-teknik-onay',
-        'title' => 'Teknik Onay işlemleri',
-        'icon' => 'far fa-circle nav-icon',
-        'submenu' => [
-            [
-                'url' => 'on-teknik-onay',
-                'title' => 'Teknik Onay',
-                'icon' => 'far fa-circle nav-icon',
-                'permissions' => [
-                    's' => 'Görüntüleme',
-                    'i' => 'İşlem Yapma',
-                    'de' => 'Detay',
-                ],
-            ],
-        ],
-    ],
-);
-*/
 
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
@@ -201,6 +177,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
+
 View::backend('roles-settings', [
 	'title' => "Yetki " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "roles",
@@ -210,8 +187,8 @@ View::backend('roles-settings', [
 	'pageRoleKey' => $pageRoleKey,
 	'onyuz_yetkiler' => $onyuz_yetkiler ?? NULL,
 	'extra' => $extra ?? NULL,
-	'role_array' => $role_array,
-	'pageData' => $pageData,
+	'role_array' => $role_array ?? NULL,
+	'pageData' => $data ?? NULL,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);

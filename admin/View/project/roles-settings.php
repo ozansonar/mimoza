@@ -17,10 +17,10 @@
             <form enctype="multipart/form-data" method="post" id="pageForm">
 				<?php echo $functions->csrfToken(); ?>
                 <div class="form-group">
-                    <label for="id_name"><?php echo $admin_text["ADMIN_ROLE_ROLE_NAME"]; ?></label>
+                    <label for="id_group_name"><?php echo $admin_text["ADMIN_ROLE_ROLE_NAME"]; ?></label>
                     <input type="text" class="form-control validate[required]" name="group_name" id="id_group_name"
                            placeholder="<?php echo $admin_text["ADMIN_ROLE_ROLE_NAME"] ?>"
-                           value="<?php echo $data->group_name ??  NULL ?>"/>
+                           value="<?php echo $data->pageData->group_name ??  NULL ?>"/>
                 </div>
                 <div class="col-12 p-0"><h3>Yetkiler</h3></div>
 
