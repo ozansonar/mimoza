@@ -53,13 +53,14 @@
                                 <?php echo $constants::systemAdminUserType[$row->rank]["view_text"]; ?>
                             </td>
                             <td>
-                                <?php if($session->sessionRoleControl($data->pageRoleKey,$constants::editPermissionKey) === true): ?>
-                                    <button type="button" class="btn btn-outline-success m-1"
-                                            onclick="post_edit('<?php echo $system->adminUrl("user-settings?id=".$row->id); ?>')">
+								<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === true): ?>
+                                    <a onclick="post_edit('<?php echo $system->adminUrl("user-settings?id=".$row->id); ?>')"
+                                       href="javascript:void()"
+                                       class="btn btn-outline-success m-1">
                                         <i class="fas fa-pencil-alt px-1"></i>
                                         Düzenle
-                                    </button>
-                                <?php endif; ?>
+                                    </a>
+								<?php endif; ?>
                                 <?php if((int)$_SESSION["user_id"] !== (int)$row->id && $session->sessionRoleControl($data->pageRoleKey,$constants::deletePermissionKey) === true): ?>
                                     <button type="button" class="btn btn-outline-danger m-1"
                                             onclick="post_delete('<?php echo $system->adminUrl("user?delete=".$row->id); ?>')">

@@ -39,10 +39,12 @@
                         </td>
                         <td>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === true): ?>
-                                <button type="button" class="btn btn-outline-success m-1"
-                                        onclick="post_edit('<?php echo $system->adminUrl($data->pageAddRoleKey . "?id=" . $row->id); ?>')">
-                                    <i class="fas fa-pencil-alt px-1 px-1"></i></i>Düzenle
-                                </button>
+                                <a  onclick="post_edit('<?php echo $system->adminUrl($data->pageAddRoleKey . "?id=" . $row->id); ?>')"
+                                    href="javascript:void()"
+                                    class="btn btn-outline-success m-1">
+                                    <i class="fas fa-pencil-alt px-1"></i>
+                                    Düzenle
+                                </a>
 							<?php endif; ?>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::deletePermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-danger  m-1"
