@@ -51,7 +51,7 @@
                         <td>
 							<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::editPermissionKey) === true): ?>
                                 <button type="button" class="btn btn-outline-success m-1"
-                                        onclick="post_edit('<?php echo $system->adminUrl($pageAddRoleKey . "?id=" . $row->id); ?>')">
+                                        onclick="post_edit('<?php echo $system->adminUrl($data->pageAddRoleKey . "?id=" . $row->id); ?>')">
                                     <i class="fas fa-pencil-alt px-1 px-1"></i>
                                     Düzenle
                                 </button>
