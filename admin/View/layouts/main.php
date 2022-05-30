@@ -20,9 +20,9 @@
     <link href="<?php echo $system->adminPublicUrl("plugins/overlayScrollbars/css/OverlayScrollbars.min.css"); ?>"
           rel="stylesheet">
     <link href="<?php echo $system->adminPublicUrl("dist/css/adminlte.min.css"); ?>" rel="stylesheet">
-    <link href="<?php echo $system->adminPublicUrl("plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"); ?>"
-          rel="stylesheet">
-
+        <link href="
+	<?php echo $system->adminPublicUrl("plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"); ?>"
+              rel="stylesheet">
 	<?php if (!empty($data->css)) : ?>
 		<?php foreach ($data->css as $css): ?>
             <link href="<?php echo $system->adminPublicUrl($css); ?>" rel="stylesheet">
@@ -268,18 +268,11 @@ if (!empty($sessionError)): ?>
 <?php endif; ?>
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- Bootstrap -->
 <script src="<?php echo $system->adminPublicUrl("plugins/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
 <script src="<?php echo $system->adminPublicUrl("plugins/ekko-lightbox/ekko-lightbox.min.js"); ?>"></script>
-<!-- overlayScrollbars -->
 <script src="<?php echo $system->adminPublicUrl("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
-<!-- AdminLTE App -->
 <script src="<?php echo $system->adminPublicUrl("dist/js/adminlte.js"); ?>"></script>
 <script src="<?php echo $system->adminPublicUrl("plugins/sweetalert2/sweetalert2.min.js"); ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo $system->adminPublicUrl("dist/js/demo.js"); ?>"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo $system->adminPublicUrl("dist/js/pages/dashboard2.js"); ?>"></script>
 
 <?php if (!empty($data->js)): ?>
