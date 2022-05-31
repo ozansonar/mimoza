@@ -31,7 +31,7 @@
     "ext-fileinfo": "*",
     "ozansonar/mimoza-panel-file": "^1.0",
     "ext-json": "*",
-    "mrt/mimoza-core": "^0.1.0"
+    "mrt/mimoza-core": "^0.1.6"
   },
   "config": {
     "platform-check": false
