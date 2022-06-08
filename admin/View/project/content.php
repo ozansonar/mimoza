@@ -32,7 +32,7 @@
 							<?php echo $functions->textModal($row->title, 20); ?>
                         </td>
                         <td>
-							<?php echo $cats[$row->cat_id]; ?>
+							<?php echo $data->cats[$row->cat_id]; ?>
                         </td>
                         <td><?php echo $functions->dateShort($row->created_at); ?></td>
                         <td>

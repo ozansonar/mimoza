@@ -79,4 +79,5 @@ View::backend('content',[
 	'content' =>$data,
 	'css' =>$customCss,
 	'js' =>$customJs,
+	'cats' =>$cats,
 ]);
