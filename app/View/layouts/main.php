@@ -26,7 +26,7 @@
 
     <script src="<?php echo $system->publicUrl("dist/js/jquery-3.6.0.min.js"); ?>"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div class="container-fluid">
     <div class="container mt-1 d-flex flex-column flex-md-row justify-content-md-between">
         <nav aria-label="Page navigation example">
@@ -184,7 +184,7 @@
     </script>
 <?php endif; ?>
 
-<div class="container-fluid bg-dark p-5 text-white mt-2">
+<div class="container-fluid bg-dark p-5 text-white mt-2 mt-auto">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4 text-center text-md-start">
