@@ -96,7 +96,6 @@ if(isset($_POST)){
 		$db_data["surname"] = $surname;
 		$db_data["subject"] = $subject;
 		$db_data["email"] = $email;
-		$db_data["phone"] = '';
 		$db_data["message"] = $msg;
 		$db::insert("contact_form",$db_data);
 
