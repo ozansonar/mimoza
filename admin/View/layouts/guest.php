@@ -19,11 +19,11 @@
     <link href="<?php echo $system->adminPublicUrl("plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"); ?>"
           rel="stylesheet">
 
-	<?php if (!empty($customCss)) : ?>
-		<?php foreach ($customCss as $css): ?>
+    <?php if (!empty($data->css)) : ?>
+        <?php foreach ($data->css as $css): ?>
             <link href="<?php echo $system->adminPublicUrl($css); ?>" rel="stylesheet">
-		<?php endforeach ?>
-	<?php endif ?>
+        <?php endforeach ?>
+    <?php endif ?>
     <link rel="stylesheet" href="<?php echo $system->adminPublicUrl("dist/css/custom.css"); ?>">
     <script src="<?php echo $system->adminPublicUrl("plugins/jquery/jquery.min.js"); ?>"></script>
 </head>
@@ -33,11 +33,48 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <section class="container d-flex vh-100 justify-content-center align-items-center">
 	<?php include_once $data->view ?>
 </section>
-<script>
-    $(document).ready(function () {
-        $("#page_alert_modal").modal();
-    });
-</script>
+
+<?php if (isset($message) && is_array($message) && (isset($message["reply"]) || isset($message["success"]))): ?>
+    <!-- modal content -->
+    <div id="page_alert_modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header <?php echo isset($message["success"]) ? "bg-success" : "bg-danger"; ?>">
+                    <h6 class="modal-title"><?php echo isset($message["success"]) ? "İşlem Başarılı" : "Hata"; ?></h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <?php
+                        if (!empty($message["reply"])) {
+                            foreach ($message["reply"] as $m_reply) {
+                                echo $m_reply . "<br>";
+                            }
+                        }
+                        if (!empty($message["success"])) {
+                            foreach ($message["success"] as $m_success) {
+                                echo $m_success . "<br>";
+                            }
+                        }
+                        ?>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn <?php echo isset($message["success"]) ? "bg-success" : "bg-danger"; ?>"
+                            data-dismiss="modal">Kapat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+    <script>
+        $(document).ready(function () {
+            $("#page_alert_modal").modal();
+        });
+    </script>
+<?php endif; ?>
 <?php $sessionError = $session->get('session_error');
 if (!empty($sessionError)): ?>
     <!-- modal content -->
@@ -75,10 +112,11 @@ if (!empty($sessionError)): ?>
 <script src="<?php echo $system->adminPublicUrl("dist/js/adminlte.js"); ?>"></script>
 <script src="<?php echo $system->adminPublicUrl("plugins/sweetalert2/sweetalert2.min.js"); ?>"></script>
 <!-- Page Custom JS -->
-<?php if (!empty($customJs)):
-	foreach ($customJs as $js):?>
+<?php if (!empty($data->js)): ?>
+    <!-- Page Custom JS -->
+    <?php foreach ($data->js as $js): ?>
         <script src="<?php echo $system->adminPublicUrl($js); ?>"></script>
-	<?php endforeach ?>
+    <?php endforeach ?>
 <?php endif ?>
 
 <script src="<?php echo $system->adminPublicUrl("dist/js/custom.js"); ?>"></script>

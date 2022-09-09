@@ -19,7 +19,8 @@
 					"label" => "Parola",
 					"input_group" => 1,
 					"group_icon" => "fas fa-lock",
-					"required" => 1
+					"required" => 1,
+                    "class" => " validate[custom[email]] "
 				));
 				?>
                 <div class="row">
@@ -37,6 +38,6 @@
 </div>
 <script>
     $(function () {
-        $("form#PageForm").validationEngine({promptPosition: "bottomLeft", scroll: false});
+        $("form#pageForm").validationEngine({promptPosition: "bottomLeft", scroll: false});
     });
 </script>
