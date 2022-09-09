@@ -12,7 +12,8 @@
 					"label" => "Kullanıcı Adı",
 					"input_group" => 1,
 					"group_icon" => "fas fa-envelope",
-					"required" => 1
+					"required" => 1,
+                    "class" => " validate[custom[email]] "
 				), $data->pageData);
 				echo $form->input("password", array(
 					"type" => "password",
@@ -20,7 +21,6 @@
 					"input_group" => 1,
 					"group_icon" => "fas fa-lock",
 					"required" => 1,
-                    "class" => " validate[custom[email]] "
 				));
 				?>
                 <div class="row">
