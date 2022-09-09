@@ -58,7 +58,7 @@
                     <li class="list-group-item"><i class="fas fa-phone top-6"></i> <strong><?php echo $functions->textManager("contact_telefon"); ?></strong> <a href="tel:<?php echo $settings->phone; ?>"><?php echo $functions->phoneFormat($settings->phone); ?></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->whatsapp) && !empty($settings->whatsapp)): ?>
-                    <li class="list-group-item"><i class="fab fa-whatsapp top-6"></i> <strong><?php echo $socialMedia["whatsapp"]["title"]; ?></strong> <a href="<?php echo $socialMedia["whatsapp"]["url"].$settings->whatsapp; ?>"><?php echo $functions->phoneFormat($settings->whatsapp); ?></a></li>
+                    <li class="list-group-item"><i class="fab fa-whatsapp top-6"></i> <strong><?php echo $constants::socialMedia["whatsapp"]["title"]; ?></strong> <a href="<?php echo $constants::socialMedia["whatsapp"]["url"].$settings->whatsapp; ?>"><?php echo $functions->phoneFormat($settings->whatsapp); ?></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->site_mail) && !empty($settings->site_mail)): ?>
                     <li class="list-group-item"><i class="fas fa-envelope top-6"></i> <strong><?php echo $functions->textManager("contact_email"); ?></strong> <a href="mailto:<?php echo $settings->site_mail ?>"><?php echo $settings->site_mail; ?></a></li>
@@ -67,25 +67,25 @@
             <h3 class="mt-2"><?php echo $functions->textManager("contact_sosyal_medya_baslik"); ?></h3>
             <ul class="pagination border p-3">
                 <?php if(isset($settings->whatsapp) && !empty($settings->whatsapp)): ?>
-                    <li class="page-item"><a href="<?php echo $socialMedia["whatsapp"]["url"].$settings->whatsapp; ?>" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp text-2"></i></a></li>
+                    <li class="page-item"><a href="<?php echo $constants::socialMedia["whatsapp"]["url"].$settings->whatsapp; ?>" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->facebook) && !empty($settings->facebook)): ?>
-                    <li class="page-item"><a href="<?php echo $socialMedia["facebook"]["url"].$settings->facebook; ?>" target="_blank" title="Facebook"><i class="fab fa-facebook-f text-2"></i></a></li>
+                    <li class="page-item"><a href="<?php echo $constants::socialMedia["facebook"]["url"].$settings->facebook; ?>" target="_blank" title="Facebook"><i class="fab fa-facebook-f text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->instagram) && !empty($settings->instagram)): ?>
-                    <li class="page-item"><a href="<?php echo $socialMedia["instagram"]["url"].$settings->instagram; ?>" target="_blank" title="Instagram"><i class="fab fa-instagram text-2"></i></a></li>
+                    <li class="page-item"><a href="<?php echo $constants::socialMedia["instagram"]["url"].$settings->instagram; ?>" target="_blank" title="Instagram"><i class="fab fa-instagram text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->youtube) && !empty($settings->youtube)): ?>
-                    <li class="page-item"><a href="<?php echo $socialMedia["youtube"]["url"].$settings->youtube; ?>" target="_blank" title="Youtube"><i class="fab fa-youtube text-2"></i></a></li>
+                    <li class="page-item"><a href="<?php echo $constants::socialMedia["youtube"]["url"].$settings->youtube; ?>" target="_blank" title="Youtube"><i class="fab fa-youtube text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->twitter) && !empty($settings->twitter)): ?>
-                    <li class="page-item"><a href="<?php echo $socialMedia["twitter"]["url"].$settings->twitter; ?>" target="_blank" title="Twitter"><i class="fab fa-twitter text-2"></i></a></li>
+                    <li class="page-item"><a href="<?php echo $constants::socialMedia["twitter"]["url"].$settings->twitter; ?>" target="_blank" title="Twitter"><i class="fab fa-twitter text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->vk) && !empty($settings->vk)): ?>
-                    <li class="page-item mt-2"><a href="<?php echo $socialMedia["vk"]["url"].$settings->vk; ?>" target="_blank" title="Vk"><i class="fab fa-vk text-2"></i></a></li>
+                    <li class="page-item mt-2"><a href="<?php echo $constants::socialMedia["vk"]["url"].$settings->vk; ?>" target="_blank" title="Vk"><i class="fab fa-vk text-2"></i></a></li>
                 <?php endif; ?>
                 <?php if(isset($settings->telegram) && !empty($settings->telegram)): ?>
-                    <li class="page-item mt-2"><a href="<?php echo $socialMedia["telegram"]["url"].$settings->telegram; ?>" target="_blank" title="Telegram"><i class="fab fa-telegram text-2"></i></a></li>
+                    <li class="page-item mt-2"><a href="<?php echo $constants::socialMedia["telegram"]["url"].$settings->telegram; ?>" target="_blank" title="Telegram"><i class="fab fa-telegram text-2"></i></a></li>
                 <?php endif; ?>
             </ul>
         </div>
