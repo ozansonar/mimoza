@@ -25,7 +25,7 @@
                          aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
                         <form action="" method="post" id="pageForm_<?php echo $project_languages_row->short_lang; ?>"
                               enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                            <?php echo $functions->getCsrfToken(); ?>
 							<?php
 							$form->lang = $project_languages_row->short_lang;
 							foreach ($data->languageTextManager as $data->languageTextManager_key => $data->languageTextManager_value): ?>

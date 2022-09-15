@@ -64,7 +64,7 @@
                 Mailingde ek(ler) göndermek istiyorsanız yükleyebilirisiniz.
             </div>
             <form enctype="multipart/form-data" method="post" id="AttachmentForm">
-                <input type="hidden" name="token" value="<?php echo $_SESSION["token"]; ?>">
+                <?php echo $functions->getCsrfToken(); ?>
 				<?php
 				echo $form->file("attachment", array(
 					"label" => $admin_text["MAILING_EK"],
@@ -105,7 +105,7 @@
                 Mailingde ek(ler) göndermek istiyorsanız yükleyebilirisiniz.
             </div>
             <form enctype="multipart/form-data" method="post" id="mailingForm">
-                <input type="hidden" name="token" value="<?php echo $_SESSION["token"]; ?>">
+                <?php echo $functions->getCsrfToken(); ?>
 				<?php
 				echo $form->input("subject", array(
 					"label" => $admin_text["MAILING_SUBJECT"],

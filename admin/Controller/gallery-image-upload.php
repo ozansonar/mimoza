@@ -69,7 +69,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 			if (!empty($images_row->image) && file_exists($image_path)) {
 				$file_size = filesize($image_path);
 				$initialPreview .= '"' . $constants::fileTypePath["gallery"]["url"] . $id . "/" . $images_row->image . '",';
-				$initialPreviewConfig .= '{caption: "' . $images_row->image . '", size: ' . $file_size . ', width: "200px", url: "gallery-image-upload", key: ' . $images_row->id . ', extra: {token: "' . $_SESSION["token"] . '", id : "' . $images_row->id . '"}  },';
+				$initialPreviewConfig .= '{caption: "' . $images_row->image . '", size: ' . $file_size . ', width: "200px", url: "gallery-image-upload", key: ' . $images_row->id . ', extra: {token: "' . $_SESSION["csrf_token"] . '", id : "' . $images_row->id . '"}  },';
 			}
 		}
 	}

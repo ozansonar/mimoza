@@ -48,7 +48,7 @@
                     ));
                     ?>
                     <input type="hidden" name="ajax_request" value="99">
-                    <input type="hidden" name="token" value="<?php echo $_SESSION["token"]; ?>">
+                    <?php echo $functions->getCsrfToken(); ?>
                     <div class="d-grid gap-2">
                         <?php
                         echo $data->form->button("save",array(
