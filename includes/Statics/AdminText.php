@@ -87,7 +87,7 @@ $admin_text["SLIDER_DESCRIPTION"] = "Zorunlu bir alan değil. Boş bırakırsan�
 $admin_text["SLIDER_SUB_TITLE"] = "Alt Başlık";
 $admin_text["SLIDER_TEXT"] = "İçerik";
 $admin_text["SLIDER_SHORT_TEXT"] = "Kısa İçerik";
-$admin_text["SLIDER_IMG"] = "Resim <span class='badge badge-info badge-sm rounded-pill px-2 py-1 me-1'>1890*980 px ölçülerinde olmalıdır.</span>";
+$admin_text["SLIDER_IMG"] = "Resim <span class='badge badge-info badge-sm rounded-pill px-2 py-1 me-1'>1920*573 px ölçülerinde olmalıdır.</span>";
 $admin_text["SLIDER_SHOW_ORDER"] = "Gösterim Sırası";
 $admin_text["SLIDER_STATUS"] = "Slider Durumu";
 $admin_text["SLIDER_LINK_TYPE"] = "Link Tipi";

@@ -2,10 +2,14 @@
 use Mrt\MimozaCore\View;
 
 //bu sayfadakullanılan özel css'ler
-$customCss = [];
+$customCss = [
+    "plugins/fancybox/jquery.fancybox.min.css"
+];
 
 //bu sayfadakullanılan özel js'ler
-$customJs = [];
+$customJs = [
+    "plugins/fancybox/jquery.fancybox.min.js"
+];
 
 //hiç bir parametre gelmemiş içerik kategorileri listelenecek
 if (!$system->route(1)) {
@@ -122,6 +126,8 @@ if (!$system->route(1)) {
 
     View::layout('content-detail',[
         "pageData" => $pageData,
-        "imgLink" => $imgLink
+        "imgLink" => $imgLink,
+        "customCss" => $customCss,
+        "customJs" => $customJs,
     ]);
 }

@@ -30,7 +30,7 @@
                 <tbody>
 				<?php foreach ($data->data as $row): ?>
                     <tr>
-                        <td><?php echo $functions->textModal($row->title, 20); ?></td>
+                        <td><?php echo !empty($row->title) ? $functions->textModal($row->title, 20):null; ?></td>
                         <td>
 							<?php if (!empty($row->img) && file_exists($constants::fileTypePath["slider"]["full_path"] . $row->img)): ?>
                                 <a href="<?php echo $constants::fileTypePath["slider"]["url"] . $row->img; ?>"
@@ -40,7 +40,7 @@
 							<?php endif; ?>
                         </td>
                         <td><?php echo $row->link; ?></td>
-                        <td><?php echo $functions->textModal($row->abstract, 20); ?></td>
+                        <td><?php echo !empty($row->abstract) ?$functions->textModal($row->abstract, 20):null; ?></td>
                         <td><?php echo $functions->dateShort($row->created_at); ?></td>
                         <td><?php echo $row->show_order; ?></td>
                         <td>

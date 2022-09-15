@@ -7,7 +7,7 @@ $log->logThis($log->logTypes["SIFRE_YENILE_PAGE"]);
 if (empty($_GET["hash"])) {
     $functions->redirect($system->url());
 }
-$hash = $functions->clean_get("hash");
+$hash = $functions->cleanGet("hash");
 if (empty($hash)) {
     $functions->redirect($system->url());
 }

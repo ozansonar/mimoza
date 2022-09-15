@@ -9,7 +9,7 @@ if (!isset($_GET["hash"]) || empty($_GET["hash"])) {
     $functions->redirect($system->url());
 }
 $log->logThis($log->logTypes["HESAP_DOGRULAMA"]);
-$hash = $functions->clean_get("hash");
+$hash = $functions->cleanGet("hash");
 if (empty($hash)) {
     $functions->redirect($system->url());
 }

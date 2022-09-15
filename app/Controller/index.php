@@ -56,7 +56,7 @@ foreach ($content_data as $content_row){
     $content_array[$content_row->id]["link"] = $system->url($settings->{"content_prefix_".$_SESSION["lang"]}."/".$content_row->c_link."-".$content_row->c_id."/".$content_row->link."-".$content_row->id);
     $content_array[$content_row->id]["date"] = $content_row->created_at;
     //$content_array[$content_row->id]["date"] = $created_at->toAtomString();
-    $content_array[$content_row->id]["keywords"] = !empty($content_row->keywords) ? $content_row->keywords:$settings["keywords"];
+    $content_array[$content_row->id]["keywords"] = !empty($content_row->keywords) ? $content_row->keywords:$content_row->title;
 }
 
 //bu sayfadakullanılan özel css'ler

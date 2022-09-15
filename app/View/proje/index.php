@@ -43,11 +43,11 @@
     </div>
     <div class="row">
 		<?php foreach ($data->content as $content) : ?>
-            <div class="col-12 col-lg-6 mb-4">
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card">
                     <a href="<?php echo $content['link'] ?>" class="text-decoration-none">
                         <img src="<?php echo $content['img'] ?>" class="card-img-top index-card-img"
-                             alt="<?php echo $content['title'] . ' photo' ?>">
+                             alt="<?php echo $content['keywords'] . ' photo' ?>">
                     </a>
                     <div class="card-body">
                         <h4><?php echo $content['title'] ?></h4>

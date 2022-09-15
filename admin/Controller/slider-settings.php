@@ -127,7 +127,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$file->maxFileSize = 5;
 			$file->resize = 5;
 			$file->width = 1920;
-            $file->height = 500;
+            $file->height = 573;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {

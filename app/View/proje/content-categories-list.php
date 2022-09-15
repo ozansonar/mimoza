@@ -21,7 +21,7 @@
                                         <h3><?php echo $functions->shorten($row->title,100); ?></h3>
                                     </div>
                                     <div class="pricing-action">
-                                        <a href="<?php echo $functions->createContentUrl($row) ?>" class="btn btn-project-1 btn-lg"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
+                                        <a href="<?php echo $siteManager->createCategoryUrl($row) ?>" class="btn btn-project-1 btn-lg"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                                     </div>
                                 </div>
                             </div>

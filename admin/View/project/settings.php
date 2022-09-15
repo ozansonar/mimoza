@@ -112,7 +112,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["google"]["url"]; ?></span>
                             </div>
                             <input type="text" name="google"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->google ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["google"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -124,7 +124,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["facebook"]["url"]; ?></span>
                             </div>
                             <input type="text" name="facebook"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->facebook ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["facebook"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -136,7 +136,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["twitter"]["url"]; ?></span>
                             </div>
                             <input type="text" name="twitter"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->twitter ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["twitter"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -148,7 +148,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["instagram"]["url"]; ?></span>
                             </div>
                             <input type="text" name="instagram"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->instagram ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["instagram"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -160,7 +160,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["youtube"]["url"]; ?></span>
                             </div>
                             <input type="text" name="youtube"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->youtube ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["youtube"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -172,7 +172,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["linkedin"]["url"]; ?></span>
                             </div>
                             <input type="text" name="linkedin"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->linkedin ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["linkedin"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -184,7 +184,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["whatsapp"]["url"]; ?></span>
                             </div>
                             <input type="text" name="whatsapp"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->whatsapp ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["whatsapp"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -196,7 +196,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["vk"]["url"]; ?></span>
                             </div>
                             <input type="text" name="vk"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->vk ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["vk"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
@@ -208,7 +208,7 @@
                                 <span class="input-group-text"><?php echo $constants::socialMedia["telegram"]["url"]; ?></span>
                             </div>
                             <input type="text" name="telegram"
-                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]->telegram ?? null; ?>"
+                                   value="<?php echo $data->pageData[$data->defaultLanguage->short_lang]["telegram"] ?? null; ?>"
                                    class="form-control">
                         </div>
 
