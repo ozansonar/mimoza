@@ -125,7 +125,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == 1) {
 			$file->globalFileName = "img_" . $project_languages_row->short_lang;
 			$file->uploadFolder = "slider";
 			$file->maxFileSize = 5;
-			$file->resize = 5;
+			$file->resize = true;
 			$file->width = 1920;
             $file->height = 573;
 			$file->compressor = true;

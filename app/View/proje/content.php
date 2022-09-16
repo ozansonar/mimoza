@@ -26,7 +26,7 @@
                                     <h5 class="card-title"><?php echo $functions->shorten($page_row->title,20); ?></h5>
                                     <p class="card-text"><?php echo $functions->shorten($page_row->abstract,200); ?></p>
                                     <p class="card-text"><small class="text-muted"><?php echo $functions->dateLong($page_row->created_at); ?></small></p>
-                                    <p><a href="<?php echo $functions->createContentUrl($data->category,$page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a></p>
+                                    <p><a href="<?php echo $siteManager->createContentUrl($page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a></p>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                <h5 class="card-title"><?php echo $functions->shorten($page_row->title,20); ?></h5>
                                <p class="card-text"><?php echo $functions->shorten($page_row->abstract,200); ?></p>
                                <p class="card-text"><small class="text-muted"><?php echo $functions->dateLong($page_row->created_at); ?></small></p>
-                               <a href="<?php echo $functions->createContentUrl($data->category,$page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
+                               <a href="<?php echo $siteManager->createContentUrl($page_row) ?>" class="btn btn-outline-primary"><?php echo $functions->textManager("icerik_detay_buton"); ?></a>
                            </div>
                        </div>
                     </div>
@@ -56,7 +56,7 @@
                <div class="col-12 mt-3 pe-0">
                    <ul class="pagination float-end">
                        <?php foreach ($data->pagination["paginate"] as $paginate): ?>
-                           <li class="page-item <?php echo isset($paginate["active"]) ? "active":null; ?>"><a class="page-link" href="<?php echo $functions->createContentUrl($data->category)."?q=".$paginate["value"]; ?>"><?php echo $paginate["text"]; ?></a></li>
+                           <li class="page-item <?php echo isset($paginate["active"]) ? "active":null; ?>"><a class="page-link" href="<?php echo $siteManager->createCategoryUrl($data->category)."?q=".$paginate["value"]; ?>"><?php echo $paginate["text"]; ?></a></li>
                        <?php endforeach; ?>
                    </ul>
                </div>

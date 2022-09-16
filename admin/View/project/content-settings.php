@@ -29,6 +29,18 @@
                              id="content-dashboard-<?php echo $project_languages_row->short_lang; ?>" role="tabpanel"
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
 							<?php
+                            if($data->id > 0){
+                                $thisContentUrl = $siteManager->createContentUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                $thisContentLinkNoUrl = $siteManager->createContentLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                ?>
+                                <div class="alert alert-info">
+                                    İçerik Linki: <a href="<?php echo $thisContentUrl; ?>" target="_blank" class="text-white"><?php echo $thisContentUrl; ?></a>
+                                </div>
+                                <div class="alert alert-warning">
+                                    İçerik Linki Kopyalamak İçin: <?php echo $thisContentLinkNoUrl; ?>
+                                </div>
+                                <?php
+                            }
 							$form->lang = $project_languages_row->short_lang;
 							echo $form->input("title", array(
 								"label" => $admin_text["CONTENT_TITLE"],

@@ -58,7 +58,7 @@ $admin_text["CONTENT_ADD"] = "İçerik Ekle";
 $admin_text["CONTENT_TITLE"] = "Başlık";
 $admin_text["CONTENT_ACSTRACT"] = "Özet";
 $admin_text["CONTENT_TEXT"] = "İçerik";
-$admin_text["CONTENT_FILE"] = "Resim";
+$admin_text["CONTENT_FILE"] = "Resim <span class='badge badge-info badge-sm rounded-pill px-2 py-1 me-1'>800*450 px ölçülerinde olmalıdır.</span>";
 $admin_text["CONTENT_MEVCUT_IMG"] = "Mevcut Resim";
 $admin_text["CONTENT_SHOW_ORDER"] = "Gösterim Sırası";
 $admin_text["CONTENT_STATUS"] = "İçerik Durumu";

@@ -29,6 +29,18 @@
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
 							<?php
 							$form->lang = $project_languages_row->short_lang;
+                            if($data->id > 0){
+                                $thisContentUrl = $siteManager->createCategoryUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                $thisContentLinkNoUrl = $siteManager->createCategoryLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                ?>
+                                <div class="alert alert-info">
+                                    İçerik Linki: <a href="<?php echo $thisContentUrl; ?>" target="_blank" class="text-white"><?php echo $thisContentUrl; ?></a>
+                                </div>
+                                <div class="alert alert-warning">
+                                    İçerik Linki Kopyalamak İçin: <?php echo $thisContentLinkNoUrl; ?>
+                                </div>
+                                <?php
+                            }
 							echo $form->input("title", array(
 								"label" => $admin_text["CAT_TITLE"],
 								"required" => 1,
