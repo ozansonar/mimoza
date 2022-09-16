@@ -225,7 +225,7 @@ View::backend('content-settings', [
 	'id' => $id,
 	'pageButtonRedirectLink' => "content",
 	'pageButtonRedirectText' => "İçerikler",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,

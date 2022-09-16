@@ -201,7 +201,7 @@ View::backend('gallery-settings', [
 	'title' => "Galeri " . (isset($data) ? "Düzenle" : "Oluştur"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,

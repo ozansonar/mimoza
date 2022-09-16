@@ -199,7 +199,7 @@ View::backend('content-categories-settings', [
 	'title' => "İçerik Kategorisi " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "content-categories",
 	'pageButtonRedirectText' => "Kategoriler",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,

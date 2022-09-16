@@ -61,7 +61,7 @@ View::backend('contact', [
 	'title' => 'İletişim Formu Mesajları',
 	'pageButtonRedirectLink' => "contact",
 	'pageButtonRedirectText' => 'İletişim Formu Mesajları',
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'content' => $data,
 	'css' =>$customCss,

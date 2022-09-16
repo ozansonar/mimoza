@@ -79,7 +79,7 @@ View::backend('gallery-image-upload', [
 	'title' => "Galeri Resim " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'initialPreview' => $initialPreview ?? NULL,
 	'initialPreviewConfig' => $initialPreviewConfig ?? NULL,
 	'css' => $customCss,

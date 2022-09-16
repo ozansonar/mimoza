@@ -172,7 +172,7 @@ View::backend('page-link-settings',[
 	'title' =>"Sayfa Linki " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "page-link",
 	'pageButtonRedirectText' => "Sayfa Linkleri",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $default_lang,

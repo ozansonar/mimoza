@@ -155,7 +155,7 @@ View::backend('mail-settings',[
 	'title' =>"Mailing " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Gönderilmiş Mailler",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' =>$pageRoleKey,
 	'pageAddRoleKey' =>$pageAddRoleKey,
 	'pageData' =>$pageData,

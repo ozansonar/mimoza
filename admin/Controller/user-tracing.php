@@ -43,7 +43,7 @@ View::backend('user-tracing', [
 	'id' => $id,
 	'pageButtonRedirectLink' => "user",
 	'pageButtonRedirectText' => "Kullancılar",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'logs' => $log_array,
 

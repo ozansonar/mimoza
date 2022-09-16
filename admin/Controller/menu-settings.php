@@ -228,7 +228,7 @@ View::backend('menu-settings', [
 	'title' => "Menü " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "menu",
 	'pageButtonRedirectText' => "Menüler",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,

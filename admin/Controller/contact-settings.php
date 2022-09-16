@@ -129,7 +129,7 @@ View::backend('contact-settings', [
 	'title' => "Gelen Mesajı " . (isset($data) ? "Cevapla" : "Ekle"),
 	'pageButtonRedirectLink' => "contact",
 	'pageButtonRedirectText' => "İletişim Mesajları",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,
 	'content' => $data,
 	'defaultLanguage' => $defaultLanguage,

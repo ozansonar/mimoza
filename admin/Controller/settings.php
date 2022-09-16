@@ -479,7 +479,7 @@ View::backend('settings', [
 	'title' => 'Genel Ayarlar',
 	'pageButtonRedirectLink' => "settings",
 	'pageButtonRedirectText' => 'Genel Ayarlar',
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,

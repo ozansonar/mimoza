@@ -160,7 +160,7 @@ View::backend('lang-settings', [
 	'title' => "Dil " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "lang",
 	'pageButtonRedirectText' => "Diller",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $defaultLanguage,

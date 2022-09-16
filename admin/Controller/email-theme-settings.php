@@ -152,7 +152,7 @@ View::backend('email-theme-settings', [
 	'title' => "E-posta Teması " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "E-posta Temaları",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,

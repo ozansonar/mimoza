@@ -194,7 +194,7 @@ View::backend('page-settings', [
 	'title' => "Sayfa " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "menu",
 	'pageButtonRedirectText' => "Sayfalar",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,

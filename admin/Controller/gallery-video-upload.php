@@ -212,7 +212,7 @@ View::backend('gallery-video-upload',[
 	'title' => "Video " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'id' =>$id,
 	'videosData' =>$videos_data,
 	'css' => $customCss,

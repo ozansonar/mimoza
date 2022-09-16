@@ -187,7 +187,7 @@ View::backend('user-settings', [
 	'title' => "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "user",
 	'pageButtonRedirectText' => "Kullanıcılar",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $default_lang,

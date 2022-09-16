@@ -217,7 +217,7 @@ View::backend('slider-settings',[
 	'title' => "Slider " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "slider",
 	'pageButtonRedirectText' => "Sliderlar",
-	'pageButtonIcon' => "icon-list",
+	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'pageData' => $pageData,
