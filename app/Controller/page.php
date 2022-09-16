@@ -4,10 +4,14 @@ use Mrt\MimozaCore\View;
 $log->logThis($log->logTypes["PAGE"], $pageData->id);
 
 //bu sayfadakullanılan özel css'ler
-$customCss = [];
+$customCss = [
+    "plugins/fancybox/jquery.fancybox.min.css"
+];
 
 //bu sayfadakullanılan özel js'ler
-$customJs = [];
+$customJs = [
+    "plugins/fancybox/jquery.fancybox.min.js"
+];
 
 $metaTag->title = $pageData->title;
 if(!empty($pageData->keywords)){
@@ -18,5 +22,7 @@ if(!empty($pageData->description)){
 }
 //$pageData ana indexten geliyor
 View::layout('page',[
-    'page_data' => $pageData
+    'page_data' => $pageData,
+    "customCss" => $customCss,
+    "customJs" => $customJs,
 ]);

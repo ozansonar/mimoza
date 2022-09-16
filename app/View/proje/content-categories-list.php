@@ -12,7 +12,7 @@
                                 $img_link = $constants::fileTypePath["content_categories"]["url"].$row->img;
                             }
                             ?>
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-6 col-lg-4 mt-3">
                                 <div class="pricing-box pricing-simple p-5 bg-light border-top border-project-1 text-center h-100 w-100 hvr-glow">
                                     <?php if($img): ?>
                                         <img src="<?php echo $img_link; ?>" class="card-img-top" alt="<?php echo $metaTag["keywords"]; ?>">
