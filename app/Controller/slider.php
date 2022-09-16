@@ -26,10 +26,14 @@ if($p_count !== 1){
 }
 
 //bu sayfadakullanılan özel css'ler
-$customCss = [];
+$customCss = [
+    "plugins/fancybox/jquery.fancybox.min.css"
+];
 
 //bu sayfadakullanılan özel js'ler
-$customJs = [];
+$customJs = [
+    "plugins/fancybox/jquery.fancybox.min.js"
+];
 
 $imgLink = false;
 if(!empty($pageData->img) && file_exists($constants::fileTypePath["slider"]["full_path"].$pageData->img)){
@@ -43,4 +47,6 @@ $metaTag->title = $pageData->title;
 View::layout('content-detail',[
     'pageData' => $pageData,
     'imgLink' => $imgLink,
+    "customCss" => $customCss,
+    "customJs" => $customJs,
 ]);
