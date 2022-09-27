@@ -54,7 +54,7 @@ foreach ($langData as $langRow) {
 	for ($i = 1; $i <= 10; $i++) {
 		$allowedSpecialHtmlPost[] = "bilgilendirme_alani_tab_text_" . $i . "_" . $langRow->short_lang;
 	}
-} 
+}
 
 // Getting site settings from database
 $settingQuery = $db::selectQuery("settings");
