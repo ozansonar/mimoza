@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 if ((int)$settings->site_status !== 1) {
 	$functions->redirect($system->url());

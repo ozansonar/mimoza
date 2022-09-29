@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 if(!$session->checkUserSession()){
     $functions->redirect($system->url());
 }

@@ -1,6 +1,6 @@
 <?php
 //sayfanın izin keyi
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "gallery";
 $pageAddRoleKey = "gallery-settings";

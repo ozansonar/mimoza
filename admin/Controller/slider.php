@@ -1,6 +1,6 @@
 <?php
 //sayfanın izin keyi
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "slider";
 $pageAddRoleKey = "slider-settings";

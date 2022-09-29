@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "user-tracing";
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {

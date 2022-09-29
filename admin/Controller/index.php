@@ -1,6 +1,6 @@
 ﻿<?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 View::backend('index',[
 	'title' => 'Ana Sayfa',

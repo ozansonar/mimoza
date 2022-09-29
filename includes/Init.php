@@ -1,12 +1,12 @@
 <?php
 
-use Mrt\MimozaCore\Functions;
-use Mrt\MimozaCore\Database;
-use Mrt\MimozaCore\Session;
-use Mrt\MimozaCore\SiteManager;
-use Mrt\MimozaCore\Core;
-use Mrt\MimozaCore\Log;
-use Mrt\MimozaCore\Constants;
+use OS\MimozaCore\Functions;
+use OS\MimozaCore\Database;
+use OS\MimozaCore\Session;
+use OS\MimozaCore\SiteManager;
+use OS\MimozaCore\Core;
+use OS\MimozaCore\Log;
+use OS\MimozaCore\Constants;
 
 // Debug sınıfını kullanmayacaksanız kaldırabilirsiniz.
 use Whoops\Handler\PrettyPageHandler;

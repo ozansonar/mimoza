@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\Mail;
+use OS\MimozaCore\Mail;
 
 $message = [];
 if (isset($_POST["mailing_id"])) {

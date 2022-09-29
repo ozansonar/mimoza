@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["CONTACT"]);
 $customCss = ["plugins/form-validation-engine/css/validationEngine.jquery.css"];

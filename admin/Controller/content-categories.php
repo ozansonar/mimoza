@@ -1,7 +1,7 @@
 <?php
 
 //sayfanın izin keyi
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "content-categories";
 $pageAddRoleKey = "content-categories-settings";

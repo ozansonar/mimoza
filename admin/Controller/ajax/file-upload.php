@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\FileUploader;
+use OS\MimozaCore\FileUploader;
 
 if (isset($_FILES["file"]) && !empty($_FILES["file"]["name"])) {
 	$file = new FileUploader($constants::fileTypePath);

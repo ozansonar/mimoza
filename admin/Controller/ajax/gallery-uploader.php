@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\FileUploader;
+use OS\MimozaCore\FileUploader;
 
 $data->pageRoleKey = "gallery-image-upload";
 if ($session->sessionRoleControl($data->pageRoleKey, $constants::addPermissionKey) === false) {

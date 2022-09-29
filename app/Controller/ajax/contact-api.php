@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\Mail;
+use OS\MimozaCore\Mail;
 
 $log->logThis($log->logTypes["CONTACT_API_SEND"]);
 if(isset($_POST)){

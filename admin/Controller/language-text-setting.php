@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "language-text-setting";
 $pageAddRoleKey = "language-text-setting";

@@ -1,8 +1,8 @@
 <?php
 
 
-use Mrt\MimozaCore\FileUploader;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\FileUploader;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "settings";
 $pageAddRoleKey = "settings";

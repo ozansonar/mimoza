@@ -4,7 +4,7 @@ $functions->redirect($system->url());
 exit;
 
 use Includes\System\Form;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 if(!$session->isThereUserSession()){
     $functions->redirect($system->url());

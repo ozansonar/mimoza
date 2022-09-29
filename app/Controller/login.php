@@ -1,7 +1,7 @@
 <?php
 
-use Mrt\MimozaCore\Form;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\Form;
+use OS\MimozaCore\View;
 
 if($session->isThereUserSession()){
     $functions->redirect($system->url());

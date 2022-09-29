@@ -1,7 +1,7 @@
 ﻿<?php
 
-use Mrt\MimozaCore\AdminForm;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\AdminForm;
+use OS\MimozaCore\View;
 
 if ($session->isThereUserSession() && $session->get("user_rank") < 60) {
 	$functions->redirect($system->url());

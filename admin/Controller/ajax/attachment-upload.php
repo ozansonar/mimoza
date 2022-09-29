@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\FileUploader;
+use OS\MimozaCore\FileUploader;
 
 $message = [];
 if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){

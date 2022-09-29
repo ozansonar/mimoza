@@ -1,6 +1,6 @@
 <?php
 
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["SIFRE_YENILE_PAGE"]);
 

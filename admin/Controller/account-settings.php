@@ -1,8 +1,8 @@
 <?php
 
-use Mrt\MimozaCore\FileUploader;
-use Mrt\MimozaCore\Functions;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\FileUploader;
+use OS\MimozaCore\Functions;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "account-settings";
 

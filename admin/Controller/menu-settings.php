@@ -1,7 +1,7 @@
 <?php
 
-use Mrt\MimozaCore\AdminForm;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\AdminForm;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "menu";
 $pageAddRoleKey = "menu-settings";

@@ -1,5 +1,5 @@
 <?php
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["PAGE"], $pageData->id);
 

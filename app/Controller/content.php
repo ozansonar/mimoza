@@ -1,5 +1,5 @@
 <?php
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 //bu sayfadakullanılan özel css'ler
 $customCss = [

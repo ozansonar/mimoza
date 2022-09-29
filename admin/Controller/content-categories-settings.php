@@ -1,8 +1,8 @@
 <?php
 
-use Mrt\MimozaCore\AdminForm;
-use Mrt\MimozaCore\FileUploader;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\AdminForm;
+use OS\MimozaCore\FileUploader;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "content-categories";
 $pageAddRoleKey = "content-categories-settings";

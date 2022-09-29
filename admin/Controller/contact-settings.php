@@ -1,7 +1,7 @@
 <?php
 
-use Mrt\MimozaCore\Mail;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\Mail;
+use OS\MimozaCore\View;
 
 $pageRoleKey = "contact";
 $pageAddRoleKey = "contact-settings";

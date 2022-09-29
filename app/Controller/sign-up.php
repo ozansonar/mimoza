@@ -1,7 +1,7 @@
 <?php
 
 use Includes\System\Form;
-use Mrt\MimozaCore\View;
+use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["KAYIT_PAGE"]);
 
