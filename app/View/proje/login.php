@@ -20,7 +20,9 @@
                     "class" => "validate[email]",
                 ));
                 ?>
-
+                <?php if(defined("LIVE_MODE")): ?>
+                    <input type="hidden" name="recaptcha_response" id="id_recaptcha_response">
+                <?php endif; ?>
                 <div class="d-grid gap-2">
                     <?php
                     echo $data->form->button("save",array(
@@ -47,6 +49,9 @@
                         "class" => "validate[custom[email]]",
                     ));
                     ?>
+                    <?php if(defined("LIVE_MODE")): ?>
+                        <input type="hidden" name="recaptcha_response2" id="id_recaptcha_response2">
+                    <?php endif; ?>
                     <input type="hidden" name="ajax_request" value="99">
                     <?php echo $functions->getCsrfToken(); ?>
                     <div class="d-grid gap-2">
@@ -62,6 +67,27 @@
         </div>
     </div>
 </div>
+
+<?php if(defined("LIVE_MODE")): ?>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo CAPTCHA_SITE_KEY; ?>"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute("<?php echo CAPTCHA_SITE_KEY; ?>", {action: 'request'})
+                .then(function(captcha_key) {
+                    var id_recaptcha_response = document.getElementById('id_recaptcha_response');
+                    id_recaptcha_response.value = captcha_key;
+                });
+        });
+        grecaptcha.ready(function() {
+            grecaptcha.execute("<?php echo CAPTCHA_SITE_KEY; ?>", {action: 'request'})
+                .then(function(captcha_key) {
+                    var id_recaptcha_response = document.getElementById('id_recaptcha_response2');
+                    id_recaptcha_response.value = captcha_key;
+                });
+        });
+    </script>
+<?php endif; ?>
+
 <script>
     $(function () {
         $("form#LoginForm").validationEngine();

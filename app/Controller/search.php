@@ -55,8 +55,8 @@ $metaTag->title = $functions->textManager("arama_baslik");
 
 View::layout('search',[
     'text' => $text,
-    'contentQueryQata' => $contentQueryQata,
-    'pageDataCategories' => $pageDataCategories,
-    'pageQueryData' => $pageQueryData,
+    'contentQueryQata' => $contentQueryQata ?? null,
+    'pageDataCategories' => $pageDataCategories ?? null,
+    'pageQueryData' => $pageQueryData ?? null,
     'count' => $count,
 ]);

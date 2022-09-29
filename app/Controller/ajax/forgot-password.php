@@ -6,10 +6,10 @@
  * Date: 28.10.2019
  * Time: 11:40
  */
+use OS\MimozaCore\Mail;
 
 $log->logThis($log->logTypes["SIFREMI_UNUTTUM_PAGE"]);
 if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 99){
-    $message = [];
     $email = $functions->cleanPost("forgot_email");
     $result = $db::selectQuery("users",array(
         "email" => $email,
@@ -20,11 +20,23 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
         $message["reply"][] = $functions->textManager("giris_sifremi_unuttum_bos_email");
     }
     if (!empty($email)) {
-        if (!$functions->is_email($email)) {
+        if (!$functions->isEmail($email)) {
             $message["reply"][] = $functions->textManager("giris_sifremi_unuttum_gecersiz_email");
         }
         if (empty($result->email)) {
             $message["reply"][] = $functions->textManager("giris_sifremi_unuttum_kayitsiz_email");
+        }
+    }
+
+    if(empty($message) && defined("LIVE_MODE")) {
+        $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
+        $recaptcha_secret = CAPTCHA_SECRET_KEY;
+        $recaptcha_response = $_POST['recaptcha_response2'];
+
+        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+        $recaptcha = json_decode($recaptcha);
+        if (isset($recaptcha) && empty($recaptcha->success) || $recaptcha->score < 0.6) {
+            $message["reply"][] = $functions->textManager("bot_onay");
         }
     }
 
@@ -49,13 +61,11 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
         if ($query) {
             $log->logThis($log->logTypes["SIFREMI_UNUTTUM_SUCC"]);
 
-            include_once $system->path("includes/System/Mail.php");
-
-            $mail_class = new \Includes\System\Mail($db);
-            $mail_class->adress = $result->email;
+            $mail_class = new Mail($db);
+            $mail_class->address = $result->email;
             $mail_class->subject = " | ".$mail_template->subject;
             $mail_class->message = $m_temp;
-            $mail_send = $mail_class->mail_send();
+            $mail_send = $mail_class->send();
             if ($mail_send) {
                 $message["success"][] = $functions->textManager("giris_sifremi_unuttum_mail_gonderildi");
                 $message["url"][] = $system->url();

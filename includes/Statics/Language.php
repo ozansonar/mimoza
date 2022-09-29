@@ -43,6 +43,15 @@ $language_text_manager = array(
             ),
         ),
     ),
+    "bot_onay" => array(
+        "title" => "Kişi google recaptcha\'ya takıldıysa",
+        "form" => array(
+            array(
+                "name" => "bot_onay",
+                "label" => "Goolge recaptcha hata yazısı"
+            ),
+        ),
+    ),
     "site_bakimda" => array(
         "title" => "Sistem Bakımda",
         "form" => array(
