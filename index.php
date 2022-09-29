@@ -1,7 +1,5 @@
 <?php
 
-use Carbon\Carbon;
-
 include(__DIR__ . "/includes/Init.php");
 
 $routeExplode = explode('?', $_SERVER['REQUEST_URI']);
@@ -94,12 +92,5 @@ if ($session->isThereUserSession()) {
 //	$functions->redirect($system->url("giris"));
 //}
 
-
-/**
- * Carbon sınıfı için tanımlamalar yapılıyor. Bu tanımlamanın dinamik olması adına burada tanımlandı.
- * Kullanımı için -> https://carbon.nesbot.com/docs/
- */
-
-Carbon::getFormatsToIsoReplacements($projectLanguages[$_SESSION["lang"]]->lang_iso);
 include($system->path('app/Controller/' . strtolower($system->route(0)) . ".php"));
 ob_end_flush();
