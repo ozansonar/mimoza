@@ -4,8 +4,9 @@ use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["SEARCH"]);
 $count = 0;
+
+$text = $functions->cleanGet("q");
 if(isset($_GET["q"]) && !empty($_GET["q"])){
-    $text = $functions->cleanGet("q");
     $aranacak = "%".$text."%";
 
     // içeriklerde aranıyor
