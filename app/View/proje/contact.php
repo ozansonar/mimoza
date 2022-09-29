@@ -42,6 +42,9 @@
                             "required" => 1,
                         )); ?>
                     </div>
+                    <?php if(defined("LIVE_MODE")): ?>
+                        <input type="hidden" name="recaptcha_response" id="id_recaptcha_response">
+                    <?php endif; ?>
                     <div class="col-12 text-end">
                         <button type="submit" id="send-btn" class="btn btn-success"><?php echo $functions->textManager("contact_button"); ?></button>
                     </div>
@@ -91,6 +94,19 @@
         </div>
     </div>
 </div>
+
+<?php if(defined("LIVE_MODE")): ?>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo CAPTCHA_SITE_KEY; ?>"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute("<?php echo CAPTCHA_SITE_KEY; ?>", {action: 'request'})
+                .then(function(captcha_key) {
+                    var id_recaptcha_response = document.getElementById('id_recaptcha_response');
+                    id_recaptcha_response.value = captcha_key;
+                });
+        });
+    </script>
+<?php endif; ?>
 
 <script>
     var url = "<?php echo $system->url("ajax/contact-api"); ?>";
