@@ -7,10 +7,6 @@
     {
       "name": "Ozan Sonar",
       "email": "ozansonar1@gmail.com"
-    },
-    {
-      "name": "M.Raşit OKUMUŞ",
-      "email": "okumusmr@gmail.com"
     }
   ],
   "autoload": {
@@ -24,14 +20,13 @@
     "phpmailer/phpmailer": "^6.6",
     "ezyang/htmlpurifier": "^4.14",
     "ext-pdo": "*",
-    "nesbot/carbon": "^2.56",
     "ext-iconv": "*",
     "ext-ctype": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ozansonar/mimoza-panel-file": "^1.0",
     "ext-json": "*",
-    "mrt/mimoza-core": "^0.1.9"
+    "ozansonar/mimoza-panel-file": "^1.0",
+    "ozansonar/mimoza-core": "^1.0"
   },
   "config": {
     "platform-check": false
