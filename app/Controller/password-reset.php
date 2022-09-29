@@ -98,9 +98,6 @@ if(isset($_POST["save"]) && (int)$_POST["save"] === 1){
     }
 }
 
-include($system->path("includes/System/Form.php"));
-$form = new Includes\System\Form();
-
 
 View::layout('password-reset',[
     'customCss' => $customCss,

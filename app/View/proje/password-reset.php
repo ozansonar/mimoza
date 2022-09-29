@@ -8,14 +8,16 @@
                 <?php echo $functions->csrfToken(); ?>
                 <div class="input-group mt-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
-                    <input type="password" class="form-control validate[required,minSize[10],maxSize[50]]" id="id_password" name="password"  placeholder="Şifre" onkeyup="checkPasswordStrength();">
+                    <input type="password" class="form-control validate[required,minSize[12],maxSize[50]]" id="id_password" name="password"  placeholder="Şifre">
+                    <span class="btn btn-outline-secondary password-show-hide" type="button" id="button-addon2"><i class="fa-solid fa-eye"></i></span>
                 </div>
-                <div id="password-strength-status"></div>
+                <div id="divCheckPasswordPattern"></div>
                 <div class="input-group mt-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
-                    <input type="password" class="form-control validate[required,equals[id_password],minSize[10],maxSize[50]]]" id="id_password_again" name="password_again" placeholder="Şifre Tekrarı" onkeyup="checkPasswordStrength2();">
+                    <input type="password" class="form-control validate[required,equals[id_password],minSize[12],maxSize[50]]]" id="id_password_again" name="password_again" placeholder="Şifre Tekrarı">
+                    <span class="btn btn-outline-secondary password-show-hide" type="button" id="button-addon2"><i class="fa-solid fa-eye"></i></span>
                 </div>
-                <div id="password-again-strength-status"></div>
+                <div id="divCheckPasswordMatch"></div>
                 <div class="d-grid gap-2">
                     <input type="hidden" name="hash" value="<?php echo $_GET["hash"]; ?>" id="hash">
                     <button type="submit" name="save" class="btn btn-success my-2" value="1" id="send-btn">Şifremi Yenile</button>

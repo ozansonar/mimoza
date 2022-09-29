@@ -210,6 +210,6 @@ if(isset($data->customJs) && !empty($data->customJs)){
     }
 }
 ?>
-<script src="<?php echo $system->publicUrl("dist/js/custom.js"); ?>" defer></script>
+<script src="<?php echo $system->publicUrl('dist/js/custom.js?v='.filemtime($system->path("public/proje/dist/js/custom.js")).''); ?>" defer></script>
 </body>
 </html>
