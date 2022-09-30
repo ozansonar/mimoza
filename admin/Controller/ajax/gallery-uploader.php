@@ -55,5 +55,3 @@ if (isset($_FILES["file_data"])) {
 	$message = [];
 	$message["error"] = "Dosya seçilmedi.";
 }
-echo json_encode($message);
-exit;
