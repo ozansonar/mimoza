@@ -38,6 +38,11 @@
 												"label" => "--" . $form_row["label"],
 												"class" => $class,
 											), $data->pageData);
+                                        elseif(isset($form_row["type"]) && $form_row["type"] == "file"):
+                                            echo $form->file($form_row["name"],array(
+                                                "label" => "--".$form_row["label"],
+                                                "file_key" => "project_image",
+                                            ),$data->pageData);
 										else :
 											echo $form->input($form_row["name"], array(
 												"label" => "--" . $form_row["label"],

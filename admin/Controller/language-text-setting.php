@@ -1,5 +1,6 @@
 <?php
 
+use OS\MimozaCore\FileUploader;
 use OS\MimozaCore\View;
 
 $pageRoleKey = "language-text-setting";
@@ -51,6 +52,10 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if ($data_lang === $project_languages_row->short_lang) {
 			foreach ($language_text_manager as $language_text_manager_key => $language_text_manager_value) {
 				foreach ($language_text_manager_value["form"] as $language_text_manager_form) {
+                    if(isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] == "file"){
+                        continue;
+                    }
+                    
 					if (isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] === "textarea") {
 						$pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $functions->cleanPostTextarea($language_text_manager_form["name"]);
 					} else {
@@ -66,8 +71,30 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 						}
 					}
 				}
-
 			}
+
+            foreach($language_text_manager as $language_text_manager_key=>$language_text_manager_value) {
+                foreach ($language_text_manager_value["form"] as $language_text_manager_form) {
+                    if (isset($language_text_manager_form["type"]) && $language_text_manager_form["type"] == "file") {
+                        $file = new FileUploader($constants::fileTypePath);
+                        $file->globalFileName = $language_text_manager_form["name"]."_".$project_languages_row->short_lang;
+                        $file->uploadFolder = "project_image";
+                        $file->maxFileSize = 1;
+                        $file->compressor = true;
+                        $uploaded = $file->fileUpload();
+                        if(isset($uploaded["result"]) && $uploaded["result"] == 1){
+                            $pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = $uploaded["img_name"];
+                        }
+                        if(isset($uploaded["result"]) && $uploaded["result"] == 2){
+                            $message["reply"][] = $language_text_manager_value["title"]." - ".$language_text_manager_form["label"]." ".$uploaded["result"];
+                        }
+                        if(isset($uploaded["result"]) && $uploaded["result"] == 3){
+                            //$pageData[$project_languages_row->short_lang][$language_text_manager_form["name"]] = null;
+                        }
+                    }
+                }
+            }
+
 			if (empty($message)) {
 				$text_manager_db_data = $db::selectQuery("settings", array(
 					"lang" => $data_lang
