@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
                                       `log_page` varchar(100) DEFAULT NULL,
                                       `log_query_string` varchar(255) DEFAULT NULL,
                                       `log_http_user_agent` varchar(255) DEFAULT NULL,
-                                      `log_detail` varchar(255) DEFAULT NULL,
+                                      `log_detail` text DEFAULT NULL,
                                       PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=355 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -606,15 +606,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
                                           PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-
-INSERT INTO `sessions` (`id`, `user_id`, `token`, `browser`, `ip_address`, `x_forwarded_for`, `expire_date`, `deleted`) VALUES
-                                                                                                                            (1, 81, '6YiCeUpk7ZkTHDEWD6mPqiMmcPE3kVcXGWyTvck5ZFLKCyRZwN7besguWd5SmRPFfzMEHp9g5vANePnNVdCaiqw87bT8Mn5kEMFL', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-16 14:35:21', 0),
-                                                                                                                            (2, 81, '5R3ouASCNLBeX99B6e88jyB9vpiF9mR5qkz8rz3LFiqPoAoMEL2bFrWU1jbSmWjEBWHDUzTP66Pgcq4HRxLRufjePv0d1b77wye7', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-16 14:36:23', 0),
-                                                                                                                            (3, 81, 'KPxgSE1rZW77Vk55bQCTrLTeRQoEFYHBh2tGBNRxQVnvd85RU6pbiM6zsJWYGxmsLS5tbgaBjDyDRNt6vt23sjtY84KAwzdt3AqH', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-16 17:23:30', 0),
-                                                                                                                            (4, 81, 'xoKXJ5wi3jPg27eT2QnJwuyioHnJ5LrJYjX0d5svpiGYzUmbQskQxNtG2AafHekLbTUjV1CenCCMPwqN1gc047iHz2A9QhPhCq54', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-17 06:57:46', 0),
-                                                                                                                            (5, 81, 'AHW1dyzoUzj0eFPPRPNCZTSm19hXU32Gz0udMXU835dGk7HaLDDaKxN8WUeVUho4KFGmYVSpBFAqegzZowpMhRiEUnQDnbezGK50', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-17 07:07:47', 0),
-                                                                                                                            (6, 81, 'WqvziYfc06ayATZNpKAy4HgBu8oZEgQYn9TNv1wBR4247ZJmpV0NbeDWRiseWiYJQRWPRENVX79iQVWyoH9ABBxMutBaRtqmz2ES', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', '172.16.32.2', NULL, '2022-09-17 07:41:23', 0);
-
 CREATE TABLE IF NOT EXISTS `settings` (
                                           `id` int(11) NOT NULL AUTO_INCREMENT,
                                           `name` varchar(255) NOT NULL,
@@ -869,6 +860,24 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `img`, `telefon`, `role_group`, `rank`, `email_verify`, `send_mail`, `verify_code`, `theme`, `status`, `deleted`) VALUES
     (81, 'demo@demo.com', '$2y$10$.jci1zvg95FQAih9pTLphunLcJZ8TWJpOUX2P6l5AdOl/Affo3Esq', 'Demo', 'Demo', '', '', 1, 90, 1, 1, '', 1, 1, 0);
+
+
+create table if not exists audit_log
+(
+    id                  int(11) unsigned auto_increment
+        primary key,
+    action_log_id       int                           null,
+    table_name          varchar(255)                  not null,
+    row_id              int                           null,
+    field_name          varchar(255) default ''       not null,
+    old_value           varchar(255)                  null,
+    new_value           varchar(255)                  null,
+    activity            varchar(10)      default 'UPDATE' not null,
+    modified_datetime   datetime                      null,
+    modified_by_user_id int                           not null
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 
 CREATE TABLE IF NOT EXISTS `youtube_videos` (
                                                 `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -177,13 +177,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update("menu", $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update("menu", $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]),"MENU_EDIT_SUCC");
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert("menu", $db_data);
+					$add = $db::insert("menu", $db_data,"MENU_ADD_SUCC");
 				}
 			} else {
 				//ekleme
@@ -191,33 +191,25 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
 
-				$add = $db::insert("menu", $db_data);
+				$add = $db::insert("menu", $db_data,"MENU_ADD_SUCC");
 			}
 		}
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
 		if ($id > 0) {
 			if ($update) {
-				//log atalım
-				$log->logThis($log->logTypes['MENU_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
 
 				$functions->refresh($system->adminUrl("menu-settings?id=" . $id), $refresh_time);
 			} else {
-				//log atalım
-				$log->logThis($log->logTypes['MENU_EDIT_ERR']);
 				$message["reply"][] = $lang["content-update-error"];
 			}
 		} else {
 			if ($add) {
-				//log atalım
-				$log->logThis($log->logTypes['MENU_ADD_SUCC']);
 				$message["success"][] = $lang["content-insert"];
 
 				$functions->refresh($system->adminUrl("menu-settings"), $refresh_time);
 			} else {
-				//log atalım
-				$log->logThis($log->logTypes['MENU_ADD_ERR']);
 				$message["reply"][] = $lang["content-insert-error"];
 			}
 		}
