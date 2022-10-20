@@ -64,7 +64,7 @@ if(isset($_POST)){
 	if (empty($message) && defined("LIVE_MODE")) {
 		$recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
 		$recaptcha_secret = CAPTCHA_SECRET_KEY;
-		$recaptcha_response = $_POST['g-recaptcha-response'];
+		$recaptcha_response = $_POST['recaptcha_response'];
 
 		$recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
 		$recaptcha = json_decode($recaptcha);
