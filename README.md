@@ -8,14 +8,11 @@
 - [ ] Otomatik sitemap.xml olulturucu
 - [ ] Dökümantasyon oluştur.
 - [ ] Admin Auto logout 
-- [ ] Ozan:AdminForm,AdminSystem,FileUploader,Form,Functions,Log,Mail,MainSystem,SessionManager,SiteManager 
 - [ ] Resimleri Webp sıkıştırması yapalım.  
 - [ ] Model yapısı
 - [ ] Çoklu smtp
 - [ ] Hostingde mail limtilerine takılmamak için çoklu smtp kullanımı saatlere bakarak smtp seçilebilir. Çok önemli değil ama eklenmeli hostingelerde işimize yarar
-- [ ] Update fonksyionunda değişiklikleri log alması (Doğukan abinin bir kodunda vardı)
 - [ ] Çoklu Boyutlarda resimler yüklenmesi
-- [ ] Validation class'ı sanırım yeni senaturkde vardı bu class empty,is_email,is_numeric gibi kontrooleri yapıp alertleri depolası gerek ona göre yapalım
 - [ ] Validation görünüm işlemlerini panelden ayarlama
     > Modal ve form üstünde olacak şekilde 2 seçenek sunulsun. Sistem her 2 seçenekte çalışacak şekilde ayarlansın.
 - [ ] Dosya isimlendirme yaparken eğer oturum varsa user id de konulmalı
@@ -26,11 +23,8 @@
 - [ ] Resimler orjinal, tumbnail, site ihtiyacına göre uc ayrı sekilde işlenmeli
 - [ ] File isimlendirmesinde tarih - user_id gibi değişkenleri kullanılacak
 - [ ] Diller Json dosyasında tutulup geriye buradan dönecek.
-- [ ] admin dosyalarını composer ile cekecegiz
 
 
 ## Developers
 
 [Ozan SONAR](https://github.com/ozansonar)
-
-[M.Raşit OKUMUŞ](https://github.com/mrokumus)
