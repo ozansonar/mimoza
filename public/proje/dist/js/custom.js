@@ -127,3 +127,28 @@ function checkPasswordPattern() {
         return true;
     }
 }
+
+function tcValid(field, rules, i, options){
+    var tcNo = String(field.val());
+    if (!tcNo.match(/^[0-9]{11}$/))
+        return false;
+
+    pr1 = parseInt(tcNo.substr(0, 1));
+    pr2 = parseInt(tcNo.substr(1, 1));
+    pr3 = parseInt(tcNo.substr(2, 1));
+    pr4 = parseInt(tcNo.substr(3, 1));
+    pr5 = parseInt(tcNo.substr(4, 1));
+    pr6 = parseInt(tcNo.substr(5, 1));
+    pr7 = parseInt(tcNo.substr(6, 1));
+    pr8 = parseInt(tcNo.substr(7, 1));
+    pr9 = parseInt(tcNo.substr(8, 1));
+    pr10 = parseInt(tcNo.substr(9, 1));
+    pr11 = parseInt(tcNo.substr(10, 1));
+
+    if ((pr1 + pr3 + pr5 + pr7 + pr9 + pr2 + pr4 + pr6 + pr8 + pr10) % 10 != pr11)
+        return "* Hatalı TC Kimlik No girdiniz, kontrol ediniz.";
+    if (((pr1 + pr3 + pr5 + pr7 + pr9) * 7 + (pr2 + pr4 + pr6 + pr8) * 9) % 10 != pr10)
+        return "* Hatalı TC Kimlik No girdiniz, kontrol ediniz.";
+    if (((pr1 + pr3 + pr5 + pr7 + pr9) * 8) % 10 != pr11)
+        return "* Hatalı TC Kimlik No girdiniz, kontrol ediniz.";
+}
