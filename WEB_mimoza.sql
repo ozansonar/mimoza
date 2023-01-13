@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
                                       `user_id` int(5) DEFAULT NULL,
                                       `log_type` int(5) NOT NULL,
                                       `log_datetime` datetime NOT NULL,
-                                      `client_ip` varchar(15) NOT NULL,
+                                      `client_ip` varchar(100) NOT NULL,
                                       `log_browser` varchar(90) DEFAULT NULL,
                                       `log_os` varchar(90) DEFAULT NULL,
                                       `log_page` varchar(100) DEFAULT NULL,
