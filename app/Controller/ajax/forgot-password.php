@@ -28,15 +28,11 @@ if (isset($_POST) && isset($_POST["ajax_request"]) && $_POST["ajax_request"] == 
         }
     }
 
+    //hata yoksa doğrulama yap
     if(empty($message) && defined("LIVE_MODE")) {
-        $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
-        $recaptcha_secret = CAPTCHA_SECRET_KEY;
-        $recaptcha_response = $_POST['recaptcha_response2'];
-
-        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-        $recaptcha = json_decode($recaptcha);
-        if (isset($recaptcha) && empty($recaptcha->success) || $recaptcha->score < 0.6) {
-            $message["reply"][] = $functions->textManager("bot_onay");
+        $captchaVerify = $functions->googleRecapcha();
+        if($captchaVerify["result"] === false){
+            $message["reply"][] = $captchaVerify["msg"];
         }
     }
 
