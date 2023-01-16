@@ -35,6 +35,7 @@
 							echo $form->input("link", array(
 								"label" => $admin_text["PAGE_LINK"],
 								"description" => $admin_text["PAGE_LINK_DESCRIPTION"],
+                                "class" => "slug",
 							), $data->pageData);
 							echo $form->textarea("abstract", array(
 								"label" => $admin_text["PAGE_ABSTRACT"],
