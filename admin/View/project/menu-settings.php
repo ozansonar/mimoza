@@ -39,7 +39,8 @@
 								"required" => 1,
 							), $data->pageData);
 							echo $form->input("link", array(
-								"label" => $admin_text["MENU_LINK"]
+								"label" => $admin_text["MENU_LINK"],
+                                "class" => "slug",
 							), $data->pageData);
 							echo $form->select("menu_type", array(
 								"label" => $admin_text["MENU_TURU"],
