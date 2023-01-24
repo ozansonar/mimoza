@@ -10,7 +10,7 @@
        <?php
     }
     ?>
-    <?php echo str_replace("../",$system->url(),$data->page_data->text); ?>
+    <?php echo str_replace("../",$system->urlWithoutLanguage(),$data->page_data->text); ?>
 </div>
 <script>
     $(document).ready(function(){

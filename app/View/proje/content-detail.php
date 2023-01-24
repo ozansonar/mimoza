@@ -6,7 +6,7 @@
             <img src="<?php echo $data->imgLink; ?>" class="img-fluid" alt="<?php echo $metaTag->keywords; ?>" />
         </a>
     <?php endif; ?>
-    <?php echo str_replace("../",$system->url(),$data->pageData->text); ?>
+    <?php echo str_replace("../",$system->urlWithoutLanguage(),$data->pageData->text); ?>
 </div>
 
 <script>
