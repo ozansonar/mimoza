@@ -870,8 +870,8 @@ create table if not exists audit_log
     table_name          varchar(255)                  not null,
     row_id              int                           null,
     field_name          varchar(255) default ''       not null,
-    old_value           varchar(255)                  null,
-    new_value           varchar(255)                  null,
+    old_value           text                  null,
+    new_value           text                  null,
     activity            varchar(10)      default 'UPDATE' not null,
     modified_datetime   datetime                      null,
     modified_by_user_id int                           not null
