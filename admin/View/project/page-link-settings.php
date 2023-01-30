@@ -20,6 +20,7 @@
 			$form->formNameWithoutLangCode = 1;
 			echo $form->input("url", array(
 				"label" => $admin_text["PG_SET_LINK"],
+                "class" => "slug",
 				"required" => 1,
 			), $data->pageData);
 			echo $form->select("controller", array(

@@ -40,7 +40,8 @@
 							), $data->pageData);
 							echo $form->input("link", array(
 								"label" => $admin_text["SLIDER_LINK"],
-								"description" => $admin_text["MENU_DESCRIPTION"]
+								"description" => $admin_text["MENU_DESCRIPTION"],
+                                "class" => "slug",
 							), $data->pageData);
 							echo $form->checkbox(array(
 								"option" => array(
