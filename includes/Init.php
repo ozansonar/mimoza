@@ -45,6 +45,7 @@ $langData = $db::selectQuery("lang", array(
 
 // Html purify exception array
 $allowedSpecialHtmlPost = ["text", "adres", "contact_despription"];
+$allowedSpecialHtmlGetPage = ["menu"];
 //çoklu dildeki keyleri bu şekilde ekleyelim
 foreach ($langData as $langRow) {
     $allowedSpecialHtmlPost[] = "text_" . $langRow->short_lang;

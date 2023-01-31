@@ -46,7 +46,10 @@ if (!is_null($langData)) {
 $purifierConfig = HTMLPurifier_Config::createDefault();
 $purifier = new HTMLPurifier($purifierConfig);
 foreach ($_GET as $getkey => $getvalue) {
-	$_GET[$getkey] = $purifier->purify($getvalue);
+    if (!is_array($getvalue) && !in_array($getkey, $allowedSpecialHtmlGetPage, true)) {
+        $_GET[$getkey] = $purifier->purify($getvalue);
+    }
+
 }
 
 foreach ($_POST as $postKey => $postValue) {

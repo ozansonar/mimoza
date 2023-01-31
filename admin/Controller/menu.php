@@ -59,11 +59,6 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("menu", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
-
 View::backend('menu', [
 	'title' => 'Menüler',
 	'pageButtonRedirectLink' => "menu-settings",
@@ -71,7 +66,6 @@ View::backend('menu', [
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'content' => $data,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);

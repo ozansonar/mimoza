@@ -233,6 +233,25 @@ if (!empty($sessionError)): ?>
 
 <?php if ($session->isThereAdminSession() && ($session->get('user_rank') && $session->get('user_rank') >= 60)): ?>
     <script>
+        $(document).on("click",".post_delete",function() {
+            Swal.fire({
+                title: 'Silmek istiyormusunuz ?',
+                text: "Silmek istediğinize emin misiniz ?",
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonText: 'Evet SİL !',
+                cancelButtonText: 'Vazgeç',
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.value) {
+                    if (result.value) {
+                        window.location = $(this).data("delete-url");
+                    }
+                }
+            });
+        });
+
         function post_delete(url) {
             Swal.fire({
                 title: 'Silmek istiyormusunuz ?',
