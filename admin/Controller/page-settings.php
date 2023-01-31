@@ -172,7 +172,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				//log atalım
 				$log->logThis($log->logTypes['PAGE_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($system->adminUrl("page-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['PAGE_EDIT_ERR']);
@@ -182,7 +182,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			//log atalım
 			$log->logThis($log->logTypes['PAGE_ADD_SUCC']);
 			$message["success"][] = $lang["content-insert"];
-			$functions->refresh($system->adminUrl("content-settings"), $refresh_time);
+			$functions->refresh($system->adminUrl($pageAddRoleKey), $refresh_time);
 		} else {
 			//log atalım
 			$log->logThis($log->logTypes['PAGE_ADD_ERR']);
