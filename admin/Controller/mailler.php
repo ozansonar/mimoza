@@ -38,7 +38,10 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$session->permissionDenied();
 	}
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete($table, $del_id);
+
+    $data = [];
+    $data["deleted"] = 1;
+    $delete = $db::update($table, $data, ["id" => $del_id]);
 
 	$message = [];
 	if ($delete) {
@@ -52,9 +55,6 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-$data = $db::selectQuery($table, array(
-	"deleted" => 0,
-));
 
 View::backend('mailler', [
 	'title' => 'Daha Önce Eklenmiş Mailler',
@@ -63,7 +63,6 @@ View::backend('mailler', [
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'content' => $data,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);
