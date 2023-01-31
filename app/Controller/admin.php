@@ -10,8 +10,8 @@ if (!file_exists($system->adminController($system->route(1)))){
     $route[1] = '404';
 }
 $userHeaderTopImg = $system->adminPublicUrl("dist/img/user2-160x160.jpg");
-if(!empty($loggedUser->img) && file_exists($system->path("uploads/user/".$loggedUser->img))){
-    $userHeaderTopImg = $system->url("uploads/user/".$loggedUser->img);
+if(!empty($loggedUser->img) && file_exists($constants::fileTypePath["user_image"]["full_path"].$loggedUser->img)){
+    $userHeaderTopImg = $constants::fileTypePath["user_image"]["url"].$loggedUser->img;
 }
 
 include $system->adminController($system->route(1));

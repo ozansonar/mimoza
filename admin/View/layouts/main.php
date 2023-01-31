@@ -64,7 +64,7 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
             <!-- Brand Logo -->
             <a href="<?php echo $system->adminUrl(); ?>" class="brand-link">
                 <img src="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->header_logo ?>"
-                     alt="Logo"
+                     alt=""
                      class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">
                     <?php echo $functions->shorten($settings->project_name, 10, 0) ?></span>

@@ -59,16 +59,12 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-$data = $db::selectQuery("users", array(
-	"deleted" => 0,
-));
 
 View::backend('user', [
 	'title' => 'Kullanıcılar',
-	'pageButtonRedirectLink' => "user-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
-	'content' => $data,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'css' =>$customCss,
