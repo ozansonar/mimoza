@@ -19,6 +19,27 @@ CREATE TABLE IF NOT EXISTS `contact_form` (
                                               PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `query_error`
+(
+    id int(11) NOT NULL AUTO_INCREMENT,
+    type       varchar(10)                          null,
+    `table`    varchar(10)                          null,
+    error      mediumtext                           null,
+    table_data longtext                             null,
+    where_data longtext                             null,
+    extra_text mediumtext                           null,
+    lang       varchar(20)                          null,
+    created_at datetime   default CURRENT_TIMESTAMP null,
+    updated_at datetime   default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    status     tinyint(1) default 0                 null,
+    deleted    tinyint(1) default 0                 null,
+    check (json_valid(`table_data`)),
+    check (json_valid(`where_data`)),
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
 CREATE TABLE IF NOT EXISTS `content` (
                                          `id` int(11) NOT NULL AUTO_INCREMENT,
                                          `cat_id` int(11) NOT NULL,
