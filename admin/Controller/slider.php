@@ -61,10 +61,6 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("slider", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
 
 View::backend('slider',[
 	'title' => 'Sliderlar',
@@ -73,7 +69,6 @@ View::backend('slider',[
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'data' => $data,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);

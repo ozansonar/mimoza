@@ -18,7 +18,7 @@
  */
 
 // DB table to use
-$table = 'menu';
+$table = 'slider';
 
 // Table's primary key
 $primaryKey = 'id';
@@ -30,13 +30,37 @@ $primaryKey = 'id';
 $columns = array(
     array( 'db' => 'lang', 'dt' => 'lang' ),
     array( 'db' => 'deleted', 'dt' => 'deleted' ),
-    array( 'db' => 'name', 'dt' => 'title' ),
     array(
-        'db'        => 'menu_type',
-        'dt'        => 'menu_type',
+        'db'        => 'title',
+        'dt'        => 'title',
+        'formatter' => function($d, $row ) {
+            global $functions;
+            return $functions->textModal($row["title"], 20);
+        }
+    ),
+    array(
+        'db'        => 'img',
+        'dt'        => 'img',
         'formatter' => function($d, $row ) {
             global $constants;
-            return $constants::systemMenuTypes[$row["menu_type"]]["view_text"];
+            $exportHtml = null;
+            if(!empty($row["img"]) && file_exists($constants::fileTypePath["slider"]["full_path"] . $row["img"])){
+                $exportHtml .= '
+                    <a href="'.$constants::fileTypePath["slider"]["url"] . $row["img"].'" data-toggle="lightbox" data-title="'.$row["title"].'" class="color-unset">
+                        <i class="fas fa-images"></i>
+                    </a>
+                    ';
+            }
+            return $exportHtml;
+        }
+    ),
+    array( 'db' => 'link', 'dt' => 'link' ),
+    array(
+        'db'        => 'abstract',
+        'dt'        => 'abstract',
+        'formatter' => function($d, $row ) {
+            global $functions;
+            return $functions->textModal($row["abstract"], 20);
         }
     ),
     array(
@@ -47,6 +71,7 @@ $columns = array(
             return $functions->dateTimeConvertTr($row["created_at"]);
         }
     ),
+    array( 'db' => 'show_order', 'dt' => 'show_order' ),
     array(
         'db'        => 'status',
         'dt'        => 'status',
@@ -59,8 +84,8 @@ $columns = array(
         'db'        => 'id',
         'dt'        => 'settings',
         'formatter' => static function($d, $row ) {
-            $pageRoleKey = "menu";
-            $pageAddRoleKey = "menu-settings";
+            $pageRoleKey = "slider";
+            $pageAddRoleKey = "slider-settings";
             global $session,$constants,$system;
             $exportButton = null;
             if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === true){
