@@ -55,14 +55,6 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("role_groups", array(
-	"deleted" => 0,
-));
-
-$menusArray = [];
-foreach ($data as $key => $value) {
-	$menusArray[$value->id] = $value;
-}
 
 View::backend('roles', [
 	'title' => 'Kullanıcı Rolleri',
@@ -71,7 +63,6 @@ View::backend('roles', [
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'content' => $data,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);

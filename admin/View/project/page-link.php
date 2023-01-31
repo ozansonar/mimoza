@@ -52,7 +52,7 @@
                 { data: 'status' },
                 { data: 'settings' },
             ],
-            order: [[1, 'desc']],
+            order: [[3, 'desc']],
             language: {
                 "url": "<?php echo $system->adminPublicUrl("plugins/datatables/lang/" . $_SESSION["lang"] . ".json"); ?>"
             },

@@ -491,6 +491,8 @@ CREATE TABLE IF NOT EXISTS `role_groups` (
                                              `group_name` varchar(255) DEFAULT NULL COMMENT 'rol grup name',
                                              `status` tinyint(1) DEFAULT '3' COMMENT '1:onaylı,2:onaysız,3:bekliyor',
                                              `deleted` tinyint(1) DEFAULT '0',
+                                             `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                             `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                                              PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='kullanıcı rol grunlari';
 
