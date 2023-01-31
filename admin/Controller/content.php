@@ -55,29 +55,16 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-$data = $db::selectQuery("content", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
 
-$selectQuery = $db::selectQuery("content_categories", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
-$cats = [];
-foreach ($selectQuery as $key => $value) {
-	$cats[$value->id] = $value->title;
-}
+
 
 View::backend('content',[
 	'title' => 'İçerikler',
-	'pageButtonRedirectLink' => "content-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' =>$pageRoleKey,
 	'pageAddRoleKey' =>$pageAddRoleKey,
-	'content' =>$data,
 	'css' =>$customCss,
 	'js' =>$customJs,
-	'cats' =>$cats,
 ]);
