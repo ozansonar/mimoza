@@ -56,16 +56,11 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     }
 }
 
-$data = $db::selectQuery("file_url",array(
-    "deleted" => 0,
-));
-
 View::backend('page-link',[
 	'title' => 'Sayfa Linkleri',
-	'content' => $data,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'pageButtonRedirectLink' => "page-link-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'css' =>$customCss,
