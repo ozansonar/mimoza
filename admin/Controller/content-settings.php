@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "content";
 $pageAddRoleKey = "content-settings";
-
+$table = "content";
 $id = 0;
 $pageData = [];
 if (isset($_GET["id"])) {
@@ -19,15 +19,28 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['CONTENT_DETAIL']);
 
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("content", array(
+	$data = $db::selectQuery($table, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
 	if (empty($data)) {
 		$functions->redirect($system->adminUrl());
 	}
+    if(isset($_GET["img_delete"])){
+        $deleteLang = $functions->cleanGet("img_delete");
+        $deletedImg = $siteManager->imageDelete($deleteLang,$id,$table);
+        if ($deletedImg) {
+            $log->this("CONTENT_IMAGE_DELETED_SUCC","id:".$id);
+            $message["success"][] = $lang["img-delete"];
+            $functions->refresh($system->adminUrl($pageAddRoleKey."?id=".$id),3);
+        } else {
+            $log->this("CONTENT_IMAGE_DELETED_ERR","id:".$id);
+            $message["reply"][] = $lang["img-delete-error"];
+        }
+    }
+
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-	$data_multi_lang = $db::selectQuery("content", array(
+	$data_multi_lang = $db::selectQuery($table, array(
 		"lang_id" => $data->lang_id,
 		"deleted" => 0,
 	));
@@ -176,20 +189,20 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update("content", $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update($table, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert("content", $db_data);
+					$add = $db::insert($table, $db_data);
 				}
 			} else {
 				//ekleme
 				//lang işlemleri sadece eklemede gönderilsin
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert("content", $db_data);
+				$add = $db::insert($table, $db_data);
 			}
 		}
 		$refresh_time = 5;

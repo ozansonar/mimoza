@@ -30,6 +30,8 @@ if (isset($_GET["id"])) {
 		$functions->redirect($system->adminUrl());
 	}
 
+
+
 	if ((int)$data->read_user === 0) {
 		$message_read = $db::query("UPDATE contact_form SET read_user=1,read_user_id=:u_id,read_date=:r_date WHERE id=:id AND deleted=0");
 		$message_read->bindParam("u_id", $_SESSION["user_id"], PDO::PARAM_INT);

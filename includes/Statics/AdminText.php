@@ -13,6 +13,9 @@ $lang["content-insert-error"] = "İçerik eklenemedi. Lütfen tekrar deneyiniz."
 $lang["content-completed"] = "İşlem başarılı bir şekilde gerçekleştirilmiştir.";
 $lang["content-completed-error"] = "İşlem gerçekleştirilemedi. Lütfen tekrar deneyiniz.";
 
+$lang["img-delete"] = "Dosya başarılı bir şekilde silinmiştir.";
+$lang["img-delete-error"] = "Dosya silinemedi. Lütfen tekrar deneyiniz.";
+
 $admin_text["LOGIN_TEXT_TITLE"] = "USİMP İnovasyon Karnesi CMS";
 $admin_text["LOGIN_TEXT_SLOGAN"] = "";
 $admin_text["LOGIN_FORM_TEXT"] = "Giriş yapmak için lütfen bilgilerini yazın.";
