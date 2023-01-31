@@ -123,8 +123,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			}
 		}
 	}
-}
-
+} 
 View::backend('contact-settings', [
 	'title' => "Gelen Mesajı " . (isset($data) ? "Cevapla" : "Ekle"),
 	'pageButtonRedirectLink' => "contact",
@@ -132,7 +131,6 @@ View::backend('contact-settings', [
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,
 	'content' => $data,
-	'defaultLanguage' => $defaultLanguage,
 	'css' => $customCss,
 	'js' => $customJs,
 

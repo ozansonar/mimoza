@@ -20,25 +20,25 @@
                         <h4 class="m-b-0 text-white">Mesaj hareketleri</h4></div>
                     <div class="card-body">
                         <p class="card-text">
-                            <span class="font-weight-bold"><?php echo $functions->dateLong($data->created_at) ?></span>
+                            <span class="font-weight-bold"><?php echo $functions->dateLong($data->content->created_at) ?></span>
                             tarihinde
-                            <span class="font-weight-bold"><?php echo $data->name . " " . $data->surname ?></span>
+                            <span class="font-weight-bold"><?php echo $data->content->name . " " . $data->content->surname ?></span>
                             tarafından gönderildi.
                         </p>
 						<?php if (!empty($readUser)): ?>
                             <p class="card-text">
-                                <span class="font-weight-bold"><?php echo $functions->dateLong($data->read_date) ?></span>
+                                <span class="font-weight-bold"><?php echo $functions->dateLong($data->content->read_date) ?></span>
                                 tarihinde
-                                <span class="font-weight-bold"><?php echo $readUser->name . " " . $readUser->surname ?></span>
+                                <span class="font-weight-bold"><?php echo $readUser->content->name . " " . $readUser->content->surname ?></span>
                                 tarafından okundu.
                             </p>
 						<?php endif; ?>
 						<?php if (!empty($data->reply_send_user_id)): ?>
-							<?php $reply_user = $session->getUserInfo($data->reply_send_user_id); ?>
+							<?php $reply_user = $session->getUserInfo($data->content->reply_send_user_id); ?>
                             <p class="card-text">
-                                <span class="font-weight-bold"><?php echo $functions->dateLong($data->reply_send_date) ?></span>
+                                <span class="font-weight-bold"><?php echo $functions->dateLong($data->content->reply_send_date) ?></span>
                                 tarihinde
-                                <span class="font-weight-bold"><?php echo $reply_user->name . " " . $reply_user->surname ?></span>
+                                <span class="font-weight-bold"><?php echo $reply_user->content->name . " " . $reply_user->content->surname ?></span>
                                 tarafından cevaplandı.
                             </p>
 						<?php endif; ?>
@@ -48,7 +48,8 @@
                     <div class="col-md-6 col-12">
                         <h3>Gönderen Bilgileri</h3>
 						<?php
-						$form->lang = $data->defaultLanguage->short_lang;
+                        echo $functions->csrfToken();
+						$form->lang = $_SESSION["lang"];
 						$form->formNameWithoutLangCode = 1;
 						echo $form->input("name", array(
 							"label" => $admin_text["CONTACT_NAME"],

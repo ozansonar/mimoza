@@ -53,17 +53,13 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-$data = $db::selectQuery("contact_form", [
-	"deleted" => 0,
-]);
 
 View::backend('contact', [
 	'title' => 'İletişim Formu Mesajları',
 	'pageButtonRedirectLink' => "contact",
 	'pageButtonRedirectText' => 'İletişim Formu Mesajları',
 	'pageButtonIcon' => "fas fa-th-list",
-	'pageRoleKey' => $pageRoleKey,
-	'content' => $data,
+	'pageRoleKey' => $pageRoleKey, 
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);

@@ -139,7 +139,7 @@ sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed
 							<?php echo $data->title; ?>
                         </h1>
                     </div>
-					<?php if ($session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) === true): ?>
+					<?php if (isset($data->pageRoleKey) && $session->sessionRoleControl($data->pageRoleKey, $constants::listPermissionKey) === true): ?>
                         <div class="col-sm-6 d-md-flex align-items-md-center justify-content-md-end">
                             <h1>
                                 <a href="<?php echo $system->adminUrl($data->pageButtonRedirectLink); ?>">
