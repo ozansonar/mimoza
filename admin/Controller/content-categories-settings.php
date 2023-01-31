@@ -121,7 +121,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$file = new FileUploader($constants::fileTypePath);
 			$file->globalFileName = "img_" . $project_languages_row->short_lang;
 			$file->uploadFolder = "content_categories";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if (isset($uploaded["result"]) && (int)$uploaded["result"] === 1) {

@@ -116,7 +116,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$file = new FileUploader($constants::fileTypePath);
 		$file->globalFileName = "img";
 		$file->uploadFolder = "user_image";
-		$file->maxFileSize = 5;
+		$file->maxFileSize = 1;
 		$file->compressor = true;
 		$uploaded = $file->fileUpload();
 		if ((int)$uploaded["result"] === 1) {

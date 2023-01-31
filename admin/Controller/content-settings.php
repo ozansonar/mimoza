@@ -140,7 +140,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$file->globalFileName = "img_" . $project_languages_row->short_lang;
 			$file->uploadFolder = "content";
             $file->resize = true;
-            $file->maxFileSize = 5;
+            $file->maxFileSize = 1;
             $file->width = 800;
             $file->height = 450;
 			$file->compressor = true;

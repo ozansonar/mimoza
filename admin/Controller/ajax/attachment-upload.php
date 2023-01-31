@@ -8,7 +8,7 @@ if(isset($_FILES["attachment"]) && !empty($_FILES["attachment"]["name"])){
     $file->globalFileName = "attachment";
     $file->uploadFolder = "mailing_attachment";
     $file->uploadType = "pdf_word_image_excel";
-    $file->maxFileSize = 5;
+    $file->maxFileSize = 1;
     $uploaded = $file->fileUpload();
     if((int)$uploaded["result"] === 1){
         $message["success"][] = "Ek başarıyla yüklendi.";

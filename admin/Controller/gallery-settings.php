@@ -122,7 +122,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$file = new FileUploader($constants::fileTypePath);
 			$file->globalFileName = "img_" . $project_languages_row->short_lang;
 			$file->uploadFolder = "gallery";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
@@ -199,7 +199,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 View::backend('gallery-settings', [
 	'title' => "Galeri " . (isset($data) ? "Düzenle" : "Oluştur"),
-	'pageButtonRedirectLink' => "gallery",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Resim Galerileri",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

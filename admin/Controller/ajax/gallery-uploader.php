@@ -15,7 +15,7 @@ if (isset($_FILES["file_data"])) {
 	$file->globalFileName = "file_data";
 	$file->uploadFolder = "gallery";
 	$file->galleryId = $gallery_id;
-	$file->maxFileSize = 5;
+	$file->maxFileSize = 1;
 	$file->compressor = true;
 	$uploaded = $file->fileUpload();
 	$message = [];

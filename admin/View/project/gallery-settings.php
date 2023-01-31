@@ -33,6 +33,7 @@
 							), $data->pageData);
 							echo $form->input("link", array(
 								"label" => $admin_text["GALERI_LINK"],
+                                "class" => "slug"
 							), $data->pageData);
 							echo $form->select("type", array(
 								"label" => $admin_text["GALERI_TYPE"],

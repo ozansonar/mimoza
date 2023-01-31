@@ -6,7 +6,7 @@ if (isset($_FILES["file"]) && !empty($_FILES["file"]["name"])) {
 	$file = new FileUploader($constants::fileTypePath);
 	$file->globalFileName = "file";
 	$file->uploadFolder = "mailing";
-	$file->maxFileSize = 5;
+	$file->maxFileSize = 1;
 	$uploaded = $file->fileUpload();
 	if ((int)$uploaded["result"] === 1) {
 		$message["success"][] = "Resim başarıyla yüklendi.";

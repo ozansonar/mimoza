@@ -284,7 +284,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["header_logo"]["name"])) {
 			$file->globalFileName = "header_logo";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->resize = true;
 			$file->width = 250;
 			$file->height = 100;
@@ -300,7 +300,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["footer_logo"]["name"])) {
 			$file->globalFileName = "footer_logo";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
@@ -313,7 +313,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["footer_logo_2"]["name"])) {
 			$file->globalFileName = "footer_logo_2";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
@@ -326,7 +326,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["mail_tempate_logo"]["name"])) {
 			$file->globalFileName = "mail_tempate_logo";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
@@ -339,7 +339,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["banner_img"]["name"])) {
 			$file->globalFileName = "banner_img";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
@@ -352,7 +352,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!empty($_FILES["fav_icon"]["name"])) {
 			$file->globalFileName = "fav_icon";
 			$file->uploadFolder = "project_image";
-			$file->maxFileSize = 5;
+			$file->maxFileSize = 1;
 			$file->compressor = true;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
