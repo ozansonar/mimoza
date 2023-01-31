@@ -59,17 +59,11 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("content_categories", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
-
 View::backend('content-categories', [
 	'title' => "İçerik Kategorileri",
 	'pageButtonRedirectLink' => "content-categories-settings",
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
-	'pageData' => $data,
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'css' =>$customCss,
