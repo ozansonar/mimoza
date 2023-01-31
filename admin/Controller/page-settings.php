@@ -193,7 +193,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 View::backend('page-settings', [
 	'title' => "Sayfa " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "menu",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Sayfalar",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

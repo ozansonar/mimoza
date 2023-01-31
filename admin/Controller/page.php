@@ -56,18 +56,12 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("page", array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
-
 
 View::backend('page',[
 	'title' =>'Sayfalar',
-	'pageButtonRedirectLink' => "page-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
-	'content' => $data,
 	'pageAddRoleKey'=>$pageAddRoleKey,
 	'pageRoleKey'=>$pageRoleKey,
 	'css' =>$customCss,
