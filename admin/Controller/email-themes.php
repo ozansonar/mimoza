@@ -52,10 +52,6 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-$data = $db::selectQuery($table, array(
-	"lang" => $siteManager->defaultLanguage()->short_lang,
-	"deleted" => 0,
-));
 
 View::backend('email-themes', [
 	'title' => 'E-Posta Temaları',
@@ -64,7 +60,6 @@ View::backend('email-themes', [
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'content' => $data,
 	'css' =>$customCss,
 	'js' =>$customJs,
 ]);
