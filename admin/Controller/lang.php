@@ -64,17 +64,12 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-$data = $db::selectQuery("lang", [
-	"deleted" => 0,
-]);
-
 //butonun gideceği link ve yazısı
 View::backend('lang',[
 	'title' => 'Dil İşlemleri',
-	'pageButtonRedirectLink' => "lang-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
-	'content' => $data,
 	'pageRoleKey'=> $pageRoleKey,
 	'pageAddRoleKey' =>$pageAddRoleKey,
 	'css' =>$customCss,
