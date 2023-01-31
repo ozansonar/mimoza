@@ -13,8 +13,8 @@
         <link rel="icon" type="image/png"
               href="<?php echo $constants::fileTypePath["project_image"]["url"] . $settings->fav_icon; ?>"/>
 	<?php endif; ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo $system->publicUrl('plugins/bootstrap/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo $system->publicUrl('plugins/bootstrap-5.3/css/bootstrap.min.css'); ?>">
 
     <?php if (isset($data->customCss) && !empty($data->customCss)): ?>
         <?php foreach ($data->customCss as $css) : ?>
@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="<?php echo $system->publicUrl('dist/css/custom.css?v='.filemtime($system->path("public/proje/dist/css/custom.css")).''); ?>">
 
-    <script src="<?php echo $system->publicUrl("dist/js/jquery-3.6.1.min.js"); ?>"></script>
+    <script src="<?php echo $system->publicUrl("dist/js/jquery-3.6.3.min.js"); ?>"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <div class="container-fluid">
@@ -200,7 +200,7 @@
     </div>
 </div>
 
-<script src="<?php echo $system->publicUrl("plugins/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+<script src="<?php echo $system->publicUrl("plugins/bootstrap-5.3/js/bootstrap.bundle.min.js"); ?>"></script>
 <?php
 if(isset($data->customJs) && !empty($data->customJs)){
     foreach ($data->customJs as $c_js){
