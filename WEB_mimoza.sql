@@ -433,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `mailing_user` (
 CREATE TABLE IF NOT EXISTS `mail_log` (
                                           `id` int(11) NOT NULL AUTO_INCREMENT,
                                           `mail` varchar(255) NOT NULL,
-                                          `send_debug` varchar(255) NOT NULL,
+                                          `send_debug` varchar(255) DEFAULT NULL COMMENT 'eğer burda adres yazıyorsa mail bu adrese gönderilmiştir',
                                           `subject` varchar(255) NOT NULL,
                                           `message` mediumtext NOT NULL,
                                           `send_type` tinyint(1) DEFAULT NULL,
