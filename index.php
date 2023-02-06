@@ -13,34 +13,39 @@ if (SUBFOLDER_NAME !== '/') {
 	}
 }
 $projectLanguages = [];
+$linkKeyArray = [1,3];
 if (!is_null($langData)) {
-	if ((int)$settings->link_sort_lang === 1) {
-		//adres çubuğunda dil kısaltması olacak örnek site.com/tr/hakkimizda
-		define("MULTIPLE_LANGUAGE", 1);
-	}
-	$_SESSION["lang"] = !empty($system->route(0))
-		? $functions->cleaner($system->route(0))
-		: $functions->cleaner($siteManager->defaultLanguage()->short_lang);
-	foreach ($langData as $langDataRow) {
-		$projectLanguages[$langDataRow->short_lang] = $langDataRow;
-	}
-	if ((int)$settings->link_sort_lang === 1
-		&& $system->route(0) !== "admin"
-		&& !empty($system->route(0))
-		&& !array_key_exists($system->route(0), $projectLanguages)) {
-		//linklerde dil kısaltması olması gerek yoksa yönlendir
-		$_SESSION["lang"] = $functions->cleaner($siteManager->defaultLanguage()->short_lang);
-		$system->abort(404);
-	}
+    foreach ($langData as $langDataRow) {
+        $projectLanguages[$langDataRow->short_lang] = $langDataRow;
+    }
+    $_SESSION["lang"] = !empty($system->route(0)) && array_key_exists($system->route(0),$projectLanguages)
+        ? $functions->cleaner($system->route(0))
+        : $functions->cleaner($siteDefaultLanguages->short_lang);
 
-	if ($system->route(0) !== "admin" && (int)$settings->link_sort_lang === 1) {
-		//linklerde dil kısaltması isteniyor site.com/tr/hakkimizda gibi olacak biz $route den tr yi kaldıracağız sistem işlemeye devam edecek
-		array_shift($route);
-	} else {
-		$_SESSION["lang"] = $functions->cleaner($siteManager->defaultLanguage()->short_lang);
-	}
+    if((int)$settings->link_sort_lang === 3 && $_SESSION["lang"] === $siteDefaultLanguages->short_lang){
+        //buraso kalsın lazım olabilir
+    }else{
+        if (in_array($settings->link_sort_lang, $linkKeyArray) || $_SESSION["lang"] !== $siteDefaultLanguages->short_lang) {
+            //adres çubuğunda dil kısaltması olacak örnek site.com/tr/hakkimizda
+            define("MULTIPLE_LANGUAGE", 1);
+        }
+        if ((int)$settings->link_sort_lang === 1
+            && $system->route(0) !== "admin"
+            && !empty($system->route(0))
+            && !array_key_exists($system->route(0), $projectLanguages)) {
+            //linklerde dil kısaltması olması gerek yoksa yönlendir
+            $_SESSION["lang"] = $functions->cleaner($siteDefaultLanguages->short_lang);
+            $system->abort(404);
+        }
+    }
+
+    if (!empty($system->route(0)) && $system->route(0) !== "admin" && in_array($settings->link_sort_lang, $linkKeyArray) && array_key_exists($system->route(0),$projectLanguages)) {
+        //linklerde dil kısaltması isteniyor site.com/tr/hakkimizda gibi olacak biz $route den tr yi kaldıracağız sistem işlemeye devam edecek
+        array_shift($route);
+    } else {
+        $_SESSION["lang"] = $functions->cleaner($siteManager->defaultLanguage()->short_lang);
+    }
 }
-
 
 //html purifier xss vb attackları engellemek için kullandığımız library
 $purifierConfig = HTMLPurifier_Config::createDefault();

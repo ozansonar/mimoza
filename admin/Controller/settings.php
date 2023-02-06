@@ -197,7 +197,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		}
 	}
 
-	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["link_sort_lang"], $constants::systemYesAndNoVersion2)) {
+	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["link_sort_lang"], $constants::systemLanguageRoute)) {
 		$message["reply"][] = "Geçersiz dil kısaltması seçimi.";
 	}
 

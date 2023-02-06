@@ -78,7 +78,7 @@
 						echo $form->select("link_sort_lang", array(
 							"label" => "Linklerde dil kısaltması olsun ?",
 							"required" => 1,
-							"select_item" => $constants::systemYesAndNoVersion2,
+							"select_item" => $constants::systemYesAndNoVersion2Lang,
 						), $data->pageData);
 						echo $form->inputTags("keywords", array(
 							"label" => $admin_text["SETTINGS_KEYWORDS"],

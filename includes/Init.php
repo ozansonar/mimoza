@@ -41,6 +41,8 @@ $langData = $db::selectQuery("lang", array(
 	"status" => 1,
 	"deleted" => 0,
 ));
+//site default languages
+$siteDefaultLanguages = $siteManager->defaultLanguage();
 
 
 // Html purify exception array

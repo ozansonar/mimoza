@@ -61,8 +61,9 @@
         <div class="col text-end">
             <?php foreach ($projectLanguages as $languages): ?>
                 <?php if ($languages->short_lang === $_SESSION["lang"]): continue; endif ?>
-                <a href="<?php echo $system->url($languages->short_lang) ?>"
-                   class="btn btn-info"><?php echo $languages->lang; ?></a>
+                <a href="<?php echo $system->urlWithoutLanguage((int)$languages->default_lang === 1 && (int)$settings->link_sort_lang === 3 ? null:$languages->short_lang) ?>" class="btn btn-info">
+                    <?php echo $languages->lang; ?>
+                </a>
             <?php endforeach; ?>
             <?php if ($session->isThereUserSession()): ?>
                 <div class="dropdown mt-2">
