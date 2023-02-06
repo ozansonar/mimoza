@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `query_error`
 CREATE TABLE IF NOT EXISTS `content` (
                                          `id` int(11) NOT NULL AUTO_INCREMENT,
                                          `cat_id` int(11) NOT NULL,
-                                         `title` varchar(255) NOT NULL,
+                                         `title` varchar(255) DEFAULT NULL,
                                          `link` varchar(255) NOT NULL,
-                                         `text` longtext NOT NULL,
-                                         `abstract` text,
+                                         `text` longtext DEFAULT NULL,
+                                         `abstract` text DEFAULT NULL,
                                          `img` varchar(250) DEFAULT NULL,
                                          `index_show` tinyint(1) NOT NULL DEFAULT '0',
                                          `show_order` int(11) NOT NULL,
@@ -445,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `mail_log` (
 
 CREATE TABLE IF NOT EXISTS `menu` (
                                       `id` int(11) NOT NULL AUTO_INCREMENT,
-                                      `name` varchar(255) NOT NULL,
+                                      `name` varchar(255) DEFAULT NULL,
                                       `link` varchar(255) NOT NULL,
                                       `show_order` int(11) NOT NULL,
                                       `menu_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:ana menü 2:alt menü',
@@ -840,7 +840,7 @@ CREATE TABLE IF NOT EXISTS `slider` (
                                         `deleted` tinyint(1) NOT NULL DEFAULT '0',
                                         `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                         `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                                        `abstract` text,
+                                        `abstract` text DEFAULT NULL,
                                         PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -868,7 +868,7 @@ CREATE TABLE IF NOT EXISTS `users` (
                                        `name` varchar(250) NOT NULL,
                                        `surname` varchar(250) NOT NULL,
                                        `img` varchar(255) DEFAULT NULL,
-                                       `telefon` varchar(255) NOT NULL,
+                                       `telefon` varchar(255) DEFAULT NULL,
                                        `role_group` int(11) NOT NULL DEFAULT '1' COMMENT 'yetkisi oldu rol grubu',
                                        `rank` int(11) NOT NULL DEFAULT '1' COMMENT '1:normal_üye,90:admin',
                                        `email_verify` tinyint(1) NOT NULL DEFAULT '0',

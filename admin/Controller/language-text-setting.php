@@ -112,7 +112,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					foreach ($language_text_manager_value["form"] as $language_text_manager_form) {
 						$db_data = [];
 						$db_data["name"] = $language_text_manager_form["name"];
-						$db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]];
+						$db_data["val"] = $pageData[$data_lang][$language_text_manager_form["name"]] ?? null;
 						$db_data["lang"] = $data_lang;
 						if (isset($text_manager_array[$data_lang]) && array_key_exists($language_text_manager_form["name"], $text_manager_array[$data_lang])) {
 							//eğer key varsa update edeceğiz
