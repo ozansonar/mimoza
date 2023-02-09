@@ -51,7 +51,7 @@ if (!is_null($langData)) {
 $purifierConfig = HTMLPurifier_Config::createDefault();
 $purifier = new HTMLPurifier($purifierConfig);
 foreach ($_GET as $getkey => $getvalue) {
-    if (!is_array($getvalue) && !in_array($getkey, $allowedSpecialHtmlGetPage, true)) {
+    if (!is_array($getvalue)) {
         $_GET[$getkey] = $purifier->purify($getvalue);
     }
 
