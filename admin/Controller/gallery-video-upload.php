@@ -214,7 +214,9 @@ View::backend('gallery-video-upload',[
 	'pageButtonRedirectText' => "Resim Galerileri",
 	'pageButtonIcon' => "fas fa-th-list",
 	'id' =>$id,
-	'videosData' =>$videos_data,
+    'pageData' => $pageData ?? null,
+    'videosData' => $videos_data ?? null,
 	'css' => $customCss,
 	'js' => $customJs,
+    'pageRoleKey' => $pageRoleKey,
 ]);
