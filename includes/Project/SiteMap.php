@@ -142,7 +142,7 @@ class SiteMap
         foreach ($getData as $row){
             $mapArray[$row->lang_id][$row->lang]["lang"] = $row->lang;
             $mapArray[$row->lang_id][$row->lang]["date"] = $this->dateDmyToYmd($row->updated_at);
-            $mapArray[$row->lang_id][$row->lang]["link"] = $this->link($row->lang,getPrefix("content")."/".$row->cc_link."-".$row->cc_id."/".$row->link."-".$row->id);
+            $mapArray[$row->lang_id][$row->lang]["link"] = $this->link($row->lang,$this->getPrefix("content")."/".$row->cc_link."-".$row->cc_id."/".$row->link."-".$row->id);
         }
 
         foreach ($mapArray as $mapKey=>$map){
