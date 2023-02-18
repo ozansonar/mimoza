@@ -141,7 +141,7 @@ class SiteMap
         $getData = $getQuery->fetchAll(PDO::FETCH_OBJ);
         foreach ($getData as $row){
             $mapArray[$row->lang_id][$row->lang]["lang"] = $row->lang;
-            $mapArray[$row->lang_id][$row->lang]["date"] = date_d_m_y_to_y_m_d($row->updated_at);
+            $mapArray[$row->lang_id][$row->lang]["date"] = $this->dateDmyToYmd($row->updated_at);
             $mapArray[$row->lang_id][$row->lang]["link"] = $this->link($row->lang,getPrefix("content")."/".$row->cc_link."-".$row->cc_id."/".$row->link."-".$row->id);
         }
 
@@ -228,6 +228,9 @@ class SiteMap
         return $data;
     }
 
+    public function dateDmyToYmd($date){
+        return date("Y-m-d", strtotime(trim(str_replace(".","-",$date))));
+    }
 
 
     public function generate(): string
