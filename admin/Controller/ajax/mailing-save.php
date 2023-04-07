@@ -17,7 +17,7 @@ if (isset($_POST["subject"]) && !empty($_POST["subject"])) {
 	}
 
 	if (!empty($pageData["user"]) && !empty($pageData["send"])) {
-		if (in_array(999, $pageData["user"], true)) {
+		if (in_array(999, $pageData["user"])) {
 			$pageData["clean_users"][999] = 999;
 		}
 		foreach ($pageData["user"] as $user_key) {
@@ -26,7 +26,6 @@ if (isset($_POST["subject"]) && !empty($_POST["subject"])) {
 			}
 		}
 	}
-
 
 	if (empty($pageData["send"])) {
 		$test_user_array = [];
@@ -81,6 +80,7 @@ if (isset($_POST["subject"]) && !empty($_POST["subject"])) {
 			}
 		}
 	}
+
 	if (empty($message)) {
 		$add_data = [];
 		$add_data["user_id"] = $_SESSION["user_id"];
@@ -90,9 +90,8 @@ if (isset($_POST["subject"]) && !empty($_POST["subject"])) {
 		$add_data["attachment"] = !empty($pageData["attachment"]) ? serialize($pageData["attachment"]) : null;
 		$add_data["group"] = !empty($pageData["send"]) ? implode(",", $pageData["user"]) : null;
 		$add_data["status"] = 1;
-		$insert = $db::insert("mailing", $add_data);
-		if ($insert) {
-			$mailing_id = $db::getLastInsertedId();
+        $mailing_id = $db::insert("mailing", $add_data);
+		if ($mailing_id) {
 			if (empty($pageData["send"])) {
 				foreach ($test_user_array as $test_user) {
 					$mailing_user = [];

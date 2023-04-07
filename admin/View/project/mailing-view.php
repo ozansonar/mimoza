@@ -16,10 +16,10 @@
         <div class="card-body">
             <p><b>Mail Konusu: </b> <?php echo $data->mailing->subject; ?></p>
             <p><b>Mail İçeriği: </b> <?php echo $data->mailing->text; ?></p>
-			<?php if (isset($attachment_array) && !empty($attachment_array)): ?>
+			<?php if (isset($data->attachment) && !empty($data->attachment)): ?>
                 <p>
                     <b>Mailde Gidecek Ek(ler): </b><br>
-					<?php foreach ($attachment_array as $attachment_row): ?>
+					<?php foreach ($data->attachment as $attachment_row): ?>
                         <a href="<?php echo $attachment_row["url"]; ?>"
                            target="_blank"><?php echo $attachment_row["name"]; ?></a>
                         <br>
@@ -212,7 +212,7 @@
         $.ajax({
             type: 'POST',
             url: "ajax/mailing-start",
-            data: {"mailing_id": mailing_id, "token": token},
+            data: {"mailing_id": mailing_id, "csrf_token": token},
             success: function (response) {
                 let islem_mail;
                 console.log(response);

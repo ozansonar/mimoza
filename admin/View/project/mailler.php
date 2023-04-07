@@ -22,7 +22,6 @@
                     <th>Gönderim Durumu</th>
                     <th>Tamamlanma Tarihi</th>
                     <th>Eklenme Tarihi</th>
-                    <th>Durum</th>
                     <th>İşlemler</th>
                 </tr>
                 </thead>

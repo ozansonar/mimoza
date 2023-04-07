@@ -42,7 +42,6 @@ if (!empty($mailing->attachment)) {
 		}
 	}
 }
-
 $mailing_user = $db::selectQuery($table_2, array(
 	"mailing_id" => $mailing->id,
 	"deleted" => 0,
@@ -61,5 +60,6 @@ View::backend('mailing-view', [
 	'pageButtonRedirectText' => "Mail Listesi",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'mailingUsers' => $mailing_user_list,
+	'attachment' => $attachment_array,
 	'mailing' => $mailing,
 ]);
