@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
 		$functions->redirect($system->adminUrl("page-link"));
 	}
 
-	$pageData[$default_lang->short_lang] = (array)$data;
+	$pageData = (array)$data;
 } else {
 	//add yetki kontrolü
 	if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
@@ -87,53 +87,53 @@ foreach (glob(ROOT_PATH . '/app/Controller/*.php') as $folder) {
 
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
-	$pageData[$default_lang->short_lang]["url"] = $functions->cleanPost("url");
-	$pageData[$default_lang->short_lang]["controller"] = $functions->cleanPost("controller");
-	$pageData[$default_lang->short_lang]["lang"] = $functions->cleanPost("lang");
-	$pageData[$default_lang->short_lang]["status_control"] = is_numeric($functions->post("status"));
-	$pageData[$default_lang->short_lang]["status"] = $functions->cleanPostInt("status");
+	$pageData["url"] = $functions->cleanPost("url");
+	$pageData["controller"] = $functions->cleanPost("controller");
+	$pageData["lang"] = $functions->cleanPost("lang");
+	$pageData["status_control"] = is_numeric($functions->post("status"));
+	$pageData["status"] = $functions->cleanPostInt("status");
 
 
-	if (empty($pageData[$default_lang->short_lang]["url"])) {
+	if (empty($pageData["url"])) {
 		$message["reply"][] = "Link boş olamaz.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["url"])) {
-		if (strlen($pageData[$default_lang->short_lang]["url"]) < 2) {
+	if (!empty($pageData["url"])) {
+		if (strlen($pageData["url"]) < 2) {
 			$message["reply"][] = "Link 2 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$default_lang->short_lang]["url"]) > 200) {
+		if (strlen($pageData["url"]) > 200) {
 			$message["success"][] = "Link 200 karakterden fazla olamaz.";
 		}
 	}
 
-	if (empty($pageData[$default_lang->short_lang]["controller"])) {
+	if (empty($pageData["controller"])) {
 		$message["reply"][] = "Lütfen gideceği dosyayı seçin.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["controller"])
-		&& !in_array($pageData[$default_lang->short_lang]["controller"], $pl_controller, true)) {
+	if (!empty($pageData["controller"])
+		&& !in_array($pageData["controller"], $pl_controller, true)) {
 		$message["reply"][] = "Lütfen geçerli bir dosya seçin.";
 	}
 
-	if (!$pageData[$default_lang->short_lang]["status_control"]) {
+	if (!$pageData["status_control"]) {
 		$message["reply"][] = "Lütfen onay durumunu seçiniz.";
-	} else if (!array_key_exists($pageData[$default_lang->short_lang]["status"], $constants::systemStatus)) {
+	} else if (!array_key_exists($pageData["status"], $constants::systemStatus)) {
 		$message["reply"][] = "Geçersiz onay durumu.";
 	}
 
-	if ($pageData[$default_lang->short_lang]["lang"] && !array_key_exists($pageData[$default_lang->short_lang]["lang"], $pageLanguages)) {
+	if ($pageData["lang"] && !array_key_exists($pageData["lang"], $pageLanguages)) {
 		$message["reply"][] = "Geçersiz dil seçimi";
 	}
 
-	if (array_key_exists($pageData[$default_lang->short_lang]["url"], $file_url_array)) {
+	if (array_key_exists($pageData["url"], $file_url_array)) {
 		$message["reply"][] = "Bu link zaten mevcut.";
 	}
 
 	if (empty($message)) {
 		$db_data = [];
-		$db_data["url"] = $functions->permalink($pageData[$default_lang->short_lang]["url"]);
-		$db_data["controller"] = $pageData[$default_lang->short_lang]["controller"];
-		$db_data["lang"] = $pageData[$default_lang->short_lang]["lang"];
-		$db_data["status"] = $pageData[$default_lang->short_lang]["status"];
+		$db_data["url"] = $functions->permalink($pageData["url"]);
+		$db_data["controller"] = $pageData["controller"];
+		$db_data["lang"] = $pageData["lang"];
+		$db_data["status"] = $pageData["status"];
 		$db_data["user_id"] = $session->get("user_id");
 
 		$refresh_time = 5;
@@ -176,7 +176,7 @@ View::backend('page-link-settings',[
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
 	'defaultLanguage' => $default_lang,
-	'pageData' => ($data) ?? [],
+	'pageData' => $pageData ?? [],
 	'pl_controller' => $pl_controller,
 	'pageLanguages' => $pageLanguages,
 	'css' =>$customCss,

@@ -13,7 +13,7 @@ if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) ==
 }
 
 $defaultLanguage = $siteManager->defaultLanguage();
-$pageData[$defaultLanguage->short_lang] = (array)$settings;
+$pageData = (array)$settings;
 $log->logThis($log->logTypes['SETTINGS_DETAIL']);
 $customCss = [
 	"plugins/form-validation-engine/css/validationEngine.jquery.css",
@@ -51,60 +51,60 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 		$session->permissionDenied();
 	}
-	$pageData[$defaultLanguage->short_lang]["keywords"] = $functions->cleanPost("keywords");
-	$pageData[$defaultLanguage->short_lang]["description"] = $functions->cleanPost("description");
-	$pageData[$defaultLanguage->short_lang]["link_sort_lang"] = $functions->cleanPostInt("link_sort_lang");
+	$pageData["keywords"] = $functions->cleanPost("keywords");
+	$pageData["description"] = $functions->cleanPost("description");
+	$pageData["link_sort_lang"] = $functions->cleanPostInt("link_sort_lang");
 
-	$pageData[$defaultLanguage->short_lang]["site_status_control"] = is_numeric($functions->post("site_status"));
-	$pageData[$defaultLanguage->short_lang]["site_status"] = $functions->cleanPostInt("site_status");
-	$pageData[$defaultLanguage->short_lang]["post_theme"] = $functions->cleanPost("theme");
-	$pageData[$defaultLanguage->short_lang]["title"] = $functions->cleanPost("title");
-	$pageData[$defaultLanguage->short_lang]["project_name"] = $functions->cleanPost("project_name");
-	$pageData[$defaultLanguage->short_lang]["logo_text"] = $functions->cleanPost("logo_text");
+	$pageData["site_status_control"] = is_numeric($functions->post("site_status"));
+	$pageData["site_status"] = $functions->cleanPostInt("site_status");
+	$pageData["post_theme"] = $functions->cleanPost("theme");
+	$pageData["title"] = $functions->cleanPost("title");
+	$pageData["project_name"] = $functions->cleanPost("project_name");
+	$pageData["logo_text"] = $functions->cleanPost("logo_text");
 
-	$pageData[$defaultLanguage->short_lang]["google"] = $functions->cleanPost("google");
-	$pageData[$defaultLanguage->short_lang]["facebook"] = $functions->cleanPost("facebook");
-	$pageData[$defaultLanguage->short_lang]["twitter"] = $functions->cleanPost("twitter");
-	$pageData[$defaultLanguage->short_lang]["instagram"] = $functions->cleanPost("instagram");
-	$pageData[$defaultLanguage->short_lang]["youtube"] = $functions->cleanPost("youtube");
-	$pageData[$defaultLanguage->short_lang]["linkedin"] = $functions->cleanPost("linkedin");
-	$pageData[$defaultLanguage->short_lang]["vk"] = $functions->cleanPost("vk");
-	$pageData[$defaultLanguage->short_lang]["telegram"] = $functions->cleanPost("telegram");
-	$pageData[$defaultLanguage->short_lang]["whatsapp"] = $functions->cleanPost("whatsapp");
+	$pageData["google"] = $functions->cleanPost("google");
+	$pageData["facebook"] = $functions->cleanPost("facebook");
+	$pageData["twitter"] = $functions->cleanPost("twitter");
+	$pageData["instagram"] = $functions->cleanPost("instagram");
+	$pageData["youtube"] = $functions->cleanPost("youtube");
+	$pageData["linkedin"] = $functions->cleanPost("linkedin");
+	$pageData["vk"] = $functions->cleanPost("vk");
+	$pageData["telegram"] = $functions->cleanPost("telegram");
+	$pageData["whatsapp"] = $functions->cleanPost("whatsapp");
 
-	$pageData[$defaultLanguage->short_lang]["site_mail"] = $functions->cleanPost("site_mail");
-	$pageData[$defaultLanguage->short_lang]["phone"] = $functions->cleanPost("phone");
-	$pageData[$defaultLanguage->short_lang]["fax"] = $functions->cleanPost("fax");
-	$pageData[$defaultLanguage->short_lang]["maps"] = $functions->cleanPost("maps");
-	$pageData[$defaultLanguage->short_lang]["adres"] = $functions->cleanPostTextarea("adres");
-	$pageData[$defaultLanguage->short_lang]["contact_despription"] = $functions->cleanPostTextarea("contact_despription");
+	$pageData["site_mail"] = $functions->cleanPost("site_mail");
+	$pageData["phone"] = $functions->cleanPost("phone");
+	$pageData["fax"] = $functions->cleanPost("fax");
+	$pageData["maps"] = $functions->cleanPost("maps");
+	$pageData["adres"] = $functions->cleanPostTextarea("adres");
+	$pageData["contact_despription"] = $functions->cleanPostTextarea("contact_despription");
 
 
-	$pageData[$defaultLanguage->short_lang]["site_status_title"] = $functions->cleanPost("site_status_title");
-	$pageData[$defaultLanguage->short_lang]["site_status_text"] = $functions->cleanPostTextarea("site_status_text");
+	$pageData["site_status_title"] = $functions->cleanPost("site_status_title");
+	$pageData["site_status_text"] = $functions->cleanPostTextarea("site_status_text");
 
 	//smtp
-	$pageData[$defaultLanguage->short_lang]["mail_send_mode"] = isset($_POST["mail_send_mode"]) ? 1 : 0;
-	$pageData[$defaultLanguage->short_lang]["smtp_host"] = $functions->cleanPost("smtp_host");
-	$pageData[$defaultLanguage->short_lang]["smtp_email"] = $functions->cleanPost("smtp_email");
-	$pageData[$defaultLanguage->short_lang]["smtp_password"] = $functions->cleanPost("smtp_password");
-	$pageData[$defaultLanguage->short_lang]["smtp_port"] = $functions->cleanPost("smtp_port");
-	$pageData[$defaultLanguage->short_lang]["smtp_secure"] = $functions->cleanPost("smtp_secure");
-	$pageData[$defaultLanguage->short_lang]["smtp_send_name_surname"] = $functions->cleanPost("smtp_send_name_surname");
-	$pageData[$defaultLanguage->short_lang]["smtp_send_email_adres"] = $functions->cleanPost("smtp_send_email_adres");
-	$pageData[$defaultLanguage->short_lang]["smtp_send_email_reply_adres"] = $functions->cleanPost("smtp_send_email_reply_adres");
-	$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug"] = $functions->cleanPostInt("smtp_mail_send_debug");
-	$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug_control"] = is_numeric($functions->post("smtp_mail_send_debug"));
-	$pageData[$defaultLanguage->short_lang]["smtp_send_debug_adres"] = $functions->cleanPost("smtp_send_debug_adres");
+	$pageData["mail_send_mode"] = isset($_POST["mail_send_mode"]) ? 1 : 0;
+	$pageData["smtp_host"] = $functions->cleanPost("smtp_host");
+	$pageData["smtp_email"] = $functions->cleanPost("smtp_email");
+	$pageData["smtp_password"] = $functions->cleanPost("smtp_password");
+	$pageData["smtp_port"] = $functions->cleanPost("smtp_port");
+	$pageData["smtp_secure"] = $functions->cleanPost("smtp_secure");
+	$pageData["smtp_send_name_surname"] = $functions->cleanPost("smtp_send_name_surname");
+	$pageData["smtp_send_email_adres"] = $functions->cleanPost("smtp_send_email_adres");
+	$pageData["smtp_send_email_reply_adres"] = $functions->cleanPost("smtp_send_email_reply_adres");
+	$pageData["smtp_mail_send_debug"] = $functions->cleanPostInt("smtp_mail_send_debug");
+	$pageData["smtp_mail_send_debug_control"] = is_numeric($functions->post("smtp_mail_send_debug"));
+	$pageData["smtp_send_debug_adres"] = $functions->cleanPost("smtp_send_debug_adres");
 
 	//sayfa bulunamadı
-	$pageData[$defaultLanguage->short_lang]["page_not_found_title"] = $functions->cleanPost("page_not_found_title");
-	$pageData[$defaultLanguage->short_lang]["page_not_found_text"] = $functions->cleanPostTextarea("page_not_found_text");
+	$pageData["page_not_found_title"] = $functions->cleanPost("page_not_found_title");
+	$pageData["page_not_found_text"] = $functions->cleanPostTextarea("page_not_found_text");
 
 	//özel linkler
 	foreach ($constants::systemLinkPrefix as $prefixKey => $systemLinkPrefixValue) {
 		foreach ($projectLanguages as $project_languages_row) {
-			$pageData[$defaultLanguage->short_lang][$prefixKey . $project_languages_row->short_lang] = $functions->cleanPost($prefixKey . $project_languages_row->short_lang);
+			$pageData[$prefixKey . $project_languages_row->short_lang] = $functions->cleanPost($prefixKey . $project_languages_row->short_lang);
 		}
 	}
 
@@ -113,167 +113,167 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 
 	$message = [];
-	if (empty($pageData[$defaultLanguage->short_lang]["title"])) {
+	if (empty($pageData["title"])) {
 		$message["reply"][] = "Site başlığı boş olamaz.";
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["project_name"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["project_name"]) < 5) {
+	if (!empty($pageData["project_name"])) {
+		if (strlen($pageData["project_name"]) < 5) {
 			$message["reply"][] = "Proje ismi 5 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["project_name"]) > 100) {
+		if (strlen($pageData["project_name"]) > 100) {
 			$message["reply"][] = "Proje İsmi 100 karakterden büyük olamaz.";
 		}
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["title"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["title"]) < 5) {
+	if (!empty($pageData["title"])) {
+		if (strlen($pageData["title"]) < 5) {
 			$message["reply"][] = "Site başlığı 5 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["title"]) > 100) {
+		if (strlen($pageData["title"]) > 100) {
 			$message["reply"][] = "Site başlığı 100 karakterden büyük olamaz.";
 		}
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["logo_text"])
-		&& strlen($pageData[$defaultLanguage->short_lang]["logo_text"]) > 60) {
+	if (!empty($pageData["logo_text"])
+		&& strlen($pageData["logo_text"]) > 60) {
 		$message["reply"][] = "Logo yazısı 60 karakterden fazla olamaz.";
 	}
 
-	if (empty($pageData[$defaultLanguage->short_lang]["keywords"])) {
+	if (empty($pageData["keywords"])) {
 		$message["reply"][] = "Anahtar kelimeler boş olamaz.";
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["keywords"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["keywords"]) < 10) {
+	if (!empty($pageData["keywords"])) {
+		if (strlen($pageData["keywords"]) < 10) {
 			$message["reply"][] = "Anahtar kelimeler 10 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["keywords"]) > 250) {
+		if (strlen($pageData["keywords"]) > 250) {
 			$message["reply"][] = "Anahtar kelimeler 250 karakterden büyük olamaz.";
 		}
 	}
-	if (empty($pageData[$defaultLanguage->short_lang]["description"])) {
+	if (empty($pageData["description"])) {
 		$message["reply"][] = "Site açıklama boş olamaz.";
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["description"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["description"]) < 10) {
+	if (!empty($pageData["description"])) {
+		if (strlen($pageData["description"]) < 10) {
 			$message["reply"][] = "Site açıklama 10 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["description"]) > 500) {
+		if (strlen($pageData["description"]) > 500) {
 			$message["reply"][] = "Site açıklama 500 karakterden büyük olamaz.";
 		}
 	}
-	if (empty($pageData[$defaultLanguage->short_lang]["post_theme"])) {
+	if (empty($pageData["post_theme"])) {
 		$message["reply"][] = "Lütfen site temasını seçin.";
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["post_theme"])
-		&& !array_key_exists($pageData[$defaultLanguage->short_lang]["post_theme"], $themes)) {
+	if (!empty($pageData["post_theme"])
+		&& !array_key_exists($pageData["post_theme"], $themes)) {
 		$message["reply"][] = "Geçersiz tema seçimi.";
 	}
 
-	if (!$pageData[$defaultLanguage->short_lang]["site_status_control"]) {
+	if (!$pageData["site_status_control"]) {
 		$message["reply"][] = "Site durumunu seçiniz.";
 	}
-	if ($pageData[$defaultLanguage->short_lang]["site_status_control"]
-		&& !array_key_exists($pageData[$defaultLanguage->short_lang]["site_status"], $constants::systemSiteMod)) {
+	if ($pageData["site_status_control"]
+		&& !array_key_exists($pageData["site_status"], $constants::systemSiteMod)) {
 		$message["reply"][] = "Geçersiz menü türü.";
 	}
 
-	if (!empty($pageData[$defaultLanguage->short_lang]["site_mail"])
-		&& !$functions->isEmail($pageData[$defaultLanguage->short_lang]["site_mail"])) {
+	if (!empty($pageData["site_mail"])
+		&& !$functions->isEmail($pageData["site_mail"])) {
 		$message["reply"][] = "Lütfen geçerli bir e-posta adresi giriniz.";
 	}
-	if (!empty($pageData[$defaultLanguage->short_lang]["phone"])) {
-		if (!is_numeric($pageData[$defaultLanguage->short_lang]["phone"])) {
+	if (!empty($pageData["phone"])) {
+		if (!is_numeric($pageData["phone"])) {
 			$message["reply"][] = "Telefon numarası sadece rakam olabilir.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["phone"]) !== 10) {
+		if (strlen($pageData["phone"]) !== 10) {
 			$message["reply"][] = "Telefon numaranız 10 karakter olmalıdır.";
 		}
 	}
 
-	if (!empty($pageData[$defaultLanguage->short_lang]["fax"])) {
-		if (!is_numeric($pageData[$defaultLanguage->short_lang]["fax"])) {
+	if (!empty($pageData["fax"])) {
+		if (!is_numeric($pageData["fax"])) {
 			$message["reply"][] = "Fax numarası sadece rakam olabilir.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["fax"]) !== 10) {
+		if (strlen($pageData["fax"]) !== 10) {
 			$message["reply"][] = "Fax numaranız 10 karakter olmalıdır.";
 		}
 	}
 
-	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["link_sort_lang"], $constants::systemLanguageRoute)) {
+	if (!array_key_exists($pageData["link_sort_lang"], $constants::systemLanguageRoute)) {
 		$message["reply"][] = "Geçersiz dil kısaltması seçimi.";
 	}
 
 
-	if ((int)$pageData[$defaultLanguage->short_lang]["mail_send_mode"] === 1) {
+	if ((int)$pageData["mail_send_mode"] === 1) {
 		//mail gönderimi aktif olursa bu ayarlar kesin gerekli
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_host"])) {
+		if (empty($pageData["smtp_host"])) {
 			$message["reply"][] = "Smtp host boş olamaz.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_email"])) {
+		if (empty($pageData["smtp_email"])) {
 			$message["reply"][] = "Smtp e-posta adresi boş olamaz.";
 		}
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_email"])
-			&& !$functions->isEmail($pageData[$defaultLanguage->short_lang]["smtp_email"])) {
+		if (!empty($pageData["smtp_email"])
+			&& !$functions->isEmail($pageData["smtp_email"])) {
 			$message["reply"][] = "Lütfen geçerli bir smtp e-posta adresi giriniz.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_password"])) {
+		if (empty($pageData["smtp_password"])) {
 			$message["reply"][] = "Smtp e-posta şifresi boş olamaz.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_port"])) {
+		if (empty($pageData["smtp_port"])) {
 			$message["reply"][] = "Smtp port boş olamaz.";
 		}
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_port"])
-			&& !is_numeric($pageData[$defaultLanguage->short_lang]["smtp_port"])) {
+		if (!empty($pageData["smtp_port"])
+			&& !is_numeric($pageData["smtp_port"])) {
 			$message["reply"][] = "Smtp port sadece sayı olmalıdır.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_secure"])) {
+		if (empty($pageData["smtp_secure"])) {
 			$message["reply"][] = "Smpt secure boş olamaz.";
 		}
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_secure"])
-			&& !array_key_exists($pageData[$defaultLanguage->short_lang]["smtp_secure"], $constants::smtpSecureType)) {
+		if (!empty($pageData["smtp_secure"])
+			&& !array_key_exists($pageData["smtp_secure"], $constants::smtpSecureType)) {
 			$message["reply"][] = "Lütfen geçerli bir smtp secure seçin.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_send_name_surname"])) {
+		if (empty($pageData["smtp_send_name_surname"])) {
 			$message["reply"][] = "Mail gönderen ad soyad boş olamaz.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_send_email_adres"])) {
+		if (empty($pageData["smtp_send_email_adres"])) {
 			$message["reply"][] = "Gönderen e-posta adresi boş olamaz.";
 		}
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_send_email_adres"])
-			&& !$functions->isEmail($pageData[$defaultLanguage->short_lang]["smtp_send_email_adres"])) {
+		if (!empty($pageData["smtp_send_email_adres"])
+			&& !$functions->isEmail($pageData["smtp_send_email_adres"])) {
 			$message["reply"][] = "Lütfen gönderen e-posta adresini geçerli formatta yazın.";
 		}
-		if (empty($pageData[$defaultLanguage->short_lang]["smtp_send_email_reply_adres"])) {
+		if (empty($pageData["smtp_send_email_reply_adres"])) {
 			$message["reply"][] = "Cevap e-posta adresi boş olamaz.";
 		}
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_send_email_reply_adres"])
-			&& !$functions->isEmail($pageData[$defaultLanguage->short_lang]["smtp_send_email_reply_adres"])) {
+		if (!empty($pageData["smtp_send_email_reply_adres"])
+			&& !$functions->isEmail($pageData["smtp_send_email_reply_adres"])) {
 			$message["reply"][] = "Lütfen cevap e-posta adresini geçerli formatta yazın.";
 		}
-		if (!$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug_control"]) {
+		if (!$pageData["smtp_mail_send_debug_control"]) {
 			$message["reply"][] = "Lütfen Mail gönderme türünü seçin.";
 		}
-		if ($pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug_control"]
-			&& ((int)$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug"] !== 1)
-			&& ((int)$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug"] !== 2)) {
+		if ($pageData["smtp_mail_send_debug_control"]
+			&& ((int)$pageData["smtp_mail_send_debug"] !== 1)
+			&& ((int)$pageData["smtp_mail_send_debug"] !== 2)) {
 			$message["reply"][] = "Lütfen geçerli bir mail gönderme türü seçiniz.";
 		}
-		if ((int)$pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug"] === 1) {
-			if (empty($pageData[$defaultLanguage->short_lang]["smtp_send_debug_adres"])) {
+		if ((int)$pageData["smtp_mail_send_debug"] === 1) {
+			if (empty($pageData["smtp_send_debug_adres"])) {
 				$message["reply"][] = "Test maillerinin gideceği adres boş olamaz.";
 			}
-			if (!$functions->isEmail($pageData[$defaultLanguage->short_lang]["smtp_send_debug_adres"])) {
+			if (!$functions->isEmail($pageData["smtp_send_debug_adres"])) {
 				$message["reply"][] = "Test maillerinin gideceği adres e-posta formatında olmalıdır.";
 			}
 		}
 
-		if (!empty($pageData[$defaultLanguage->short_lang]["smtp_send_debug_adres"])
-			&& !$functions->isEmail($pageData[$defaultLanguage->short_lang]["smtp_email"])) {
+		if (!empty($pageData["smtp_send_debug_adres"])
+			&& !$functions->isEmail($pageData["smtp_email"])) {
 			$message["reply"][] = "Lütfen test maillerinin gideceği geçerli bir e-posta adresi giriniz.";
 		}
 	}
 
 	foreach ($constants::systemLinkPrefix as $prefixKey => $systemLinkPrefixValue2) {
 		foreach ($projectLanguages as $project_languages_row) {
-			if (empty($pageData[$defaultLanguage->short_lang][$prefixKey . $project_languages_row->short_lang])) {
+			if (empty($pageData[$prefixKey . $project_languages_row->short_lang])) {
 				$message["reply"][] = $project_languages_row->lang . " - Lütfen " . $systemLinkPrefixValue2["title"] . " alanını boş bırakmayınız.";
 			}
 		}
@@ -365,51 +365,51 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 
 	if (empty($message)) {
-		$db_data_settings["keywords"] = $pageData[$defaultLanguage->short_lang]["keywords"];
-		$db_data_settings["link_sort_lang"] = $pageData[$defaultLanguage->short_lang]["link_sort_lang"];
-		$db_data_settings["description"] = $pageData[$defaultLanguage->short_lang]["description"];
-		$db_data_settings["site_status"] = $pageData[$defaultLanguage->short_lang]["site_status"];
-		$db_data_settings["theme"] = $pageData[$defaultLanguage->short_lang]["post_theme"];
-		$db_data_settings["title"] = $pageData[$defaultLanguage->short_lang]["title"];
-		$db_data_settings["project_name"] = $pageData[$defaultLanguage->short_lang]["project_name"];
-		$db_data_settings["logo_text"] = $pageData[$defaultLanguage->short_lang]["logo_text"];
+		$db_data_settings["keywords"] = $pageData["keywords"];
+		$db_data_settings["link_sort_lang"] = $pageData["link_sort_lang"];
+		$db_data_settings["description"] = $pageData["description"];
+		$db_data_settings["site_status"] = $pageData["site_status"];
+		$db_data_settings["theme"] = $pageData["post_theme"];
+		$db_data_settings["title"] = $pageData["title"];
+		$db_data_settings["project_name"] = $pageData["project_name"];
+		$db_data_settings["logo_text"] = $pageData["logo_text"];
 
-		$db_data_settings["google"] = $pageData[$defaultLanguage->short_lang]["google"];
-		$db_data_settings["facebook"] = $pageData[$defaultLanguage->short_lang]["facebook"];
-		$db_data_settings["twitter"] = $pageData[$defaultLanguage->short_lang]["twitter"];
-		$db_data_settings["instagram"] = $pageData[$defaultLanguage->short_lang]["instagram"];
-		$db_data_settings["youtube"] = $pageData[$defaultLanguage->short_lang]["youtube"];
-		$db_data_settings["linkedin"] = $pageData[$defaultLanguage->short_lang]["linkedin"];
-		$db_data_settings["vk"] = $pageData[$defaultLanguage->short_lang]["vk"];
-		$db_data_settings["telegram"] = $pageData[$defaultLanguage->short_lang]["telegram"];
-		$db_data_settings["whatsapp"] = $pageData[$defaultLanguage->short_lang]["whatsapp"];
+		$db_data_settings["google"] = $pageData["google"];
+		$db_data_settings["facebook"] = $pageData["facebook"];
+		$db_data_settings["twitter"] = $pageData["twitter"];
+		$db_data_settings["instagram"] = $pageData["instagram"];
+		$db_data_settings["youtube"] = $pageData["youtube"];
+		$db_data_settings["linkedin"] = $pageData["linkedin"];
+		$db_data_settings["vk"] = $pageData["vk"];
+		$db_data_settings["telegram"] = $pageData["telegram"];
+		$db_data_settings["whatsapp"] = $pageData["whatsapp"];
 
-		$db_data_settings["site_mail"] = $pageData[$defaultLanguage->short_lang]["site_mail"];
-		$db_data_settings["phone"] = $pageData[$defaultLanguage->short_lang]["phone"];
-		$db_data_settings["fax"] = $pageData[$defaultLanguage->short_lang]["fax"];
-		$db_data_settings["maps"] = $pageData[$defaultLanguage->short_lang]["maps"];
-		$db_data_settings["adres"] = $pageData[$defaultLanguage->short_lang]["adres"];
-		$db_data_settings["contact_despription"] = $pageData[$defaultLanguage->short_lang]["contact_despription"];
+		$db_data_settings["site_mail"] = $pageData["site_mail"];
+		$db_data_settings["phone"] = $pageData["phone"];
+		$db_data_settings["fax"] = $pageData["fax"];
+		$db_data_settings["maps"] = $pageData["maps"];
+		$db_data_settings["adres"] = $pageData["adres"];
+		$db_data_settings["contact_despription"] = $pageData["contact_despription"];
 
-		$db_data_settings["site_status_title"] = $pageData[$defaultLanguage->short_lang]["site_status_title"];
-		$db_data_settings["site_status_text"] = $pageData[$defaultLanguage->short_lang]["site_status_text"];
+		$db_data_settings["site_status_title"] = $pageData["site_status_title"];
+		$db_data_settings["site_status_text"] = $pageData["site_status_text"];
 
 		//smtp
-		$db_data_settings["mail_send_mode"] = $pageData[$defaultLanguage->short_lang]["mail_send_mode"];
-		$db_data_settings["smtp_host"] = $pageData[$defaultLanguage->short_lang]["smtp_host"];
-		$db_data_settings["smtp_email"] = $pageData[$defaultLanguage->short_lang]["smtp_email"];
-		$db_data_settings["smtp_password"] = $pageData[$defaultLanguage->short_lang]["smtp_password"];
-		$db_data_settings["smtp_port"] = $pageData[$defaultLanguage->short_lang]["smtp_port"];
-		$db_data_settings["smtp_secure"] = $pageData[$defaultLanguage->short_lang]["smtp_secure"];
-		$db_data_settings["smtp_send_name_surname"] = $pageData[$defaultLanguage->short_lang]["smtp_send_name_surname"];
-		$db_data_settings["smtp_send_email_adres"] = $pageData[$defaultLanguage->short_lang]["smtp_send_email_adres"];
-		$db_data_settings["smtp_send_email_reply_adres"] = $pageData[$defaultLanguage->short_lang]["smtp_send_email_reply_adres"];
-		$db_data_settings["smtp_mail_send_debug"] = $pageData[$defaultLanguage->short_lang]["smtp_mail_send_debug"];
-		$db_data_settings["smtp_send_debug_adres"] = $pageData[$defaultLanguage->short_lang]["smtp_send_debug_adres"];
+		$db_data_settings["mail_send_mode"] = $pageData["mail_send_mode"];
+		$db_data_settings["smtp_host"] = $pageData["smtp_host"];
+		$db_data_settings["smtp_email"] = $pageData["smtp_email"];
+		$db_data_settings["smtp_password"] = $pageData["smtp_password"];
+		$db_data_settings["smtp_port"] = $pageData["smtp_port"];
+		$db_data_settings["smtp_secure"] = $pageData["smtp_secure"];
+		$db_data_settings["smtp_send_name_surname"] = $pageData["smtp_send_name_surname"];
+		$db_data_settings["smtp_send_email_adres"] = $pageData["smtp_send_email_adres"];
+		$db_data_settings["smtp_send_email_reply_adres"] = $pageData["smtp_send_email_reply_adres"];
+		$db_data_settings["smtp_mail_send_debug"] = $pageData["smtp_mail_send_debug"];
+		$db_data_settings["smtp_send_debug_adres"] = $pageData["smtp_send_debug_adres"];
 
 		//sayfa bulunamadı
-		$db_data_settings["page_not_found_title"] = $pageData[$defaultLanguage->short_lang]["page_not_found_title"];
-		$db_data_settings["page_not_found_text"] = $pageData[$defaultLanguage->short_lang]["page_not_found_text"];
+		$db_data_settings["page_not_found_title"] = $pageData["page_not_found_title"];
+		$db_data_settings["page_not_found_text"] = $pageData["page_not_found_text"];
 
 		//mevcut urlleri çekip array yapalım
 		$file_url_array = [];
@@ -422,12 +422,12 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 
 		foreach ($constants::systemLinkPrefix as $prefixKey => $systemLinkPrefixValue3) {
 			foreach ($projectLanguages as $project_languages_row) {
-				$db_data_settings[$prefixKey . $project_languages_row->short_lang] = $pageData[$defaultLanguage->short_lang][$prefixKey . $project_languages_row->short_lang];
+				$db_data_settings[$prefixKey . $project_languages_row->short_lang] = $pageData[$prefixKey . $project_languages_row->short_lang];
 				//bu değerleri file_url'tablosuna da kaydememiz lazım çünkü controller ordan değişebiliyor burdan diline göre ekleyeceğiz
-				if (!array_key_exists($pageData[$defaultLanguage->short_lang][$prefixKey . $project_languages_row->short_lang], $file_url_array)) {
+				if (!array_key_exists($pageData[$prefixKey . $project_languages_row->short_lang], $file_url_array)) {
 					//bu yeni prefix file_url de yok eklensin
 					$db_prefix = [];
-					$db_prefix["url"] = $pageData[$defaultLanguage->short_lang][$prefixKey . $project_languages_row->short_lang];
+					$db_prefix["url"] = $pageData[$prefixKey . $project_languages_row->short_lang];
 					$db_prefix["controller"] = $systemLinkPrefixValue3["controller"];
 					$db_prefix["lang"] = $project_languages_row->short_lang;
 					$db_prefix["status"] = 1;

@@ -48,7 +48,6 @@
                 <div class="tab-content" id="custom-tabs-two-tabContent">
                     <div class="tab-pane fade show active" id="home">
 						<?php
-						$form->lang = $data->defaultLanguage->short_lang;
 						$form->formNameWithoutLangCode = 1;
 						echo $form->input("project_name", array(
 							"label" => $admin_text["SETTINGS_PROJECT_NAME"],
@@ -303,7 +302,7 @@
 								"label" => $admin_text["SETTINGS_MAIL_SEND_DEBUG_ADRESS"],
 								"required" => 1,
 								"item_hidden" => 1,
-								"show_data" => $data->pageData[$data->defaultLanguage->short_lang]["smtp_mail_send_debug"],
+								"show_data" => $data->pageData["smtp_mail_send_debug"],
 								"show_value" => 2,
 							), $data->pageData);
 							?>
