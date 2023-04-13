@@ -30,16 +30,22 @@
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
 							<?php
                             if($data->id > 0){
-                                $thisContentUrl = $siteManager->createContentUrl((object)$data->pageData[$project_languages_row->short_lang]);
-                                $thisContentLinkNoUrl = $siteManager->createContentLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                if(isset($data->pageData[$project_languages_row->short_lang])):
+                                    $thisContentUrl = $siteManager->createContentUrl((object)$data->pageData[$project_languages_row->short_lang]);
                                 ?>
-                                <div class="alert alert-info">
-                                    İçerik Linki: <a href="<?php echo $thisContentUrl; ?>" target="_blank" class="text-white"><?php echo $thisContentUrl; ?></a>
-                                </div>
-                                <div class="alert alert-warning">
-                                    İçerik Linki Kopyalamak İçin: <?php echo $thisContentLinkNoUrl; ?>
-                                </div>
+                                    <div class="alert alert-info">
+                                        İçerik Linki: <a href="<?php echo $thisContentUrl; ?>" target="_blank" class="text-white"><?php echo $thisContentUrl; ?></a>
+                                    </div>
                                 <?php
+                                endif;
+                                if(isset($data->pageData[$project_languages_row->short_lang])):
+                                    $thisContentLinkNoUrl = $siteManager->createContentLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                ?>
+                                    <div class="alert alert-warning">
+                                        İçerik Linki Kopyalamak İçin: <?php echo $thisContentLinkNoUrl; ?>
+                                    </div>
+                                <?php
+                                endif;
                             }
 							$form->lang = $project_languages_row->short_lang;
 							echo $form->input("title", array(
@@ -119,7 +125,7 @@
 	<?php foreach ($projectLanguages as $project_languages_row){
 	?>
     var roxyFileman = '<?php echo $system->adminPublicUrl('plugins/fileman/index.html'); ?>';
-    CKEDITOR.replace('text_tr', {
+    CKEDITOR.replace('text_<?php echo $project_languages_row->short_lang; ?>', {
         filebrowserBrowseUrl: roxyFileman,
         filebrowserImageBrowseUrl: roxyFileman + '?type=image',
         removeDialogTabs: 'link:upload;image:upload'
