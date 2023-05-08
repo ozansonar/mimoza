@@ -42,7 +42,7 @@ $columns = array(
             if(!empty($row["img"]) && file_exists($constants::fileTypePath["user_image"]["full_path"] . $row["img"])){
                 $exportHtml .= '
                     <a href="'.$constants::fileTypePath["user_image"]["url"] . $row["img"].'" data-toggle="lightbox" data-title="'.$row["name"].'" class="color-unset">
-                        <i class="fas fa-images"></i>
+                        <img src="'.$constants::fileTypePath["user_image"]["url"] . $row["img"].'" alt="" class="table-list-img">
                     </a>
                     ';
             }
