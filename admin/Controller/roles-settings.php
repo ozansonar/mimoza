@@ -152,13 +152,12 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		} else {
 			//ekleme
 			$insert = $db::insert("role_groups", $add_data);
-			$last_id = $db::getLastInsertedId();
-			if ($insert) {
+			if ($insert > 0) {
 				if (isset($_POST["permissions"])) {
 					foreach ($permissions as $p_key => $p_val) {
 						foreach ($p_val as $key => $val) {
 							$role_add = [];
-							$role_add["role_group"] = $last_id;
+							$role_add["role_group"] = $insert;
 							$role_add["role_key"] = $functions->cleaner($p_key);
 							$role_add["permission"] = $functions->cleaner($val);
 							$db::insert("role_permission", $role_add);
@@ -167,7 +166,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				}
 
 				$message["success"][] = $lang["content-completed"];
-				$functions->refresh($system->adminUrl("roles-settings?id=" . $last_id, 3));
+				$functions->refresh($system->adminUrl("roles-settings?id=" . $insert, 3));
 				$log->logThis($log->logTypes['ROLES_ADD_SUCC']);
 			} else {
 				$log->logThis($log->logTypes['ROLES_ADD_ERR']);

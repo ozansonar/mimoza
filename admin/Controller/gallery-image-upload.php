@@ -21,7 +21,6 @@ $customJs = [
 	"plugins/bootstrap-fileinput-master/themes/explorer-fas/theme.js",
 ];
 $id = 0;
-
 if (isset($_POST["id"]) && is_numeric($_POST["id"])) {
 	$del_id = $functions->cleanPostInt("id");
 	$data = [];
@@ -69,7 +68,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 			if (!empty($images_row->image) && file_exists($image_path)) {
 				$file_size = filesize($image_path);
 				$initialPreview .= '"' . $constants::fileTypePath["gallery"]["url"] . $id . "/" . $images_row->image . '",';
-				$initialPreviewConfig .= '{caption: "' . $images_row->image . '", size: ' . $file_size . ', width: "200px", url: "gallery-image-upload", key: ' . $images_row->id . ', extra: {token: "' . $_SESSION["csrf_token"] . '", id : "' . $images_row->id . '"}  },';
+				$initialPreviewConfig .= '{caption: "' . $images_row->image . '", size: ' . $file_size . ', width: "200px", url: "gallery-image-upload", key: ' . $images_row->id . ', extra: {csrf_token: "' . $_SESSION["csrf_token"] . '", id : "' . $images_row->id . '"}  },';
 			}
 		}
 	}
@@ -84,4 +83,5 @@ View::backend('gallery-image-upload', [
 	'initialPreviewConfig' => $initialPreviewConfig ?? NULL,
 	'css' => $customCss,
 	'js' => $customJs,
+    'id' => $id
 ]);

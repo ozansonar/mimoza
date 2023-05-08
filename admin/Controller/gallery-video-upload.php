@@ -47,7 +47,7 @@ $video_id = 0;
 if ((isset($_GET["id"]) && is_numeric($_GET["id"])) || (isset($_GET["video_id"]) && is_numeric($_GET["video_id"]))) {
 	$id = $functions->cleanGetInt("id");
 	$gallery_data = $db::selectQuery("gallery", array(
-		"status" => $id,
+		"id" => $id,
 		"deleted" => 0,
 	), true);
 	if (empty($gallery_data)) {

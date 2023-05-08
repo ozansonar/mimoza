@@ -25,13 +25,13 @@
 <script>
     $(document).ready(function () {
         let token = $("#token").val();
-        let g_id = "<?php echo $id; ?>";
+        let g_id = "<?php echo $data->id; ?>";
         $("#kv-explorer").fileinput({
             'theme': 'explorer-fas',
             'uploadUrl': 'ajax/gallery-uploader',
             language: 'tr',
             uploadExtraData: {
-                token: token,
+                csrf_token: token,
                 gallery_id: g_id
             },
             allowedFileExtensions: ['jpg', 'png', 'gif'],
@@ -42,7 +42,7 @@
             initialPreviewAsData: true,
             initialPreview: [<?php echo $data->initialPreview; ?>],
             initialPreviewConfig: [<?php echo $data->initialPreviewConfig; ?>],
-            deleteUrl: "ajax/gallery-uploader"
+            deleteUrl: "gallery-image-upload"
 
         }).on('fileuploaded', function (event, previewId, index, fileId) {
             console.log('File Uploaded', 'ID: ' + fileId + ', Thumb ID: ' + previewId);

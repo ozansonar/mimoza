@@ -110,7 +110,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			}
 
 			if (!empty($pageData[$project_languages_row->short_lang]["description"]) && strlen($pageData[$project_languages_row->short_lang]["description"]) > 200) {
-				$message["success"][] = $project_languages_row->lang . " - Açıklama SEO 350 kararakterden fazla olamaz.";
+				$message["reply"][] = $project_languages_row->lang . " - Açıklama SEO 350 kararakterden fazla olamaz.";
 			}
 
 
