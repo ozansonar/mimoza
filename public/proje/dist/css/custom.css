@@ -5,6 +5,14 @@
     -o-text-overflow: ellipsis;    /* Opera < 11*/
     text-overflow:    ellipsis;    /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
 }
+form label.required:after {
+    content: "*";
+    font-size: 1em;
+    margin: 0.3em;
+    position: relative;
+    top: -2px;
+    color: red;
+}
 
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
