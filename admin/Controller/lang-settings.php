@@ -138,13 +138,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			}
 		} else {
 			$add = $db::insert("lang", $db_data);
-			if ($add) {
+			if ($add > 0) {
 				$log->logThis($log->logTypes['LANG_ADD_SUCC']);
 				$message["success"][] = $lang["content-insert"];
 
 				if ((int)$pageData[$defaultLanguage->short_lang]["default_lang"] === 1) {
 					//işlem tamamlandı eğer varsayılan dil yapıldıysa diğer varsayılan dili kaldıralım
-					$siteManager->defaultLanguageReset($db::getLastInsertedId());
+					$siteManager->defaultLanguageReset($add);
 				}
 				$functions->refresh($system->adminUrl("lang-settings"), $refresh_time);
 			} else {

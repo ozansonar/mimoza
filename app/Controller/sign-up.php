@@ -180,9 +180,8 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
             $dbData["send_mail"] = 1;
             //ekleme
             $db_query = $db::insert("users",$dbData);
-            if($db_query){
-                $user_id = $db::getLastInsertedId();
-                $log->logThis($log->logTypes["USER_INSERT_SUCC"]," add user id:".$user_id);
+            if($db_query > 0){
+                $log->logThis($log->logTypes["USER_INSERT_SUCC"]," add user id:".$db_query);
 
                 //kullanıcıya heabını doğrulaması için mail atalım
                 $mailTemplate = $siteManager->getMailTemplate(7);

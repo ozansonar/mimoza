@@ -172,7 +172,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$db_data["lang_id"] = $lang_id;
 
 				$add = $db::insert("gallery", $db_data);
-				$lastId = $db::getLastInsertedId();
 			}
 		}
 		$refresh_time = 3;
