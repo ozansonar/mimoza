@@ -236,7 +236,7 @@
                             islem_icon = '<i class="fas fa-exclamation-triangle text-danger"></i>';
                             islem_text = "<b class='text-danger'>" + m_count + "-Hatalı e-mail listeden silindi: </b>";
                         }
-                        $(".mailIslemleriBody").append("<p>" + islem_text + islem_mail + " " + islem_icon + "</p>");
+                        $(".mailIslemleriBody").prepend("<p>" + islem_text + islem_mail + " " + islem_icon + "</p>");
 
                         $("#modal-gonderilmis .modal-body").html("<p>Kayıt bulunamadı.</p>");
                         $("#modal-gonderilememis .modal-body").html("<p>Kayıt bulunamadı.</p>");
@@ -277,7 +277,7 @@
                     }
                     if (response.message) {
                         $.each(response.message, function (index, value) {
-                            $(".mailIslemleriBody").append("<p>" + value + "</p>");
+                            $(".mailIslemleriBody").prepend("<p>" + value + "</p>");
                         });
                     }
                     if (response.completed) {

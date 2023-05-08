@@ -382,7 +382,7 @@
         $.ajax({
             type: 'POST',
             url: "ajax/test-user",
-            data: {"count": val, "token": token},
+            data: {"count": val, "csrf_token": token},
             success: function (response) {
                 if (response.success) {
                     $("#id-test-user-counter").val(val);

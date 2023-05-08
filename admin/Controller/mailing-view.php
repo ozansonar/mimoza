@@ -60,6 +60,6 @@ View::backend('mailing-view', [
 	'pageButtonRedirectText' => "Mail Listesi",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'mailingUsers' => $mailing_user_list,
-	'attachment' => $attachment_array,
+	'attachment' => $attachment_array ?? [],
 	'mailing' => $mailing,
 ]);
