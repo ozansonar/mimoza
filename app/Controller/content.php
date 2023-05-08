@@ -26,27 +26,23 @@ if (!$system->route(1)) {
     //####################### HİÇ BİR PARAMETRE GELMEDİ KATEGORİLER LİSTELENECEK #######################\\
 
     //kategori sorgulaması
-    $content_link = explode("-",$system->route(1));
-    $id = end($content_link);
-    $normal_link = array_pop($content_link);
-    $normal_link = implode("-",$content_link);
+    $contentLink = explode("-",$system->route(1));
+    $id = $functions->numberOnly(end($contentLink));
 
     //içerik kategorisi bilgileri
-    list($link_count,$link_data) = $siteManager->getCategory($id);
-    if($link_count != 1){
+    list($linkCount,$linkData) = $siteManager->getCategory($id);
+    if((int)$linkCount !== 1){
         $functions->redirect($system->url());
     }
 
 
     $log->logThis($log->logTypes["COTENT_LIST"], $system->route(1));
     //sadece kategori var ve bu kategoriye ait veriler listelenecek
-    $metaTag->title = $link_data->title ." - ".$settings->title;
-
-    $cat_id = $link_data->id;
-
+    $metaTag->title = $linkData->title ." - ".$settings->title;
+ 
     //göstereceğimiz veriler için sorgymuzu yazıp gönderiyoruz fonksiyon kendisi sayfalanmış şekilde veriyi bize veriyor
     $pagination_and_data = $db::paginate("SELECT DISTINCT SQL_CALC_FOUND_ROWS * FROM content WHERE cat_id=:c_id AND status=1 AND deleted=0 ORDER BY show_order DESC LIMIT :baslangic,:limit",array(
-        "c_id" => $cat_id,
+        "c_id" => $linkData->id,
         "limit" => 10,
     ));
 
@@ -54,21 +50,21 @@ if (!$system->route(1)) {
 
     View::layout('content',[
         "pageData" => $pageData,
-        "category" => $link_data,
+        "category" => $linkData,
         "pagination" => $pagination_and_data,
     ]);
 
 }elseif (!empty($system->route(1)) && !empty($system->route(2))){
     //####################### İÇERİK DETAY KISMI #######################\\
     //kategori sorgulaması
-    $content_link = explode("-",$system->route(1));
-    $id = end($content_link);
-    $normal_link = array_pop($content_link);
-    $normal_link = implode("-",$content_link);
+    $contentLink = explode("-",$system->route(1));
+    $id = $functions->numberOnly(end($contentLink));
+    $normalLink = array_pop($contentLink);
+    $normalLink = implode("-",$contentLink);
 
     //içerik kategorisi bilgileri
-    list($link_count,$link_data) = $siteManager->getCategory($id);
-    if($link_count != 1){
+    list($linkCount,$linkData) = $siteManager->getCategory($id);
+    if((int)$linkCount !== 1){
         $functions->redirect($system->url());
     }
 
@@ -76,19 +72,19 @@ if (!$system->route(1)) {
      //detay kısmı
 
     //gelen linki - ile parçaladık ama içeriğin başlığı deneme-içerik gibi olabilir o yüzden id yi içinden alıp son elemanı silip diğerlerni bilirleştirelim
-    $content_link = explode("-",$system->route(2));
-    $id = end($content_link);
-    $normal_link = array_pop($content_link);
-    $normal_link = implode("-",$content_link);
+    $contentLink = explode("-",$system->route(2));
+    $id = $functions->numberOnly(end($contentLink));
+    $normalLink = array_pop($contentLink);
+    $normalLink = $functions->cleaner(implode("-",$contentLink));
     $page_query = $db::$db->prepare("SELECT *
     FROM content WHERE id=:id AND link=:link AND status=1 AND deleted=0 ORDER BY created_at DESC LIMIT 0,1");
     $page_query->bindParam(":id",$id,PDO::PARAM_INT);
-    $page_query->bindParam(":link",$normal_link,PDO::PARAM_STR);
+    $page_query->bindParam(":link",$normalLink,PDO::PARAM_STR);
     $page_query->execute();
     $pageData_count = $page_query->rowCount();
     $pageData = $page_query->fetch(PDO::FETCH_OBJ);
 
-    if($pageData_count != 1){
+    if((int)$pageData_count !== 1){
         $functions->redirect($system->url());
     }
 
@@ -111,7 +107,7 @@ if (!$system->route(1)) {
     $right_bar  = true;
 
     //okunma sayısı yapımı
-    $cookie_name = $link_data->link."_".$pageData->link."-".$pageData->id;
+    $cookie_name = $linkData->link."_".$pageData->link."-".$pageData->id;
     $cookie_value = $pageData->id;
     $c_time = time() + (60 * 60);
     setcookie($cookie_name, $cookie_value,time() + 86400); // 1 saatlik çerez

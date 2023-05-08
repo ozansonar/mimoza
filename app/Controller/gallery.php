@@ -1,5 +1,5 @@
 <?php
-
+//TODO::bu sayfayı yapalım
 $functions->redirect($system->url());
 $log->logThis($log->logTypes["GALLERY"], $system->route(1));
 $metaTag->title = $lang["gallery"];
