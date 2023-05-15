@@ -16,8 +16,7 @@
         <div class="card-body">
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php
-				$form->lang = $data->defaultLanguage->short_lang;
-				$form->form_name_no_lang = 1;
+                $form->formNameWithoutLangCode = 1;
 				echo $functions->csrfToken();
 				echo $form->input("lang", array(
 					"label" => $admin_text["LANG_TITLE"],

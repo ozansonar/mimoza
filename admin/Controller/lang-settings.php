@@ -28,7 +28,7 @@ if (isset($_GET["id"])) {
 	if (empty($data)) {
 		$functions->redirect($system->adminUrl());
 	}
-	$pageData[$defaultLanguage->short_lang] = (array)$data;
+	$pageData = (array)$data;
 } else {
 	if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
 		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
@@ -56,69 +56,68 @@ $customJs = [
 
 
 if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
+ 
+	$pageData["lang"] = $functions->cleanPost("lang");
+	$pageData["short_lang"] = $functions->cleanPost("short_lang");
+	$pageData["default_lang"] = $functions->cleanPostInt("default_lang");
+	$pageData["form_validate"] = $functions->cleanPostInt("form_validate");
+	$pageData["status"] = $functions->cleanPostInt("status");
 
-	$functions->formLang = $defaultLanguage->short_lang;
-	$pageData[$defaultLanguage->short_lang]["lang"] = $functions->cleanPost("lang");
-	$pageData[$defaultLanguage->short_lang]["short_lang"] = $functions->cleanPost("short_lang");
-	$pageData[$defaultLanguage->short_lang]["default_lang"] = $functions->cleanPostInt("default_lang");
-	$pageData[$defaultLanguage->short_lang]["form_validate"] = $functions->cleanPostInt("form_validate");
-	$pageData[$defaultLanguage->short_lang]["status"] = $functions->cleanPostInt("status");
 
-
-	if (empty($pageData[$defaultLanguage->short_lang]["lang"])) {
+	if (empty($pageData["lang"])) {
 		$message["reply"][] = "Dil boş olamaz.";
 	}
 
-	if (!empty($pageData[$defaultLanguage->short_lang]["name"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["name"]) < 2) {
+	if (!empty($pageData["name"])) {
+		if (strlen($pageData["name"]) < 2) {
 			$message["reply"][] = "Dil 2 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["name"]) > 20) {
+		if (strlen($pageData["name"]) > 20) {
 			$message["success"][] = "Dil 20 karakterden fazla olamaz.";
 		}
 	}
 
-	if (empty($pageData[$defaultLanguage->short_lang]["short_lang"])) {
+	if (empty($pageData["short_lang"])) {
 		$message["reply"][] = "Dil kısaltma boş olamaz.";
 	}
 
-	if (!empty($pageData[$defaultLanguage->short_lang]["short_lang"])) {
-		if (strlen($pageData[$defaultLanguage->short_lang]["short_lang"]) < 2) {
+	if (!empty($pageData["short_lang"])) {
+		if (strlen($pageData["short_lang"]) < 2) {
 			$message["reply"][] = "Dil kısaltma 2 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$defaultLanguage->short_lang]["short_lang"]) > 5) {
+		if (strlen($pageData["short_lang"]) > 5) {
 			$message["success"][] = "Dil kısaltma 5 karakterden fazla olamaz.";
 		}
 	}
 
-	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["default_lang"], $constants::systemSiteModVersion2)) {
+	if (!array_key_exists($pageData["default_lang"], $constants::systemSiteModVersion2)) {
 		$message["reply"][] = "Geçersiz varsayılan dil durumu.";
 	}
 
-	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["form_validate"], $constants::systemSiteModVersion2)) {
+	if (!array_key_exists($pageData["form_validate"], $constants::systemSiteModVersion2)) {
 		$message["reply"][] = "Geçersiz form doğrulama durumu.";
 	}
 
-	if (!array_key_exists($pageData[$defaultLanguage->short_lang]["status"], $constants::systemStatus)) {
+	if (!array_key_exists($pageData["status"], $constants::systemStatus)) {
 		$message["reply"][] = "Geçersiz onay durumu.";
 	}
 
-	if ((int)$pageData[$defaultLanguage->short_lang]["default_lang"] === 1 && (int)$pageData[$defaultLanguage->short_lang]["form_validate"] !== 1) {
+	if ((int)$pageData["default_lang"] === 1 && (int)$pageData["form_validate"] !== 1) {
 		$message["reply"][] = "Bu dili varsayılan dil olarak seçtiniz bu durumda <b>Form Doğrulama</b> seçeneğinide evet olarak seçmeniz gerekmektedir.";
 	}
 
-	if ((int)$pageData[$defaultLanguage->short_lang]["default_lang"] !== 1 && $siteManager->getDefaultLangNotId($id) === false) {
+	if ((int)$pageData["default_lang"] !== 1 && $siteManager->getDefaultLangNotId($id) === false) {
 		$message["reply"][] = "Varsayılan başka bir dil yok bu dili varsayılan dil yapmak zorundasınız. Bu dili varsayılandan çıkarmak istiyorsanız başka bir dili varsayılan yapmanız yeterli olacaktır.";
 	}
 
 
 	if (empty($message)) {
 		$db_data = [];
-		$db_data["lang"] = $pageData[$defaultLanguage->short_lang]["lang"];
-		$db_data["short_lang"] = $pageData[$defaultLanguage->short_lang]["short_lang"];
-		$db_data["default_lang"] = $pageData[$defaultLanguage->short_lang]["default_lang"];
-		$db_data["form_validate"] = $pageData[$defaultLanguage->short_lang]["form_validate"];
-		$db_data["status"] = $pageData[$defaultLanguage->short_lang]["status"];
+		$db_data["lang"] = $pageData["lang"];
+		$db_data["short_lang"] = $pageData["short_lang"];
+		$db_data["default_lang"] = $pageData["default_lang"];
+		$db_data["form_validate"] = $pageData["form_validate"];
+		$db_data["status"] = $pageData["status"];
 		$db_data["user_id"] = $session->get("user_id");
 
 		$refresh_time = 3;
@@ -128,7 +127,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			if ($update) {
 				$log->logThis($log->logTypes['LANG_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
-				if ((int)$pageData[$defaultLanguage->short_lang]["default_lang"] === 1) {
+				if ((int)$pageData["default_lang"] === 1) {
 					$siteManager->defaultLanguageReset($id);
 				}
 				$functions->refresh($system->adminUrl("lang-settings?id=" . $id), $refresh_time);
@@ -142,7 +141,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$log->logThis($log->logTypes['LANG_ADD_SUCC']);
 				$message["success"][] = $lang["content-insert"];
 
-				if ((int)$pageData[$defaultLanguage->short_lang]["default_lang"] === 1) {
+				if ((int)$pageData["default_lang"] === 1) {
 					//işlem tamamlandı eğer varsayılan dil yapıldıysa diğer varsayılan dili kaldıralım
 					$siteManager->defaultLanguageReset($add);
 				}
@@ -163,7 +162,6 @@ View::backend('lang-settings', [
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,
-	'defaultLanguage' => $defaultLanguage,
 	'pageData' => $pageData,
 	'css' =>$customCss,
 	'js' =>$customJs,
