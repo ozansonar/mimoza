@@ -181,10 +181,7 @@ class SiteMap
         global $constants;
         $mapArray = [];
         foreach ($constants::systemLinkPrefix as $fileKey=>$file){
-            //echo "<pre>";print_r($file);echo "</pre>";exit;
-            if((int)$file["active"] !== 1){
-                continue;
-            }
+            //TODO:: aktif olmayan linkler bundan filtrelenebilir
             foreach ($this->languages as $lang){
                 $url = $this->link($lang->short_lang,$this->getPrefix2($fileKey,$lang->short_lang));
                 $this->addMap([
