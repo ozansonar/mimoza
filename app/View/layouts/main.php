@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="<?php echo $system->publicUrl('dist/css/custom.css?v='.filemtime($system->path("public/proje/dist/css/custom.css")).''); ?>">
 
-    <script src="<?php echo $system->publicUrl("dist/js/jquery-3.6.3.min.js"); ?>"></script>
+    <script src="<?php echo $system->publicUrl("dist/js/jquery-3.7.0.min.js"); ?>"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <div class="container-fluid">

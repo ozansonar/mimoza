@@ -3,9 +3,12 @@
 use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["CONTACT"]);
-$customCss = ["plugins/form-validation-engine/css/validationEngine.jquery.css"];
+$customCss = [
+    "plugins/sweetalert2/sweetalert2.min.css",
+    "plugins/form-validation-engine/css/validationEngine.jquery.css"
+];
 $customJs = [
-	"dist/js/sweetalert2.all.min.js",
+	"plugins/sweetalert2/sweetalert2.min.js",
 	"plugins/form-validation-engine/js/jquery.validationEngine.js",
 	"plugins/form-validation-engine/js/languages/jquery.validationEngine-" . $_SESSION["lang"] . ".js",
 ];

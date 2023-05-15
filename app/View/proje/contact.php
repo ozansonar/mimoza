@@ -107,7 +107,6 @@
         });
     </script>
 <?php endif; ?>
-
 <script>
     var url = "<?php echo $system->url("ajax/contact-api"); ?>";
     $(document).ready(function(){
