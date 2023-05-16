@@ -34,7 +34,7 @@
 				echo $form->file("img", array(
 					"label" => $admin_text["HESAP_RESIM"],
 					"file_key" => "user_image",
-					"delete_link" => "?id=" . $data->pageData["id"] . "&img_delete=1"
+					"delete_link" => "?img_delete=1"
 				), $data->pageData);
 				echo $form->input("password", array(
 					"label" => $admin_text["HESAP_PASSWORD"],

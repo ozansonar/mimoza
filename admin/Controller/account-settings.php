@@ -30,11 +30,24 @@ function getMessage(Functions $functions, string $password, array $message, stri
 	return $message;
 }
 
+if(isset($_GET["img_delete"])){
+    $deletedImg = $siteManager->imageDeleteNoLang($loggedUser->id,$pageTable);
+    if ($deletedImg) {
+        $log->this("ACCOUNT_IMAGE_DELETED_SUCC","id:".$loggedUser->id);
+        $message["success"][] = $lang["img-delete"];
+        $functions->refresh($system->adminUrl($pageRoleKey),3);
+    } else {
+        $log->this("ACCOUNT_IMAGE_DELETED_ERR","id:".$loggedUser->id);
+        $message["reply"][] = $lang["img-delete-error"];
+    }
+}
+
+
 $log->logThis($log->logTypes['ACCOUNT_DETAIL']);
 $default_lang = $siteManager->defaultLanguage();
 
 $pageData = [];
-$pageData = (array)$loggedUser;
+$pageData = (array)$loggedUser = $session->getUserInfo();
 
 //datanın içinde şifre olmasın
 unset($pageData["password"]);
