@@ -71,7 +71,7 @@ $customJs = [
 	"plugins/ckeditor/ckeditor.js",
 	"plugins/toastr/toastr.min.js",
 ];
- 
+
 
 View::backend($pageAddRoleKey,[
 	'title' =>"Mailing " . (isset($data) ? "Düzenle" : "Ekle"),

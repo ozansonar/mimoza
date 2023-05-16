@@ -92,6 +92,7 @@ if (isset($_POST["subject"]) && !empty($_POST["subject"])) {
 		$add_data["status"] = 1;
         $mailing_id = $db::insert("mailing", $add_data);
 		if ($mailing_id) {
+            $log->this('MAILING_INSERT','id: '.$mailing_id);
 			if (empty($pageData["send"])) {
 				foreach ($test_user_array as $test_user) {
 					$mailing_user = [];

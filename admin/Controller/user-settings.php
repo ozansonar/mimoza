@@ -43,8 +43,8 @@ if (isset($_GET["id"])) {
 	if (empty($data)) {
 		$functions->redirect($system->adminUrl());
 	}
-	$pageData[$default_lang->short_lang] = (array)$data;
-	unset($pageData[$default_lang->short_lang]["password"]);
+	$pageData = (array)$data;
+	unset($pageData["password"]);
 } else if ($session->sessionRoleControl($pageAddRoleKey, $constants::addPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 	$session->permissionDenied();
@@ -59,60 +59,60 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$session->permissionDenied();
 	}
 
-	$pageData[$default_lang->short_lang]["email"] = $functions->cleanPost("email");
-	$pageData[$default_lang->short_lang]["name"] = $functions->cleanPost("name");
-	$pageData[$default_lang->short_lang]["surname"] = $functions->cleanPost("surname");
-	$pageData[$default_lang->short_lang]["telefon"] = $functions->cleanPost("telefon");
-	$pageData[$default_lang->short_lang]["status"] = $functions->cleanPost("status");
-	$pageData[$default_lang->short_lang]["password"] = $functions->cleanPost("password");
-	$pageData[$default_lang->short_lang]["password_again"] = $functions->cleanPost("password_again");
+	$pageData["email"] = $functions->cleanPost("email");
+	$pageData["name"] = $functions->cleanPost("name");
+	$pageData["surname"] = $functions->cleanPost("surname");
+	$pageData["telefon"] = $functions->cleanPost("telefon");
+	$pageData["status"] = $functions->cleanPost("status");
+	$pageData["password"] = $functions->cleanPost("password");
+	$pageData["password_again"] = $functions->cleanPost("password_again");
 
 	$message = [];
-	if (empty($pageData[$default_lang->short_lang]["email"])) {
+	if (empty($pageData["email"])) {
 		$message["reply"][] = "E-posta boş olamaz.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["email"]) && !$functions->isEmail($pageData[$default_lang->short_lang]["email"])) {
+	if (!empty($pageData["email"]) && !$functions->isEmail($pageData["email"])) {
 		$message["reply"][] = "E-postanız email formatında olmalıdır.";
 	}
 	if ($id === 0) {
 		//ekleme kısmı
-		if ($functions->isEmail($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqData("users", "email", $pageData[$default_lang->short_lang]["email"]) > 0) {
+		if ($functions->isEmail($pageData["email"]) && $siteManager->uniqData("users", "email", $pageData["email"]) > 0) {
 			$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 		}
-	} else if ($functions->isEmail($pageData[$default_lang->short_lang]["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $pageData[$default_lang->short_lang]["email"], $id) > 0) {
+	} else if ($functions->isEmail($pageData["email"]) && $siteManager->uniqDataWithoutThis("users", "email", $pageData["email"], $id) > 0) {
 		$message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
 	}
 
-	if (empty($pageData[$default_lang->short_lang]["name"])) {
+	if (empty($pageData["name"])) {
 		$message["reply"][] = "İsim boş olamaz.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["name"])) {
-		if (strlen($pageData[$default_lang->short_lang]["name"]) < 2) {
+	if (!empty($pageData["name"])) {
+		if (strlen($pageData["name"]) < 2) {
 			$message["reply"][] = "İsim 2 karakterden az olamaz.";
 		}
-		if (strlen($pageData[$default_lang->short_lang]["name"]) > 50) {
+		if (strlen($pageData["name"]) > 50) {
 			$message["reply"][] = "İsim 50 karakteri geçemez.";
 		}
 	}
-	if (empty($pageData[$default_lang->short_lang]["surname"])) {
+	if (empty($pageData["surname"])) {
 		$message["reply"][] = "Soyisim boş olamaz.";
 	}
-	if (!empty($pageData[$default_lang->short_lang]["surname"])) {
-		if (strlen($pageData[$default_lang->short_lang]["surname"]) < 2) {
+	if (!empty($pageData["surname"])) {
+		if (strlen($pageData["surname"]) < 2) {
 			$message["reply"][] = "Soyisim 2 karekterden az olamaz.";
 		}
-		if (strlen($pageData[$default_lang->short_lang]["surname"]) > 50) {
+		if (strlen($pageData["surname"]) > 50) {
 			$message["reply"][] = "Soyisim 50 karekteri geçemez.";
 		}
 	}
-	if ($pageData[$default_lang->short_lang]["status"]
-		&& !array_key_exists($pageData[$default_lang->short_lang]["status"], $constants::systemStatus)) {
+	if ($pageData["status"]
+		&& !array_key_exists($pageData["status"], $constants::systemStatus)) {
 		$message["reply"][] = "Geçersiz onay durumu.";
 	}
 
-	if (!empty($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password_again"])) {
-		$message = getMessage($functions, $pageData[$default_lang->short_lang]["password"], $message, $pageData[$default_lang->short_lang]["password_again"]);
-		if ($pageData[$default_lang->short_lang]["password"] !== $pageData[$default_lang->short_lang]["password_again"]) {
+	if (!empty($pageData["password"]) && !empty($pageData["password_again"])) {
+		$message = getMessage($functions, $pageData["password"], $message, $pageData["password_again"]);
+		if ($pageData["password"] !== $pageData["password_again"]) {
 			$message["reply"][] = "Şifre ve şifre tekrarı aynı olmalıdır.";
 		}
 	}
@@ -130,7 +130,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$file->compressor = true;
 		$uploaded = $file->fileUpload();
 		if ((int)$uploaded["result"] === 1) {
-			$pageData[$default_lang->short_lang]["img"] = $uploaded["img_name"];
+			$pageData["img"] = $uploaded["img_name"];
 		}
 		if ((int)$uploaded["result"] === 2) {
 			$message["reply"][] = $uploaded["result_message"];
@@ -140,16 +140,16 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$dat = [];
 
 		$dat["status"] = 1;
-		$dat["email"] = $pageData[$default_lang->short_lang]["email"];
-		$dat["name"] = $pageData[$default_lang->short_lang]["name"];
-		$dat["telefon"] = $pageData[$default_lang->short_lang]["telefon"];
-		$dat["status"] = $pageData[$default_lang->short_lang]["status"];
-		$dat["surname"] = $pageData[$default_lang->short_lang]["surname"];
-		if (isset($pageData[$default_lang->short_lang]["password"]) && !empty($pageData[$default_lang->short_lang]["password"])) {
-			$dat["password"] = password_hash($pageData[$default_lang->short_lang]["password"], PASSWORD_BCRYPT);
+		$dat["email"] = $pageData["email"];
+		$dat["name"] = $pageData["name"];
+		$dat["telefon"] = $pageData["telefon"];
+		$dat["status"] = $pageData["status"];
+		$dat["surname"] = $pageData["surname"];
+		if (isset($pageData["password"]) && !empty($pageData["password"])) {
+			$dat["password"] = password_hash($pageData["password"], PASSWORD_BCRYPT);
 		}
-		if (isset($pageData[$default_lang->short_lang]["img"])) {
-			$dat["img"] = $pageData[$default_lang->short_lang]["img"];
+		if (isset($pageData["img"])) {
+			$dat["img"] = $pageData["img"];
 		}
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;
