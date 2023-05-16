@@ -4,6 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "gallery";
 $pageAddRoleKey = "gallery-settings";
+$pageTable = "email_template";
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
@@ -42,7 +43,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	$del_id = $functions->cleanGetInt("delete");
 	$data = [];
 	$data["deleted"] = 1;
-	$delete = $db::update("gallery", $data, ["id" => $del_id]);
+	$delete = $db::update($pageTable, $data, ["id" => $del_id]);
 	$message = [];
 	if ($delete) {
 		//log atalım
@@ -50,13 +51,13 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("gallery"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		$log->logThis($log->logTypes['GALLERY_DELETE_ERR']);
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
-View::backend('gallery', [
+View::backend($pageRoleKey, [
 	'title' => 'Resim Galerisi',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

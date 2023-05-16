@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "page";
 $pageAddRoleKey = "page-settings";
-$table = "page";
+$pageTable = "page";
 $id = 0;
 $pageData = [];
 
@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
 
 	$id = $functions->cleanGetInt("id");
 	//id'ye ait içeriği çekiyoruz
-	$data = $db::selectQuery($table, array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -31,7 +31,7 @@ if (isset($_GET["id"])) {
 
     if(isset($_GET["img_delete"])){
         $deleteLang = $functions->cleanGet("img_delete");
-        $deletedImg = $siteManager->imageDelete($deleteLang,$id,$table);
+        $deletedImg = $siteManager->imageDelete($deleteLang,$id,$pageTable);
         if ($deletedImg) {
             $log->this("PAGE_IMAGE_DELETED_SUCC","id:".$id);
             $message["success"][] = $lang["img-delete"];
@@ -43,7 +43,7 @@ if (isset($_GET["id"])) {
     }
 
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-	$data_multi_lang = $db::selectQuery("page", array(
+	$data_multi_lang = $db::selectQuery($pageTable, array(
 		"lang_id" => $data->lang_id,
 		"deleted" => 0,
 	));
@@ -128,7 +128,6 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		foreach ($projectLanguages as $project_languages_row) {
 			$file = new FileUploader($constants::fileTypePath);
 			$file->globalFileName = "img_" . $project_languages_row->short_lang;
-            $file->uploadType = "webp";
 			$file->uploadFolder = "page_image";
 			$file->maxFileSize = 1;
 			$file->compressor = true;
@@ -163,20 +162,20 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update($table, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update($pageTable, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert($table, $db_data);
+					$add = $db::insert($pageTable, $db_data);
 				}
 			} else {
 				//ekleme
 				//lang işlemleri sadece eklemede gönderilsin
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert($table, $db_data);
+				$add = $db::insert($pageTable, $db_data);
 			}
 		}
 		$refresh_time = 3;
@@ -205,7 +204,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('page-settings', [
+View::backend($pageRoleKey, [
 	'title' => "Sayfa " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Sayfalar",

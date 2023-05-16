@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "menu";
 $pageAddRoleKey = "menu-settings";
-
+$pageTable = 'menu';
 $id = 0;
 $pageData = [];
 
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
 
 	//id'ye ait içeriği çekiyoruz
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("menu", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -29,7 +29,7 @@ if (isset($_GET["id"])) {
 		$functions->redirect($system->adminUrl());
 	}
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-	$data_multi_lang = $db::selectQuery("menu", array(
+	$data_multi_lang = $db::selectQuery($pageTable, array(
 		"lang_id" => $data->lang_id,
 		"deleted" => 0,
 	));
@@ -43,7 +43,7 @@ if (isset($_GET["id"])) {
 }
 
 $top_menu_array = [];
-$menu_data = $db::selectQuery("menu", array(
+$menu_data = $db::selectQuery($pageTable, array(
 	"deleted" => 0,
 ), false, null, 2);
 foreach ($menu_data as $menu_data_row) {
@@ -177,13 +177,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update("menu", $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]),"MENU_EDIT_SUCC");
+					$update = $db::update($pageTable, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]),"MENU_EDIT_SUCC");
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert("menu", $db_data,"MENU_ADD_SUCC");
+					$add = $db::insert($pageTable, $db_data,"MENU_ADD_SUCC");
 				}
 			} else {
 				//ekleme
@@ -191,7 +191,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
 
-				$add = $db::insert("menu", $db_data,"MENU_ADD_SUCC");
+				$add = $db::insert($pageTable, $db_data,"MENU_ADD_SUCC");
 			}
 		}
 		$refresh_time = 5;
@@ -200,7 +200,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			if ($update) {
 				$message["success"][] = $lang["content-update"];
 
-				$functions->refresh($system->adminUrl("menu-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				$message["reply"][] = $lang["content-update-error"];
 			}
@@ -208,7 +208,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			if ($add) {
 				$message["success"][] = $lang["content-insert"];
 
-				$functions->refresh($system->adminUrl("menu-settings"), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey), $refresh_time);
 			} else {
 				$message["reply"][] = $lang["content-insert-error"];
 			}
@@ -216,9 +216,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('menu-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "Menü " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "menu",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Menüler",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,

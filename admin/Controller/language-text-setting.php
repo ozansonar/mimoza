@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "language-text-setting";
 $pageAddRoleKey = "language-text-setting";
-
+$pageTable = 'settings';
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -31,7 +31,7 @@ $customJs = [
 ];
 $pageData = [];
 
-$text_manager_db_data = $db::selectQuery("settings");
+$text_manager_db_data = $db::selectQuery($pageTable);
 foreach ($text_manager_db_data as $text_manager_db_row) {
 	if (empty($text_manager_db_row->lang)) {
 		continue;
@@ -96,7 +96,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
             }
 
 			if (empty($message)) {
-				$text_manager_db_data = $db::selectQuery("settings", array(
+				$text_manager_db_data = $db::selectQuery($pageTable, array(
 					"lang" => $data_lang
 				));
 
@@ -116,13 +116,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 						$db_data["lang"] = $data_lang;
 						if (isset($text_manager_array[$data_lang]) && array_key_exists($language_text_manager_form["name"], $text_manager_array[$data_lang])) {
 							//eğer key varsa update edeceğiz
-							$update = $db::update("settings", $db_data, array("id" => $text_manager_array[$data_lang][$language_text_manager_form["name"]]->id));
+							$update = $db::update($pageTable, $db_data, array("id" => $text_manager_array[$data_lang][$language_text_manager_form["name"]]->id));
 							if (!$update) {
 								$completed = false;
 							}
 						} else {
 							//key mevcut değerlerde yok yeni eklenecek
-							$insert = $db::insert("settings", $db_data);
+							$insert = $db::insert($pageTable, $db_data);
 							if (!$insert) {
 								$completed = false;
 							}
@@ -134,7 +134,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				if ($completed === true) {
 					$log->logThis($log->logTypes['LANGUAGE_TEXT_UPDATE_SUCC']);
 					$message["success"][] = $lang["content-completed"];
-					$functions->refresh($system->adminUrl("language-text-setting"), $refresh_time);
+					$functions->refresh($system->adminUrl($pageAddRoleKey), $refresh_time);
 				} else {
 					$log->logThis($log->logTypes['LANGUAGE_TEXT_UPDATE_ERR']);
 					$message["reply"][] = $lang["content-completed-error"];
@@ -144,7 +144,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend("language-text-setting", [
+View::backend($pageAddRoleKey, [
 	'title' => "Dillere Göre Yazı İşlemleri",
 	'pageButtonRedirectLink' => null,
 	'pageButtonRedirectText' => null,

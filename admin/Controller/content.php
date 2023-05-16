@@ -2,14 +2,15 @@
 //sayfanın izin keyi
 use OS\MimozaCore\View;
 
-$pageRoleKey = "content";
-$pageAddRoleKey = "content-settings";
-
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
+
+$pageRoleKey = "content";
+$pageAddRoleKey = "content-settings";
+$pageTable = 'content';
 
 $log->logThis($log->logTypes['CONTENT_LIST']);
 $customCss = [
@@ -39,7 +40,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$session->permissionDenied();
 	}
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete("content", $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 	$message = [];
 	if ($delete) {
 		//log atalım
@@ -48,7 +49,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("content"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageTable), $refresh_time);
 	} else {
 		//log atalım
 		$log->logThis($log->logTypes['CONTENT_DEL_ERR']);
@@ -58,7 +59,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 
 
 
-View::backend('content',[
+View::backend($pageRoleKey,[
 	'title' => 'İçerikler',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

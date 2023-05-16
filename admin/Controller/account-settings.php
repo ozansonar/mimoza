@@ -4,12 +4,13 @@ use OS\MimozaCore\FileUploader;
 use OS\MimozaCore\Functions;
 use OS\MimozaCore\View;
 
-$pageRoleKey = "account-settings";
-
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
+
+$pageRoleKey = "account-settings";
+$pageTable = 'contact_form';
 
 function getMessage(Functions $functions, string $password, array $message, string $password_again): array
 {
@@ -74,7 +75,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if (!$functions->isEmail($pageData[$default_lang->short_lang]["email"])) {
 			$message["reply"][] = "E-postanız email formatında olmalıdır.";
 		}
-		if ($siteManager->uniqDataWithoutThis("users", "email", $pageData[$default_lang->short_lang]["email"], $_SESSION["user_id"]) > 0) {
+		if ($siteManager->uniqDataWithoutThis($pageTable, "email", $pageData[$default_lang->short_lang]["email"], $_SESSION["user_id"]) > 0) {
 			$message["reply"][] = "Bu mail adresi kayıtlarımızda mevcut. Lütfen başka bir tane deneyin.";
 		}
 	}
@@ -139,7 +140,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$new_password = password_hash($password, PASSWORD_DEFAULT);
 			$dat["password"] = $new_password;
 		}
-		$update = $db::update("users", $dat, array("id" => $_SESSION["user_id"]));
+		$update = $db::update($pageTable, $dat, array("id" => $_SESSION["user_id"]));
 		if ($update) {
 			//log atalım
 			$log->logThis($log->logTypes['ACCOUNT_EDIT_SUCC']);
@@ -147,7 +148,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$refresh_time = 5;
 			$message["refresh_time"] = $refresh_time;
 			$message["success"][] = "Hesap ayarları başarılı bir şekilde güncellendi.";
-			$functions->refresh($system->adminUrl("account-settings"), $refresh_time);
+			$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 		} else {
 			//log atalım
 			$log->logThis($log->logTypes['ACCOUNT_EDIT_ERR']);
@@ -157,9 +158,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('account-settings',[
+View::backend($pageRoleKey,[
 	'title' => 'Hesap Ayarlarım',
-	'pageButtonRedirectLink' => "account-settings",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => 'Hesap Ayarlarım',
 	'pageButtonIcon' => null,
 	'pageRoleKey' =>$pageRoleKey,

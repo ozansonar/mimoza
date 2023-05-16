@@ -2,13 +2,12 @@
 
 use OS\MimozaCore\View;
 
-$pageRoleKey = "contact";
-
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
-
+$pageRoleKey = "contact";
+$pageTable = 'contact_form';
 $log->logThis($log->logTypes['CONTACT_LIST']);
 
 $customCss = [
@@ -40,23 +39,23 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	$del_id = $functions->cleanGetInt("delete");
 	$data = [];
 	$data["deleted"] = 1;
-	$delete = $db::update("contact_form", $data, array("id" => $del_id));
+	$delete = $db::update($pageTable, $data, array("id" => $del_id));
 	$message = [];
 	if ($delete) {
 		$log->logThis($log->logTypes['CONTACT_DELETE_SUCC']);
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("contact"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		$log->logThis($log->logTypes['CONTACT_DELETE_ERR']);
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
 
-View::backend('contact', [
+View::backend($pageRoleKey, [
 	'title' => 'İletişim Formu Mesajları',
-	'pageButtonRedirectLink' => "contact",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => 'İletişim Formu Mesajları',
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

@@ -4,6 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "page";
 $pageAddRoleKey = "page-settings";
+$pageTable = 'page';
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
@@ -41,14 +42,14 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete("page", $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 	$message = [];
 	if ($delete) {
 		$log->logThis($log->logTypes['PAGE_LIST_DELETE_SUCC']);
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("page"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		//log atalım
 		$log->logThis($log->logTypes['PAGE_LIST_DELETE_ERR']);
@@ -57,7 +58,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 }
 
 
-View::backend('page',[
+View::backend($pageRoleKey,[
 	'title' =>'Sayfalar',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

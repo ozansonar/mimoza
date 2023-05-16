@@ -3,7 +3,8 @@
 use OS\MimozaCore\View;
 
 $pageRoleKey = "gallery-image-upload";
-
+$pageTable = 'gallery_image';
+$pageGalleryTable = 'gallery';
 if ($session->sessionRoleControl($pageRoleKey, $constants::addPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 	$session->permissionDenied();
@@ -25,7 +26,7 @@ if (isset($_POST["id"]) && is_numeric($_POST["id"])) {
 	$del_id = $functions->cleanPostInt("id");
 	$data = [];
 	$data["deleted"] = 1;
-	$delete = $db::update("gallery_image", $data, ["id" => $del_id]);
+	$delete = $db::update($pageTable, $data, ["id" => $del_id]);
 	$message = [];
 	if ($delete) {
 		$log->logThis($log->logTypes['GALLERY_IMAGE_UPLOAD_DELETE_SUCC'], "silinen row id:" . $del_id);
@@ -40,7 +41,7 @@ if (isset($_POST["id"]) && is_numeric($_POST["id"])) {
 
 if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("gallery", array(
+	$data = $db::selectQuery($pageGalleryTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -53,7 +54,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 	echo $functions->csrfToken();
 
 	//galeriye ait resimleri çekeklim
-	$images = $db::$db->prepare("SELECT * FROM gallery_image WHERE gallery_id=:g_id AND status=1 AND deleted=0 ORDER BY id ASC");
+	$images = $db::$db->prepare("SELECT * FROM ".$pageTable." WHERE gallery_id=:g_id AND status=1 AND deleted=0 ORDER BY id ASC");
 	$images->bindParam(":g_id", $id, PDO::PARAM_INT);
 	$images->execute();
 	$images_count = $images->rowCount();
@@ -74,7 +75,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
 	}
 }
 
-View::backend('gallery-image-upload', [
+View::backend($pageRoleKey, [
 	'title' => "Galeri Resim " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",

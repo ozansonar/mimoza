@@ -4,6 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "user";
 $pageAddRoleKey = "user-settings";
+$pageTable = 'users';
 
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -41,11 +42,11 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	$id = $functions->cleanGetInt("delete");
 	if ((int)$_SESSION["user_id"] === (int)$id) {
 		//kişi kendisini silemez
-		$functions->redirect($system->adminUrl("user"));
+		$functions->redirect($system->adminUrl($pageRoleKey));
 	}
 	$data = [];
 	$data["deleted"] = 1;
-	$delete = $db::update("users", $data, ["id" => $id]);
+	$delete = $db::update($pageTable, $data, ["id" => $id]);
 
 	$message = [];
 	if ($delete) {
@@ -53,14 +54,14 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("user"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		$log->logThis($log->logTypes['USER_DELETE_ERR']);
 		$message["reply"][] = $lang["content-delete-error"];
 	}
 }
 
-View::backend('user', [
+View::backend($pageRoleKey, [
 	'title' => 'Kullanıcılar',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

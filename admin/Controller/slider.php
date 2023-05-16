@@ -4,6 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "slider";
 $pageAddRoleKey = "slider-settings";
+$pageTable = 'slider';
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
@@ -42,7 +43,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete("slider", $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 
 	$message = [];
 	if ($delete) {
@@ -52,7 +53,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("slider"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		//log atalım
 		$log->logThis($log->logTypes['SLIDER_DELETE_ERR']);
@@ -62,9 +63,9 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 }
 
 
-View::backend('slider',[
+View::backend($pageRoleKey,[
 	'title' => 'Sliderlar',
-	'pageButtonRedirectLink' => "slider-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,

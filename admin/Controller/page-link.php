@@ -4,6 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "page-link";
 $pageAddRoleKey = "page-link-settings";
+$pageTable = 'file_url';
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if($session->sessionRoleControl($pageRoleKey,$constants::listPermissionKey) === false){
@@ -41,7 +42,7 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
     $del_id = $functions->cleanGetInt("delete");
     $data = [];
     $data["deleted"] = 1;
-    $delete = $db::update("file_url",$data,array("id"=>$del_id));
+    $delete = $db::update($pageTable,$data,array("id"=>$del_id));
 
     $message = [];
     if($delete){
@@ -49,14 +50,14 @@ if(isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete
         $message["success"][] = $lang["content-delete"];
         $refresh_time = 3;
         $message["refresh_time"] = $refresh_time;
-        $functions->refresh($system->adminUrl("page-link"),$refresh_time);
+        $functions->refresh($system->adminUrl($pageRoleKey),$refresh_time);
     }else{
         $log->logThis($log->logTypes['PAGE_LINK_DELETE_ERR']);
         $message["reply"][] = $lang["content-delete-error"] ;
     }
 }
 
-View::backend('page-link',[
+View::backend($pageRoleKey,[
 	'title' => 'Sayfa Linkleri',
 	'pageRoleKey' => $pageRoleKey,
 	'pageAddRoleKey' => $pageAddRoleKey,

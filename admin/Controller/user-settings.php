@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "user";
 $pageAddRoleKey = "user-settings";
-
+$pageTable = 'users';
 $customCss = [
 	"plugins/form-validation-engine/css/validationEngine.jquery.css",
 	"plugins/icheck-bootstrap/icheck-bootstrap.min.css",
@@ -36,7 +36,7 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['USER_DETAIL']);
 
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("users", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -155,11 +155,11 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$message["refresh_time"] = $refresh_time;
 		if ($id > 0) {
 			//güncelleme
-			$update = $db::update("users", $dat, array("id" => $id));
+			$update = $db::update($pageTable, $dat, array("id" => $id));
 			if ($update) {
 				$log->logThis($log->logTypes['USER_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($system->adminUrl("user-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				$log->logThis($log->logTypes['USER_EDIT_ERR']);
 				$message["reply"][] = $lang["content-update-error"];
@@ -168,7 +168,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			//ilk eklenirken şifreyi ata ve ekrana yazdır
 			$dat["email_verify"] = 1;
 			//ekleme
-			$add = $db::insert("users", $dat);
+			$add = $db::insert($pageTable, $dat);
 			if ($add) {
 				//log atalım
 				$log->logThis($log->logTypes['USER_ADD_SUCC']);
@@ -182,10 +182,10 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('user-settings', [
+View::backend($pageAddRoleKey, [
 	'id' => $id,
 	'title' => "Kullanıcı " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "user",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Kullanıcılar",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

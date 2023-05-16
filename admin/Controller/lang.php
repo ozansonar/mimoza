@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "lang";
 $pageAddRoleKey = "lang-settings";
-
+$pageTable = 'lang';
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -50,13 +50,13 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	if (empty($message)) {
 		$data = [];
 		$data["deleted"] = 1;
-		$delete = $db::update("lang", $data, ["id" => $del_id]);
+		$delete = $db::update($pageTable, $data, ["id" => $del_id]);
 		if ($delete) {
 			$log->logThis($log->logTypes['LANG_DEL_SUCC']);
 			$message["success"][] = $lang["content-delete"];
 			$refresh_time = 3;
 			$message["refresh_time"] = $refresh_time;
-			$functions->refresh($system->adminUrl("lang"), $refresh_time);
+			$functions->refresh($system->adminUrl($pageTable), $refresh_time);
 		} else {
 			$log->logThis($log->logTypes['LANG_DEL_ERR']);
 			$message["reply"][] = $lang["content-delete-error"];
@@ -65,7 +65,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 }
 
 //butonun gideceği link ve yazısı
-View::backend('lang',[
+View::backend($pageRoleKey,[
 	'title' => 'Dil İşlemleri',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

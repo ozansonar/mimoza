@@ -4,7 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "page-link";
 $pageAddRoleKey = "page-link-settings";
-
+$pageTable = 'file_url';
 $id = 0;
 $pageData = [];
 
@@ -21,13 +21,13 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['PAGE_LINK_DETAIL']);
 	$id = $functions->cleanGetInt("id");
 
-	$data = $db::selectQuery("file_url", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
 
 	if (empty($data)) {
-		$functions->redirect($system->adminUrl("page-link"));
+		$functions->redirect($system->adminUrl($pageRoleKey));
 	}
 
 	$pageData = (array)$data;
@@ -61,7 +61,7 @@ $customJs = [
 
 $file_url_array = [];
 
-$data_file_url = $db::selectQuery("file_url", array(
+$data_file_url = $db::selectQuery($pageTable, array(
 	"deleted" => 0,
 ));
 
@@ -140,13 +140,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$message["refresh_time"] = $refresh_time;
 		if ($id > 0) {
 			//güncelleme
-			$update = $db::update("file_url", $db_data, array("id" => $id));
+			$update = $db::update($pageTable, $db_data, array("id" => $id));
 			if ($update) {
 				//log atalım
 				$log->logThis($log->logTypes['PAGE_LINK_EDIT_SUCC']);
 
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($system->adminUrl("page-link-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['PAGE_LINK_EDIT_ERR']);
@@ -155,11 +155,11 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			}
 		} else {
 			//ekleme
-			$add = $db::insert("file_url", $db_data);
+			$add = $db::insert($pageTable, $db_data);
 			if ($add) {
 				$log->logThis($log->logTypes['PAGE_LINK_ADD_SUCC']);
 				$message["success"][] = $lang["content-insert"];
-				$functions->refresh($system->adminUrl("page-link"), $refresh_time);
+				$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 			} else {
 				$log->logThis($log->logTypes['PAGE_LINK_ADD_ERR']);
 				$message["reply"][] = $lang["content-insert-error"];
@@ -168,9 +168,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('page-link-settings',[
+View::backend($pageAddRoleKey,[
 	'title' =>"Sayfa Linki " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "page-link",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Sayfa Linkleri",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

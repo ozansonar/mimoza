@@ -4,12 +4,12 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "mailler";
 $pageAddRoleKey = "mail-settings";
-$table = "mailing";
+$pageTable = "mailing";
 $default_lang = $siteManager->defaultLanguage();
 $id = 0;
 $pageData = [];
 $pageData[$default_lang->short_lang]["image"] = "";
-
+//TODO::bu sayfada dil yok ama burası çoklu dile göre düzeltelim
 if (isset($_GET["id"])) {
 	//update yetki kontrolü ve gösterme yetkisi de olması lazım
 	if ($session->sessionRoleControl($pageRoleKey, $constants::editPermissionKey) === false
@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
 
 	$log->logThis($log->logTypes['EMAIL_TEMALARI_DETAIL']);
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery($table, array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -117,16 +117,16 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$db_data["user_id"] = $session->get("user_id");
 			if ($id > 0) {
 				if (array_key_exists($project_languages_row->short_lang, $db_data_lang)) {
-					$update = $db::update($table, $db_data, ["id" => $pageData[$project_languages_row->short_lang]["id"]]);
+					$update = $db::update($pageTable, $db_data, ["id" => $pageData[$project_languages_row->short_lang]["id"]]);
 				} else {
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert($table, $db_data);
+					$add = $db::insert($pageTable, $db_data);
 				}
 			} else {
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert($table, $db_data);
+				$add = $db::insert($pageTable, $db_data);
 			}
 		}
 		$refresh_time = 3;

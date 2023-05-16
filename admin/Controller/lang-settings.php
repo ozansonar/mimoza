@@ -7,6 +7,7 @@ $pageAddRoleKey = "lang-settings";
 
 $id = 0;
 $pageData = [];
+$pageTable = 'lang';
 
 $defaultLanguage = $siteManager->defaultLanguage();
 
@@ -20,7 +21,7 @@ if (isset($_GET["id"])) {
 
 	$log->logThis($log->logTypes['LANG_DETAIL']);
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("lang", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -123,14 +124,14 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$refresh_time = 3;
 		$message["refresh_time"] = $refresh_time;
 		if ($id > 0) {
-			$update = $db::update("lang", $db_data, array("id" => $id));
+			$update = $db::update($pageTable, $db_data, array("id" => $id));
 			if ($update) {
 				$log->logThis($log->logTypes['LANG_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
 				if ((int)$pageData["default_lang"] === 1) {
 					$siteManager->defaultLanguageReset($id);
 				}
-				$functions->refresh($system->adminUrl("lang-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				$log->logThis($log->logTypes['LANG_EDIT_ERR']);
 				$message["reply"][] = $lang["content-update-error"];
@@ -145,7 +146,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//işlem tamamlandı eğer varsayılan dil yapıldıysa diğer varsayılan dili kaldıralım
 					$siteManager->defaultLanguageReset($add);
 				}
-				$functions->refresh($system->adminUrl("lang-settings"), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['LANG_ADD_ERR']);
@@ -155,9 +156,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('lang-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "Dil " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "lang",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Diller",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

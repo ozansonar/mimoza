@@ -5,6 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "content-categories";
 $pageAddRoleKey = "content-categories-settings";
+$pageTable = 'content_categories';
 
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
@@ -41,7 +42,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$session->permissionDenied();
 	}
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete("content_categories", $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 
 	$message = [];
 	if ($delete) {
@@ -51,7 +52,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("content-categories"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageTable), $refresh_time);
 	} else {
 		//log atalım
 		$log->logThis($log->logTypes['CONTENT_CATEGORIES_DEL_ERR']);
@@ -59,9 +60,9 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-View::backend('content-categories', [
+View::backend($pageRoleKey, [
 	'title' => "İçerik Kategorileri",
-	'pageButtonRedirectLink' => "content-categories-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,

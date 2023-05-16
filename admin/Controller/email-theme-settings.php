@@ -4,9 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "email-themes";
 $pageAddRoleKey = "email-theme-settings";
-
-//sayfada işlem yapılacak table
-$table = "email_template";
+$pageTable = "email_template"; 
 
 $id = 0;
 $pageData = [];
@@ -21,7 +19,7 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['EMAIL_TEMALARI_DETAIL']);
 
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery($table, array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -31,7 +29,7 @@ if (isset($_GET["id"])) {
 	}
 
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-	$data_multi_lang = $db::selectQuery($table, array(
+	$data_multi_lang = $db::selectQuery($pageTable, array(
 		"lang_id" => $data->lang_id,
 		"deleted" => 0,
 	));
@@ -114,16 +112,16 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$db_data["user_id"] = $session->get("user_id");
 			if ($id > 0) {
 				if (array_key_exists($project_languages_row->short_lang, $db_data_lang)) {
-					$update = $db::update($table, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update($pageTable, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
 				} else {
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert($table, $db_data);
+					$add = $db::insert($pageTable, $db_data);
 				}
 			} else {
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert($table, $db_data);
+				$add = $db::insert($pageTable, $db_data);
 			}
 		}
 		$refresh_time = 3;
@@ -148,7 +146,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('email-theme-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "E-posta Teması " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "E-posta Temaları",

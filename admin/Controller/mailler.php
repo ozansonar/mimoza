@@ -4,7 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "mailler";
 $pageAddRoleKey = "mail-settings";
-$table = "mailing";
+$pageTable = "mailing";
 
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -41,7 +41,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 
     $data = [];
     $data["deleted"] = 1;
-    $delete = $db::update($table, $data, ["id" => $del_id]);
+    $delete = $db::update($pageTable, $data, ["id" => $del_id]);
 
 	$message = [];
 	if ($delete) {
@@ -56,7 +56,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-View::backend('mailler', [
+View::backend($pageRoleKey, [
 	'title' => 'Daha Önce Eklenmiş Mailler',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

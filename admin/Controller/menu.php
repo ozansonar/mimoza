@@ -4,7 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "menu";
 $pageAddRoleKey = "menu-settings";
-
+$pageTable = 'menu';
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $data->pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -51,7 +51,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("menu"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageTable), $refresh_time);
 	} else {
 		//log atalım
 		$log->logThis($log->logTypes['MENU_DELETE_ERR']);
@@ -59,9 +59,9 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-View::backend('menu', [
+View::backend($pageRoleKey, [
 	'title' => 'Menüler',
-	'pageButtonRedirectLink' => "menu-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,

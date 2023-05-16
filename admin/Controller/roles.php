@@ -4,7 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "roles";
 $pageAddRoleKey = "roles-settings";
-
+$pageTable = 'role_groups';
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -41,14 +41,14 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	$del_id = $functions->cleanGetInt("delete");
 	$data = [];
 	$data["deleted"] = 1;
-	$delete = $db::update("role_groups", $data, ["id" => $del_id]);
+	$delete = $db::update($pageTable, $data, ["id" => $del_id]);
 	$message = [];
 	if ($delete) {
 		$log->logThis($log->logTypes['ROLES_DELETE_SUCC']);
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("roles"), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 	} else {
 		$log->logThis($log->logTypes['ROLES_DELETE_ERR']);
 		$message["reply"][] = $lang["content-delete-error"];
@@ -56,9 +56,9 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 }
 
 
-View::backend('roles', [
+View::backend($pageRoleKey, [
 	'title' => 'Kullanıcı Rolleri',
-	'pageButtonRedirectLink' => "roles-settings",
+	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",
 	'pageButtonIcon' => "fas fa-plus-square",
 	'pageRoleKey' => $pageRoleKey,

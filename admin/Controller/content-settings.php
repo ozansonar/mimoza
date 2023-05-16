@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "content";
 $pageAddRoleKey = "content-settings";
-$table = "content";
+$pageTable = "content";
 $id = 0;
 $pageData = [];
 if (isset($_GET["id"])) {
@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['CONTENT_DETAIL']);
 
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery($table, array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -28,7 +28,7 @@ if (isset($_GET["id"])) {
 	}
     if(isset($_GET["img_delete"])){
         $deleteLang = $functions->cleanGet("img_delete");
-        $deletedImg = $siteManager->imageDelete($deleteLang,$id,$table);
+        $deletedImg = $siteManager->imageDelete($deleteLang,$id,$pageTable);
         if ($deletedImg) {
             $log->this("CONTENT_IMAGE_DELETED_SUCC","id:".$id);
             $message["success"][] = $lang["img-delete"];
@@ -40,7 +40,7 @@ if (isset($_GET["id"])) {
     }
 
 	//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-	$data_multi_lang = $db::selectQuery($table, array(
+	$data_multi_lang = $db::selectQuery($pageTable, array(
 		"lang_id" => $data->lang_id,
 		"deleted" => 0,
 	));
@@ -190,20 +190,20 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update($table, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update($pageTable, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert($table, $db_data);
+					$add = $db::insert($pageTable, $db_data);
 				}
 			} else {
 				//ekleme
 				//lang işlemleri sadece eklemede gönderilsin
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert($table, $db_data);
+				$add = $db::insert($pageTable, $db_data);
 			}
 		}
 		$refresh_time = 5;
@@ -214,7 +214,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$log->logThis($log->logTypes['CONTENT_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
 
-				$functions->refresh($system->adminUrl("content-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				//log atalım
 				$log->logThis($log->logTypes['CONTENT_EDIT_ERR']);
@@ -225,7 +225,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$log->logThis($log->logTypes['CONTENT_ADD_SUCC']);
 			$message["success"][] = $lang["content-insert"];
 
-			$functions->refresh($system->adminUrl("content-settings"), $refresh_time);
+			$functions->refresh($system->adminUrl($pageAddRoleKey), $refresh_time);
 		} else {
 			//log atalım
 			$log->logThis($log->logTypes['CONTENT_ADD_ERR']);
@@ -234,10 +234,10 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend('content-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "İçerik " . (isset($data) ? "Düzenle" : "Ekle"),
 	'id' => $id,
-	'pageButtonRedirectLink' => "content",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "İçerikler",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageRoleKey' => $pageRoleKey,

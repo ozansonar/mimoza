@@ -5,6 +5,7 @@ use OS\MimozaCore\View;
 $pageRoleKey = "mailler";
 $pageAddRoleKey = "mail-settings";
 
+
 if ($session->sessionRoleControl($pageRoleKey, $constants::detailPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
@@ -12,10 +13,10 @@ if ($session->sessionRoleControl($pageRoleKey, $constants::detailPermissionKey) 
 
 $log->logThis($log->logTypes['MAILLER_DETAIL']);
 $id = $functions->cleanGetInt("id");
-$table = "mailing";
-$table_2 = "mailing_user";
+$pageTable = "mailing";
+$pageTable_2 = "mailing_user";
 
-$mailing = $db::selectQuery($table, array(
+$mailing = $db::selectQuery($pageTable, array(
 	"id" => $id,
 	"deleted" => 0,
 ), true);
@@ -42,7 +43,7 @@ if (!empty($mailing->attachment)) {
 		}
 	}
 }
-$mailing_user = $db::selectQuery($table_2, array(
+$mailing_user = $db::selectQuery($pageTable_2, array(
 	"mailing_id" => $mailing->id,
 	"deleted" => 0,
 ));

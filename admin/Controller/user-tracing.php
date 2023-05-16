@@ -3,6 +3,7 @@
 use OS\MimozaCore\View;
 
 $pageRoleKey = "user-tracing";
+$pageTable = 'users';
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::editPermissionKey);
 	$session->permissionDenied();
@@ -13,7 +14,7 @@ $log->logThis($log->logTypes['USER_TRACING']);
 $id = 0;
 if (isset($_GET["id"])) {
 	$id = $functions->cleanGetInt("id");
-	$selectQuery = $db::selectQuery("users", array(
+	$selectQuery = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -37,7 +38,7 @@ if ($id === 0) {
 	$functions->redirect('user');
 }
 
-View::backend('user-tracing', [
+View::backend($pageRoleKey, [
 	'title' => "Kullanıcı Hareketleri",
 	'subTitle' => $selectQuery->name . " " . $selectQuery->surname . " isimli kullanıcının sistemimizdeki hareketleri.",
 	'id' => $id,

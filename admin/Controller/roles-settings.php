@@ -4,7 +4,8 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "roles";
 $pageAddRoleKey = "roles-settings";
-
+$pageTable = 'role_groups';
+$pageTable2 = 'role_permission';
 
 $id = 0;
 
@@ -19,7 +20,7 @@ if (isset($_GET["id"])) {
 	$log->logThis($log->logTypes['ROLES_DETAIL']);
 	$id = $functions->cleanGetInt("id");
 
-	$data = $db::selectQuery("role_groups", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -28,7 +29,7 @@ if (isset($_GET["id"])) {
 		$functions->redirect($system->adminUrl());
 	}
 
-	$role_select = $db::query("SELECT * FROM role_permission WHERE deleted=0 AND role_group=:rg");
+	$role_select = $db::query("SELECT * FROM ".$pageTable2." WHERE deleted=0 AND role_group=:rg");
 	$role_select->bindParam(":rg", $data->id, PDO::PARAM_INT);
 	$role_select->execute();
 	$role_data = $role_select->fetchAll(PDO::FETCH_OBJ);
@@ -106,12 +107,12 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 								$role_add["role_group"] = $id;
 								$role_add["role_key"] = $functions->cleaner($p_key);
 								$role_add["permission"] = $functions->cleaner($val);
-								$db::insert("role_permission", $role_add);
+								$db::insert($pageTable2, $role_add);
 							}
 						}
 					}
 					//mevcut rolleri çekip gelenler ile karşılaştıracağız
-					$m_role = $db::query("SELECT * FROM role_permission WHERE role_group=:rg AND deleted=0");
+					$m_role = $db::query("SELECT * FROM ".$pageTable2." WHERE role_group=:rg AND deleted=0");
 					$m_role->bindParam(":rg", $id);
 					$m_role->execute();
 					$m_role_data = $m_role->fetchAll(PDO::FETCH_OBJ);
@@ -121,14 +122,14 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 						foreach ($m_role_data as $m_role) {
 							if (isset($permissions[$m_role->role_key])) {
 								if (!in_array($m_role->permission, $permissions[$m_role->role_key], true)) {
-									$role_query_2 = $db::query("UPDATE role_permission SET deleted=1 WHERE role_key=:rk AND permission=:per AND role_group=:rg");
+									$role_query_2 = $db::query("UPDATE ".$pageTable2." SET deleted=1 WHERE role_key=:rk AND permission=:per AND role_group=:rg");
 									$role_query_2->bindParam(":rk", $m_role->role_key);
 									$role_query_2->bindParam(":per", $m_role->permission);
 									$role_query_2->bindParam(":rg", $id);
 									$role_query_2->execute();
 								}
 							} else {
-								$role_query_2 = $db::query("UPDATE role_permission SET deleted=1 WHERE role_key=:rk AND role_group=:rg");
+								$role_query_2 = $db::query("UPDATE ".$pageTable2." SET deleted=1 WHERE role_key=:rk AND role_group=:rg");
 								$role_query_2->bindParam(":rk", $m_role->role_key);
 								$role_query_2->bindParam(":rg", $id);
 								$role_query_2->execute();
@@ -137,13 +138,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					}
 				} else {
 					//her hangi bir yetki seçilmemişsee hepsini sil
-					$delete_role = $db::query("UPDATE role_permission SET deleted=1 WHERE role_group=:rg");
+					$delete_role = $db::query("UPDATE ".$pageTable2." SET deleted=1 WHERE role_group=:rg");
 					$delete_role->bindParam(":rg", $id);
 					$delete_role->execute();
 				}
 
 				$message["success"][] = $lang["content-completed"];
-				$functions->refresh($system->adminUrl("roles-settings?id=" . $id, 3));
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id, 3));
 				$log->logThis($log->logTypes['ROLES_EDIT_SUCC']);
 			} else {
 				$log->logThis($log->logTypes['ROLES_EDIT_ERR']);
@@ -151,7 +152,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			}
 		} else {
 			//ekleme
-			$insert = $db::insert("role_groups", $add_data);
+			$insert = $db::insert($pageTable, $add_data);
 			if ($insert > 0) {
 				if (isset($_POST["permissions"])) {
 					foreach ($permissions as $p_key => $p_val) {
@@ -160,13 +161,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 							$role_add["role_group"] = $insert;
 							$role_add["role_key"] = $functions->cleaner($p_key);
 							$role_add["permission"] = $functions->cleaner($val);
-							$db::insert("role_permission", $role_add);
+							$db::insert($pageTable2, $role_add);
 						}
 					}
 				}
 
 				$message["success"][] = $lang["content-completed"];
-				$functions->refresh($system->adminUrl("roles-settings?id=" . $insert, 3));
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $insert, 3));
 				$log->logThis($log->logTypes['ROLES_ADD_SUCC']);
 			} else {
 				$log->logThis($log->logTypes['ROLES_ADD_ERR']);
@@ -177,9 +178,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 }
 
 
-View::backend('roles-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "Yetki " . (isset($data) ? "Düzenle" : "Ekle"),
-	'pageButtonRedirectLink' => "roles",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Kullanıcı Yetkileri",
 	'pageButtonIcon' => null,
 	'pageAddRoleKey' => $pageAddRoleKey,

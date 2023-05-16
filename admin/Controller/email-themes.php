@@ -4,7 +4,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "email-themes";
 $pageAddRoleKey = "email-theme-settings";
-$table = "email_template";
+$pageTable = "email_template";
 
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
@@ -38,7 +38,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$session->permissionDenied();
 	}
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete($table, $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 
 	$message = [];
 	if ($delete) {
@@ -53,7 +53,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 }
 
-View::backend('email-themes', [
+View::backend($pageRoleKey, [
 	'title' => 'E-Posta Temaları',
 	'pageButtonRedirectLink' => $pageAddRoleKey,
 	'pageButtonRedirectText' => "Yeni Ekle",

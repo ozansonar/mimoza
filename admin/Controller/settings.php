@@ -6,7 +6,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "settings";
 $pageAddRoleKey = "settings";
-
+$pageTable = 'settings';
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
@@ -438,7 +438,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		}
 
 		//site ayarlarını çekelim
-		$settings_query_data = $db::selectQuery("settings");
+		$settings_query_data = $db::selectQuery($pageTable);
 		$settings_db = [];
 		foreach ($settings_query_data as $settings_row) {
 			$settings_db[$settings_row->name] = $settings_row;
@@ -452,12 +452,12 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$db_data["name"] = $key;
 			$db_data["val"] = $value;
 			if (array_key_exists($key, $settings_db)) {
-				$update = $db::update("settings", $db_data, array("id" => $settings_db[$key]->id));
+				$update = $db::update($pageTable, $db_data, array("id" => $settings_db[$key]->id));
 				if (!$update) {
 					$completed = false;
 				}
 			} else {
-				$insert = $db::insert("settings", $db_data);
+				$insert = $db::insert($pageTable, $db_data);
 				if (!$insert) {
 					$completed = false;
 				}
@@ -466,7 +466,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		if ($completed === true) {
 			$log->logThis($log->logTypes['SETTINGS_UPDATE_SUCC']);
 			$message["success"][] = $lang["content-completed"];
-			$functions->refresh($system->adminUrl("settings"), $refresh_time);
+			$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
 		} else {
 			$log->logThis($log->logTypes['SETTINGS_UPDATE_ERR']);
 			$message["reply"][] = $lang["content-completed-error"];
@@ -475,9 +475,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 }
 
 
-View::backend('settings', [
+View::backend($pageRoleKey, [
 	'title' => 'Genel Ayarlar',
-	'pageButtonRedirectLink' => "settings",
+	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => 'Genel Ayarlar',
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,

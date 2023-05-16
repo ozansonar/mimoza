@@ -5,6 +5,7 @@ use OS\MimozaCore\View;
 
 $pageRoleKey = "contact";
 $pageAddRoleKey = "contact-settings";
+$pageTable = 'contact_form';
 
 $id = 0;
 $pageData = [];
@@ -21,7 +22,7 @@ if (isset($_GET["id"])) {
 
 	$log->logThis($log->logTypes['CONTACT_DETAIL']);
 	$id = $functions->cleanGetInt("id");
-	$data = $db::selectQuery("contact_form", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -33,7 +34,7 @@ if (isset($_GET["id"])) {
 
 
 	if ((int)$data->read_user === 0) {
-		$message_read = $db::query("UPDATE contact_form SET read_user=1,read_user_id=:u_id,read_date=:r_date WHERE id=:id AND deleted=0");
+		$message_read = $db::query("UPDATE ".$pageTable." SET read_user=1,read_user_id=:u_id,read_date=:r_date WHERE id=:id AND deleted=0");
 		$message_read->bindParam("u_id", $_SESSION["user_id"], PDO::PARAM_INT);
 		$now_date = date("Y-m-d H:i:s");
 		$message_read->bindParam("r_date", $now_date, PDO::PARAM_STR);
@@ -42,7 +43,7 @@ if (isset($_GET["id"])) {
 	}
 
 	//data yukarda güncellendi tekrar çekelim
-	$data = $db::selectQuery("contact_form", array(
+	$data = $db::selectQuery($pageTable, array(
 		"id" => $id,
 		"deleted" => 0,
 	), true);
@@ -113,12 +114,12 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$on_ek .= "<p><b>" . $functions->dateLong($data->created_at) . "</b> tarihinde gönderdiğiniz iletişim mesajına yöneticimiz tarafından cevap verildi. Yönetici mesajı aşağıdadır.</p><hr>";
 			$mailClass->message = nl2br($on_ek . $pageData[$defaultLang->short_lang]["reply_text"]);
 			$mailClass->send();
-			$update = $db::update("contact_form", $db_data, array("id" => $id));
+			$update = $db::update($pageTable, $db_data, array("id" => $id));
 
 			if ($update) {
 				$log->logThis($log->logTypes['CONTACT_CEVAP_SEND_SUCC']);
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($system->adminUrl("contact-settings?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageAddRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				$log->logThis($log->logTypes['CONTACT_CEVAP_SEND_ERR']);
 				$message["reply"][] = $lang["content-update-error"];
@@ -126,9 +127,9 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		}
 	}
 } 
-View::backend('contact-settings', [
+View::backend($pageAddRoleKey, [
 	'title' => "Gelen Mesajı " . (isset($data) ? "Cevapla" : "Ekle"),
-	'pageButtonRedirectLink' => "contact",
+	'pageButtonRedirectLink' => "$pageRoleKey",
 	'pageButtonRedirectText' => "İletişim Mesajları",
 	'pageButtonIcon' => "fas fa-th-list",
 	'pageData' => $pageData,

@@ -3,7 +3,7 @@
 use OS\MimozaCore\View;
 
 $pageRoleKey = "video-upload";
-
+$pageTable = 'youtube_videos';
 $pageData = [];
 
 if ($session->sessionRoleControl($pageRoleKey, $constants::addPermissionKey) === false) {
@@ -55,7 +55,7 @@ if ((isset($_GET["id"]) && is_numeric($_GET["id"])) || (isset($_GET["video_id"])
 	}
 	if (isset($_GET["video_id"])) {
 		$video_id = $functions->cleanGetInt("video_id");
-		$data = $db::selectQuery("youtube_videos", array(
+		$data = $db::selectQuery($pageTable, array(
 			"id" => $video_id,
 			"deleted" => 0,
 		), true);
@@ -63,7 +63,7 @@ if ((isset($_GET["id"]) && is_numeric($_GET["id"])) || (isset($_GET["video_id"])
 			$functions->redirect($system->adminUrl());
 		}
 		//id ye ait içeriği çektik şimdi bulduğumuz datadan gelen lang_id ile eşleşen dataları bulup arraya atalım
-		$data_multi_lang = $db::selectQuery("youtube_videos", array(
+		$data_multi_lang = $db::selectQuery($pageTable, array(
 			"lang_id" => $data->lang_id,
 			"deleted" => 0,
 		));
@@ -75,7 +75,7 @@ if ((isset($_GET["id"]) && is_numeric($_GET["id"])) || (isset($_GET["video_id"])
 	$log->logThis($log->logTypes['GALLERY_VIDEO_UPLOAD_DETAIL']);
 
 	//galeriye ait videoları çekeklim
-	$videos = $db::$db->prepare("SELECT * FROM youtube_videos WHERE gallery_id=:g_id AND lang=:lang AND deleted=0 ORDER BY id ASC");
+	$videos = $db::$db->prepare("SELECT * FROM ".$pageTable." WHERE gallery_id=:g_id AND lang=:lang AND deleted=0 ORDER BY id ASC");
 	$videos->bindParam(":g_id", $id, PDO::PARAM_INT);
 	$videos->bindParam(":lang", $siteManager->defaultLanguage()->short_lang, PDO::PARAM_STR);
 	$videos->execute();
@@ -91,7 +91,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 	}
 
 	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete("youtube_videos", $del_id);
+	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
 
 	$message = [];
 	if ($delete) {
@@ -99,7 +99,7 @@ if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delet
 		$message["success"][] = $lang["content-delete"];
 		$refresh_time = 5;
 		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl("gallery-video-upload?id=" . intval($_GET["id"])), $refresh_time);
+		$functions->refresh($system->adminUrl($pageRoleKey."?id=" . intval($_GET["id"])), $refresh_time);
 	} else {
 		$log->logThis($log->logTypes['GALLERY_VIDEO_DEL_ERR']);
 		$message["reply"][] = $lang["content-delete-error"];
@@ -169,20 +169,20 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 					//şuan ki dil db den gelen dataların içinde var bunu güncelle yoksa ekleyeceğiz
 					//çünkü biz bu içeriği eklerken 1 dil olduğunu varsayalım 2. dili sisteme ekleyip bu içeriği update edersek 2.dili db ye insert etmesi lazım
 					//güncelleme
-					$update = $db::update("youtube_videos", $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
+					$update = $db::update($pageTable, $db_data, array("id" => $pageData[$project_languages_row->short_lang]["id"]));
 				} else {
 					//yeni dil insert ediliyor
 					//lang işlemleri sadece eklemede gönderilsin
 					$db_data["lang"] = $project_languages_row->short_lang;
 					$db_data["lang_id"] = $data->lang_id;
-					$add = $db::insert("youtube_videos", $db_data);
+					$add = $db::insert($pageTable, $db_data);
 				}
 			} else {
 				//ekleme
 				//lang işlemleri sadece eklemede gönderilsin
 				$db_data["lang"] = $project_languages_row->short_lang;
 				$db_data["lang_id"] = $lang_id;
-				$add = $db::insert("youtube_videos", $db_data);
+				$add = $db::insert($pageTable, $db_data);
 			}
 		}
 		$refresh_time = 3;
@@ -191,7 +191,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			if ($update) {
 				$log->logThis($log->logTypes['GALLERY_VIDEO_EDIT_SUCC']);
 				$message["success"][] = $lang["content-update"];
-				$functions->refresh($system->adminUrl("gallery-video-upload?id=" . $id), $refresh_time);
+				$functions->refresh($system->adminUrl($pageRoleKey."?id=" . $id), $refresh_time);
 			} else {
 				$log->logThis($log->logTypes['GALLERY_VIDEO_EDIT_ERR']);
 				$message["reply"][] = $lang["content-update-error"];
@@ -199,7 +199,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		} else if ($add) {
 			$log->logThis($log->logTypes['GALLERY_VIDEO_ADD_SUCC']);
 			$message["success"][] = $lang["content-insert"];
-			$functions->refresh($system->adminUrl("gallery-video-upload?id=" . $id), $refresh_time);
+			$functions->refresh($system->adminUrl($pageRoleKey."?id=" . $id), $refresh_time);
 		} else {
 			$log->logThis($log->logTypes['GALLERY_VIDEO_ADD_ERR']);
 			$message["reply"][] = $lang["content-insert-error"];
@@ -208,7 +208,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 }
 
 
-View::backend('gallery-video-upload',[
+View::backend($pageRoleKey,[
 	'title' => "Video " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => "gallery",
 	'pageButtonRedirectText' => "Resim Galerileri",
