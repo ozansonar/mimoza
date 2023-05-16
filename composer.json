@@ -26,7 +26,8 @@
     "ext-fileinfo": "*",
     "ext-json": "*",
     "ozansonar/mimoza-panel-file": "^2.0",
-    "ozansonar/mimoza-core": "^1.0"
+    "ozansonar/mimoza-core": "^1.0",
+    "rosell-dk/webp-convert": "^2.9"
   },
   "config": {
     "platform-check": false

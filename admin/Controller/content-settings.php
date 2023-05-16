@@ -157,6 +157,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
             $file->width = 800;
             $file->height = 450;
 			$file->compressor = true;
+            $file->webp = false;
 			$uploaded = $file->fileUpload();
 			if ((int)$uploaded["result"] === 1) {
 				$pageData[$project_languages_row->short_lang]["img"] = $uploaded["img_name"];
