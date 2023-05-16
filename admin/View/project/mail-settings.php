@@ -19,8 +19,7 @@
             </div>
             <form enctype="multipart/form-data" method="post" id="fileForm">
 				<?php
-				$form->formNameWithoutLangCode = true;
-				$form->lang = "tr";
+                $form->formNameWithoutLangCode = 1;
 				echo $functions->csrfToken();
 				echo $form->file("file", array(
 					"label" => $admin_text["MAILING_IMG"],
@@ -240,7 +239,7 @@
 				), $data->pageData);
 				echo $form->input("test_user_counter", array(
 					"type" => "hidden",
-				), array("tr" => array("test_user_counter" => 1)));
+				), array("test_user_counter" => 1));
 				echo $form->checkbox(array(
 					"option" => array(
 						array(
@@ -272,16 +271,16 @@
                 if (status == true) {
                     for (var PageForm in CKEDITOR.instances)
                         CKEDITOR.instances[PageForm].updateElement();
-                    //$("#id_mailing_save").attr('disabled', 'disabled');
-                    //$("#id_mailing_save").text("Kaydediliyor...");
+                    $("#id_mailing_save").attr('disabled', 'disabled');
+                    $("#id_mailing_save").text("Kaydediliyor...");
                     var data = $("form#mailingForm").serialize();
                     $.ajax({
                         type: 'POST',
                         url: "<?php echo $system->adminUrl("ajax/mailing-save"); ?>",
                         data: data,
                         success: function (response) {
-                            //$("#id_mailing_save").removeAttr('disabled');
-                            //$("#id_mailing_save").text("Kaydet");
+                            $("#id_mailing_save").removeAttr('disabled');
+                            $("#id_mailing_save").text("Kaydet");
                             if (response.success) {
                                 $("form#mailingForm")[0].reset();
                                 AlertMessage("success", "Mailing Kaydededildi", response.success, "Tamam", 1, response.url, response.time);

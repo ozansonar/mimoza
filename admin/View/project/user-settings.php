@@ -17,7 +17,6 @@
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php
                 echo $functions->csrfToken();
-				$form->lang = $data->defaultLanguage->short_lang;
 				$form->formNameWithoutLangCode = 1;
 				echo $form->input("email", array(
 					"label" => $admin_text["HESAP_EMAIL"],
