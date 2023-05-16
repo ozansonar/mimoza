@@ -2,15 +2,15 @@
 //sayfanın izin keyi
 use OS\MimozaCore\View;
 
+$pageRoleKey = "content";
+$pageAddRoleKey = "content-settings";
+$pageTable = 'content';
+
 //edit ve delete yapsa bile show (s) yetkisi olması lazım onu kontrol edelim
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
-
-$pageRoleKey = "content";
-$pageAddRoleKey = "content-settings";
-$pageTable = 'content';
 
 $log->logThis($log->logTypes['CONTENT_LIST']);
 $customCss = [

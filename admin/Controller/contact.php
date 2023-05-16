@@ -2,13 +2,14 @@
 
 use OS\MimozaCore\View;
 
+$pageRoleKey = "contact";
+$pageTable = 'contact_form';
+$log->logThis($log->logTypes['CONTACT_LIST']);
+
 if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) === false) {
 	$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::listPermissionKey);
 	$session->permissionDenied();
 }
-$pageRoleKey = "contact";
-$pageTable = 'contact_form';
-$log->logThis($log->logTypes['CONTACT_LIST']);
 
 $customCss = [
 	"plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",

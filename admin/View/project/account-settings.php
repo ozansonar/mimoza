@@ -16,7 +16,6 @@
         <div class="card-body">
             <form action="" method="post" id="pageForm" enctype="multipart/form-data">
 				<?php
-				$form->lang = $data->defaultLanguage->short_lang;
 				$form->formNameWithoutLangCode = 1;
 				echo $functions->csrfToken();
 				echo $form->input("email", array(
@@ -35,7 +34,7 @@
 				echo $form->file("img", array(
 					"label" => $admin_text["HESAP_RESIM"],
 					"file_key" => "user_image",
-					"delete_link" => "?id=" . $data->pageData[$data->defaultLanguage->short_lang]["id"] . "&img_delete=1"
+					"delete_link" => "?id=" . $data->pageData["id"] . "&img_delete=1"
 				), $data->pageData);
 				echo $form->input("password", array(
 					"label" => $admin_text["HESAP_PASSWORD"],
