@@ -11,19 +11,28 @@ $customJs = [
     "plugins/fancybox/jquery.fancybox.min.js"
 ];
 
-//hiç bir parametre gelmemiş içerik kategorileri listelenecek
 if (!$system->route(1)) {
+    //####################### HİÇ BİR PARAMETRE GELMEDİ KATEGORİLER LİSTELENECEK #######################\\
     $selectQuery = $db::selectQuery("content_categories",array(
         "lang" => $_SESSION["lang"],
         "status" => 1,
         "deleted" => 0,
     ),false,null,5," show_order DESC");
 
+    //diğer diller için ayarlanıyor
+    foreach ($projectLanguages as $rowLang){
+        $getLangPrefix = $siteManager->getPrefix('content',$rowLang->short_lang);
+        if(empty($getLangPrefix)){
+            continue;
+        }
+        $otherLanguageContent[$rowLang->short_lang] = $system->urlWithoutLanguage($rowLang->short_lang.'/'.$siteManager->getPrefix('content',$rowLang->short_lang));
+    }
+
     View::layout('content-categories-list',[
         'list' => $selectQuery
     ]);
 }else if(!empty($system->route(1)) && !$system->route(2)){
-    //####################### HİÇ BİR PARAMETRE GELMEDİ KATEGORİLER LİSTELENECEK #######################\\
+    //####################### İÇERİK KATEGORİSİNE AİT KATEGORİLER LİSTELENEK #######################\\
 
     //kategori sorgulaması
     $contentLink = explode("-",$system->route(1));
@@ -46,12 +55,15 @@ if (!$system->route(1)) {
         "limit" => 10,
     ));
 
+    //bu içeriğe ait diğer veriler
+    $otherLanguageContent = $siteManager->getOrtherLanguageContentCategories($linkData->lang_id);
+
     $pageData = $pagination_and_data["data"];
 
     View::layout('content',[
-        "pageData" => $pageData,
-        "category" => $linkData,
-        "pagination" => $pagination_and_data,
+        'pageData' => $pageData,
+        'category' => $linkData,
+        'pagination' => $pagination_and_data,
     ]);
 
 }elseif (!empty($system->route(1)) && !empty($system->route(2))){
@@ -77,12 +89,16 @@ if (!$system->route(1)) {
     $normalLink = array_pop($contentLink);
     $normalLink = $functions->cleaner(implode("-",$contentLink));
     $page_query = $db::$db->prepare("SELECT *
-    FROM content WHERE id=:id AND link=:link AND status=1 AND deleted=0 ORDER BY created_at DESC LIMIT 0,1");
+    FROM content WHERE lang=:lang AND id=:id AND link=:link AND status=1 AND deleted=0 ORDER BY created_at DESC LIMIT 0,1");
     $page_query->bindParam(":id",$id,PDO::PARAM_INT);
     $page_query->bindParam(":link",$normalLink,PDO::PARAM_STR);
+    $page_query->bindParam(":lang",$_SESSION['lang'],PDO::PARAM_STR);
     $page_query->execute();
     $pageData_count = $page_query->rowCount();
     $pageData = $page_query->fetch(PDO::FETCH_OBJ);
+
+    //bu içeriğe ait diğer veriler
+    $otherLanguageContent = $siteManager->getOrtherLanguageContent($pageData->lang_id);
 
     if((int)$pageData_count !== 1){
         $functions->redirect($system->url());

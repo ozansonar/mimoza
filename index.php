@@ -47,6 +47,10 @@ if (!is_null($langData)) {
     }
 }
 
+// Locale-Zaman Ayarlaması
+setlocale(LC_TIME, $projectLanguages[$_SESSION['lang']]->lang_iso);
+setlocale(LC_ALL, $projectLanguages[$_SESSION['lang']]->lang_iso.'.utf8');
+
 //html purifier xss vb attackları engellemek için kullandığımız library
 $purifierConfig = HTMLPurifier_Config::createDefault();
 $purifier = new HTMLPurifier($purifierConfig);

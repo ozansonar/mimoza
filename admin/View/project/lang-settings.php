@@ -26,6 +26,14 @@
 					"label" => $admin_text["LANG_SHORT"],
 					"required" => 1,
 				), $data->pageData);
+                echo $form->input("lang_iso", array(
+                    "label" => $admin_text["LANG_ISO"],
+                    "required" => 1,
+                ), $data->pageData);
+                echo $form->input("timezone", array(
+                    "label" => $admin_text["LANG_TIMEZONE"],
+                    "required" => 1,
+                ), $data->pageData);
 				echo $form->select("default_lang", array(
 					"label" => $admin_text["LANG_DEFAULT"],
 					"required" => 1,

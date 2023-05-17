@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `lang` (
                                       `lang` varchar(50) NOT NULL,
                                       `short_lang` varchar(10) NOT NULL,
                                       `lang_iso` varchar(10) DEFAULT NULL,
+                                      `timezone` varchar(20) DEFAULT NULL,
                                       `default_lang` tinyint(1) NOT NULL DEFAULT '2',
                                       `form_validate` tinyint(1) DEFAULT '2',
                                       `user_id` int(11) DEFAULT NULL,
@@ -206,8 +207,8 @@ CREATE TABLE IF NOT EXISTS `lang` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `lang` (`id`, `lang`, `short_lang`, `lang_iso`, `default_lang`, `form_validate`, `user_id`, `status`, `deleted`) VALUES
-    (1, 'Türkçe', 'tr', 'tr_TR', 1, 1, 1, 1, 0);
+INSERT INTO `lang` (`id`, `lang`, `short_lang`, `lang_iso`, `timezone`, `default_lang`, `form_validate`, `user_id`, `status`, `deleted`) VALUES
+    (1, 'Türkçe', 'tr', 'tr_TR', 'Europe/Istanbul', 1, 1, 1, 1, 0);
 
 
 CREATE TABLE IF NOT EXISTS `logs` (

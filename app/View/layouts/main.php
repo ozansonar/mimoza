@@ -60,8 +60,16 @@
         </nav>
         <div class="col text-end">
             <?php foreach ($projectLanguages as $languages): ?>
-                <?php if ($languages->short_lang === $_SESSION["lang"]): continue; endif ?>
-                <a href="<?php echo $system->urlWithoutLanguage((int)$languages->default_lang === 1 && (int)$settings->link_sort_lang === 3 ? null:$languages->short_lang) ?>" class="btn btn-info">
+                <?php
+                if ($languages->short_lang === $_SESSION["lang"]){
+                    continue;
+                }
+                $rowLangLink = $system->urlWithoutLanguage((int)$languages->default_lang === 1 && (int)$settings->link_sort_lang === 3 ? null:$languages->short_lang);
+                if(isset($otherLanguageContent) && is_array($otherLanguageContent) && array_key_exists($languages->short_lang,$otherLanguageContent)){
+                    $rowLangLink = $otherLanguageContent[$languages->short_lang];
+                }
+                ?>
+                <a href="<?php echo $rowLangLink; ?>" class="btn btn-info">
                     <?php echo $languages->lang; ?>
                 </a>
             <?php endforeach; ?>
@@ -184,6 +192,7 @@
         });
     </script>
 <?php endif; ?>
+
 
 <div class="container-fluid bg-dark p-5 text-white mt-2 mt-auto">
     <div class="container">

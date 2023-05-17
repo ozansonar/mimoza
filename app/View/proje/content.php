@@ -1,5 +1,8 @@
 
 <div class="container">
+    <div class="col-12">
+        <h1><?php echo $data->category->title; ?></h1>
+    </div>
     <div class="row m-0 p-0">
         <?php
         if(!empty($data->pageData) > 0) {

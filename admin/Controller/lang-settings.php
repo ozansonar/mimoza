@@ -60,6 +60,8 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
  
 	$pageData["lang"] = $functions->cleanPost("lang");
 	$pageData["short_lang"] = $functions->cleanPost("short_lang");
+	$pageData["lang_iso"] = $functions->cleanPost("lang_iso");
+	$pageData["timezone"] = $functions->cleanPost("timezone");
 	$pageData["default_lang"] = $functions->cleanPostInt("default_lang");
 	$pageData["form_validate"] = $functions->cleanPostInt("form_validate");
 	$pageData["status"] = $functions->cleanPostInt("status");
@@ -81,6 +83,14 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	if (empty($pageData["short_lang"])) {
 		$message["reply"][] = "Dil kısaltma boş olamaz.";
 	}
+
+    if (empty($pageData["lang_iso"])) {
+		$message["reply"][] = "Lütfen iso değerini yazınız.";
+	}
+
+    if (empty($pageData["timezone"])) {
+        $message["reply"][] = "Lütfen dil zamanını yazınız.";
+    }
 
 	if (!empty($pageData["short_lang"])) {
 		if (strlen($pageData["short_lang"]) < 2) {
@@ -117,6 +127,8 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$db_data["lang"] = $pageData["lang"];
 		$db_data["short_lang"] = $pageData["short_lang"];
 		$db_data["default_lang"] = $pageData["default_lang"];
+		$db_data["lang_iso"] = $pageData["lang_iso"];
+		$db_data["timezone"] = $pageData["timezone"];
 		$db_data["form_validate"] = $pageData["form_validate"];
 		$db_data["status"] = $pageData["status"];
 		$db_data["user_id"] = $session->get("user_id");

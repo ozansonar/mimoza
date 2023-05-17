@@ -262,6 +262,8 @@ $admin_text["P_LISTEMELE_LINK"] = "Listeleme Linki";
 //dil işlemleri
 $admin_text["LANG_TITLE"] = "Dil";
 $admin_text["LANG_SHORT"] = "Dil Kısaltması";
+$admin_text["LANG_ISO"] = "Dil İSO (tr_TR,ru_RU) gibi";
+$admin_text["LANG_TIMEZONE"] = "Dil Zamanı (Europe/London,Europe/Istanbul) gibi";
 $admin_text["LANG_DEFAULT"] = "Varsayılan Dil";
 $admin_text["LANG_VALIDATE"] = "Form Doğrulama";
 

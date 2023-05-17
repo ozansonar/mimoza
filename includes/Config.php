@@ -17,11 +17,6 @@ if (gethostname() === "hostname") {
 	ini_set('display_startup_errors', '1');
 	error_reporting(E_ALL);
 
-	// Locale-Zaman Ayarlaması
-	setlocale(LC_TIME, 'tr_TR');
-	date_default_timezone_set('UTC');
-	date_default_timezone_set('Europe/Istanbul');
-
 	//default charset
 	ini_set("default_charset", "utf-8");
 
