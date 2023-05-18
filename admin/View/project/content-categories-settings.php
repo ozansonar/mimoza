@@ -30,8 +30,8 @@
 							<?php
 							$form->lang = $project_languages_row->short_lang;
                             if($data->id > 0){
-                                $thisContentUrl = $siteManager->createCategoryUrl((object)$data->pageData[$project_languages_row->short_lang]);
-                                $thisContentLinkNoUrl = $siteManager->createCategoryLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
+                                $thisContentUrl = $siteManager->createCategoryUrl((object)$data->pageData[$project_languages_row->short_lang],$project_languages_row->short_lang);
+                                $thisContentLinkNoUrl = $siteManager->createCategoryLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang],$project_languages_row->short_lang);
                                 ?>
                                 <div class="alert alert-info">
                                     İçerik Linki: <a href="<?php echo $thisContentUrl; ?>" target="_blank" class="text-white"><?php echo $thisContentUrl; ?></a>

@@ -30,7 +30,7 @@
                              aria-labelledby="content-tab-<?php echo $project_languages_row->short_lang; ?>">
 							<?php
                             if($data->id > 0){
-                                if(isset($data->pageData[$project_languages_row->short_lang])):
+                                if(isset($data->pageData[$project_languages_row->short_lang]) && $data->pageData[$project_languages_row->short_lang]['cat_id'] > 0):
                                     $thisContentUrl = $siteManager->createContentUrl((object)$data->pageData[$project_languages_row->short_lang]);
                                 ?>
                                     <div class="alert alert-info">
@@ -38,7 +38,7 @@
                                     </div>
                                 <?php
                                 endif;
-                                if(isset($data->pageData[$project_languages_row->short_lang])):
+                                if(isset($data->pageData[$project_languages_row->short_lang]) && $data->pageData[$project_languages_row->short_lang]['cat_id'] > 0):
                                     $thisContentLinkNoUrl = $siteManager->createContentLinkNoUrl((object)$data->pageData[$project_languages_row->short_lang]);
                                 ?>
                                     <div class="alert alert-warning">
