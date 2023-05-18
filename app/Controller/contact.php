@@ -23,9 +23,16 @@ foreach ($projectLanguages as $rowLang){
 
 $metaTag->title = $functions->textManager("contact_title");
 
+$breadcrumb = [
+    [
+        'title' => $functions->textManager('breadcrumb_contact'),
+        'active' => true,
+    ]
+];
 
 View::layout('contact', [
 	'title' => 'İletişim',
 	'customCss' => $customCss,
-	'customJs' => $customJs
+	'customJs' => $customJs,
+    'breadcrumb' => $breadcrumb
 ]);

@@ -1,4 +1,9 @@
 <div class="container-fluid text-color-mavi">
+    <div class="container">
+        <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+            <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+        <?php endif; ?>
+    </div>
     <div class="container  my-4 font-roboto-bold d-flex align-items-center justify-content-center flex-column default-border py-2">
         <div class="col-12 text-center">
             <h2><?php echo $metaTag->title; ?></h2>
@@ -98,7 +103,7 @@
                     $("#loader").show();
                     $.ajax({
                         type: 'POST',
-                        url: "<?php echo $system->url("ajax/".$settings->{'sifremi_unutum_prefix_' . $_SESSION["lang"]}); ?>",
+                        url: "<?php echo $system->url("ajax/".$siteManager->getPrefix('sifremi_unutum')); ?>",
                         data: data,
                         processData: false,
                         contentType: false,

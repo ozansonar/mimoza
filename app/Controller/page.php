@@ -16,6 +16,13 @@ $customJs = [
 //bu içeriğe ait diğer veriler
 $otherLanguageContent = $siteManager->getOrtherLanguagePage($pageData->lang_id);
 
+$breadcrumb = [
+    [
+        'title' => $pageData->title,
+        'active' => true,
+    ]
+];
+
 $metaTag->title = $pageData->title;
 if(!empty($pageData->keywords)){
     $metaTag->keywords = $pageData->keywords;
@@ -28,4 +35,5 @@ View::layout('page',[
     'page_data' => $pageData,
     "customCss" => $customCss,
     "customJs" => $customJs,
+    'breadcrumb' => $breadcrumb
 ]);

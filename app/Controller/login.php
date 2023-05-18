@@ -9,6 +9,7 @@ if($session->isThereUserSession()){
 
 //bu sayfadakullanılan özel css'ler
 $customCss = [
+    "plugins/sweetalert2/sweetalert2.min.css",
 	"plugins/form-validation-engine/css/validationEngine.jquery.css"
 ];
 
@@ -17,6 +18,13 @@ $customJs = [
 	"dist/js/sweetalert2.all.min.js",
 	"plugins/form-validation-engine/js/jquery.validationEngine.js",
 	"plugins/form-validation-engine/js/languages/jquery.validationEngine-".$_SESSION["lang"].".js",
+];
+
+$breadcrumb = [
+    [
+        'title' => $functions->textManager('breadcrumb_login'),
+        'active' => true,
+    ]
 ];
 
 $form = new Form();
@@ -51,4 +59,5 @@ View::layout('login',[
     'customCss' => $customCss,
     'customJs' => $customJs,
     'pageData' => $pageData,
+    'breadcrumb' => $breadcrumb,
 ]);

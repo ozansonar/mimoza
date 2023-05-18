@@ -1,5 +1,8 @@
 
 <div class="container py-3">
+    <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+        <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+    <?php endif; ?>
     <h1><?php echo $data->page_data->title; ?></h1>
     <?php
     if(!empty($data->page_data->img) && file_exists($constants::fileTypePath["page_image"]["full_path"].$data->page_data->img)){

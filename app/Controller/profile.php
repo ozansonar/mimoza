@@ -1,6 +1,6 @@
 <?php
 //sistem sign.up.php üzerinen çalışıyor buna gerek kalmadı eğer ayırmak isterseniz bunu kullanabilirsiniz.
-$functions->redirect($system->url());
+$functions->redirect($siteManager->getPrefix('uye_ol'));
 exit;
 
 use Includes\System\Form;

@@ -1,8 +1,10 @@
 
 <div class="container">
+    <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+        <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+    <?php endif; ?>
     <div class="row p-0 m-0">
         <?php
-
 		if($data->count > 0): ?>
             <div class="alert alert-success mt-3">
                 <?php

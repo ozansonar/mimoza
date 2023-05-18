@@ -8,8 +8,8 @@ if(!$session->checkUserSession()){
 if (!isset($_GET["hash"]) || empty($_GET["hash"])) {
     $functions->redirect($system->url());
 }
-$log->logThis($log->logTypes["HESAP_DOGRULAMA"]);
 $hash = $functions->cleanGet("hash");
+$log->this('HESAP_DOGRULAMA','hash:'.$hash);
 if (empty($hash)) {
     $functions->redirect($system->url());
 }
@@ -30,22 +30,22 @@ if (!empty($select_query)) {
         //$verify["verify_code"] = null;
         $update = $db::update("users",$verify,["id"=>$select_query->id]);
         if($update){
-            $log->logThis($log->logTypes["HESAP_DOGRULAMA_SUCC"]);
+            $log->this('HESAP_DOGRULAMA_SUCC','user id: '.$select_query->id);
             $message["success"][] = "Hesabınız başarılı bir şekilde  doğrulanmıştır. Kayıt sırasında belirlediğiniz bilgiler ile giriş yapabilirsiniz. Üye girişi sayfasına yönlendiriliyorsunuz.";
             $refresh_time = 6;
             $message["refresh_time"] = $refresh_time;
-            $functions->refresh($system->url($settings->{"giris_prefix_".$_SESSION["lang"]}),$refresh_time);
+            $functions->refresh($system->url($siteManager->getPrefix('giris')),$refresh_time);
         }else{
-            $log->logThis($log->logTypes["HESAP_DOGRULAMA_ERR"]);
+            $log->this('HESAP_DOGRULAMA_ERR');
             $message["reply"][] = "Hesabınız doğrulanamadı lütfen tekrar deneyin.";
         }
     }else{
-        $log->logThis($log->logTypes["HESAP_DOGRULAMA_ONCE_DOGRULANMIS"]);
+        $log->this('HESAP_DOGRULAMA_ONCE_DOGRULANMIS');
         $message["reply"][] = "Daha önce aktivasyon işleminizi gerçekleştirdiniz. Bilgileriniz ile giriş yapabilirsiniz.";
         $message["reply_custom_title"] = "Uyarı";
     }
 }else{
-    $log->logThis($log->logTypes["HESAP_DOGRULAMA_HATALI_KOD"]);
+    $log->this('HESAP_DOGRULAMA_HATALI_KOD');
     $message["reply"][] = "Geçersiz doğrulama kodu.";
 }
 

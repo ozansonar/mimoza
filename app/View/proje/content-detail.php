@@ -1,5 +1,8 @@
 
 <div class="container py-3">
+    <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+        <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+    <?php endif; ?>
     <h1 class="mb-3"><?php echo $data->pageData->title; ?></h1>
     <?php if(isset($data->imgLink)  && $data->imgLink): ?>
         <a href="<?php echo $data->imgLink; ?>" class="fancybox-gallery">

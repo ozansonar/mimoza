@@ -1,6 +1,9 @@
  <section id="content">
         <div class="content-wrap">
             <div class="container">
+                <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+                    <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+                <?php endif; ?>
                 <div class="row pricing col-mb-30 mb-4">
 
                     <?php

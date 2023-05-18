@@ -32,7 +32,7 @@
                                    href="#tab-<?php echo $log_key; ?>" role="tab"
                                    aria-controls="tab-<?php echo $log_key; ?>"
                                    aria-selected="<?php echo $count === 1 ? "true" : "false"; ?>">
-									<?php echo $functions->dateLong($log_key); ?>
+									<?php echo $functions->dateLong($log_key,'date'); ?>
                                 </a>
 								<?php $count++; ?>
 							<?php endforeach; ?>
@@ -47,7 +47,7 @@
                                      aria-labelledby="<?php echo $log_key; ?>-tab">
                                     <div class="timeline">
                                         <div class="time-label">
-                                            <span class="bg-red"><?php echo $functions->dateLong($log_key); ?></span>
+                                            <span class="bg-red"><?php echo $functions->dateLong($log_key,'date'); ?></span>
                                         </div>
 										<?php $itemCount = 1; ?>
 										<?php foreach ($log as $log_row): ?>

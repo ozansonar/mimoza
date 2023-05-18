@@ -1,6 +1,9 @@
 
 <div class="container-fluid text-color-mavi py-2">
     <div class="container py-4 blog-content default-border">
+        <?php if(isset($data->breadcrumb) && !empty($data->breadcrumb) && is_array($data->breadcrumb)): ?>
+            <?php include($system->path('app/View/layouts/breadcrumb.php')); ?>
+        <?php endif; ?>
         <div class="col-12 p-0">
             <div class="card mb-3">
                 <div class="row g-0">
@@ -36,26 +39,26 @@
             <form action="" method="post" enctype="multipart/form-data" id="pageForm">
                 <?php
                 echo $functions->csrfToken();
-                echo $data->form->input("email",array(
+                echo $form->input("email",array(
                     "label" => "Email",
                     "required" => 1,
                 ),$data->pageData);
-                echo $data->form->input("name",array(
+                echo $form->input("name",array(
                     "label" => "İsim",
                     "required" => 1,
                 ),$data->pageData);
-                echo $data->form->input("surname",array(
+                echo $form->input("surname",array(
                     "label" => "Soyisim",
                     "required" => 1,
                 ),$data->pageData);
-                echo $data->form->input("telefon",array(
+                echo $form->input("telefon",array(
                     "label" => "Cep telefonu",
                     "label_description" => "<span class='badge bg-info'>Numaranızı başında '0' kullanarak yazınız.</span>",
                     "class" => "numeric",
                     "required" => 1,
                 ),$data->pageData);
                 //aguh şubesine ait olmayan değerler
-                echo $data->form->file("img",array(
+                echo $form->file("img",array(
                     "label" => "Resim",
                 ),$data->pageData);
                 ?>
@@ -65,13 +68,13 @@
                     Şifreniz en az 10 karakter olmalıdır.<br>
                 </div>
                 <?php
-                echo $data->form->input("password",array(
+                echo $form->input("password",array(
                     "label" => "Şifre",
                     "type" => "password",
                 ));
                 ?>
                 <?php
-                echo $data->form->input("password_again",array(
+                echo $form->input("password_again",array(
                     "label" => "Şifre Tekrar",
                     "type" => "password",
                 ));

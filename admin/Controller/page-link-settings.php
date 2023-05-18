@@ -66,7 +66,7 @@ $data_file_url = $db::selectQuery($pageTable, array(
 ));
 
 foreach ($data_file_url as $file_url_row) {
-	$file_url_array[$file_url_row->url] = $file_url_row->url;
+	$file_url_array[$file_url_row->lang][$file_url_row->url] = $file_url_row->url;
 }
 
 $pageLanguages = [];
@@ -124,7 +124,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$message["reply"][] = "Geçersiz dil seçimi";
 	}
 
-	if (array_key_exists($pageData["url"], $file_url_array)) {
+	if (array_key_exists($pageData["url"], $file_url_array[$pageData["lang"]])) {
 		$message["reply"][] = "Bu link zaten mevcut.";
 	}
 

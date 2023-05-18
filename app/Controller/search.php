@@ -4,7 +4,12 @@ use OS\MimozaCore\View;
 
 $log->logThis($log->logTypes["SEARCH"]);
 $count = 0;
-
+$breadcrumb = [
+    [
+        'title' => $functions->textManager('breadcrumb_search'),
+        'active' => true,
+    ]
+];
 $text = $functions->cleanGet("q");
 if(isset($_GET["q"]) && !empty($_GET["q"])){
     $aranacak = "%".$text."%";
@@ -59,4 +64,5 @@ View::layout('search',[
     'pageDataCategories' => $pageDataCategories ?? null,
     'pageQueryData' => $pageQueryData ?? null,
     'count' => $count,
+    'breadcrumb' => $breadcrumb,
 ]);

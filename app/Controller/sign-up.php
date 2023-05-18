@@ -1,9 +1,11 @@
 <?php
 
 use Includes\System\Form;
+use OS\MimozaCore\FileUploader;
+use OS\MimozaCore\Mail;
 use OS\MimozaCore\View;
 
-$log->logThis($log->logTypes["KAYIT_PAGE"]);
+$log->this('KAYIT_PAGE');
 
 $customCss = [];
 $customCss[] = "plugins/fancybox/jquery.fancybox.min.css";
@@ -16,12 +18,17 @@ $customJs[] = "plugins/form-validation-engine/js/languages/jquery.validationEngi
 
 $pageData = [];
 
+$breadcrumb = [
+    [
+        'title' => $session->isThereUserSession() ? $functions->textManager('breadcrumb_profil'):$functions->textManager('breadcrumb_uyeol'),
+        'active' => true,
+    ]
+];
+
 if ($session->isThereUserSession()){
-    $log->logThis($log->logTypes["USER_INFO"]);
+    $log->this('USER_INFO');
     $userInfo = $loggedUser;
     $pageData = (array)$loggedUser;
-}else{
-    $functions->redirect($system->url());
 }
 
 if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
@@ -37,12 +44,12 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
         $message["reply"][] = "E-posta boş olamaz.";
     }
     if(!empty($pageData["email"])){
-        if(!$functions->is_email($pageData["email"])){
+        if(!$functions->isEmail($pageData["email"])){
             $message["reply"][] = "E-postan email formatında olmalıdır.";
         }
     }
 
-    if($functions->is_email($pageData["email"]) && isset($userInfo)){
+    if($functions->isEmail($pageData["email"]) && isset($userInfo)){
         if($siteManager->uniqDataWithoutThis("users","email",$pageData["email"],$pageData["id"]) > 0){
             $message["reply"][] = "Bu e-posta adresi kayıtlarımızda mevcut lütfen başka bir tane deyin";
         }
@@ -126,20 +133,16 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
 
     if(empty($message)) {
         //resim yükleme işlemi en son
-        include_once($system->path("includes/System/FileUploader.php"));
-        $file = new \Includes\System\FileUploader($constants::fileTypePath);
+        $file = new FileUploader($constants::fileTypePath);
         $file->globalFileName = "img";
         $file->uploadFolder = "user_image";
         $file->maxFileSize = 1;
         $file->compressor = true;
-        $file->resize = true;
-        $file->width = 280;
-        $file->height = 500;
         $uploaded = $file->fileUpload();
-        if($uploaded["result"] == 1){
+        if ((int)$uploaded["result"] === 1) {
             $pageData["img"] = $uploaded["img_name"];
         }
-        if($uploaded["result"] == 2){
+        if ((int)$uploaded["result"] === 2) {
             $message["reply"][] = $uploaded["result_message"];
         }
     }
@@ -163,14 +166,16 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
             //güncelleme
             $update = $db::update("users",$dbData,["id"=>$pageData["id"]]);
             if($update){
+                //güncel verileri çekelim
+                $loggedUser = $session->getUserInfo();
                 //log atalı
-                $log->logThis($log->logTypes['PROFILE_EDIT_SUCC']);
-                $message["success"][] = $lang["content-update"];
-                $functions->refresh($system->url($settings->{'profile_prefix_' . $_SESSION["lang"]}),$refresh_time);
+                $log->this('PROFILE_EDIT_SUCC');
+                $message["success"][] = 'Bilgileriniz başarıyla güncellendi.';
+                $functions->refresh($system->url($siteManager->getPrefix('profile')),$refresh_time);
             }else{
                 //log atalım
-                $log->logThis($log->logTypes['PROFILE_EDIT_ERR']);
-                $message["reply"][] = $lang["content-update-error"];
+                $log->this('PROFILE_EDIT_ERR');
+                $message["reply"][] = 'Bilgileriniz güncellenemedi. Lütfen tekrar deneyiniz.';
             }
         }else{
             //sadece ekleme yapılırken yazılsın
@@ -181,47 +186,61 @@ if(isset($_POST["submit"]) && (int)$_POST["submit"] === 1){
             //ekleme
             $db_query = $db::insert("users",$dbData);
             if($db_query > 0){
-                $log->logThis($log->logTypes["USER_INSERT_SUCC"]," add user id:".$db_query);
+                $log->this('USER_INSERT_SUCC'," add user id:".$db_query);
 
                 //kullanıcıya heabını doğrulaması için mail atalım
-                $mailTemplate = $siteManager->getMailTemplate(7);
+                $mailTemplate = $siteManager->getMailTemplate(16);
                 if(!empty($mailTemplate)){
                     $mailTemplateText = $mailTemplate->text;
                     $mailTemplateText = str_replace("#name#",$pageData["name"],$mailTemplateText);
                     $mailTemplateText = str_replace("#surname#",$pageData["surname"],$mailTemplateText);
                     $mailTemplateText = str_replace("#project_name#",$settings->project_name,$mailTemplateText);
-                    $mailTemplateText = str_replace("#link#",$system->url($settings->{"hesap_dogrulama_prefix_".$_SESSION["lang"]}."?hash=".$verifyCode),$mailTemplateText);
+                    $mailTemplateText = str_replace("#link#",$system->url($siteManager->getPrefix('hesap_dogrulama')."?hash=".$verifyCode),$mailTemplateText);
 
-                    //mail atılıyor
-                    include_once $system->path("includes/System/Mail.php");
-
-                    $mailler = new \Includes\System\Mail($db);
-                    $mailler->adress = $pageData["email"];
-                    $mailler->subject = $mailTemplate->subject;
-                    $mailler->message = $mailTemplateText;
-                    $mailler->mail_send();
+                    $mail = new Mail($db);
+                    $mail->message = $mailTemplateText;
+                    $mail->address = $pageData['email'];
+                    $mail->sender_name = $pageData['name']." ".$pageData['surname'];
+                    $mail->subject = $mailTemplate->subject;
+                    $mail->send();
+                    $userVerifyMail = true;
                 }
 
-                if(isset($mailler) && $mailler){
+                $getMailSendAdminList = $siteManager->getMailSendAdminList();
+                $mailTemplate = $siteManager->getMailTemplate(19);
+                if(!empty($getMailSendAdminList) && !empty($mailTemplate)){
+                    $mailTemplateText = $mailTemplate->text;
+                    $mailTemplateText = str_replace("#name#",$pageData["name"],$mailTemplateText);
+                    $mailTemplateText = str_replace("#surname#",$pageData["surname"],$mailTemplateText);
+                    foreach ($getMailSendAdminList as $adminRow){
+                        $mail = new Mail($db);
+                        $mail->message = $mailTemplateText;
+                        $mail->address = $adminRow->email;
+                        $mail->subject = $mailTemplate->subject;
+                        $mail->send();
+                    }
+                }
+
+                if(isset($userVerifyMail) && $userVerifyMail){
                     $message["success"][] = "Kaydınız başarıyla yapıldı. Size gönderdiğiniz e-postadan hesabınızı doğrulamanız gerekmektedir.";
                 }else{
                     $message["success"][] = "Kadınız başarıyla yapıldı.";
                 }
+                //veriler sıfırlansın
+                $pageData = [];
+                $functions->refresh($system->url());
             }else{
-                $log->logThis($log->logTypes["USER_INSERT_ERR"]);
-                $message["reply"][] = $system_lang["sign-up-validate-error"];
+                $log->this('USER_INSERT_ERR');
+                $message["reply"][] = 'kaydınız oluşturulamadı. Lütfen tekrar deneyiniz.';
             }
         }
     }
 }
 
-//form dahil ediliyor
-include($system->path("includes/System/Form.php"));
-$pageForm = new Form();
 
 View::layout('sign-up',[
-    'form' => $pageForm,
     'pageData' => $pageData,
     'customCss' => $customCss,
     'customJs' => $customJs,
+    'breadcrumb' => $breadcrumb,
 ]);

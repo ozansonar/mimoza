@@ -28,8 +28,16 @@ if (!$system->route(1)) {
         $otherLanguageContent[$rowLang->short_lang] = $system->urlWithoutLanguage($rowLang->short_lang.'/'.$siteManager->getPrefix('content',$rowLang->short_lang));
     }
 
+    $breadcrumb = [
+        [
+            'title' => $functions->textManager('breadcrumb_content_categories_list'),
+            'active' => true,
+        ]
+    ];
+
     View::layout('content-categories-list',[
-        'list' => $selectQuery
+        'list' => $selectQuery,
+        'breadcrumb' => $breadcrumb
     ]);
 }else if(!empty($system->route(1)) && !$system->route(2)){
     //####################### İÇERİK KATEGORİSİNE AİT KATEGORİLER LİSTELENEK #######################\\
@@ -55,6 +63,18 @@ if (!$system->route(1)) {
         "limit" => 10,
     ));
 
+    $breadcrumb = [
+        [
+            'title' => $functions->textManager('breadcrumb_content_categories_list'),
+            'url' => $system->url($siteManager->getPrefix('content')),
+        ],
+        [
+            'title' => $linkData->title,
+            'active' => true,
+        ]
+    ];
+
+
     //bu içeriğe ait diğer veriler
     $otherLanguageContent = $siteManager->getOrtherLanguageContentCategories($linkData->lang_id);
 
@@ -64,6 +84,7 @@ if (!$system->route(1)) {
         'pageData' => $pageData,
         'category' => $linkData,
         'pagination' => $pagination_and_data,
+        'breadcrumb' => $breadcrumb
     ]);
 
 }elseif (!empty($system->route(1)) && !empty($system->route(2))){
@@ -119,6 +140,21 @@ if (!$system->route(1)) {
         $imgLink = $constants::fileTypePath["content"]["url"].$pageData->img;
     }
 
+    $breadcrumb = [
+        [
+            'title' => $functions->textManager('breadcrumb_content_categories_list'),
+            'url' => $system->url($siteManager->getPrefix('content')),
+        ],
+        [
+            'title' => $linkData->title,
+            'url' => $system->url($siteManager->getPrefix('content').'/'.$linkData->link.'-'.$linkData->id),
+        ],
+        [
+            'title' => $pageData->title,
+            'active' => true,
+        ]
+    ];
+
     //sağ alan olsun mu ?
     $right_bar  = true;
 
@@ -141,5 +177,6 @@ if (!$system->route(1)) {
         "imgLink" => $imgLink,
         "customCss" => $customCss,
         "customJs" => $customJs,
+        'breadcrumb' => $breadcrumb
     ]);
 }

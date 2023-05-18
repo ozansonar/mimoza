@@ -21,6 +21,10 @@ $language_text_manager = array(
                 "label" => "Bilgilerim"
             ),
             array(
+                "name" => "header_uye_kayit",
+                "label" => "Üye Kayıt"
+            ),
+            array(
                 "name" => "header_yonetim_paneli",
                 "label" => "Yönetim Paneli"
             ),
@@ -28,6 +32,7 @@ $language_text_manager = array(
                 "name" => "header_cikis",
                 "label" => "Çıkış"
             ),
+
 		),
 	),
     "footer" => array(
@@ -464,6 +469,39 @@ $language_text_manager = array(
             array(
                 "name" => "sifre_yenileme_hatali",
                 "label" => "Şifre yenileme hatalı.",
+            ),
+        ),
+    ),
+    "breadcrumb" => array(
+        "title" => "Breadcrumb",
+        "form" => array(
+            array(
+                "name" => "breadcrumb_home",
+                "label" => "Anasayfa"
+            ),
+            array(
+                "name" => "breadcrumb_content_categories_list",
+                "label" => "İçerik Kategorilerinin Listelendiği Sayfa"
+            ),
+            array(
+                "name" => "breadcrumb_contact",
+                "label" => "İletişim"
+            ),
+            array(
+                "name" => "breadcrumb_login",
+                "label" => "Giriş"
+            ),
+            array(
+                "name" => "breadcrumb_search",
+                "label" => "Arama"
+            ),
+            array(
+                "name" => "breadcrumb_profil",
+                "label" => "Profil"
+            ),
+            array(
+                "name" => "breadcrumb_uyeol",
+                "label" => "Üye Ol"
             ),
         ),
     ),
