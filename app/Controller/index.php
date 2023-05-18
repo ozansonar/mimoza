@@ -5,7 +5,7 @@ use OS\MimozaCore\View;
 $log->logThis($log->logTypes["INDEX"]);
 //bu sayfadakullanılan özel css'ler
 $customCss = []; 
-$slider_data_query = $db::$db->prepare("SELECT * FROM slider WHERE lang=:lang AND img != '' AND status=1 AND deleted=0 ORDER BY show_order ASC");
+$slider_data_query = $db::$db->prepare("SELECT * FROM slider WHERE lang=:lang AND img IS NOT NULL AND status=1 AND deleted=0 ORDER BY show_order ASC");
 $slider_data_query->bindParam(':lang',$_SESSION['lang'],PDO::PARAM_STR);
 $slider_data_query->execute();
 $slider_data_count = $slider_data_query->rowCount();
