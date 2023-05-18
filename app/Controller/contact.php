@@ -12,6 +12,14 @@ $customJs = [
 	"plugins/form-validation-engine/js/jquery.validationEngine.js",
 	"plugins/form-validation-engine/js/languages/jquery.validationEngine-" . $_SESSION["lang"] . ".js",
 ];
+//diğer diller için ayarlanıyor
+foreach ($projectLanguages as $rowLang){
+    $getLangPrefix = $siteManager->getPrefix('content',$rowLang->short_lang);
+    if(empty($getLangPrefix)){
+        continue;
+    }
+    $otherLanguageContent[$rowLang->short_lang] = $system->urlWithoutLanguage($rowLang->short_lang.'/'.$siteManager->getPrefix('iletisim',$rowLang->short_lang));
+}
 
 $metaTag->title = $functions->textManager("contact_title");
 

@@ -142,7 +142,9 @@
                     <form class="d-flex" action="<?php echo $system->url($settings->{'search_prefix_' . $_SESSION["lang"]}); ?>">
                         <input class="form-control me-2" type="search" name="q"
                                placeholder="<?php echo $functions->textManager("header_search_placeholder"); ?>"
-                               aria-label="<?php echo $functions->textManager("header_search_placeholder"); ?>">
+                               aria-label="<?php echo $functions->textManager("header_search_placeholder"); ?>"
+                            value="<?php echo $_GET['q'] ?? null; ?>"
+                        >
                         <button class="btn btn-outline-success"
                                 type="submit"><?php echo $functions->textManager("header_search_button"); ?></button>
                     </form>

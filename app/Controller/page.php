@@ -13,6 +13,9 @@ $customJs = [
     "plugins/fancybox/jquery.fancybox.min.js"
 ];
 
+//bu içeriğe ait diğer veriler
+$otherLanguageContent = $siteManager->getOrtherLanguagePage($pageData->lang_id);
+
 $metaTag->title = $pageData->title;
 if(!empty($pageData->keywords)){
     $metaTag->keywords = $pageData->keywords;

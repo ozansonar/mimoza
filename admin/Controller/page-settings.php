@@ -204,7 +204,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 	}
 }
 
-View::backend($pageRoleKey, [
+View::backend($pageAddRoleKey, [
 	'title' => "Sayfa " . (isset($data) ? "Düzenle" : "Ekle"),
 	'pageButtonRedirectLink' => $pageRoleKey,
 	'pageButtonRedirectText' => "Sayfalar",
