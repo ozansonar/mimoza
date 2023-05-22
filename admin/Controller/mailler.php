@@ -32,29 +32,6 @@ $customJs = [
 	"plugins/datatables-buttons/js/buttons.colVis.min.js",
 ];
 
-if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])) {
-	if ($session->sessionRoleControl($pageRoleKey, $constants::deletePermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::deletePermissionKey);
-		$session->permissionDenied();
-	}
-	$del_id = $functions->cleanGetInt("delete");
-
-    $data = [];
-    $data["deleted"] = 1;
-    $delete = $db::update($pageTable, $data, ["id" => $del_id]);
-
-	$message = [];
-	if ($delete) {
-		$log->logThis($log->logTypes['MAILLER_LIST_DEL_SUCC']);
-		$message["success"][] = $lang["content-delete"];
-		$refresh_time = 3;
-		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
-	} else {
-		$log->logThis($log->logTypes['MAILLER_LIST_DEL_ERR']);
-		$message["reply"][] = $lang["content-delete-error"];
-	}
-}
 
 View::backend($pageRoleKey, [
 	'title' => 'Daha Önce Eklenmiş Mailler',

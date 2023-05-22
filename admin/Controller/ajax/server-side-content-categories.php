@@ -95,7 +95,7 @@ $columns = array(
             }
             if ($session->sessionRoleControl($pageRoleKey, $constants::deletePermissionKey) === true){
                 $exportButton .= '
-                    <button type="button" class="btn btn-outline-danger m-1 post_delete" data-delete-url="'.$system->adminUrl($pageRoleKey."?delete=" . $row["id"]).'">
+                    <button type="button" class="btn btn-outline-danger m-1 post_delete" data-delete-url="'.$system->adminUrl("ajax/delete-content-categories?delete=" . $row["id"]).'">
                         <i class="fas fa-trash px-1"></i> Sil
                     </button>';
             }

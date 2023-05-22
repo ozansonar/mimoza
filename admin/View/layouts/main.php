@@ -234,7 +234,7 @@ if (!empty($sessionError)): ?>
 <?php if ($session->isThereAdminSession() && ($session->get('user_rank') && $session->get('user_rank') >= 60)): ?>
     <script>
         $(document).on("click",".post_delete",function() {
-            Swal.fire({
+            /*Swal.fire({
                 title: 'Silmek istiyormusunuz ?',
                 text: "Silmek istediğinize emin misiniz ?",
                 icon: 'error',
@@ -249,7 +249,7 @@ if (!empty($sessionError)): ?>
                         window.location = $(this).data("delete-url");
                     }
                 }
-            });
+            });*/
         });
 
         function post_delete(url) {

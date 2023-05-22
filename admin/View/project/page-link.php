@@ -38,7 +38,7 @@
 </section>
 <script>
     $(document).ready(function () {
-        $('#datatable-1').DataTable({
+        let table = $('#datatable-1').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -61,6 +61,38 @@
             autoWidth: false,
             dom: 'Bfrtip',
             buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#datatable-1_wrapper .col-md-6:eq(0)');
+        });
+
+        $('#datatable-1 tbody').on('click', 'button.post_delete', function () {
+            Swal.fire({
+                title: '<?php echo $admin_text['DELETE_ALERT_TITLE']; ?>',
+                text: '<?php echo $admin_text['DELETE_ALERT_TEXT']; ?>',
+                icon: '<?php echo $admin_text['DELETE_ALERT_ICON']; ?>',
+                showCancelButton: true,
+                confirmButtonText: '<?php echo $admin_text['DELETE_ALERT_BTN_YES']; ?>',
+                cancelButtonText: '<?php echo $admin_text['DELETE_ALERT_BTN_NO']; ?>',
+                confirmButtonColor: '<?php echo $admin_text['DELETE_ALERT_BTN_YES_COLOR']; ?>',
+                cancelButtonColor: '<?php echo $admin_text['DELETE_ALERT_BTN_NO_COLOR']; ?>',
+            }).then((result) => {
+                if (result.value) {
+                    if (result.value) {
+                        $.ajax({
+                            type: 'POST',
+                            url: $(this).data("delete-url"),
+                            data: {'csrf_token':'<?php echo $session->get('csrf_token') ?>'},
+                            success: function (response) {
+                                if (response.success) {
+                                    table.row($(this).parents('tr')).remove().draw();
+                                }
+                                if (response.reply) {
+                                    AlertMessage("<?php echo $admin_text['DELETE_ALERT_ERR_TYPE']; ?>", "<?php echo $admin_text['DELETE_ALERT_ERR_TITLE']; ?>", response.reply);
+                                }
+                            },
+                            dataType: 'json'
+                        });
+                    }
+                }
+            });
+        });
     });
 </script>

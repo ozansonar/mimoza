@@ -33,36 +33,6 @@ $customJs = [
 	"plugins/datatables-buttons/js/buttons.colVis.min.js",
 ];
 
-if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])) {
-	//silme yetkisi kontrol
-	if ($session->sessionRoleControl($pageRoleKey, $constants::deletePermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::deletePermissionKey);
-		$session->permissionDenied();
-	}
-	$message = [];
-
-	$del_id = $functions->cleanGetInt("delete");
-	$lang_control = $siteManager->getDefaultLangNotId($del_id);
-	if ($lang_control === false) {
-		$message["reply"][] = "Bu dilden başka varsayılan bir dil yok başka bir dili varsayılan yapıp bu dili öyle silebilirsiniz.";
-	}
-
-	if (empty($message)) {
-		$data = [];
-		$data["deleted"] = 1;
-		$delete = $db::update($pageTable, $data, ["id" => $del_id]);
-		if ($delete) {
-			$log->logThis($log->logTypes['LANG_DEL_SUCC']);
-			$message["success"][] = $lang["content-delete"];
-			$refresh_time = 3;
-			$message["refresh_time"] = $refresh_time;
-			$functions->refresh($system->adminUrl($pageTable), $refresh_time);
-		} else {
-			$log->logThis($log->logTypes['LANG_DEL_ERR']);
-			$message["reply"][] = $lang["content-delete-error"];
-		}
-	}
-}
 
 //butonun gideceği link ve yazısı
 View::backend($pageRoleKey,[

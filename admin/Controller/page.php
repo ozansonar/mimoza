@@ -35,28 +35,6 @@ $customJs = [
 	"plugins/datatables-buttons/js/buttons.colVis.min.js",
 ];
 
-if (isset($_GET["delete"]) && !empty($_GET["delete"]) && is_numeric($_GET["delete"])) {
-	if ($session->sessionRoleControl($pageRoleKey, $constants::deletePermissionKey) === false) {
-		$log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::deletePermissionKey);
-		$session->permissionDenied();
-	}
-
-	$del_id = $functions->cleanGetInt("delete");
-	$delete = $siteManager->multipleLanguageDataDelete($pageTable, $del_id);
-	$message = [];
-	if ($delete) {
-		$log->logThis($log->logTypes['PAGE_LIST_DELETE_SUCC']);
-		$message["success"][] = $lang["content-delete"];
-		$refresh_time = 5;
-		$message["refresh_time"] = $refresh_time;
-		$functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
-	} else {
-		//log atalım
-		$log->logThis($log->logTypes['PAGE_LIST_DELETE_ERR']);
-		$message["reply"][] = $lang["content-delete-error"];
-	}
-}
-
 
 View::backend($pageRoleKey,[
 	'title' =>'Sayfalar',

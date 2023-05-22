@@ -307,3 +307,14 @@ $admin_text["MAILING_IMG"] = "Resim";
 $admin_text["MAILING_EK"] = "Ek";
 $admin_text["MAILING_SUBJECT"] = "Konu";
 $admin_text["MAILING_TEXT"] = "İçerik";
+
+//sweer alert
+$admin_text['DELETE_ALERT_TITLE'] = 'Silmek istiyormusunuz ?';
+$admin_text['DELETE_ALERT_TEXT'] = 'Silmek istediğinize emin misiniz ?';
+$admin_text['DELETE_ALERT_BTN_YES'] = 'Evet SİL !';
+$admin_text['DELETE_ALERT_BTN_NO'] = 'Vazgeç';
+$admin_text['DELETE_ALERT_BTN_NO_COLOR'] = '#d33';
+$admin_text['DELETE_ALERT_BTN_YES_COLOR'] = '#28a745';
+$admin_text['DELETE_ALERT_ICON'] = 'error';
+$admin_text['DELETE_ALERT_ERR_TITLE'] = 'HATA';
+$admin_text['DELETE_ALERT_ERR_TYPE'] = 'error';
