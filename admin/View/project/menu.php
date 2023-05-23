@@ -14,7 +14,8 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="datatable-1" class="table table-bordered table-striped">
+            <?php echo $siteManager->getMenus('tr'); ?>
+            <?php /*<table id="datatable-1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Menü Adı</th>
@@ -26,13 +27,14 @@
                 </thead>
                 <tbody>
                 </tbody>
-            </table>
+            </table>*/ ?>
         </div>
     </div>
 </section>
 <script>
     $(document).ready(function () {
-        let table = $('#datatable-1').DataTable({
+        <?php
+        /*let table = $('#datatable-1').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -87,6 +89,25 @@
                     }
                 }
             });
+        });*/
+        ?>
+    });
+    $(document).on("click",".post_delete",function() {
+        Swal.fire({
+            title: '<?php echo $admin_text['DELETE_ALERT_TITLE']; ?>',
+            text: '<?php echo $admin_text['DELETE_ALERT_TEXT']; ?>',
+            icon: '<?php echo $admin_text['DELETE_ALERT_ICON']; ?>',
+            showCancelButton: true,
+            confirmButtonText: '<?php echo $admin_text['DELETE_ALERT_BTN_YES']; ?>',
+            cancelButtonText: '<?php echo $admin_text['DELETE_ALERT_BTN_NO']; ?>',
+            confirmButtonColor: '<?php echo $admin_text['DELETE_ALERT_BTN_YES_COLOR']; ?>',
+            cancelButtonColor: '<?php echo $admin_text['DELETE_ALERT_BTN_NO_COLOR']; ?>',
+        }).then((result) => {
+            if (result.value) {
+                if (result.value) {
+                    window.location = $(this).data("delete-url");
+                }
+            }
         });
     });
 </script>

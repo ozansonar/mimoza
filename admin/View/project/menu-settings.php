@@ -50,14 +50,12 @@
 							?>
                             <div id="top_menuler_list_<?php echo $project_languages_row->short_lang; ?>"
                                  style="<?php echo isset($data->pageData[$project_languages_row->short_lang]) && $data->pageData[$project_languages_row->short_lang]["menu_type"] == 2 ? null : "display: none;"; ?>">
-								<?php
-								echo $form->select("top_id", array(
-									"label" => $admin_text["MENU_TURU_ALT"],
-									"required" => 1,
-									"select_item" => $data->topMenuArray,
-									"multiple_lang_select" => 1
-								), $data->pageData);
-								?>
+                                <div class="form-group">
+                                    <label><?php echo $admin_text["MENU_TURU_ALT"] ?></label>
+                                    <select class="form-control select2bs4 required validate[required] select2-hidden-accessible" name="top_id_<?php echo $project_languages_row->short_lang; ?>" name="id_top_id_<?php echo $project_languages_row->short_lang; ?>">
+                                        <?php echo $siteManager->getAllSectors($project_languages_row->short_lang); ?>
+                                    </select>
+                                </div>
                             </div>
 							<?php
 							echo $form->input("show_order", array(

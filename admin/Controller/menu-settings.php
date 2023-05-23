@@ -156,17 +156,13 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			$db_data["link"] = !empty($pageData[$project_languages_row->short_lang]["link"]) ? $pageData[$project_languages_row->short_lang]["link"] : $functions->permalink($pageData[$project_languages_row->short_lang]["name"]);
 			$db_data["show_order"] = $pageData[$project_languages_row->short_lang]["show_order"];
 			$db_data["menu_type"] = $pageData[$project_languages_row->short_lang]["menu_type"];
-			$db_data["top_id"] = $pageData[$project_languages_row->short_lang]["top_id"];
+			$db_data["top_id"] = (int)$db_data["menu_type"] === 1 ? 0:$pageData[$project_languages_row->short_lang]["top_id"];
 			$db_data["redirect"] = $pageData[$project_languages_row->short_lang]["redirect"];
 			$db_data["redirect_link"] = $pageData[$project_languages_row->short_lang]["redirect_link"];
 			$db_data["redirect_open_type"] = $pageData[$project_languages_row->short_lang]["redirect_open_type"];
 			$db_data["show_type"] = $pageData[$project_languages_row->short_lang]["show_type"];
 			$db_data["status"] = $pageData[$project_languages_row->short_lang]["status"];
 			$db_data["user_id"] = $session->get("user_id");
-
-			if(empty($db_data['top_id'])){
-				unset($db_data['top_id']);
-			}
 
 			if(empty($db_data['redirect_link'])){
 				unset($db_data['redirect_link']);

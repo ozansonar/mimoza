@@ -13,6 +13,30 @@ if ($session->sessionRoleControl($pageRoleKey, $constants::listPermissionKey) ==
 
 //log atalım
 $log->logThis($log->logTypes['MENU_LIST']);
+if (!empty($_GET["delete"]) && is_numeric($_GET["delete"])) {
+    //silme yetkisi kontrol
+    if ($session->sessionRoleControl($pageRoleKey, $constants::deletePermissionKey) === false) {
+        $log->logThis($log->logTypes["IZINSIZ_ERISIM_ISTEGI"], "izinsiz erişim isteği user id->" . $_SESSION["user_id"] . " role key => " . $pageRoleKey . " permissions => " . $constants::deletePermissionKey);
+        $session->permissionDenied();
+    }
+
+    $delId = $functions->cleanGetInt("delete");
+    $delete = $siteManager->multipleLanguageDataDelete("menu", $delId);
+    $message = [];
+    if ($delete) {
+        //log atalım
+        $log->logThis($log->logTypes['MENU_DELETE_SUCC']);
+
+        $message["success"][] = $lang["content-delete"];
+        $refresh_time = 5;
+        $message["refresh_time"] = $refresh_time;
+        $functions->refresh($system->adminUrl($pageRoleKey), $refresh_time);
+    } else {
+        //log atalım
+        $log->logThis($log->logTypes['MENU_DELETE_ERR']);
+        $message["reply"][] = $lang["content-delete-error"];
+    }
+}
 
 $customCss = [
 	"plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
