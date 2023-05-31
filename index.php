@@ -50,6 +50,8 @@ if (!is_null($langData)) {
 // Locale-Zaman Ayarlaması
 setlocale(LC_TIME, $projectLanguages[$_SESSION['lang']]->lang_iso);
 setlocale(LC_ALL, $projectLanguages[$_SESSION['lang']]->lang_iso.'.utf8');
+date_default_timezone_set($projectLanguages[$_SESSION['lang']]->timezone);
+
 
 //html purifier xss vb attackları engellemek için kullandığımız library
 $purifierConfig = HTMLPurifier_Config::createDefault();
