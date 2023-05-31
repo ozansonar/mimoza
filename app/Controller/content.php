@@ -143,11 +143,11 @@ if (!$system->route(1)) {
     $breadcrumb = [
         [
             'title' => $functions->textManager('breadcrumb_content_categories_list'),
-            'url' => $system->url($siteManager->getPrefix('content')),
+            'url' => $system->url($siteManager->getPrefix('content',$_SESSION['lang'])),
         ],
         [
             'title' => $linkData->title,
-            'url' => $system->url($siteManager->getPrefix('content').'/'.$linkData->link.'-'.$linkData->id),
+            'url' => $system->url($siteManager->getPrefix('content',$_SESSION['lang']).'/'.$linkData->link.'-'.$linkData->id),
         ],
         [
             'title' => $pageData->title,
