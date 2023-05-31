@@ -81,7 +81,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>
-                            <a class="dropdown-item" href="<?php echo $system->url($siteManager->getPrefix('profile')) ?>"><?php echo $functions->textManager("header_profil"); ?></a>
+                            <a class="dropdown-item" href="<?php echo $system->url($siteManager->getPrefix('profile',$_SESSION['lang'])) ?>"><?php echo $functions->textManager("header_profil"); ?></a>
                         </li>
                         <?php if ($session->isThereAdminSession()): ?>
                             <li>
@@ -103,9 +103,9 @@
                     </ul>
                 </div>
             <?php else: ?>
-                <a class="btn btn-warning" href="<?php echo $system->url($siteManager->getPrefix('uye_ol')) ?>"><?php echo $functions->textManager("header_uye_kayit"); ?></a>
+                <a class="btn btn-warning" href="<?php echo $system->url($siteManager->getPrefix('uye_ol',$_SESSION['lang'])) ?>"><?php echo $functions->textManager("header_uye_kayit"); ?></a>
                 <div class="mt-2">
-                    <a href="<?php echo $system->url($siteManager->getPrefix('giris')); ?>" class="btn btn-info">
+                    <a href="<?php echo $system->url($siteManager->getPrefix('giris',$_SESSION['lang'])); ?>" class="btn btn-info">
                         <?php echo $functions->textManager("header_giris_button"); ?>
                     </a>
                 </div>
@@ -140,7 +140,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <?php echo $siteManager->getHeaderNavbar(); ?>
                     </ul>
-                    <form class="d-flex" action="<?php echo $system->url($siteManager->getPrefix('search')); ?>">
+                    <form class="d-flex" action="<?php echo $system->url($siteManager->getPrefix('search',$_SESSION['lang'])); ?>">
                         <input class="form-control me-2" type="search" name="q"
                                placeholder="<?php echo $functions->textManager("header_search_placeholder"); ?>"
                                aria-label="<?php echo $functions->textManager("header_search_placeholder"); ?>"
