@@ -94,6 +94,15 @@
 									)
 								)
 							), $data->pageData);
+                            echo $form->checkbox(array(
+                                "option" => array(
+                                    array(
+                                        "label" => "Yorumlara izin ver",
+                                        "name" => "comment",
+                                        "value" => 1
+                                    )
+                                )
+                            ), $data->pageData);
 							echo $form->select("status", array(
 								"label" => $admin_text["CONTENT_STATUS"],
 								"required" => 1,

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `content` (
                                          `show_order` int(11) NOT NULL DEFAULT '0',
                                          `keywords` varchar(255) DEFAULT NULL,
                                          `description` text,
+                                         `comment` tinyint(1) default 0 null comment '1:evet,0:hayır',
                                          `lang` varchar(5) DEFAULT NULL,
                                          `lang_id` varchar(255) DEFAULT NULL,
                                          `user_id` int(11) NOT NULL,

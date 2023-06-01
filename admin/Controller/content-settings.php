@@ -97,6 +97,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 		$pageData[$project_languages_row->short_lang]["keywords"] = $functions->cleanPost("keywords");
 		$pageData[$project_languages_row->short_lang]["description"] = $functions->cleanPost("description");
 		$pageData[$project_languages_row->short_lang]["index_show"] = $functions->cleanPostInt("index_show") > 0 ? 1 : 0;
+		$pageData[$project_languages_row->short_lang]["comment"] = $functions->cleanPostInt("comment") > 0 ? 1 : 0;
 		$pageData[$project_languages_row->short_lang]["status"] = $functions->cleanPostInt("status");
 		$pageData[$project_languages_row->short_lang]["status_control"] = is_numeric($functions->post("status"));
 
@@ -180,6 +181,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 				$db_data["img"] = $pageData[$project_languages_row->short_lang]["img"];
 			}
 			$db_data["index_show"] = $pageData[$project_languages_row->short_lang]["index_show"];
+			$db_data["comment"] = $pageData[$project_languages_row->short_lang]["comment"];
 			$db_data["show_order"] = $pageData[$project_languages_row->short_lang]["show_order"];
 			$db_data["keywords"] = $pageData[$project_languages_row->short_lang]["keywords"];
 			$db_data["description"] = $pageData[$project_languages_row->short_lang]["description"];

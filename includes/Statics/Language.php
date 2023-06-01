@@ -505,4 +505,125 @@ $language_text_manager = array(
             ),
         ),
     ),
+    'comment' => array(
+        "title" => "Yorum",
+        "form" => array(
+            array(
+                "name" => "comment_title",
+                "label" => "Yorum Yazma Kısmı Başlık"
+            ),
+            array(
+                "name" => "comment_comment",
+                "label" => "Yorum"
+            ),
+            array(
+                "name" => "comment_name",
+                "label" => "Ad"
+            ),
+            array(
+                "name" => "comment_surname",
+                "label" => "Soyad"
+            ),
+            array(
+                "name" => "comment_email",
+                "label" => "E-posta"
+            ),
+            array(
+                "name" => "comment_save",
+                "label" => "Kaydet"
+            ),
+            array(
+                "name" => "comment_btn_gonderiliyor",
+                "label" => "Buton Gönderiliyor"
+            ),
+            array(
+                "name" => "comment_btn_gonderildi",
+                "label" => "Buton Gönderildi"
+            ),
+            array(
+                "name" => "comment_gonderildi_modal_title",
+                "label" => "Gönderildi Modal Başlık"
+            ),
+            array(
+                "name" => "comment_gonderildi_modal_buton",
+                "label" => "Gönderildi Modal Buton"
+            ),
+            array(
+                "name" => "comment_gonderilemedi_modal_title",
+                "label" => "Gönderilemedi Modal Başlık"
+            ),
+            array(
+                "name" => "comment_gonderilemedi_modal_buton",
+                "label" => "Gönderilemedi Modal Buton"
+            ),
+            array(
+                "name" => "comment_gecersiz_yorum_tipi",
+                "label" => "Geçersiz yorum tipi (kişi kod tarafından yorum tipini değiştirse diye önlem)"
+            ),
+            array(
+                "name" => "comment_gecersiz_icerik_anahtari",
+                "label" => "Geçersiz içerik anahtarı (kişi kod tarafından id değerini değiştirse diye önlem)"
+            ),
+            array(
+                "name" => "comment_icerige_yorum_yapilamaz",
+                "label" => "İçeriğe yorum yapılamaz."
+            ),
+            array(
+                "name" => "comment_ad_bos",
+                "label" => "Ad boş olamaz."
+            ),
+            array(
+                "name" => "comment_ad_min",
+                "label" => "Ad en az 2 karakter olabilir."
+            ),
+            array(
+                "name" => "comment_ad_max",
+                "label" => "Ad en fazla 30 karakter olabilir"
+            ),
+            array(
+                "name" => "comment_soyad_bos",
+                "label" => "Soyad boş olamaz."
+            ),
+            array(
+                "name" => "comment_soyad_min",
+                "label" => "Soyad en az 2 karakter olabilir."
+            ),
+            array(
+                "name" => "comment_soyad_max",
+                "label" => "Soyad en fazla 30 karakter olabilir"
+            ),
+            array(
+                "name" => "comment_email_bos",
+                "label" => "Email boş olamaz."
+            ),
+            array(
+                "name" => "comment_email_gecersiz",
+                "label" => "Email geçersiz."
+            ),
+            array(
+                "name" => "comment_email_max",
+                "label" => "Email en fazla 100 karakter olabilir"
+            ),
+            array(
+                "name" => "comment_yorum_bos",
+                "label" => "Yorum boş olamaz."
+            ),
+            array(
+                "name" => "comment_yorum_min",
+                "label" => "Yorum en az 10 karakter olabilir."
+            ),
+            array(
+                "name" => "comment_yorum_max",
+                "label" => "Yorum en fazla 2000 karakter olabilir"
+            ),
+            array(
+                "name" => "comment_yorum_yapildi",
+                "label" => "İçeriğe yorum yapıldı."
+            ),
+            array(
+                "name" => "comment_yorum_yapilamadi",
+                "label" => "İçeriğe yorum yapılamadı."
+            ),
+        ),
+    ),
 );

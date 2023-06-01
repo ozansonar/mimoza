@@ -10,6 +10,9 @@
         </a>
     <?php endif; ?>
     <?php echo str_replace("../",$system->urlWithoutLanguage(),$data->pageData->text); ?>
+    <?php if((int)$data->pageData->comment === 1): ?>
+        <?php include($system->path('app/View/layouts/comment.php')); ?>
+    <?php endif; ?>
 </div>
 
 <script>

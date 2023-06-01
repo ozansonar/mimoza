@@ -155,6 +155,21 @@ if (!$system->route(1)) {
         ]
     ];
 
+    if((int)$pageData->comment === 1){
+        $customCss = [
+            'plugins/fancybox/jquery.fancybox.min.css',
+            'plugins/sweetalert2/sweetalert2.min.css',
+            'plugins/form-validation-engine/css/validationEngine.jquery.css',
+        ];
+        $customJs = [
+            'plugins/sweetalert2/sweetalert2.min.js',
+            'plugins/form-validation-engine/js/jquery.validationEngine.js',
+            'plugins/form-validation-engine/js/languages/jquery.validationEngine-' . $_SESSION["lang"] . '.js',
+            'plugins/fancybox/jquery.fancybox.min.js'
+        ];
+    }
+
+
     //sağ alan olsun mu ?
     $right_bar  = true;
 
