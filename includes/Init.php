@@ -6,7 +6,7 @@ use OS\MimozaCore\Session;
 use OS\MimozaCore\SiteManager;
 use OS\MimozaCore\Core;
 use OS\MimozaCore\Log;
-use OS\MimozaCore\Constants;
+use Includes\Project\Constants;
 
 // Debug sınıfını kullanmayacaksanız kaldırabilirsiniz.
 use Whoops\Handler\PrettyPageHandler;
@@ -15,6 +15,7 @@ use Whoops\Run;
 
 // Includes all
 include(__DIR__ . "/Config.php");
+include(__DIR__ . "/Project/Constants.php");
 include(__DIR__ . "/Statics/AdminText.php");
 include(__DIR__ . "/Statics/Language.php");
 

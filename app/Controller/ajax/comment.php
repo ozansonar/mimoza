@@ -17,12 +17,8 @@ if(isset($_POST)){
     $formData['email'] = $functions->cleanPost("email");
     $formData['comment'] = $functions->cleanPost("comment");
 	$message = [];
-    $typeERT = [
-        1 => [
-            'table' => 'content'
-        ]
-    ];
-    if(!array_key_exists($formData['type'],$typeERT)){
+
+    if(!array_key_exists($formData['type'],$constants::commentType)){
         $message['reply'][] = $functions->textManager('comment_gecersiz_yorum_tipi');
     }
 	if(empty($formData['id'])){
@@ -33,7 +29,7 @@ if(isset($_POST)){
             $message['reply'][] = $functions->textManager('comment_gecersiz_icerik_anahtari');
         }
         //ilgili tabloda bu bu idli içeriğe yorum yapılabilir mi kontrol et
-        $query = $db::query('SELECT id,title FROM '.$typeERT[$formData['type']]['table'].' WHERE id=:id AND comment=1 AND status=1 AND deleted=0');
+        $query = $db::query('SELECT id,title FROM '.$constants::commentType[$formData['type']]['table'].' WHERE id=:id AND comment=1 AND status=1 AND deleted=0');
         $postId = $formData['id'];
         $query->bindParam(':id',$postId,PDO::PARAM_INT);
         $query->execute();
