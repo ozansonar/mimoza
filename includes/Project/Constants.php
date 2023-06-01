@@ -360,7 +360,8 @@ class Constants
 
     public const commentType = [
         1 => [
-            'table' => 'content'
+            'table' => 'content',
+            'title' => 'İçerik',
         ]
     ];
 }

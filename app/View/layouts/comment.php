@@ -25,14 +25,14 @@
                 <?php echo $form->input('email',[
                     'label' => $functions->textManager('comment_email'),
                     'required' => 1,
-                    'class' => 'validate[custom[email]]'
+                    'class' => 'validate[custom[email],maxSize[100]]'
                 ]); ?>
             </div>
         </div>
         <?php
         echo $form->textarea('comment',[
             'label' => $functions->textManager('comment_comment'),
-            'class' => 'validate[minSize[10]]',
+            'class' => 'validate[minSize[10],maxSize[2000]]',
             'required' => 1
         ]);
         echo $form->button('save',[

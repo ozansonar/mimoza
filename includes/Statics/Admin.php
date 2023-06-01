@@ -334,6 +334,16 @@ $menu = [
 			'd' => 'Silme'
 		]
 	],
+    [
+        'url' => 'comment',
+        'title' => 'Yorumlar',
+        'icon' => 'nav-icon fas fa-comment',
+        'permissions' => [
+            's' => 'Görüntüleme',
+            'e' => 'Düzenleme',
+            'd' => 'Silme'
+        ]
+    ],
 	[
 		'url' => 'language-text-setting',
 		'title' => 'Dil Yazı Ayarları',
