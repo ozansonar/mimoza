@@ -513,6 +513,10 @@ $language_text_manager = array(
                 "label" => "Yorum Yazma Kısmı Başlık"
             ),
             array(
+                "name" => "comment_title_count",
+                "label" => "Yapılmış Toplam Yorum Başlık"
+            ),
+            array(
                 "name" => "comment_comment",
                 "label" => "Yorum"
             ),

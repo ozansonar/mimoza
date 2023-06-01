@@ -16,6 +16,7 @@ use Whoops\Run;
 // Includes all
 include(__DIR__ . "/Config.php");
 include(__DIR__ . "/Project/Constants.php");
+include(__DIR__ . "/Project/Functions.php");
 include(__DIR__ . "/Statics/AdminText.php");
 include(__DIR__ . "/Statics/Language.php");
 
@@ -29,6 +30,7 @@ $siteManager = new SiteManager($db);
 $system = new Core();
 $log = new Log($db);
 $constants = new Constants();
+$projectFunctions = new \Includes\Project\Functions($db);
 
 // If DEBUG_MOD is true, errors will show with whoops package
 if (DEBUG_MODE) {

@@ -1,4 +1,23 @@
 <div class="col-12">
+    <?php if(isset($data->comment) && is_array($data->comment) && !empty($data->comment)): ?>
+    <h2><?php echo str_replace('#yorum_sayisi#',count($data->comment),$functions->textManager('comment_title_count')); ?></h2>
+        <?php foreach ($data->comment as $comment): ?>
+            <div class="card border-secondary mb-3">
+                <div class="card-header">
+                    <span class="fw-bold"><?php echo $functions->textManager('comment_name'); ?>:</span>
+                    <?php echo $comment->name; ?>
+                    <span class="fw-bold"><?php echo $functions->textManager('comment_surname'); ?>:</span>
+                    <?php echo $comment->surname; ?>
+                    <span class="fw-bold"><?php echo $functions->textManager('comment_email'); ?>:</span>
+                    <?php echo $comment->email; ?>
+                </div>
+                <div class="card-body text-secondary">
+                    <p class="card-text"><?php echo $comment->comment; ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <hr>
     <h2><?php echo $functions->textManager('comment_title'); ?></h2>
     <form action="" id="pageForm">
         <input type="hidden" name="id" value="<?php echo $data->pageData->id; ?>">

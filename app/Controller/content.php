@@ -169,6 +169,9 @@ if (!$system->route(1)) {
         ];
     }
 
+    //içeriğe ait yorum var mı bakalım
+    $getComment = $projectFunctions->getComments($id,1);
+
 
     //sağ alan olsun mu ?
     $right_bar  = true;
@@ -192,6 +195,7 @@ if (!$system->route(1)) {
         "imgLink" => $imgLink,
         "customCss" => $customCss,
         "customJs" => $customJs,
-        'breadcrumb' => $breadcrumb
+        'breadcrumb' => $breadcrumb,
+        'comment' => $getComment
     ]);
 }
