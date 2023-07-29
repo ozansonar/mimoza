@@ -138,7 +138,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <?php echo $siteManager->getHeaderNavbar(); ?>
+                        <?php echo $projectFunctions->getHeaderNavbar(); ?>
                     </ul>
                     <form class="d-flex" action="<?php echo $system->url($siteManager->getPrefix('search',$_SESSION['lang'])); ?>">
                         <input class="form-control me-2" type="search" name="q"
@@ -203,7 +203,7 @@
             <div class="col-12 col-md-4 text-center text-md-start">
                 <h4><?php echo $functions->textManager("footer_sayfalar"); ?></h4>
                 <ul class="p-0 list-style-none">
-                    <?php echo $siteManager->getFooterNavbar(); ?>
+                    <?php echo $projectFunctions->getFooterNavbar(); ?>
                 </ul>
             </div>
             <div class="col-12 col-md-4"></div>
