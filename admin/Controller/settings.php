@@ -256,7 +256,7 @@ if (isset($_POST["submit"]) && (int)$_POST["submit"] === 1) {
 			&& ((int)$pageData["smtp_mail_send_debug"] !== 2)) {
 			$message["reply"][] = "Lütfen geçerli bir mail gönderme türü seçiniz.";
 		}
-		if ((int)$pageData["smtp_mail_send_debug"] === 1) {
+		if ((int)$pageData["smtp_mail_send_debug"] === 2) {
 			if (empty($pageData["smtp_send_debug_adres"])) {
 				$message["reply"][] = "Test maillerinin gideceği adres boş olamaz.";
 			}
